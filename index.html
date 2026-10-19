@@ -1,0 +1,3889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study Hub | Academic Portal &amp; Comprehensive Theory Studio</title>
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-base: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-surface-elevated: #24344d;
+      --bg-surface-subtle: rgba(30, 41, 59, 0.7);
+      --bg-glass: rgba(15, 23, 42, 0.88);
+
+      --accent-cyan: #0ea5e9;
+      --accent-cyan-hover: #38bdf8;
+      --accent-cyan-glow: rgba(14, 165, 233, 0.28);
+      --accent-cyan-dim: rgba(14, 165, 233, 0.12);
+
+      --accent-emerald: #10b981;
+      --accent-emerald-hover: #34d399;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.28);
+      --accent-emerald-dim: rgba(16, 185, 129, 0.12);
+
+      --accent-rose: #f43f5e;
+      --accent-rose-dim: rgba(244, 63, 94, 0.12);
+      --accent-amber: #f59e0b;
+      --accent-amber-dim: rgba(245, 158, 11, 0.12);
+      --accent-purple: #a855f7;
+      --accent-purple-dim: rgba(168, 85, 247, 0.12);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(14, 165, 233, 0.3);
+      --border-emerald: rgba(16, 185, 129, 0.3);
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
+      --shadow-glow-cyan: 0 0 24px var(--accent-cyan-glow);
+      --shadow-glow-emerald: 0 0 24px var(--accent-emerald-glow);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-full: 9999px;
+
+      --transition-fast: 0.18s ease;
+      --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLING
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 10% 8%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a, button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .app-container {
+      max-width: 1340px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px 60px 24px;
+      flex: 1;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION BAR (WITH STOPWATCH)
+       ========================================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
+      margin-bottom: 34px;
+    }
+
+    .header-content {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--accent-cyan-dim), var(--accent-emerald-dim));
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      box-shadow: 0 0 16px var(--accent-cyan-glow);
+    }
+
+    .brand-text h1 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(120deg, #ffffff 40%, var(--accent-cyan) 85%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-emerald);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Active Running Stopwatch Widget */
+    .stopwatch-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-cyan);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5), 0 0 16px var(--accent-cyan-glow);
+      transition: var(--transition-normal);
+    }
+
+    .stopwatch-icon {
+      color: var(--accent-cyan);
+      display: flex;
+      animation: stopwatch-spin 4s linear infinite;
+    }
+
+    @keyframes stopwatch-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .stopwatch-badge.paused .stopwatch-icon {
+      animation-play-state: paused;
+      color: var(--accent-amber);
+    }
+
+    .stopwatch-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stopwatch-digits {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      min-width: 68px;
+      text-shadow: 0 0 10px rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-stopwatch-toggle {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      border-radius: 4px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-stopwatch-toggle:hover {
+      color: var(--accent-cyan);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Hackathon Showcase Badge & Button */
+    .hackathon-tag-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #fde047;
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
+    }
+
+    .btn-hackathon-info {
+      background: rgba(234, 179, 8, 0.12);
+      color: #fef08a;
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 9px 15px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.84rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-normal);
+    }
+
+    .btn-hackathon-info:hover {
+      background: rgba(234, 179, 8, 0.25);
+      color: #ffffff;
+      border-color: #eab308;
+      box-shadow: 0 0 18px rgba(234, 179, 8, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* Close Session Button */
+    .btn-close-session {
+      background: rgba(244, 63, 94, 0.12);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-normal);
+    }
+
+    .btn-close-session:hover {
+      background: rgba(244, 63, 94, 0.25);
+      color: #ffffff;
+      border-color: var(--accent-rose);
+      box-shadow: 0 0 16px rgba(244, 63, 94, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       SECTION HEADINGS
+       ========================================================================== */
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .section-description {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      max-width: 840px;
+    }
+
+    /* ==========================================================================
+       1. CORE MODULES SECTION (Touch to inspect Theory & Massive Mind Map)
+       ========================================================================== */
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+      margin-bottom: 44px;
+    }
+
+    .subject-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition-normal);
+    }
+
+    .subject-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--subject-accent, var(--accent-cyan)), transparent);
+      opacity: 0.6;
+      transition: var(--transition-fast);
+    }
+
+    .subject-card:hover {
+      border-color: var(--subject-border, var(--border-cyan));
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md), 0 0 24px var(--subject-glow, var(--accent-cyan-glow));
+    }
+
+    .subject-card:hover::before {
+      opacity: 1;
+      height: 4px;
+    }
+
+    .subject-card[data-subject="math"] {
+      --subject-accent: #0ea5e9;
+      --subject-border: rgba(14, 165, 233, 0.4);
+      --subject-glow: rgba(14, 165, 233, 0.2);
+    }
+    .subject-card[data-subject="chem"] {
+      --subject-accent: #10b981;
+      --subject-border: rgba(16, 185, 129, 0.4);
+      --subject-glow: rgba(16, 185, 129, 0.2);
+    }
+    .subject-card[data-subject="phys"] {
+      --subject-accent: #f59e0b;
+      --subject-border: rgba(245, 158, 11, 0.4);
+      --subject-glow: rgba(245, 158, 11, 0.2);
+    }
+    .subject-card[data-subject="eng"] {
+      --subject-accent: #a855f7;
+      --subject-border: rgba(168, 85, 247, 0.4);
+      --subject-glow: rgba(168, 85, 247, 0.2);
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .subject-title-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .subject-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--subject-accent);
+    }
+
+    .subject-title-area h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .subject-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .touch-cue {
+      font-size: 0.73rem;
+      color: var(--subject-accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+
+    .topics-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .topic-node {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      transition: var(--transition-fast);
+    }
+
+    .topic-node:hover {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .topic-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .topic-bullet {
+      width: 6px;
+      height: 6px;
+      background: var(--subject-accent);
+      border-radius: 50%;
+    }
+
+    .subtopics-container {
+      padding-left: 14px;
+      margin-left: 3px;
+      border-left: 1.5px dashed rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .subtopic-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30, 41, 59, 0.45);
+      padding: 5px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .subject-footer-actions {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .btn-action-pill {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      color: var(--subject-accent);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-action-pill:hover {
+      background: var(--subject-accent);
+      color: #0f172a;
+      border-color: var(--subject-accent);
+    }
+
+    /* ==========================================================================
+       EXTENDED THEORY & VISUAL STUDIO (MORE THEORY & DEEP ACADEMIC COVERAGE)
+       ========================================================================== */
+    .theory-lab-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .theory-lab-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+
+    .theory-tab-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .theory-tab-btn:hover {
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+
+    .theory-tab-btn.active {
+      background: var(--accent-cyan-dim);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px var(--accent-cyan-glow);
+    }
+
+    .theory-panel {
+      display: none;
+      animation: fadeInSlide 0.3s ease forwards;
+    }
+
+    .theory-panel.active {
+      display: block;
+    }
+
+    .theory-grid-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 990px) {
+      .theory-grid-two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .theory-topic-block {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .theory-topic-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .theory-prose {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .theory-prose strong {
+      color: var(--text-main);
+    }
+
+    .theory-principles-box {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+
+    .theory-principles-box h5 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .theory-principles-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .theory-principles-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .theory-principles-list li::before {
+      content: "•";
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    .formula-badge-strip {
+      background: rgba(30, 41, 59, 0.7);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-family: ui-monospace, monospace;
+      font-size: 0.84rem;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .visual-canvas-box {
+      background: rgba(11, 17, 33, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: auto;
+    }
+
+    .visual-canvas-box svg {
+      width: 100%;
+      max-height: 190px;
+      display: block;
+    }
+
+    .visual-caption {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       HUGE INTERACTIVE MIND MAPS IN EVERY SUBJECT
+       ========================================================================== */
+    .huge-mindmap-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .mindmap-subject-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+    }
+
+    .mm-select-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 9px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .mm-select-btn:hover {
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+
+    .mm-select-btn.active {
+      background: var(--accent-cyan-dim);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 14px var(--accent-cyan-glow);
+    }
+
+    /* Mind Map Visual Canvas & Tree Layout */
+    .mindmap-canvas-container {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .huge-mindmap-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 820px;
+    }
+
+    /* Central Core Root */
+    .mm-root-cluster {
+      display: flex;
+      justify-content: center;
+    }
+
+    .mm-root-node {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(16, 185, 129, 0.25));
+      border: 2px solid var(--accent-cyan);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      box-shadow: 0 0 25px var(--accent-cyan-glow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Major Branches Grid */
+    .mm-branches-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      position: relative;
+    }
+
+    .mm-branch-card {
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: var(--transition-fast);
+    }
+
+    .mm-branch-card:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 0 20px var(--accent-cyan-glow);
+    }
+
+    .mm-branch-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+    }
+
+    .mm-branch-title {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mm-subclusters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mm-node-pill {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .mm-node-pill:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-2px);
+    }
+
+    .mm-node-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .mm-node-meta {
+      font-size: 0.7rem;
+      color: var(--accent-cyan);
+    }
+
+    .mm-cross-connector-strip {
+      margin-top: 18px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    /* Revision Flow Chart Block */
+    .revision-flow-block {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin-top: 24px;
+    }
+
+    .revision-steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .revision-steps-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rev-step-card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .rev-step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent-emerald-dim);
+      border: 1.5px solid var(--accent-emerald);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE QUIZ (10 QUESTIONS EACH SUBJECT = 40 TOTAL) & WHEEL
+       ========================================================================== */
+    .quiz-evaluation-section {
+      margin-bottom: 40px;
+    }
+
+    .quiz-subject-filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .filter-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-cyan-dim);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--accent-cyan-glow);
+    }
+
+    .quiz-wrapper-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 990px) {
+      .quiz-wrapper-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .quiz-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .quiz-category-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: var(--accent-cyan-dim);
+      border: 1px solid var(--border-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .quiz-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .quiz-navigator-pills {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .q-pill {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .q-pill:hover {
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+    }
+
+    .q-pill.active {
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan-glow);
+    }
+
+    .q-pill.correct {
+      border-color: var(--accent-emerald);
+      background: var(--accent-emerald-dim);
+      color: var(--accent-emerald);
+    }
+
+    .q-pill.incorrect {
+      border-color: var(--accent-rose);
+      background: var(--accent-rose-dim);
+      color: #fda4af;
+    }
+
+    .question-prompt {
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 20px;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 22px;
+    }
+
+    .option-btn {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 13px 16px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition-normal);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: var(--border-cyan);
+      transform: translateX(4px);
+      box-shadow: 0 0 14px var(--accent-cyan-glow);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-key {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .option-btn:hover:not(:disabled) .option-key {
+      background: var(--accent-cyan);
+      color: #0f172a;
+      border-color: var(--accent-cyan);
+    }
+
+    .option-btn.selected-correct {
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-color: var(--accent-emerald) !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px var(--accent-emerald-glow) !important;
+    }
+
+    .option-btn.selected-correct .option-key {
+      background: var(--accent-emerald) !important;
+      color: #0f172a !important;
+      border-color: var(--accent-emerald) !important;
+    }
+
+    .option-btn.selected-incorrect {
+      background: rgba(244, 63, 94, 0.15) !important;
+      border-color: var(--accent-rose) !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.25) !important;
+    }
+
+    .option-btn.selected-incorrect .option-key {
+      background: var(--accent-rose) !important;
+      color: #ffffff !important;
+      border-color: var(--accent-rose) !important;
+    }
+
+    .option-btn.reveal-correct {
+      border-color: var(--accent-emerald) !important;
+      background: rgba(16, 185, 129, 0.08) !important;
+    }
+
+    .feedback-banner {
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      display: none;
+      animation: fadeInSlide 0.3s ease forwards;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-banner.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--border-emerald);
+      box-shadow: 0 0 20px var(--accent-emerald-glow);
+    }
+
+    .feedback-banner.error {
+      display: block;
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.2);
+    }
+
+    .feedback-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feedback-banner.success .feedback-heading {
+      color: var(--accent-emerald);
+    }
+
+    .feedback-banner.error .feedback-heading {
+      color: #fda4af;
+    }
+
+    .feedback-text {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      color: #e2e8f0;
+    }
+
+    .quiz-controls-bar {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 16px;
+    }
+
+    .btn-nav {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      background: var(--bg-surface-elevated);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-reset-quiz {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-reset-quiz:hover {
+      color: var(--accent-cyan);
+    }
+
+    /* Accuracy Wheel */
+    .wheel-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .wheel-card-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .wheel-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .wheel-card-subtitle {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .wheel-visual-container {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .wheel-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .wheel-track {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.06);
+      stroke-width: 14;
+    }
+
+    .wheel-progress-arc {
+      fill: none;
+      stroke: url(#wheelGradient);
+      stroke-width: 14;
+      stroke-linecap: round;
+      stroke-dasharray: 282.74;
+      stroke-dashoffset: 282.74;
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 0 10px var(--accent-cyan-glow));
+    }
+
+    .wheel-inner-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .wheel-percentage-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      font-family: ui-monospace, monospace;
+      text-shadow: 0 0 16px rgba(14, 165, 233, 0.5);
+    }
+
+    .wheel-percentage-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stats-breakdown-list {
+      width: 100%;
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 7px 11px;
+      font-size: 0.8rem;
+    }
+
+    .stat-label-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text-muted);
+    }
+
+    .stat-indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .dot-correct { background-color: var(--accent-emerald); box-shadow: 0 0 6px var(--accent-emerald); }
+    .dot-incorrect { background-color: var(--accent-rose); box-shadow: 0 0 6px var(--accent-rose); }
+    .dot-remaining { background-color: var(--text-subtle); }
+
+    .stat-numeric-value {
+      font-weight: 700;
+      color: #ffffff;
+      font-family: ui-monospace, monospace;
+    }
+
+    /* Modal Dialog */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: modalFadeIn 0.25s ease forwards;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px var(--accent-cyan-glow);
+      text-align: center;
+    }
+
+    .modal-icon-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-cyan-dim);
+      border: 1px solid var(--border-cyan);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .modal-message {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .modal-btn-primary {
+      padding: 10px 22px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: none;
+      background: var(--accent-cyan);
+      color: #0f172a;
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      color: #ffffff;
+      font-size: 0.84rem;
+      box-shadow: var(--shadow-md), 0 0 20px var(--accent-cyan-glow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+      animation: toastIn 0.3s ease forwards;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .app-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 24px 0;
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+    }
+
+    .footer-brand {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR (WITH STOPWATCH)
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand-group">
+        <div class="brand-icon-wrapper">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <h1>Smart Study Hub</h1>
+            <span class="hackathon-tag-pill">🏆 Hackathon 2026 Showcase</span>
+          </div>
+          <div class="brand-tagline">
+            <span class="status-dot"></span>
+            <span>Academic Portal • Stop Watch &amp; Deep Theory Studio Active</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Hackathon Info Button -->
+        <button class="btn-hackathon-info" id="btn-hackathon-info" type="button" title="View Hackathon Submission Details">
+          <span>🏆 Hackathon Deck</span>
+        </button>
+
+        <!-- Running Stop Watch (Transformed from Countdown Timer) -->
+        <div class="stopwatch-badge" id="session-stopwatch-widget" title="Live Session Elapsed Stopwatch">
+          <div class="stopwatch-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 10"/>
+            </svg>
+          </div>
+          <div>
+            <div class="stopwatch-label">Stop Watch</div>
+            <div class="stopwatch-digits" id="stopwatch-display">00:00</div>
+          </div>
+          <button class="btn-stopwatch-toggle" id="btn-stopwatch-toggle" title="Pause / Resume Stopwatch" type="button">
+            <svg id="stopwatch-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Close Session Button -->
+        <button class="btn-close-session" id="btn-close-session" type="button" aria-label="Close Current Session">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+            <line x1="12" y1="2" x2="12" y2="12"/>
+          </svg>
+          <span>Close Session</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN APP WORKSPACE
+       ========================================================================== -->
+  <main class="app-container">
+
+    <!-- ==========================================================================
+         SECTION 1: CORE MODULES (TOUCH TO INSPECT THEORY & HUGE MIND MAP)
+         ========================================================================== -->
+    <section class="section-header">
+      <div class="section-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Curriculum Architecture</span>
+      </div>
+      <h2 class="section-title">Core Academic Modules</h2>
+      <p class="section-description">
+        Touch any subject to automatically launch its <strong>expanded Theory &amp; Visual Studio</strong> and view its <strong>dedicated Huge Mind Map</strong>.
+      </p>
+    </section>
+
+    <div class="subjects-grid">
+
+      <!-- Subject 1: Mathematics -->
+      <article class="subject-card" data-subject="math" onclick="touchSubject('math')">
+        <div class="subject-header">
+          <div class="subject-title-area">
+            <div class="subject-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3>Mathematics</h3>
+              <span class="subject-badge">Module 01</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-cue">
+          <span>👆 Touch for Deep Theory &amp; Huge Mind Map</span>
+        </div>
+
+        <div class="topics-tree">
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Calculus</span>
+              <span class="topic-level-tag">Analysis</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Limits &amp; Derivatives</span>
+                <span class="subtopic-badge">Core</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Matrices</span>
+              <span class="topic-level-tag">Linear Alg</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Determinants</span>
+                <span class="subtopic-badge">Applied</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-footer-actions" onclick="event.stopPropagation()">
+          <button class="btn-action-pill" onclick="touchSubject('math')">
+            <span>📖 Deep Theory</span>
+          </button>
+          <button class="btn-action-pill" onclick="openSubjectMindMap('math')">
+            <span>🧠 Huge Mind Map</span>
+          </button>
+          <button class="btn-action-pill" onclick="filterQuizSubject('Mathematics')">
+            <span>🎯 10 Qs &rarr;</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Subject 2: Chemistry -->
+      <article class="subject-card" data-subject="chem" onclick="touchSubject('chem')">
+        <div class="subject-header">
+          <div class="subject-title-area">
+            <div class="subject-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.32 20.5h11.36a2 2 0 0 0 1.63-3L14 9.31V2h-4z"/>
+                <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Chemistry</h3>
+              <span class="subject-badge">Module 02</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-cue">
+          <span>👆 Touch for Deep Theory &amp; Huge Mind Map</span>
+        </div>
+
+        <div class="topics-tree">
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Organic Chemistry</span>
+              <span class="topic-level-tag">Synthesis</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Hydrocarbons</span>
+                <span class="subtopic-badge">Core</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Periodic Table</span>
+              <span class="topic-level-tag">Inorganic</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Chemical Bonding</span>
+                <span class="subtopic-badge">Foundational</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-footer-actions" onclick="event.stopPropagation()">
+          <button class="btn-action-pill" onclick="touchSubject('chem')">
+            <span>📖 Deep Theory</span>
+          </button>
+          <button class="btn-action-pill" onclick="openSubjectMindMap('chem')">
+            <span>🧠 Huge Mind Map</span>
+          </button>
+          <button class="btn-action-pill" onclick="filterQuizSubject('Chemistry')">
+            <span>🎯 10 Qs &rarr;</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Subject 3: Physics -->
+      <article class="subject-card" data-subject="phys" onclick="touchSubject('phys')">
+        <div class="subject-header">
+          <div class="subject-title-area">
+            <div class="subject-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Physics</h3>
+              <span class="subject-badge">Module 03</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-cue">
+          <span>👆 Touch for Deep Theory &amp; Huge Mind Map</span>
+        </div>
+
+        <div class="topics-tree">
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Mechanics</span>
+              <span class="topic-level-tag">Classical</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Kinematics</span>
+                <span class="subtopic-badge">Core</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Electromagnetism</span>
+              <span class="topic-level-tag">Fields</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Magnetic Induction</span>
+                <span class="subtopic-badge">High Yield</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-footer-actions" onclick="event.stopPropagation()">
+          <button class="btn-action-pill" onclick="touchSubject('phys')">
+            <span>📖 Deep Theory</span>
+          </button>
+          <button class="btn-action-pill" onclick="openSubjectMindMap('phys')">
+            <span>🧠 Huge Mind Map</span>
+          </button>
+          <button class="btn-action-pill" onclick="filterQuizSubject('Physics')">
+            <span>🎯 10 Qs &rarr;</span>
+          </button>
+        </div>
+      </article>
+
+      <!-- Subject 4: English -->
+      <article class="subject-card" data-subject="eng" onclick="touchSubject('eng')">
+        <div class="subject-header">
+          <div class="subject-title-area">
+            <div class="subject-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3>English</h3>
+              <span class="subject-badge">Module 04</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="touch-cue">
+          <span>👆 Touch for Deep Theory &amp; Huge Mind Map</span>
+        </div>
+
+        <div class="topics-tree">
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Grammar</span>
+              <span class="topic-level-tag">Linguistics</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Tenses &amp; Clauses</span>
+                <span class="subtopic-badge">Applied</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-node">
+            <div class="topic-header">
+              <span class="topic-name"><span class="topic-bullet"></span>Literature</span>
+              <span class="topic-level-tag">Criticism</span>
+            </div>
+            <div class="subtopics-container">
+              <div class="subtopic-item">
+                <span>Poetry Analysis</span>
+                <span class="subtopic-badge">Core</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject-footer-actions" onclick="event.stopPropagation()">
+          <button class="btn-action-pill" onclick="touchSubject('eng')">
+            <span>📖 Deep Theory</span>
+          </button>
+          <button class="btn-action-pill" onclick="openSubjectMindMap('eng')">
+            <span>🧠 Huge Mind Map</span>
+          </button>
+          <button class="btn-action-pill" onclick="filterQuizSubject('English')">
+            <span>🎯 10 Qs &rarr;</span>
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ==========================================================================
+         COMPREHENSIVE THEORY & VISUAL STUDIO (MORE THEORY EXPANSION)
+         ========================================================================== -->
+    <section class="theory-lab-section" id="theory-lab-section">
+      <div class="section-header">
+        <div class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span>Expanded Academic Theory &amp; Derivations</span>
+        </div>
+        <h2 class="section-title">Comprehensive Subject Theory Studio</h2>
+        <p class="section-description">
+          Exhaustive academic treatises covering fundamental proofs, governing physical laws, reaction orbital mechanisms, and syntactic trees with rich vector visualizations.
+        </p>
+      </div>
+
+      <!-- Theory Tabs -->
+      <div class="theory-lab-tabs">
+        <button class="theory-tab-btn active" id="tab-btn-math" onclick="switchTheoryTab('math')">
+          📐 Mathematics Treatise
+        </button>
+        <button class="theory-tab-btn" id="tab-btn-chem" onclick="switchTheoryTab('chem')">
+          🧪 Chemistry Treatise
+        </button>
+        <button class="theory-tab-btn" id="tab-btn-phys" onclick="switchTheoryTab('phys')">
+          ⚛️ Physics Treatise
+        </button>
+        <button class="theory-tab-btn" id="tab-btn-eng" onclick="switchTheoryTab('eng')">
+          📖 English Treatise
+        </button>
+      </div>
+
+      <!-- 1. Mathematics Theory Panel -->
+      <div class="theory-panel active" id="theory-panel-math">
+        <div class="theory-grid-two-col">
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-cyan)">Calculus:</span> Rigorous Limits, Derivative Derivation &amp; Continuity
+            </h4>
+            <div class="theory-prose">
+              The derivative <strong>f'(x)</strong> is formalized via the Cauchy-Weierstrass limit of difference quotients: 
+              <strong>f'(x) = lim (h → 0) [(f(x + h) - f(x)) / h]</strong>. Geometrically, this converts an empirical secant line connecting two points separated by distance <em>h</em> into the unique instantaneous tangent line as <em>h</em> contracts to zero.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Essential Calculus Theorems &amp; Rules</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Squeeze Theorem:</strong> If g(x) ≤ f(x) ≤ h(x) and lim g(x) = lim h(x) = L, then lim f(x) = L. Crucial for lim (x→0) [sin(x)/x] = 1.</li>
+                <li><strong>L'Hôpital's Rule:</strong> For indeterminate forms 0/0 or ∞/∞, lim [f(x)/g(x)] = lim [f'(x)/g'(x)], provided the derivative limit exists.</li>
+                <li><strong>Chain Rule:</strong> d/dx [f(g(x))] = f'(g(x)) * g'(x), governing composite functional change.</li>
+                <li><strong>Product &amp; Quotient Rules:</strong> (u*v)' = u'v + uv' and (u/v)' = (u'v - uv') / v².</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              f'(x) = lim(h→0) [f(x+h) - f(x)]/h | Power: d/dx [xⁿ] = n·xⁿ⁻¹ | Tangent: y - y₀ = m(x - x₀)
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <line x1="30" y1="130" x2="290" y2="130" stroke="#334155" stroke-width="1.5"/>
+                <line x1="50" y1="20" x2="50" y2="140" stroke="#334155" stroke-width="1.5"/>
+                <path d="M 50 130 Q 150 130 250 30" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+                <line x1="100" y1="125" x2="240" y2="45" stroke="#10b981" stroke-width="2.5" stroke-dasharray="4"/>
+                <circle cx="170" cy="85" r="5" fill="#f8fafc" stroke="#10b981" stroke-width="2.5"/>
+                <text x="180" y="80" fill="#f8fafc" font-size="11" font-weight="bold">Point P(x, f(x))</text>
+                <text x="140" y="45" fill="#10b981" font-size="11" font-weight="bold">Tangent Slope m = f'(x)</text>
+                <text x="210" y="120" fill="#94a3b8" font-size="10">Secant h → 0</text>
+              </svg>
+              <div class="visual-caption">Figure 1.1: Limit convergence of secant line into instantaneous tangent line.</div>
+            </div>
+          </div>
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-cyan)">Matrices:</span> Determinants, Inverses &amp; Vector Spaces
+            </h4>
+            <div class="theory-prose">
+              In linear algebra, a matrix <strong>M</strong> transforms vector space. The determinant <strong>det(M)</strong> quantifies the precise factor by which basis areas (in 2D) or hypervolumes (in nD) scale under that linear map. A negative determinant signifies an orientation reversal (reflection).
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Matrix Properties &amp; Transformations</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Singular Matrix Condition:</strong> det(A) = 0 indicates dimensionality loss; the matrix has no inverse (A⁻¹ does not exist).</li>
+                <li><strong>Matrix Inversion:</strong> A⁻¹ = (1 / det(A)) * adj(A), requiring det(A) ≠ 0.</li>
+                <li><strong>Trace Operator:</strong> Trace(A) = ∑ a_ii (sum of main diagonal elements), invariant under basis rotation.</li>
+                <li><strong>Cramer's Rule:</strong> Solves systems Ax = b using x_i = det(A_i) / det(A).</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              det [[a, b], [c, d]] = ad - bc | det(A · B) = det(A) · det(B) | det(Iₙ) = 1
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <line x1="30" y1="130" x2="290" y2="130" stroke="#334155" stroke-width="1.5"/>
+                <line x1="60" y1="20" x2="60" y2="140" stroke="#334155" stroke-width="1.5"/>
+                <rect x="60" y="80" width="50" height="50" fill="rgba(255,255,255,0.05)" stroke="#64748b" stroke-dasharray="3"/>
+                <polygon points="60,130 150,110 230,50 140,70" fill="rgba(14, 165, 233, 0.2)" stroke="#0ea5e9" stroke-width="2"/>
+                <line x1="60" y1="130" x2="150" y2="110" stroke="#10b981" stroke-width="2"/>
+                <line x1="60" y1="130" x2="140" y2="70" stroke="#f59e0b" stroke-width="2"/>
+                <text x="145" y="90" fill="#0ea5e9" font-size="11" font-weight="bold">Transformed Area = |ad - bc|</text>
+              </svg>
+              <div class="visual-caption">Figure 1.2: Determinant as the oriented surface area scale factor of basis vectors.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Chemistry Theory Panel -->
+      <div class="theory-panel" id="theory-panel-chem">
+        <div class="theory-grid-two-col">
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-emerald)">Organic Chemistry:</span> Hydrocarbon Hybridization &amp; Mechanisms
+            </h4>
+            <div class="theory-prose">
+              Carbon's unique catenation capability stems from <strong>orbital hybridization</strong>. In methane (CH₄), one 2s and three 2p orbitals hybridize into four identical <strong>sp³</strong> orbitals at 109.5°. In ethylene (C₂H₄), <strong>sp²</strong> hybridization forms a planar σ-framework with one unhybridized 2p orbital creating a π-bond. In acetylene (C₂H₂), <strong>sp</strong> hybridization forms a linear 180° structure with two orthogonal π-bonds.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Hydrocarbon Classifications &amp; Reactivity</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Alkanes (CnH2n+2):</strong> Saturated hydrocarbons containing only strong σ-bonds; undergo free-radical halogenation.</li>
+                <li><strong>Alkenes (CnH2n):</strong> Unsaturated hydrocarbons featuring C=C double bonds; undergo electrophilic addition.</li>
+                <li><strong>Alkynes (CnH2n-2):</strong> Terminal alkynes exhibit weak acidity due to high s-character (50%) in sp orbitals.</li>
+                <li><strong>Aromaticity (Hückel's Rule):</strong> Planar, cyclic conjugated systems with (4n + 2) π-electrons (e.g. Benzene C₆H₆) exhibit resonance stabilization.</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              C-C: sp³ (109.5°, 154 pm) | C=C: sp² (120°, 134 pm) | C≡C: sp (180°, 120 pm)
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <text x="35" y="85" fill="#f8fafc" font-size="18" font-weight="bold">H</text>
+                <line x1="55" y1="80" x2="90" y2="80" stroke="#f8fafc" stroke-width="2"/>
+                <text x="100" y="85" fill="#10b981" font-size="20" font-weight="bold">C</text>
+                <line x1="120" y1="73" x2="180" y2="73" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="120" y1="80" x2="180" y2="80" stroke="#10b981" stroke-width="2.5"/>
+                <line x1="120" y1="87" x2="180" y2="87" stroke="#38bdf8" stroke-width="2"/>
+                <text x="190" y="85" fill="#10b981" font-size="20" font-weight="bold">C</text>
+                <line x1="210" y1="80" x2="245" y2="80" stroke="#f8fafc" stroke-width="2"/>
+                <text x="255" y="85" fill="#f8fafc" font-size="18" font-weight="bold">H</text>
+                <ellipse cx="150" cy="80" rx="24" ry="42" fill="none" stroke="rgba(14,165,233,0.4)" stroke-dasharray="3"/>
+                <text x="105" y="32" fill="#38bdf8" font-size="10">Orthogonal π-Electron Clouds</text>
+                <text x="115" y="140" fill="#94a3b8" font-size="10">Linear sp Geometry (180°)</text>
+              </svg>
+              <div class="visual-caption">Figure 2.1: Ethyne molecular geometry featuring a central σ-bond and two orthogonal π-clouds.</div>
+            </div>
+          </div>
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-emerald)">Periodic Table &amp; Bonding:</span> Energetics, Lattices &amp; Dipoles
+            </h4>
+            <div class="theory-prose">
+              Chemical bonds form because the bound configuration minimizes the system's potential energy. <strong>Electronegativity differential (ΔEN)</strong> dictates bond character: ΔEN &gt; 2.0 produces <strong>ionic bonds</strong> via complete electron transfer, 0.4 &lt; ΔEN &lt; 2.0 produces <strong>polar covalent bonds</strong>, and ΔEN &lt; 0.4 yields <strong>non-polar covalent bonds</strong>.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Periodic Trends &amp; Intermolecular Forces</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Effective Nuclear Charge (Z_eff):</strong> Increases across periods, drawing valence shells closer and boosting electronegativity.</li>
+                <li><strong>Born-Haber Cycle &amp; Lattice Energy:</strong> U = (N_A * M * z⁺ * z⁻ * e²) / (4πε₀r₀) * (1 - 1/n), calculating ionic crystal strength.</li>
+                <li><strong>Hydrogen Bonding:</strong> Strong directional dipole attraction between H bonded to N, O, or F and a nearby lone pair (e.g. H₂O boiling elevation).</li>
+                <li><strong>Metallic Delocalization:</strong> Electron sea model explains thermal/electrical conductivity and malleability.</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              Coulomb: F = k(q₁q₂)/r² | Octet Rule: ns²np⁶ | Dipole Moment: μ = q × d (Debyes)
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <circle cx="85" cy="80" r="32" fill="rgba(14, 165, 233, 0.15)" stroke="#0ea5e9" stroke-width="2"/>
+                <text x="73" y="85" fill="#0ea5e9" font-size="14" font-weight="bold">Na⁺</text>
+                <circle cx="230" cy="80" r="45" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="2"/>
+                <text x="218" y="85" fill="#10b981" font-size="16" font-weight="bold">Cl⁻</text>
+                <path d="M 115 65 Q 160 30 185 65" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3"/>
+                <circle cx="155" cy="45" r="4" fill="#f59e0b"/>
+                <text x="125" y="30" fill="#f59e0b" font-size="10" font-weight="bold">1e⁻ Transfer</text>
+                <line x1="120" y1="80" x2="180" y2="80" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="2"/>
+                <text x="132" y="105" fill="#f8fafc" font-size="10">Coulomb Attraction</text>
+              </svg>
+              <div class="visual-caption">Figure 2.2: Complete valence electron transfer producing Coulombic electrostatic crystal lattices.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. Physics Theory Panel -->
+      <div class="theory-panel" id="theory-panel-phys">
+        <div class="theory-grid-two-col">
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-amber)">Classical Mechanics:</span> Kinematic Calculus, Vectors &amp; Free Fall
+            </h4>
+            <div class="theory-prose">
+              Kinematics describes motion without regard to causing forces. By treating acceleration <strong>a(t) = dv/dt = d²s/dt²</strong> as a constant vector, double integration yields Galileo's kinematic equations: <strong>v(t) = u + at</strong> and <strong>s(t) = ut + (1/2)at²</strong>. Eliminating parameter <em>t</em> produces the work-energy invariant <strong>v² = u² + 2as</strong>.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Kinematic Principles &amp; Analysis</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Graphical Calculus:</strong> Slope of s-t graph is velocity v; slope of v-t graph is acceleration a; area under v-t graph is displacement s = ∫ v dt.</li>
+                <li><strong>Free Fall Acceleration:</strong> In vacuum, all bodies accelerate downward at g ≈ 9.8 m/s² regardless of inertial mass, validating Galileo's equivalence.</li>
+                <li><strong>Projectile Motion:</strong> Motion decomposes into independent orthogonal components: horizontal uniform velocity (ax = 0) and vertical free fall (ay = -g).</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              v = u + at | s = ut + ½at² | v² = u² + 2as | s = ∫ v(t) dt
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <line x1="40" y1="130" x2="290" y2="130" stroke="#334155" stroke-width="1.5"/>
+                <line x1="50" y1="20" x2="50" y2="140" stroke="#334155" stroke-width="1.5"/>
+                <line x1="50" y1="100" x2="230" y2="40" stroke="#f59e0b" stroke-width="3"/>
+                <polygon points="50,130 50,100 230,40 230,130" fill="rgba(245, 158, 11, 0.15)"/>
+                <text x="25" y="105" fill="#94a3b8" font-size="10">u</text>
+                <text x="25" y="45" fill="#94a3b8" font-size="10">v</text>
+                <text x="225" y="145" fill="#94a3b8" font-size="10">t</text>
+                <text x="100" y="100" fill="#f59e0b" font-size="12" font-weight="bold">Displacement s = Area</text>
+                <text x="145" y="55" fill="#f8fafc" font-size="10">Slope = Acceleration a</text>
+              </svg>
+              <div class="visual-caption">Figure 3.1: Velocity-Time curve illustrating acceleration slope and displacement area.</div>
+            </div>
+          </div>
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-amber)">Electromagnetism:</span> Faraday, Lenz's Law &amp; Maxwell Dynamics
+            </h4>
+            <div class="theory-prose">
+              Magnetic flux <strong>Φ_B = ∫ B · dA = B A cos θ</strong> represents the surface integral of magnetic B-field lines passing through a closed loop. Faraday's Law states that any time variation in flux induces an electromotive force (EMF). Lenz's Law introduces the negative sign: <strong>EMF = -dΦ_B/dt</strong>, ensuring energy conservation.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Electromagnetic Applications &amp; Phenomena</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Lenz's Energy Conservation:</strong> Induced currents generate an internal magnetic field counteracting flux change; without opposition, perpetual energy generation would occur.</li>
+                <li><strong>Mutual Induction &amp; Transformers:</strong> Alternating primary flux induces EMF in secondary coil: Vs / Vp = Ns / Np.</li>
+                <li><strong>Eddy Currents (Foucault Currents):</strong> Closed swirling current loops induced within bulk conductors causing Joule heating (I²R) and magnetic braking.</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              EMF = -N (dΦ / dt) | Φ_B = B · A cos(θ) | Mutual: EMF₂ = -M (dI₁ / dt)
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <rect x="40" y="65" width="45" height="30" fill="#ef4444" rx="2"/>
+                <text x="56" y="85" fill="#ffffff" font-size="12" font-weight="bold">N</text>
+                <rect x="85" y="65" width="45" height="30" fill="#3b82f6" rx="2"/>
+                <text x="102" y="85" fill="#ffffff" font-size="12" font-weight="bold">S</text>
+                <path d="M 135 80 L 165 80" stroke="#f8fafc" stroke-width="2"/>
+                <ellipse cx="190" cy="80" rx="12" ry="35" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <ellipse cx="215" cy="80" rx="12" ry="35" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <ellipse cx="240" cy="80" rx="12" ry="35" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                <text x="180" y="35" fill="#10b981" font-size="10" font-weight="bold">Induced I opposes ΔΦ</text>
+                <text x="55" y="125" fill="#94a3b8" font-size="10">Moving Magnet (dΦ/dt &gt; 0)</text>
+              </svg>
+              <div class="visual-caption">Figure 3.2: Solenoid magnetic induction opposing magnetic flux ingress via Lenz's Law.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4. English Theory Panel -->
+      <div class="theory-panel" id="theory-panel-eng">
+        <div class="theory-grid-two-col">
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-purple)">Grammar &amp; Syntax:</span> Structural Clauses &amp; Syntactic Trees
+            </h4>
+            <div class="theory-prose">
+              English syntax organizes meaning hierarchically through <strong>clauses</strong>. An <strong>independent clause</strong> contains a subject and predicate that forms a complete semantic thought. A <strong>subordinate (dependent) clause</strong> begins with a subordinating conjunction (<em>although, because, since, while</em>) and modifies the main clause.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Syntactic Mechanics &amp; Tense Consistency</h5>
+              <ul class="theory-principles-list">
+                <li><strong>Comma Splices &amp; Run-ons:</strong> Joining two independent clauses with only a comma creates an error; correct using a semicolon (;) or coordinating conjunction (FANBOYS).</li>
+                <li><strong>Past Perfect Tense:</strong> Formed with <em>had + past participle</em> to signal an action completed prior to another past event.</li>
+                <li><strong>Voice Transformation:</strong> Active voice (Agent + Verb + Patient) provides clarity over passive voice (Patient + Auxiliary 'to be' + Verb).</li>
+                <li><strong>Dangling Modifiers:</strong> Modifying phrases must immediately precede the nominal agent performing the action.</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              [Subordinate Clause + Comma] + [Independent Clause] = Complex Sentence Architecture
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <rect x="110" y="15" width="100" height="24" rx="4" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1.5"/>
+                <text x="125" y="31" fill="#f8fafc" font-size="11" font-weight="bold">Complex Sentence</text>
+                <line x1="135" y1="39" x2="70" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <line x1="185" y1="39" x2="230" y2="70" stroke="#64748b" stroke-width="1.5"/>
+                <rect x="15" y="70" width="125" height="26" rx="4" fill="rgba(14,165,233,0.15)" stroke="#0ea5e9"/>
+                <text x="25" y="87" fill="#7dd3fc" font-size="10">Dependent: Although...</text>
+                <rect x="170" y="70" width="135" height="26" rx="4" fill="rgba(16,185,129,0.15)" stroke="#10b981"/>
+                <text x="180" y="87" fill="#6ee7b7" font-size="10">Independent: She passed</text>
+                <text x="25" y="130" fill="#94a3b8" font-size="9">Subordinating Conjunction + Subject + Verb</text>
+                <text x="185" y="130" fill="#94a3b8" font-size="9">Subject + Transitive Predicate</text>
+              </svg>
+              <div class="visual-caption">Figure 4.1: Syntax parse tree demonstrating dependency hierarchy and clause coordination.</div>
+            </div>
+          </div>
+
+          <div class="theory-topic-block">
+            <h4 class="theory-topic-title">
+              <span style="color:var(--accent-purple)">Poetics &amp; Criticism:</span> Scansion, Conceits &amp; Shakespearean Sonnet
+            </h4>
+            <div class="theory-prose">
+              Poetic analysis interprets rhythm, acoustic phonetics, and metaphorical conceits. English verse predominantly utilizes <strong>Iambic Pentameter</strong>—five metrical feet per line consisting of an unstressed syllable followed by a stressed syllable (<strong>da-DUM: ˘ /</strong>), mirroring natural human heartbeat and English speech cadences.
+            </div>
+
+            <div class="theory-principles-box">
+              <h5>Poetic Devices &amp; Critical Frameworks</h5>
+              <ul class="theory-principles-list">
+                <li><strong>The Extended Conceit:</strong> A prolonged, elaborate metaphorical comparison unifying an entire poem (e.g. Shakespeare comparing his beloved to a summer's day in Sonnet 18).</li>
+                <li><strong>The Sonnet Volta:</strong> The rhetorical turn in thought or argument occurring typically at Line 9 (Petrarchan) or Line 13 couplet (Shakespearean).</li>
+                <li><strong>Acoustic Devices:</strong> Alliteration (initial consonant sounds), Assonance (internal vowels), and Consonance reinforce emotional timbre.</li>
+                <li><strong>Personification:</strong> Endowing non-human entities with conscious volition and human feelings.</li>
+              </ul>
+            </div>
+
+            <div class="formula-badge-strip">
+              Meter: (da-DUM) × 5 = 10 Syllables | Rhyme: ABAB CDCD EFEF GG | Form: 3 Quatrains + 1 Couplet
+            </div>
+
+            <div class="visual-canvas-box">
+              <svg viewBox="0 0 320 160">
+                <text x="20" y="35" fill="#a855f7" font-size="13" font-weight="bold">˘   /     ˘   /      ˘    /      ˘    /     ˘    /</text>
+                <text x="20" y="60" fill="#f8fafc" font-size="12">Shall I   com-pare  thee to   a sum- mer's day?</text>
+                <path d="M 20 110 Q 35 125 45 95 T 75 110 Q 95 125 105 85 T 145 110 Q 165 125 175 85 T 215 110 Q 235 125 245 85 T 285 110" fill="none" stroke="#a855f7" stroke-width="2"/>
+                <text x="40" y="140" fill="#94a3b8" font-size="10">Foot 1</text>
+                <text x="100" y="140" fill="#94a3b8" font-size="10">Foot 2</text>
+                <text x="165" y="140" fill="#94a3b8" font-size="10">Foot 3</text>
+                <text x="230" y="140" fill="#94a3b8" font-size="10">Foot 4</text>
+                <text x="280" y="140" fill="#94a3b8" font-size="10">Foot 5</text>
+              </svg>
+              <div class="visual-caption">Figure 4.2: Acoustic stress rhythm waveform across Shakespeare's Sonnet 18.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         HUGE MIND MAP IN EVERY SUBJECT (DEDICATED FULL-SCALE MIND MAPS)
+         ========================================================================== -->
+    <section class="huge-mindmap-section" id="mindmap-section">
+      <div class="section-header">
+        <div class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          <span>Expansive Concept Graph</span>
+        </div>
+        <h2 class="section-title">Huge Mind Map Studio (Per-Subject Knowledge Graphs)</h2>
+        <p class="section-description">
+          Explore complete hierarchical concept trees for every subject mapping foundational axioms to advanced analytical systems without exam limitations.
+        </p>
+      </div>
+
+      <!-- Subject Switcher for Huge Mind Map -->
+      <div class="mindmap-subject-selector">
+        <button class="mm-select-btn active" id="mm-btn-math" onclick="switchMindMapSubject('math')">
+          📐 Mathematics Huge Mind Map
+        </button>
+        <button class="mm-select-btn" id="mm-btn-chem" onclick="switchMindMapSubject('chem')">
+          🧪 Chemistry Huge Mind Map
+        </button>
+        <button class="mm-select-btn" id="mm-btn-phys" onclick="switchMindMapSubject('phys')">
+          ⚛️ Physics Huge Mind Map
+        </button>
+        <button class="mm-select-btn" id="mm-btn-eng" onclick="switchMindMapSubject('eng')">
+          📖 English Huge Mind Map
+        </button>
+      </div>
+
+      <!-- Mind Map Canvas Viewport -->
+      <div class="mindmap-canvas-container">
+
+        <!-- 1. Mathematics Huge Mind Map -->
+        <div class="huge-mindmap-tree" id="huge-mm-math">
+          <div class="mm-root-cluster">
+            <div class="mm-root-node">
+              <span>📐</span>
+              <span>MATHEMATICS CORE TOPOLOGY</span>
+            </div>
+          </div>
+
+          <div class="mm-branches-row">
+            <!-- Major Branch 1: Calculus & Mathematical Analysis -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-cyan)">Branch 1:</span> Differential &amp; Integral Calculus
+                </span>
+                <span class="topic-level-tag">Analysis Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Limits & Continuity', 'Calculus', 'Infinitesimal Analysis', 'Squeeze Theorem, Cauchy epsilon-delta definition, indeterminate forms 0/0, L\'Hôpital\'s Rule')">
+                  <span class="mm-node-name">Limits &amp; Continuity</span>
+                  <span class="mm-node-meta">Foundational Squeeze &amp; L'Hôpital</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Derivatives & Rates', 'Calculus', 'Differential Calculus', 'Difference quotient limit f\'(x), instantaneous velocity, tangent line gradients')">
+                  <span class="mm-node-name">Derivatives &amp; Rates</span>
+                  <span class="mm-node-meta">Instantaneous Tangent Slope</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Differentiation Rules', 'Calculus', 'Operational Rules', 'Power rule nx^(n-1), Product rule uv\'+u\'v, Quotient rule, Chain rule for composite functions')">
+                  <span class="mm-node-name">Differentiation Rules</span>
+                  <span class="mm-node-meta">Power, Product &amp; Chain Rules</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Derivative Applications', 'Calculus', 'Extrema & Optimization', 'Critical points f\'(x)=0, second derivative concavity f\'\'(x), optimization modeling, related rates')">
+                  <span class="mm-node-name">Optimization &amp; Extrema</span>
+                  <span class="mm-node-meta">Critical Points &amp; Concavity</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Major Branch 2: Linear Algebra & Matrix Transformations -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-cyan)">Branch 2:</span> Linear Algebra &amp; Matrices
+                </span>
+                <span class="topic-level-tag">Algebraic Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Matrix Operations', 'Matrices', 'Linear Transformations', 'Matrix addition, scalar scaling, non-commutative row-by-column matrix multiplication AB ≠ BA')">
+                  <span class="mm-node-name">Matrix Operations</span>
+                  <span class="mm-node-meta">Dot Products &amp; Multiplication</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Determinants (2x2 & nxn)', 'Matrices', 'Volume Scaling Factor', 'Formula ad - bc, cofactor expansion, geometric oriented area scaling of basis vectors')">
+                  <span class="mm-node-name">Determinants</span>
+                  <span class="mm-node-meta">det(M) = ad - bc &amp; Scaling</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Matrix Invertibility', 'Matrices', 'Non-Singular Systems', 'A⁻¹ = adj(A)/det(A), invertibility requires det(A) ≠ 0; singular matrices collapse dimensionality')">
+                  <span class="mm-node-name">Inverses &amp; Singularity</span>
+                  <span class="mm-node-meta">A⁻¹ Invertibility &amp; det ≠ 0</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Linear Systems & Cramer\'s Rule', 'Matrices', 'Applied Systems', 'Ax = b solving, Gaussian elimination, row echelon form, rank-nullity theorem, Cramer\'s quotients')">
+                  <span class="mm-node-name">Linear Systems</span>
+                  <span class="mm-node-meta">Cramer\'s Rule &amp; Row Echelon</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Chemistry Huge Mind Map -->
+        <div class="huge-mindmap-tree" id="huge-mm-chem" style="display:none;">
+          <div class="mm-root-cluster">
+            <div class="mm-root-node" style="border-color:var(--accent-emerald);">
+              <span>🧪</span>
+              <span>CHEMISTRY MOLECULAR TOPOLOGY</span>
+            </div>
+          </div>
+
+          <div class="mm-branches-row">
+            <!-- Organic Chemistry Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-emerald)">Branch 1:</span> Organic Chemistry &amp; Hydrocarbons
+                </span>
+                <span class="topic-level-tag">Synthesis Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Aliphatic Hydrocarbons', 'Organic Chem', 'Saturated & Unsaturated', 'Alkanes (CnH2n+2 sp³ single), Alkenes (CnH2n sp² double), Alkynes (CnH2n-2 sp triple)')">
+                  <span class="mm-node-name">Aliphatic Hydrocarbons</span>
+                  <span class="mm-node-meta">Alkanes, Alkenes &amp; Alkynes</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Bond Hybridization', 'Organic Chem', 'Orbital Theory', 'Carbon sp³ (109.5° tetrahedral), sp² (120° planar), sp (180° linear) σ and orthogonal π bonds')">
+                  <span class="mm-node-name">sp³ / sp² / sp Orbitals</span>
+                  <span class="mm-node-meta">Geometry &amp; Sigma/Pi Bonds</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Aromatic Systems', 'Organic Chem', 'Resonance Energy', 'Benzene C₆H₆, planar ring, Hückel\'s 4n+2 rule, cyclic delocalized π-electrons, substitution')">
+                  <span class="mm-node-name">Aromatic Benzene</span>
+                  <span class="mm-node-meta">Hückel 4n+2 &amp; Resonance</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Functional Families', 'Organic Chem', 'Derivatives', 'Alcohols (-OH), Carboxylic Acids (-COOH), Aldehydes (-CHO), Esters, Ketones &amp; Amines')">
+                  <span class="mm-node-name">Functional Groups</span>
+                  <span class="mm-node-meta">Alcohols, Acids &amp; Carbonyls</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inorganic & Bonding Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-emerald)">Branch 2:</span> Periodic Table &amp; Chemical Bonding
+                </span>
+                <span class="topic-level-tag">Inorganic Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Periodic Trends', 'Inorganic', 'Atomic Architecture', 'Electronegativity increase across period, atomic radius contraction, ionization energy trends')">
+                  <span class="mm-node-name">Periodic Trends</span>
+                  <span class="mm-node-meta">Electronegativity &amp; Radius</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Ionic Crystal Lattices', 'Chemical Bonding', 'Coulombic Forces', 'Complete electron transfer between metals and non-metals (ΔEN > 2.0), Born-Haber lattice energy')">
+                  <span class="mm-node-name">Ionic Lattice Forces</span>
+                  <span class="mm-node-meta">Na⁺ Cl⁻ Coulombic Transfer</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Covalent Electron Sharing', 'Chemical Bonding', 'Orbital Overlap', 'Shared valence electron pairs, single/double/triple bonds, Lewis octet structures, VSEPR shapes')">
+                  <span class="mm-node-name">Covalent Sharing</span>
+                  <span class="mm-node-meta">Orbital Overlap &amp; Octet Rule</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Intermolecular Forces', 'Chemical Bonding', 'Secondary Dipoles', 'Hydrogen bonding (H to N,O,F), dipole-dipole interactions, London dispersion van der Waals forces')">
+                  <span class="mm-node-name">Hydrogen Bonding</span>
+                  <span class="mm-node-meta">Dipole Forces &amp; H₂O Cohesion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Physics Huge Mind Map -->
+        <div class="huge-mindmap-tree" id="huge-mm-phys" style="display:none;">
+          <div class="mm-root-cluster">
+            <div class="mm-root-node" style="border-color:var(--accent-amber);">
+              <span>⚛️</span>
+              <span>PHYSICS DYNAMICS TOPOLOGY</span>
+            </div>
+          </div>
+
+          <div class="mm-branches-row">
+            <!-- Classical Mechanics Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-amber)">Branch 1:</span> Classical Mechanics &amp; Kinematics
+                </span>
+                <span class="topic-level-tag">Motion Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Kinematic Equations', 'Mechanics', 'Rectilinear Motion', 'Equations of motion: v = u + at, s = ut + 0.5at², v² = u² + 2as under constant acceleration a')">
+                  <span class="mm-node-name">Kinematic Equations</span>
+                  <span class="mm-node-meta">v = u + at &amp; s = ut + ½at²</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Graphical Motion Calculus', 'Mechanics', 'Differential Analysis', 'Slope of v-t graph equals acceleration a = dv/dt; definite area under v-t curve equals displacement s')">
+                  <span class="mm-node-name">V-T Graph Calculus</span>
+                  <span class="mm-node-meta">Slope = a, Area = Displacement</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Free Fall & Gravitational Trajectory', 'Mechanics', 'Gravitational Dynamics', 'Vacuum acceleration g ≈ 9.8 m/s² independent of mass; parabolic projectile trajectories')">
+                  <span class="mm-node-name">Free Fall &amp; Trajectory</span>
+                  <span class="mm-node-meta">g = 9.8 m/s² &amp; 2D Projectiles</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Work-Energy Kinematics', 'Mechanics', 'Energy Conservation', 'Work W = F · s = ΔKE; derivation of v² = u² + 2as directly mapping net force to kinetic energy')">
+                  <span class="mm-node-name">Work-Energy Invariant</span>
+                  <span class="mm-node-meta">v² = u² + 2as &amp; Kinetic Energy</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Electromagnetism Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-amber)">Branch 2:</span> Electromagnetism &amp; Field Induction
+                </span>
+                <span class="topic-level-tag">Field Theory Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Magnetic Flux', 'Electromagnetism', 'Vector Surface Integral', 'Flux Φ_B = ∫ B · dA = B A cos(θ) in Webers (Wb); maximum when B is perpendicular to surface')">
+                  <span class="mm-node-name">Magnetic Flux (Φ_B)</span>
+                  <span class="mm-node-meta">Φ = B A cos(θ) in Webers</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Faraday\'s Induction Law', 'Electromagnetism', 'EMF Generation', 'Induced electromotive force EMF = -N(dΦ/dt) proportional to rate of change of magnetic flux')">
+                  <span class="mm-node-name">Faraday\'s Law</span>
+                  <span class="mm-node-meta">Induced EMF = -dΦ / dt</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Lenz\'s Energy Opposition', 'Electromagnetism', 'Thermodynamic Invariant', 'Induced current magnetic field opposes original flux variation; prevents runaway energy creation')">
+                  <span class="mm-node-name">Lenz\'s Law</span>
+                  <span class="mm-node-meta">Negative Sign &amp; Opposition</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Mutual Induction & Eddy Currents', 'Electromagnetism', 'Applied Systems', 'Transformers Vs/Vp = Ns/Np; eddy current formation in bulk conductors and laminated core mitigation')">
+                  <span class="mm-node-name">Transformers &amp; Eddy</span>
+                  <span class="mm-node-meta">Mutual Induction &amp; Braking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. English Huge Mind Map -->
+        <div class="huge-mindmap-tree" id="huge-mm-eng" style="display:none;">
+          <div class="mm-root-cluster">
+            <div class="mm-root-node" style="border-color:var(--accent-purple);">
+              <span>📖</span>
+              <span>ENGLISH LINGUISTIC &amp; POETIC TOPOLOGY</span>
+            </div>
+          </div>
+
+          <div class="mm-branches-row">
+            <!-- Grammar & Syntax Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-purple)">Branch 1:</span> Grammar &amp; Syntactic Structures
+                </span>
+                <span class="topic-level-tag">Syntax Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Clause Dependency Hierarchy', 'Grammar', 'Sentence Mechanics', 'Independent clauses stand alone; dependent subordinate clauses (although, because) require main clause')">
+                  <span class="mm-node-name">Clause Hierarchy</span>
+                  <span class="mm-node-meta">Independent vs Subordinate</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Tense Aspect Matrix', 'Grammar', 'Temporal Logic', 'Past/Present/Future across Simple, Continuous, Perfect (had + participle), and Perfect Continuous')">
+                  <span class="mm-node-name">Tense Aspect Matrix</span>
+                  <span class="mm-node-meta">Past Perfect &amp; Aspect Logic</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Subject-Verb Agreement', 'Grammar', 'Inflection Rules', 'Head nouns govern verb number across intervening prepositional phrases; singular collective nouns')">
+                  <span class="mm-node-name">Subject-Verb Agreement</span>
+                  <span class="mm-node-meta">Head Noun Number Concord</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Punctuation & Syntax Repairs', 'Grammar', 'Stylistic Precision', 'Semicolon (;) linking related independent clauses; eliminating comma splices, run-ons & dangling modifiers')">
+                  <span class="mm-node-name">Punctuation &amp; Semicolons</span>
+                  <span class="mm-node-meta">Semicolons &amp; Run-on Repairs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Literature & Poetics Branch -->
+            <div class="mm-branch-card">
+              <div class="mm-branch-header">
+                <span class="mm-branch-title">
+                  <span style="color:var(--accent-purple)">Branch 2:</span> Literature &amp; Poetic Scansion
+                </span>
+                <span class="topic-level-tag">Poetics Track</span>
+              </div>
+              <div class="mm-subclusters-grid">
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Iambic Pentameter Scansion', 'Literature', 'Metric Architecture', 'Five metric feet of unstressed-stressed syllables (da-DUM: ˘ / ) totaling 10 syllables per line')">
+                  <span class="mm-node-name">Iambic Pentameter</span>
+                  <span class="mm-node-meta">5 Metric Feet (˘ / ) &amp; Scansion</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Conceits & Extended Metaphors', 'Literature', 'Figurative Tropes', 'Elaborate comparisons unifying poetic works (e.g. Shakespeare Sonnet 18 summer comparison), similes vs metaphors')">
+                  <span class="mm-node-name">Conceits &amp; Metaphors</span>
+                  <span class="mm-node-meta">Extended Metaphors &amp; Tropes</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Sonnet Structural Forms', 'Literature', 'Rhyme & Volta', '14-line sonnet forms: Shakespearean (ABAB CDCD EFEF GG) with Volta turn at couplet, Petrarchan octave/sestet')">
+                  <span class="mm-node-name">Sonnet Structure &amp; Volta</span>
+                  <span class="mm-node-meta">Quatrains, Couplet &amp; Volta</span>
+                </div>
+                <div class="mm-node-pill" onclick="inspectMindMapNode('Phonetic & Figurative Devices', 'Literature', 'Acoustic Stylistics', 'Alliteration (consonant repetitions), Assonance, Consonance, Personification, and Synecdoche')">
+                  <span class="mm-node-name">Acoustic &amp; Figurative</span>
+                  <span class="mm-node-meta">Alliteration &amp; Personification</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Node Inspection Banner -->
+        <div class="mm-cross-connector-strip" id="mindmap-node-inspector">
+          <span id="inspector-text">💡 Click any concept node in the Huge Mind Map above to inspect its deep mathematical, chemical, physical, or grammatical framework.</span>
+          <span style="color:var(--accent-cyan); font-weight:700;">Live Topology</span>
+        </div>
+
+      </div>
+
+      <!-- Revision Flow Chart -->
+      <div class="revision-flow-block">
+        <div class="diagram-title">
+          <span>📊</span>
+          <span>[📊 REVISION FLOW CHART]</span>
+          <span class="topic-level-tag" style="margin-left:auto;">Step-by-Step Strategy</span>
+        </div>
+        <div class="revision-steps-row">
+          <div class="rev-step-card">
+            <div class="rev-step-num">1</div>
+            <div>
+              <div style="font-weight:700; color:#fff; font-size:0.9rem;">Read Notes &amp; Theory</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
+                Active mental synthesis of calculus derivations, organic hybridization, kinematic formulas, and syntax rules.
+              </div>
+            </div>
+          </div>
+          <div class="rev-step-card">
+            <div class="rev-step-num">2</div>
+            <div>
+              <div style="font-weight:700; color:#fff; font-size:0.9rem;">Practice Problems</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
+                Deliberate problem solving: calculate determinants, balance mechanisms, compute v-t areas, and parse clauses.
+              </div>
+            </div>
+          </div>
+          <div class="rev-step-card">
+            <div class="rev-step-num">3</div>
+            <div>
+              <div style="font-weight:700; color:#fff; font-size:0.9rem;">Take Mock Quiz</div>
+              <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
+                Timed retrieval evaluation on 10 curated questions per subject with instant academic feedback.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4 & 5: INTERACTIVE QUIZ (10 QUESTIONS PER SUBJECT = 40 TOTAL)
+         ========================================================================== -->
+    <section class="quiz-evaluation-section" id="quiz-section">
+      <div class="section-header">
+        <div class="section-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>Evaluation Engine • 10 Questions Per Subject</span>
+        </div>
+        <h2 class="section-title">Interactive Quiz Mind System</h2>
+        <p class="section-description">
+          40 curated multiple-choice benchmarks across all 4 subjects (10 questions each). Every answer provides real-time feedback with green victory complements or in-depth academic corrections.
+        </p>
+      </div>
+
+      <!-- Subject Filter Tabs -->
+      <div class="quiz-subject-filter-bar">
+        <button class="filter-btn active" id="filter-btn-all" onclick="filterQuizSubject('All')">
+          🌐 All Subjects (40)
+        </button>
+        <button class="filter-btn" id="filter-btn-math" onclick="filterQuizSubject('Mathematics')">
+          📐 Mathematics (10)
+        </button>
+        <button class="filter-btn" id="filter-btn-chem" onclick="filterQuizSubject('Chemistry')">
+          🧪 Chemistry (10)
+        </button>
+        <button class="filter-btn" id="filter-btn-phys" onclick="filterQuizSubject('Physics')">
+          ⚛️ Physics (10)
+        </button>
+        <button class="filter-btn" id="filter-btn-eng" onclick="filterQuizSubject('English')">
+          📖 English (10)
+        </button>
+      </div>
+
+      <div class="quiz-wrapper-layout">
+
+        <!-- Quiz Presentation Card -->
+        <div class="quiz-card" id="quiz-card">
+          <div class="quiz-top-bar">
+            <span class="quiz-category-tag" id="quiz-subject-tag">Mathematics • Calculus</span>
+            <span class="quiz-counter" id="quiz-counter-text">Question 1 of 40</span>
+          </div>
+
+          <div class="quiz-navigator-pills" id="quiz-pills-bar"></div>
+
+          <div class="question-prompt" id="question-text">
+            Loading academic question...
+          </div>
+
+          <div class="options-grid" id="options-container"></div>
+
+          <div class="feedback-banner" id="feedback-banner">
+            <div class="feedback-heading" id="feedback-title"></div>
+            <div class="feedback-text" id="feedback-explanation"></div>
+          </div>
+
+          <div class="quiz-controls-bar">
+            <button class="btn-nav" id="btn-prev-q" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <span>Previous</span>
+            </button>
+
+            <button class="btn-reset-quiz" id="btn-reset-quiz" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 2v6h6"></path>
+                <path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path>
+                <path d="M21 22v-6h-6"></path>
+                <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path>
+              </svg>
+              <span>Reset Quiz</span>
+            </button>
+
+            <button class="btn-nav" id="btn-next-q" type="button">
+              <span>Next</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Accuracy Wheel (Requirement 5) -->
+        <div class="wheel-card">
+          <div class="wheel-card-header">
+            <h3 class="wheel-card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+              <span>Progress Wheel</span>
+            </h3>
+            <p class="wheel-card-subtitle">Real-time accuracy &amp; completion</p>
+          </div>
+
+          <div class="wheel-visual-container">
+            <svg class="wheel-svg" viewBox="0 0 110 110">
+              <defs>
+                <linearGradient id="wheelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0ea5e9" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+              <circle class="wheel-track" cx="55" cy="55" r="45"></circle>
+              <circle class="wheel-progress-arc" id="wheel-arc" cx="55" cy="55" r="45"></circle>
+            </svg>
+
+            <div class="wheel-inner-content">
+              <div class="wheel-percentage-value" id="wheel-percentage-text">0%</div>
+              <div class="wheel-percentage-label">Accuracy</div>
+            </div>
+          </div>
+
+          <div class="stats-breakdown-list">
+            <div class="stat-row">
+              <div class="stat-label-group">
+                <span class="stat-indicator-dot dot-correct"></span>
+                <span>Correct Answers</span>
+              </div>
+              <span class="stat-numeric-value" id="stat-correct-count" style="color:var(--accent-emerald);">0</span>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-label-group">
+                <span class="stat-indicator-dot dot-incorrect"></span>
+                <span>Incorrect Answers</span>
+              </div>
+              <span class="stat-numeric-value" id="stat-wrong-count" style="color:#fda4af;">0</span>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-label-group">
+                <span class="stat-indicator-dot dot-remaining"></span>
+                <span>Remaining Pool</span>
+              </div>
+              <span class="stat-numeric-value" id="stat-remaining-count">40</span>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat-label-group">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-cyan);">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>Academic Standing</span>
+              </div>
+              <span class="stat-numeric-value" id="stat-academic-rank" style="color:var(--accent-cyan); font-size: 0.76rem;">Ready</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       SESSION TERMINATION CONFIRMATION / SUMMARY MODAL
+       ========================================================================== -->
+  <div class="modal-backdrop" id="session-summary-modal">
+    <div class="modal-box">
+      <div class="modal-icon-badge">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3 class="modal-title">Session Concluded</h3>
+      <p class="modal-message" id="modal-summary-text">
+        You have safely closed your academic study session. All stopwatch time records and accuracy metrics have been saved.
+      </p>
+      <div class="modal-actions">
+        <button class="modal-btn-primary" id="btn-restart-session">Resume New Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hackathon Project Presentation Modal -->
+  <div class="modal-backdrop" id="hackathon-info-modal">
+    <div class="modal-box" style="max-width: 560px; text-align: left;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size: 1.5rem;">🏆</span>
+          <h3 class="modal-title" style="margin-bottom:0; font-size:1.25rem;">Hackathon 2026 Project Showcase</h3>
+        </div>
+        <button id="btn-close-hackathon-modal" style="background:transparent; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer; line-height:1;" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div style="font-size:0.86rem; color:var(--text-muted); line-height:1.65; display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <strong style="color:var(--text-main);">Project Name:</strong> Smart Study Hub
+        </div>
+        <div>
+          <strong style="color:var(--text-main);">Hackathon Track:</strong> EdTech &amp; Next-Gen Interactive Learning Platforms
+        </div>
+        <div>
+          <strong style="color:var(--text-main);">The Problem:</strong> Students suffer from textbook fatigue, fragmented study notes, and zero real-time visual feedback, resulting in poor conceptual retention across STEM and literature.
+        </div>
+        <div>
+          <strong style="color:var(--text-main);">Core Innovations:</strong>
+          <ul style="margin-left: 20px; margin-top: 4px; display:flex; flex-direction:column; gap:4px;">
+            <li><strong>Zero External Dependencies:</strong> 100% offline-ready, instantaneous loading via pure semantic HTML5, CSS3, and ES6+.</li>
+            <li><strong>Interactive Vector Concepts:</strong> Dynamic SVG tangent curves, molecular hybridization models, kinematics integrals, and syntax trees.</li>
+            <li><strong>Huge Dedicated Mind Maps:</strong> Comprehensive topological knowledge graphs for every subject linking foundational theorems to advanced real-world systems.</li>
+            <li><strong>Evaluation Engine:</strong> 40 curated questions (10 per subject) with dynamic circular progress wheels and thorough academic explanations for every answer.</li>
+            <li><strong>Precision Stopwatch:</strong> Built-in session focus tracking with pause/resume controls.</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:var(--text-main);">Deployment:</strong> Live hosted via GitHub Pages with responsive mobile, tablet, and desktop interfaces.
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top:22px; justify-content:flex-end;">
+        <button class="modal-btn-primary" id="btn-dismiss-hackathon-modal">Explore Live Workspace &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-hub"></div>
+
+  <footer class="app-footer">
+    <div class="app-container">
+      <p>&copy; 2026 <span class="footer-brand">Smart Study Hub</span> • Comprehensive Academic &amp; Mind Map Architecture • GitHub Hosted Edition</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       ROBUST JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ==========================================================================
+         1. COMPREHENSIVE 40-QUESTION BANK (EXACTLY 10 QUESTIONS PER SUBJECT)
+         ========================================================================== */
+      const ALL_QUESTIONS = [
+        /* -------------------------------------------------------------
+           MATHEMATICS (10 QUESTIONS)
+           ------------------------------------------------------------- */
+        {
+          id: 1,
+          subject: "Mathematics",
+          subtopic: "Calculus: Limits",
+          question: "Evaluate the fundamental limit as x approaches 0: lim (x → 0) [sin(x) / x].",
+          options: ["0", "1", "Infinity (∞)", "Undefined"],
+          correctIndex: 1,
+          successComplement: "🎯 Brilliant mathematical deduction! You recognized the fundamental trigonometric limit.",
+          explanation: "The correct answer is 1. Direct substitution yields 0/0; applying L'Hôpital's Rule gives lim (x → 0) [cos(x)/1] = cos(0) = 1. Geometrically, by the Squeeze Theorem using unit circle sectors, cos(x) < sin(x)/x < 1; as x → 0, both bounds approach 1, forcing the limit to 1."
+        },
+        {
+          id: 2,
+          subject: "Mathematics",
+          subtopic: "Matrices: Determinants",
+          question: "For a 2x2 matrix M = [[a, b], [c, d]], what is the algebraic determinant det(M)?",
+          options: ["ad + bc", "ac - bd", "ad - bc", "(a + d) / (b + c)"],
+          correctIndex: 2,
+          successComplement: "✨ Outstanding algebraic precision! Matrix determinants govern volume scaling and invertibility.",
+          explanation: "The correct answer is ad - bc. For any second-order square matrix, the determinant represents the oriented area scaling factor of the transformation, calculated by subtracting the product of off-diagonal elements (bc) from the main diagonal product (ad)."
+        },
+        {
+          id: 3,
+          subject: "Mathematics",
+          subtopic: "Calculus: Power Rule",
+          question: "Using the Power Rule of differential calculus, what is the derivative d/dx [x^5]?",
+          options: ["5x^4", "x^4", "5x^5", "x^6 / 6"],
+          correctIndex: 0,
+          successComplement: "⚡ Flawless! You correctly executed the foundational power rule of differential calculus.",
+          explanation: "The correct answer is 5x^4. By the rule d/dx [x^n] = n * x^(n-1), differentiating x^5 brings down the exponent 5 as a coefficient and decrements the exponent by 1 to yield 5x^4. Option D corresponds to the antiderivative."
+        },
+        {
+          id: 4,
+          subject: "Mathematics",
+          subtopic: "Calculus: Product Rule",
+          question: "What is the derivative of the product of two differentiable functions [f(x) * g(x)]?",
+          options: ["f'(x) * g'(x)", "f'(x)g(x) + f(x)g'(x)", "f'(x)g'(x) - f(x)g(x)", "f'(x) / g'(x)"],
+          correctIndex: 1,
+          successComplement: "🎯 Superb mastery of the differential calculus product rule!",
+          explanation: "The correct answer is f'(x)g(x) + f(x)g'(x). Differentiation is not linear across multiplication. The rate of change of an area f(x)*g(x) expands in both dimensions, demanding the sum of f'g and fg'."
+        },
+        {
+          id: 5,
+          subject: "Mathematics",
+          subtopic: "Matrices: Singularity",
+          question: "Under what condition is a square matrix A classified as singular (non-invertible)?",
+          options: ["det(A) = 1", "det(A) = 0", "Trace(A) = 0", "All diagonal elements are positive"],
+          correctIndex: 1,
+          successComplement: "🌟 Excellent! You understand matrix singularity and dimensionality collapse.",
+          explanation: "The correct answer is det(A) = 0. When the determinant equals zero, the matrix collapses space into a lower dimension (e.g. 2D plane into a line or point), rendering the transformation non-bijective and non-invertible."
+        },
+        {
+          id: 6,
+          subject: "Mathematics",
+          subtopic: "Calculus: Tangent Slopes",
+          question: "What is the slope of the tangent line to the curve y = x^2 - 3x + 2 at x = 4?",
+          options: ["2", "5", "8", "6"],
+          correctIndex: 1,
+          successComplement: "📈 Spot on! You found the instantaneous rate of change via differentiation.",
+          explanation: "The correct answer is 5. Differentiating y = x^2 - 3x + 2 gives dy/dx = 2x - 3. Evaluating at x = 4 yields 2(4) - 3 = 8 - 3 = 5."
+        },
+        {
+          id: 7,
+          subject: "Mathematics",
+          subtopic: "Matrices: Identity Matrix",
+          question: "What is the determinant of any n x n identity matrix I_n?",
+          options: ["0", "n", "1", "Infinity"],
+          correctIndex: 2,
+          successComplement: "✨ Flawless! The identity transformation preserves oriented hypervolume exactly.",
+          explanation: "The correct answer is 1. The identity matrix I_n has 1s on the main diagonal and 0s elsewhere. As a diagonal matrix, its determinant is the product of diagonal entries: 1 * 1 * ... * 1 = 1."
+        },
+        {
+          id: 8,
+          subject: "Mathematics",
+          subtopic: "Calculus: Natural Logarithm",
+          question: "What is the derivative of the natural logarithm function d/dx [ln(x)] for x > 0?",
+          options: ["1 / x", "e^x", "1 / x^2", "ln(x) - 1"],
+          correctIndex: 0,
+          successComplement: "🎯 Spot on! The natural logarithm's derivative is the reciprocal function.",
+          explanation: "The correct answer is 1 / x. By inverse function differentiation of e^y = x, d/dx [ln(x)] = 1/x. Its integral yields ln|x| + C."
+        },
+        {
+          id: 9,
+          subject: "Mathematics",
+          subtopic: "Matrices: Trace & Determinant",
+          question: "For the matrix M = [[3, 1], [4, 2]], what are its Trace and Determinant?",
+          options: ["Trace = 5, det = 2", "Trace = 6, det = 5", "Trace = 2, det = 5", "Trace = 5, det = 10"],
+          correctIndex: 0,
+          successComplement: "🧮 Remarkable calculation! Trace is diagonal sum and determinant is ad - bc.",
+          explanation: "The correct answer is Trace = 5, det = 2. Trace is the sum of main diagonal entries: 3 + 2 = 5. Determinant is ad - bc = (3)(2) - (1)(4) = 6 - 4 = 2."
+        },
+        {
+          id: 10,
+          subject: "Mathematics",
+          subtopic: "Calculus: Euler's Number",
+          question: "What mathematical constant is defined by the limit lim (n → ∞) [(1 + 1/n)^n]?",
+          options: ["π ≈ 3.14159", "e ≈ 2.71828", "φ ≈ 1.61803", "1"],
+          correctIndex: 1,
+          successComplement: "🌟 Extraordinary! You recognized the foundational limit defining Euler's constant.",
+          explanation: "The correct answer is e ≈ 2.71828. This limit arises from continuous compounding growth models and serves as the unique base for the natural exponential function whose derivative equals itself."
+        },
+
+        /* -------------------------------------------------------------
+           CHEMISTRY (10 QUESTIONS)
+           ------------------------------------------------------------- */
+        {
+          id: 11,
+          subject: "Chemistry",
+          subtopic: "Organic Chemistry: Alkynes",
+          question: "Which class of aliphatic hydrocarbons is defined by at least one carbon-carbon triple bond (C≡C)?",
+          options: ["Alkanes", "Alkenes", "Alkynes", "Cycloalkanes"],
+          correctIndex: 2,
+          successComplement: "🌟 Spot on! Excellent grasp of organic functional groups and molecular hybridization.",
+          explanation: "The correct answer is Alkynes. Alkynes possess sp-hybridized carbons with linear 180° geometry containing one sigma (σ) and two pi (π) bonds, represented by the general molecular formula CnH2n-2."
+        },
+        {
+          id: 12,
+          subject: "Chemistry",
+          subtopic: "Periodic Table: Chemical Bonding",
+          question: "Which chemical bond forms via complete electron transfer between atoms with large electronegativity differences?",
+          options: ["Covalent Bond", "Ionic Bond", "Metallic Bond", "Van der Waals dispersion"],
+          correctIndex: 1,
+          successComplement: "🏆 Superb! You understand electrostatic lattice energies and electron transfer.",
+          explanation: "The correct answer is Ionic Bond. High electronegativity differentials (typically > 2.0, e.g. alkali metals and halogens) result in complete electron transfer, generating cations and anions held by Coulombic forces."
+        },
+        {
+          id: 13,
+          subject: "Chemistry",
+          subtopic: "Organic Chemistry: Alcohols",
+          question: "What characteristic functional group defines an organic alcohol?",
+          options: ["-COOH (Carboxyl)", "-OH (Hydroxyl)", "-CHO (Aldehyde)", "-NH2 (Amino)"],
+          correctIndex: 1,
+          successComplement: "🧪 Great job! The hydroxyl group imparts polar character and hydrogen bonding capability.",
+          explanation: "The correct answer is -OH (Hydroxyl). Alcohols contain a hydroxyl functional group bonded to an sp3-hybridized carbon atom (R-OH). Carboxylic acids contain -COOH, aldehydes contain -CHO, and amines contain -NH2."
+        },
+        {
+          id: 14,
+          subject: "Chemistry",
+          subtopic: "Periodic Table: Electronegativity",
+          question: "How does electronegativity generally trend across a period from left to right in the Periodic Table?",
+          options: ["Decreases steadily", "Increases steadily", "Remains invariant", "First decreases then increases"],
+          correctIndex: 1,
+          successComplement: "⚡ Outstanding periodic table comprehension!",
+          explanation: "The correct answer is Increases steadily. Moving from left to right across a period, effective nuclear charge (Zeff) increases while electron shielding remains approximately constant, pulling valence electrons closer to the nucleus."
+        },
+        {
+          id: 15,
+          subject: "Chemistry",
+          subtopic: "Organic Chemistry: Saturation",
+          question: "Why are alkanes classified as 'saturated' hydrocarbons?",
+          options: [
+            "They dissolve maximal amounts of solute",
+            "They contain only single C-C and C-H sigma bonds",
+            "They contain multiple reactive pi bonds",
+            "They are naturally liquid at room temperature"
+          ],
+          correctIndex: 1,
+          successComplement: "✨ Excellent! 'Saturated' signifies maximum possible hydrogen atoms per carbon.",
+          explanation: "The correct answer is that they contain only single C-C and C-H bonds (sigma bonds). Because each carbon is sp3-hybridized with tetrahedral geometry, no additional hydrogen atoms can be added without breaking carbon-carbon sigma bonds."
+        },
+        {
+          id: 16,
+          subject: "Chemistry",
+          subtopic: "Chemical Bonding: Covalent",
+          question: "What fundamentally constitutes a covalent chemical bond?",
+          options: [
+            "Mutual sharing of one or more pairs of valence electrons",
+            "A sea of mobile delocalized electrons around atomic nuclei",
+            "Gravitational attraction between atomic masses",
+            "Temporary instantaneous dipole-induced dipole forces"
+          ],
+          correctIndex: 0,
+          successComplement: "🎯 Spot on! Electron pair sharing allows atoms to achieve noble gas configurations.",
+          explanation: "The correct answer is Mutual sharing of valence electrons. When two non-metal atoms of comparable electronegativity interact, orbital overlap allows shared electron pairs to be attracted to both nuclei simultaneously."
+        },
+        {
+          id: 17,
+          subject: "Chemistry",
+          subtopic: "Periodic Table: Halogens",
+          question: "How many valence electrons do elements in Group 17 (the Halogens: F, Cl, Br, I) possess?",
+          options: ["1", "5", "7", "8"],
+          correctIndex: 2,
+          successComplement: "🌟 Perfect! Halogens have an s2 p5 valence shell, making them eager electron acceptors.",
+          explanation: "The correct answer is 7. Group 17 halogens have electron configuration ns2 np5. Requiring only 1 additional electron to satisfy the stable octet (ns2 np6), they are highly reactive oxidizing agents."
+        },
+        {
+          id: 18,
+          subject: "Chemistry",
+          subtopic: "Organic Chemistry: Benzene",
+          question: "What is the prototypical aromatic hydrocarbon with molecular formula C6H6 and a delocalized pi-electron ring?",
+          options: ["Cyclohexane", "Benzene", "Hexene", "Toluene"],
+          correctIndex: 1,
+          successComplement: "⌬ Flawless! Benzene's aromatic resonance imparts extraordinary thermodynamic stability.",
+          explanation: "The correct answer is Benzene (C6H6). Benzene features a planar ring of six sp2-hybridized carbon atoms with 6 delocalized pi electrons fulfilling Hückel's aromaticity rule (4n+2, where n=1)."
+        },
+        {
+          id: 19,
+          subject: "Chemistry",
+          subtopic: "Chemical Bonding: Hydrogen Bonds",
+          question: "What intermolecular force accounts for water (H2O)'s high boiling point compared to H2S?",
+          options: ["Dispersion forces", "Hydrogen bonding", "Metallic bonding", "Ionic lattice forces"],
+          correctIndex: 1,
+          successComplement: "💧 Spot on! Strong hydrogen bonding between water molecules creates a high cohesive barrier.",
+          explanation: "The correct answer is Hydrogen bonding. The substantial electronegativity difference between oxygen and hydrogen, combined with oxygen's compact lone pairs, forms strong directional intermolecular hydrogen bonds that require significant thermal energy to disrupt."
+        },
+        {
+          id: 20,
+          subject: "Chemistry",
+          subtopic: "Periodic Table: Octet Rule",
+          question: "What electron configuration does the Octet Rule state main-group atoms strive to achieve?",
+          options: [
+            "2 electrons in the d-subshell",
+            "8 electrons in the outermost valence shell",
+            "18 electrons in the core shells",
+            "Zero total electrons"
+          ],
+          correctIndex: 1,
+          successComplement: "🏆 Flawless! 8 valence electrons match noble gas stability (s2 p6).",
+          explanation: "The correct answer is 8 valence electrons. Main-group atoms gain, lose, or share valence electrons to attain a full valence shell configuration of ns2 np6, matching the noble gases."
+        },
+
+        /* -------------------------------------------------------------
+           PHYSICS (10 QUESTIONS)
+           ------------------------------------------------------------- */
+        {
+          id: 21,
+          subject: "Physics",
+          subtopic: "Mechanics: Kinematics",
+          question: "A cart starts from rest and accelerates at 4 m/s² for 5 seconds. What is the total distance traveled?",
+          options: ["20 m", "40 m", "50 m", "100 m"],
+          correctIndex: 2,
+          successComplement: "⚡ Perfect kinematics calculation! You integrated constant acceleration correctly.",
+          explanation: "The correct answer is 50 m. Using s = ut + (1/2)at² with u = 0, a = 4 m/s², and t = 5 s: s = 0 + (1/2)*(4)*(5²) = 2 * 25 = 50 meters."
+        },
+        {
+          id: 22,
+          subject: "Physics",
+          subtopic: "Electromagnetism: Lenz's Law",
+          question: "According to Lenz's Law, what is the magnetic polarity of an induced current?",
+          options: [
+            "It reinforces the applied external magnetic field",
+            "It creates a magnetic flux that opposes the change in original magnetic flux",
+            "It is always zero in closed conductive circuits",
+            "It aligns perpendicular to the electric field only"
+          ],
+          correctIndex: 1,
+          successComplement: "🧲 Exceptional insight into electromagnetic energy conservation!",
+          explanation: "The correct answer is that it creates a magnetic flux opposing the change in flux. Formulated as EMF = -dΦ/dt, the negative sign embodies Lenz's Law; without this opposition, energy would be created from nothing, violating thermodynamics."
+        },
+        {
+          id: 23,
+          subject: "Physics",
+          subtopic: "Mechanics: V-T Graphs",
+          question: "On a Velocity vs. Time graph, what physical quantity is represented by the slope of the curve?",
+          options: ["Displacement", "Instantaneous Acceleration", "Total Momentum", "Kinetic Energy"],
+          correctIndex: 1,
+          successComplement: "🎯 Spot on! The derivative of velocity with respect to time (dv/dt) is acceleration.",
+          explanation: "The correct answer is Instantaneous Acceleration. By definition, a = dv/dt. On a plot of v versus t, the slope Δv/Δt is acceleration, whereas the area under the curve is displacement."
+        },
+        {
+          id: 24,
+          subject: "Physics",
+          subtopic: "Electromagnetism: Flux Unit",
+          question: "What is the SI derived unit of Magnetic Flux (Φ_B)?",
+          options: ["Tesla (T)", "Weber (Wb)", "Henry (H)", "Gauss (G)"],
+          correctIndex: 1,
+          successComplement: "🌟 Excellent! 1 Weber equals 1 Tesla-square meter (T * m²).",
+          explanation: "The correct answer is Weber (Wb). Magnetic flux is defined as Φ_B = ∫ B · dA, with units of Tesla * meter² (T * m²), designated as Webers. Tesla is the unit of magnetic flux density (B)."
+        },
+        {
+          id: 25,
+          subject: "Physics",
+          subtopic: "Mechanics: Kinematic Equations",
+          question: "Which equation represents the kinematic relationship independent of time duration t?",
+          options: ["v = u + at", "s = ut + (1/2)at²", "v² = u² + 2as", "s = (u + v) / 2"],
+          correctIndex: 2,
+          successComplement: "🚀 Flawless! This equation directly relates work-energy principles to kinematics.",
+          explanation: "The correct answer is v² = u² + 2as. Derived by eliminating time t = (v - u)/a between the first two equations of motion, this relationship mirrors the work-energy theorem (W = ΔKE = F * s = m*a*s = (1/2)mv² - (1/2)mu²)."
+        },
+        {
+          id: 26,
+          subject: "Physics",
+          subtopic: "Electromagnetism: Transformers",
+          question: "Electrical power transformers operate based on which fundamental electromagnetic principle?",
+          options: ["Electrostatic Coulomb repulsion", "Mutual Induction", "The Hall Effect", "Photoelectric Emission"],
+          correctIndex: 1,
+          successComplement: "💡 Brilliant! Alternating flux in the primary coil induces an EMF in the secondary coil.",
+          explanation: "The correct answer is Mutual Induction. An alternating current flowing through the primary coil produces a continuously changing magnetic flux in the ferromagnetic core, which links with and induces an alternating EMF in the secondary coil via Faraday's Law."
+        },
+        {
+          id: 27,
+          subject: "Physics",
+          subtopic: "Mechanics: Free Fall",
+          question: "In the absence of air resistance, what is the acceleration of a freely falling body near Earth's surface?",
+          options: ["0 m/s²", "9.8 m/s² downward", "Directly proportional to the object's mass", "32 m/s² upward"],
+          correctIndex: 1,
+          successComplement: "🌍 Spot on! Gravitational acceleration is invariant with respect to object mass in vacuum.",
+          explanation: "The correct answer is 9.8 m/s² downward (g). By Newton's Second Law F = m*a and Universal Gravitation F = G*M*m/r², the inertial mass cancels gravitational mass: a = g = G*M/r² ≈ 9.8 m/s²."
+        },
+        {
+          id: 28,
+          subject: "Physics",
+          subtopic: "Electromagnetism: Flux Formula",
+          question: "For a uniform magnetic field B passing through flat area A at angle θ to the surface normal, what is the magnetic flux?",
+          options: ["Φ_B = B A cos(θ)", "Φ_B = B A sin(θ)", "Φ_B = B / (A cos θ)", "Φ_B = B² A"],
+          correctIndex: 0,
+          successComplement: "📐 Flawless dot-product calculation for vector area flux!",
+          explanation: "The correct answer is Φ_B = B A cos(θ). Magnetic flux is the dot product of the magnetic field vector and the area vector: B · A = |B||A|cos(θ). When B is perpendicular to the surface (parallel to normal, θ = 0°), flux is maximized (B A)."
+        },
+        {
+          id: 29,
+          subject: "Physics",
+          subtopic: "Mechanics: V-T Integral",
+          question: "What physical quantity does the definite integral / area under a velocity-time curve ∫ v(t) dt represent?",
+          options: ["Total Displacement", "Total Acceleration", "Jerk", "Potential Energy"],
+          correctIndex: 0,
+          successComplement: "📈 Spot on! Integrating rate of change of position yields net displacement.",
+          explanation: "The correct answer is Total Displacement. Since velocity is v = ds/dt, integrating velocity over time ∫ v(t) dt yields the net change in position (displacement) Δs."
+        },
+        {
+          id: 30,
+          subject: "Physics",
+          subtopic: "Electromagnetism: Eddy Currents",
+          question: "What are the circulating electrical currents induced in bulk conductive metals exposed to changing magnetic fields called?",
+          options: ["Displacement currents", "Eddy currents (Foucault currents)", "Superconducting currents", "Drift currents"],
+          correctIndex: 1,
+          successComplement: "⚡ Superb! Eddy currents cause inductive heating and magnetic braking.",
+          explanation: "The correct answer is Eddy currents (or Foucault currents). Changing magnetic flux induces closed circular loops of current within solid conductors, which dissipate energy via Joule heating (I²R) and are minimized in transformer cores by using laminated sheets."
+        },
+
+        /* -------------------------------------------------------------
+           ENGLISH (10 QUESTIONS)
+           ------------------------------------------------------------- */
+        {
+          id: 31,
+          subject: "English",
+          subtopic: "Grammar: Clauses",
+          question: "Identify the syntactically correct complex sentence joining a dependent clause to an independent clause:",
+          options: [
+            "Although the archives were closed, the researchers continued reviewing manuscripts in the parlor.",
+            "Because he studied diligently, therefore he passed the comprehensive assessment.",
+            "The exam was notoriously grueling however most students demonstrated high proficiency.",
+            "Analyzing the poetry quickly, the rhythmic structure was discovered."
+          ],
+          correctIndex: 0,
+          successComplement: "✒️ Masterful command of complex clause architecture and comma usage!",
+          explanation: "The correct answer is: 'Although the archives were closed, the researchers continued reviewing manuscripts in the parlor.' 'Although...' is a subordinate adverbial clause properly followed by a comma and an independent clause. Option B has redundant coordinators, Option C is a run-on without a semicolon, and Option D contains a dangling participle."
+        },
+        {
+          id: 32,
+          subject: "English",
+          subtopic: "Literature: Poetry Conceit",
+          question: "In Shakespeare's Sonnet 18, 'Shall I compare thee to a summer's day?', what rhetorical and literary figure is established?",
+          options: [
+            "Onomatopoeia",
+            "Rhetorical Question introducing an Extended Metaphor (Conceit)",
+            "Synecdoche",
+            "Hyperbolic Oxymoron"
+          ],
+          correctIndex: 1,
+          successComplement: "📖 Outstanding literary critical analysis and conceit identification!",
+          explanation: "The correct answer is: Rhetorical Question introducing an Extended Metaphor (Conceit). The opening line asks a rhetorical question that launches an elaborate comparison throughout the sonnet between the young man's timeless beauty and summer's fleeting perfection."
+        },
+        {
+          id: 33,
+          subject: "English",
+          subtopic: "Grammar: Subject-Verb Agreement",
+          question: "Which sentence displays flawless subject-verb agreement?",
+          options: [
+            "The collection of rare manuscripts and antique maps were donated to the national library.",
+            "The collection of rare manuscripts and antique maps was donated to the national library.",
+            "Neither the professor nor the students was aware of the schedule revision.",
+            "Every one of the applicants have submitted their certified transcripts."
+          ],
+          correctIndex: 1,
+          successComplement: "🎯 Spot on! The head noun 'collection' is singular, so it requires the singular verb 'was'.",
+          explanation: "The correct answer is: 'The collection of rare manuscripts and antique maps was donated to the national library.' The grammatical subject of the sentence is the singular collective noun 'collection', not the intervening prepositional phrase 'of rare manuscripts and antique maps'. Therefore, the singular verb 'was' is required."
+        },
+        {
+          id: 34,
+          subject: "English",
+          subtopic: "Literature: Iambic Pentameter",
+          question: "What metrical structure characterizes a standard line of English Iambic Pentameter?",
+          options: [
+            "Five metrical feet, each consisting of an unstressed syllable followed by a stressed syllable (da-DUM)",
+            "Four metrical feet, each consisting of two stressed syllables (DUM-DUM)",
+            "Six metrical feet, each consisting of a stressed syllable followed by an unstressed syllable (DUM-da)",
+            "Three metrical feet with irregular unaccented dactyls"
+          ],
+          correctIndex: 0,
+          successComplement: "🎭 Brilliant scansion knowledge! Iambic pentameter is the heartbeat of Shakespearean verse.",
+          explanation: "The correct answer is: Five metrical feet, each consisting of an unstressed syllable followed by a stressed syllable (da-DUM ˘ / ). 'Penta' means five, totaling 10 syllables per line (e.g., 'Shall I comPARE thee TO a SUMmer's DAY?')."
+        },
+        {
+          id: 35,
+          subject: "English",
+          subtopic: "Grammar: Past Perfect",
+          question: "Which sentence correctly employs the Past Perfect tense to describe an action completed prior to another past event?",
+          options: [
+            "By the time the symposium began, the keynote speaker had already delivered his opening thesis.",
+            "By the time the symposium began, the keynote speaker has already delivered his opening thesis.",
+            "The keynote speaker had deliver his speech before the symposium began.",
+            "The keynote speaker was already delivered his thesis when we arrived."
+          ],
+          correctIndex: 0,
+          successComplement: "🕰️ Flawless! Past Perfect ('had delivered') establishes an antecedent past action.",
+          explanation: "The correct answer is: 'By the time the symposium began, the keynote speaker had already delivered his opening thesis.' The past perfect tense is constructed with 'had' + past participle ('delivered') to indicate an action that was finished before another specified past event ('began')."
+        },
+        {
+          id: 36,
+          subject: "English",
+          subtopic: "Literature: Alliteration",
+          question: "What literary sound device is prominent in Coleridge's line: 'The fair breeze blew, the white foam flew, / The furrow followed free'?",
+          options: ["Alliteration", "Epistrophe", "Metonymy", "Chiasmus"],
+          correctIndex: 0,
+          successComplement: "🌊 Spot on! The repetitive initial consonant sounds ('b' and 'f') create kinetic rhythm.",
+          explanation: "The correct answer is Alliteration. Coleridge repeatedly employs identical initial consonant sounds ('breeze blew', 'foam flew', 'furrow followed free'), evoking the energetic movement and sound of the ship cutting through sea waves."
+        },
+        {
+          id: 37,
+          subject: "English",
+          subtopic: "Grammar: Active Voice",
+          question: "Which sentence is written in the active voice?",
+          options: [
+            "The groundbreaking hypothesis was formulated by the research fellow.",
+            "The research fellow formulated the groundbreaking hypothesis.",
+            "A groundbreaking hypothesis has been formulated by the department.",
+            "The hypothesis was being scrutinized by independent peer reviewers."
+          ],
+          correctIndex: 1,
+          successComplement: "✍️ Perfect! The subject performs the action directly rather than receiving it.",
+          explanation: "The correct answer is: 'The research fellow formulated the groundbreaking hypothesis.' In active voice, the subject ('research fellow') performs the verb's action ('formulated') onto the direct object ('hypothesis')."
+        },
+        {
+          id: 38,
+          subject: "English",
+          subtopic: "Literature: Simile vs Metaphor",
+          question: "What is the key structural distinction between a Simile and a Metaphor?",
+          options: [
+            "A simile uses explicit comparative words such as 'like' or 'as', whereas a metaphor asserts direct equivalence",
+            "A simile compares three or more objects, while a metaphor compares only two",
+            "A simile is strictly literal, whereas a metaphor is purely auditory",
+            "A simile only appears in prose fiction, while metaphors only appear in drama"
+          ],
+          correctIndex: 0,
+          successComplement: "✨ Excellent literary distinction! Similes state comparison explicitly; metaphors equate directly.",
+          explanation: "The correct answer is: A simile uses explicit comparative markers such as 'like' or 'as' (e.g., 'His mind was like a steel trap'), whereas a metaphor creates a direct figurative equation without explicit comparative markers (e.g., 'His mind was a steel trap')."
+        },
+        {
+          id: 39,
+          subject: "English",
+          subtopic: "Grammar: Semicolon",
+          question: "When is a semicolon (;) grammatically appropriate between two clauses?",
+          options: [
+            "To link two independent clauses that are closely related in thought without a coordinating conjunction",
+            "To introduce a formal direct quotation or comprehensive tabular list",
+            "To separate a dependent clause from its parenthetical adjective",
+            "To conclude an interrogative or exclamatory sentence"
+          ],
+          correctIndex: 0,
+          successComplement: "📚 Spot on! Semicolons bridge two closely related independent clauses elegantly.",
+          explanation: "The correct answer is: To link two independent clauses that are closely related in thought without a coordinating conjunction (such as and, but, so). Example: 'The laboratory experiment yielded unexpected results; the researchers immediately initiated a replication trial.'"
+        },
+        {
+          id: 40,
+          subject: "English",
+          subtopic: "Literature: Personification",
+          question: "In literary analysis, what figure of speech is exemplified by: 'The wind whispered secrets through the trembling pines'?",
+          options: ["Personification", "Litotes", "Apostrophe", "Euphemism"],
+          correctIndex: 0,
+          successComplement: "🌲 Flawless! Attributing human consciousness ('whispered secrets', 'trembling') to nature.",
+          explanation: "The correct answer is Personification. Personification endows inanimate natural phenomena (the wind, the pine trees) with human actions, sensations, and emotions ('whispering secrets', 'trembling')."
+        }
+      ];
+
+      /* ==========================================================================
+         2. STATE MANAGEMENT
+         ========================================================================== */
+      let activeSubjectFilter = "All";
+      let currentFilteredQuestions = [...ALL_QUESTIONS];
+      let currentFilteredIndex = 0;
+      const userAnswers = {};
+
+      /* ==========================================================================
+         3. STOPWATCH LOGIC (INCREMENTAL RUNNING TIMER)
+         - Counts UP second-by-second immediately when page loads (00:00, 00:01...)
+         - Toggleable Pause / Resume
+         - Close Session button triggers exact confirmation:
+           "Are you sure you want to leave all?"
+         ========================================================================== */
+      let stopwatchSeconds = 0;
+      let stopwatchInterval = null;
+      let isStopwatchRunning = true;
+
+      const stopwatchDisplay = document.getElementById("stopwatch-display");
+      const stopwatchWidget = document.getElementById("session-stopwatch-widget");
+      const btnStopwatchToggle = document.getElementById("btn-stopwatch-toggle");
+      const stopwatchToggleIcon = document.getElementById("stopwatch-toggle-icon");
+      const btnCloseSession = document.getElementById("btn-close-session");
+      const sessionSummaryModal = document.getElementById("session-summary-modal");
+      const modalSummaryText = document.getElementById("modal-summary-text");
+      const btnRestartSession = document.getElementById("btn-restart-session");
+
+      function formatStopwatchTime(totalSecs) {
+        const hrs = Math.floor(totalSecs / 3600);
+        const mins = Math.floor((totalSecs % 3600) / 60);
+        const secs = totalSecs % 60;
+
+        if (hrs > 0) {
+          return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+        }
+        return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+      }
+
+      function updateStopwatchUI() {
+        if (!stopwatchDisplay) return;
+        stopwatchDisplay.textContent = formatStopwatchTime(stopwatchSeconds);
+      }
+
+      function startStopwatch() {
+        if (stopwatchInterval) clearInterval(stopwatchInterval);
+        isStopwatchRunning = true;
+        if (stopwatchWidget) stopwatchWidget.classList.remove("paused");
+        updateStopwatchToggleIcon();
+
+        stopwatchInterval = setInterval(() => {
+          stopwatchSeconds++;
+          updateStopwatchUI();
+        }, 1000);
+      }
+
+      function pauseStopwatch() {
+        if (stopwatchInterval) clearInterval(stopwatchInterval);
+        isStopwatchRunning = false;
+        if (stopwatchWidget) stopwatchWidget.classList.add("paused");
+        updateStopwatchToggleIcon();
+        showToast("Stopwatch paused.");
+      }
+
+      function resumeStopwatch() {
+        isStopwatchRunning = true;
+        if (stopwatchWidget) stopwatchWidget.classList.remove("paused");
+        updateStopwatchToggleIcon();
+
+        stopwatchInterval = setInterval(() => {
+          stopwatchSeconds++;
+          updateStopwatchUI();
+        }, 1000);
+        showToast("Stopwatch resumed.");
+      }
+
+      function updateStopwatchToggleIcon() {
+        if (!stopwatchToggleIcon) return;
+        if (isStopwatchRunning) {
+          stopwatchToggleIcon.innerHTML = `
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          `;
+        } else {
+          stopwatchToggleIcon.innerHTML = `
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          `;
+        }
+      }
+
+      if (btnStopwatchToggle) {
+        btnStopwatchToggle.addEventListener("click", () => {
+          if (isStopwatchRunning) {
+            pauseStopwatch();
+          } else {
+            resumeStopwatch();
+          }
+        });
+      }
+
+      if (btnCloseSession) {
+        btnCloseSession.addEventListener("click", () => {
+          // Exact requirement: asking exactly: "Are you sure you want to leave all?"
+          const userConfirmed = window.confirm("Are you sure you want to leave all?");
+          if (userConfirmed) {
+            pauseStopwatch();
+            const answeredCount = Object.keys(userAnswers).length;
+            const correctCount = Object.values(userAnswers).filter(a => a.isCorrect).length;
+            const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+            const elapsedFormatted = formatStopwatchTime(stopwatchSeconds);
+
+            showSessionSummary(
+              `You have concluded your session with a total study duration of ${elapsedFormatted}. ` +
+              `Quiz Progress: ${answeredCount} of ${ALL_QUESTIONS.length} questions attempted with an Accuracy of ${accuracy}% (${correctCount} correct).`
+            );
+          }
+        });
+      }
+
+      function showSessionSummary(message) {
+        if (modalSummaryText) modalSummaryText.textContent = message;
+        if (sessionSummaryModal) sessionSummaryModal.classList.add("open");
+      }
+
+      if (btnRestartSession) {
+        btnRestartSession.addEventListener("click", () => {
+          if (sessionSummaryModal) sessionSummaryModal.classList.remove("open");
+          stopwatchSeconds = 0;
+          updateStopwatchUI();
+          startStopwatch();
+          resetQuizState();
+          showToast("Fresh study session & stopwatch initialized!");
+        });
+      }
+
+      /* Hackathon Modal Event Listeners */
+      const btnHackathonInfo = document.getElementById("btn-hackathon-info");
+      const hackathonModal = document.getElementById("hackathon-info-modal");
+      const btnCloseHackathon = document.getElementById("btn-close-hackathon-modal");
+      const btnDismissHackathon = document.getElementById("btn-dismiss-hackathon-modal");
+
+      if (btnHackathonInfo && hackathonModal) {
+        btnHackathonInfo.addEventListener("click", () => {
+          hackathonModal.classList.add("open");
+        });
+      }
+
+      [btnCloseHackathon, btnDismissHackathon].forEach(btn => {
+        if (btn && hackathonModal) {
+          btn.addEventListener("click", () => {
+            hackathonModal.classList.remove("open");
+          });
+        }
+      });
+
+      /* ==========================================================================
+         4. TOUCH SUBJECT TO OPEN THEORY & HUGE MIND MAP
+         ========================================================================== */
+      window.touchSubject = function (subjectKey) {
+        switchTheoryTab(subjectKey);
+        switchMindMapSubject(subjectKey);
+
+        const labSection = document.getElementById("theory-lab-section");
+        if (labSection) {
+          labSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        const nameMap = { math: "Mathematics", chem: "Chemistry", phys: "Physics", eng: "English" };
+        showToast(`Loaded ${nameMap[subjectKey]} Deep Theory & Huge Mind Map!`);
+      };
+
+      window.openSubjectMindMap = function (subjectKey) {
+        switchMindMapSubject(subjectKey);
+        const mmSec = document.getElementById("mindmap-section");
+        if (mmSec) {
+          mmSec.scrollIntoView({ behavior: "smooth" });
+        }
+        const nameMap = { math: "Mathematics", chem: "Chemistry", phys: "Physics", eng: "English" };
+        showToast(`Expanded ${nameMap[subjectKey]} Huge Mind Map!`);
+      };
+
+      window.switchTheoryTab = function (subjectKey) {
+        const tabs = ["math", "chem", "phys", "eng"];
+        tabs.forEach(k => {
+          const btn = document.getElementById(`tab-btn-${k}`);
+          const panel = document.getElementById(`theory-panel-${k}`);
+          if (btn) btn.classList.toggle("active", k === subjectKey);
+          if (panel) panel.classList.toggle("active", k === subjectKey);
+        });
+      };
+
+      /* ==========================================================================
+         5. HUGE MIND MAP SWITCHER & NODE INSPECTOR (EVERY SUBJECT)
+         ========================================================================== */
+      window.switchMindMapSubject = function (subjectKey) {
+        const subjects = ["math", "chem", "phys", "eng"];
+        subjects.forEach(k => {
+          const btn = document.getElementById(`mm-btn-${k}`);
+          const tree = document.getElementById(`huge-mm-${k}`);
+          if (btn) btn.classList.toggle("active", k === subjectKey);
+          if (tree) tree.style.display = k === subjectKey ? "flex" : "none";
+        });
+      };
+
+      window.inspectMindMapNode = function (nodeName, subject, category, description) {
+        const inspector = document.getElementById("inspector-text");
+        if (inspector) {
+          inspector.innerHTML = `
+            <strong>${nodeName}</strong> [${subject} • ${category}]: 
+            <span style="color:#ffffff;">${description}</span>
+          `;
+        }
+        showToast(`Inspecting: ${nodeName}`);
+      };
+
+      /* ==========================================================================
+         6. INTERACTIVE QUIZ MIND SYSTEM (40 QUESTIONS - 10 PER SUBJECT)
+         ========================================================================== */
+      const quizSubjectTag = document.getElementById("quiz-subject-tag");
+      const quizCounterText = document.getElementById("quiz-counter-text");
+      const quizPillsBar = document.getElementById("quiz-pills-bar");
+      const questionText = document.getElementById("question-text");
+      const optionsContainer = document.getElementById("options-container");
+      const feedbackBanner = document.getElementById("feedback-banner");
+      const feedbackTitle = document.getElementById("feedback-title");
+      const feedbackExplanation = document.getElementById("feedback-explanation");
+      const btnPrevQ = document.getElementById("btn-prev-q");
+      const btnNextQ = document.getElementById("btn-next-q");
+      const btnResetQuiz = document.getElementById("btn-reset-quiz");
+
+      window.filterQuizSubject = function (subjectName) {
+        activeSubjectFilter = subjectName;
+
+        const filterBtns = {
+          "All": "filter-btn-all",
+          "Mathematics": "filter-btn-math",
+          "Chemistry": "filter-btn-chem",
+          "Physics": "filter-btn-phys",
+          "English": "filter-btn-eng"
+        };
+
+        for (const key in filterBtns) {
+          const btn = document.getElementById(filterBtns[key]);
+          if (btn) btn.classList.toggle("active", key === subjectName);
+        }
+
+        if (subjectName === "All") {
+          currentFilteredQuestions = [...ALL_QUESTIONS];
+        } else {
+          currentFilteredQuestions = ALL_QUESTIONS.filter(q => q.subject.toLowerCase() === subjectName.toLowerCase());
+        }
+
+        currentFilteredIndex = 0;
+        initQuizNavigationPills();
+        renderCurrentQuestion();
+
+        const quizSec = document.getElementById("quiz-section");
+        if (quizSec) {
+          quizSec.scrollIntoView({ behavior: "smooth" });
+        }
+
+        showToast(`Filtered Quiz to ${subjectName} (${currentFilteredQuestions.length} Questions).`);
+      };
+
+      function initQuizNavigationPills() {
+        if (!quizPillsBar) return;
+        quizPillsBar.innerHTML = "";
+
+        currentFilteredQuestions.forEach((q, idx) => {
+          const pill = document.createElement("button");
+          pill.className = "q-pill" + (idx === currentFilteredIndex ? " active" : "");
+          pill.type = "button";
+          pill.textContent = idx + 1;
+          pill.setAttribute("aria-label", `Go to question ${idx + 1}: ${q.subject}`);
+          pill.addEventListener("click", () => {
+            currentFilteredIndex = idx;
+            renderCurrentQuestion();
+          });
+          quizPillsBar.appendChild(pill);
+        });
+        updatePillStates();
+      }
+
+      function updatePillStates() {
+        const pills = document.querySelectorAll(".q-pill");
+        pills.forEach((pill, idx) => {
+          pill.classList.remove("active", "correct", "incorrect");
+          if (idx === currentFilteredIndex) {
+            pill.classList.add("active");
+          }
+          const q = currentFilteredQuestions[idx];
+          if (q && userAnswers[q.id]) {
+            if (userAnswers[q.id].isCorrect) {
+              pill.classList.add("correct");
+            } else {
+              pill.classList.add("incorrect");
+            }
+          }
+        });
+      }
+
+      function renderCurrentQuestion() {
+        const q = currentFilteredQuestions[currentFilteredIndex];
+        if (!q) return;
+
+        if (quizSubjectTag) quizSubjectTag.textContent = `${q.subject} • ${q.subtopic}`;
+        if (quizCounterText) {
+          quizCounterText.textContent = `Question ${currentFilteredIndex + 1} of ${currentFilteredQuestions.length} [${activeSubjectFilter}]`;
+        }
+        if (questionText) questionText.textContent = q.question;
+
+        if (optionsContainer) {
+          optionsContainer.innerHTML = "";
+          const isAnswered = userAnswers.hasOwnProperty(q.id);
+          const currentAnswer = userAnswers[q.id];
+          const optionKeys = ["A", "B", "C", "D"];
+
+          q.options.forEach((optText, optIdx) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.type = "button";
+
+            const keySpan = document.createElement("span");
+            keySpan.className = "option-key";
+            keySpan.textContent = optionKeys[optIdx] || optIdx + 1;
+
+            const textSpan = document.createElement("span");
+            textSpan.textContent = optText;
+
+            btn.appendChild(keySpan);
+            btn.appendChild(textSpan);
+
+            if (isAnswered) {
+              btn.disabled = true;
+              if (optIdx === q.correctIndex) {
+                if (currentAnswer.selectedIndex === q.correctIndex) {
+                  btn.classList.add("selected-correct");
+                } else {
+                  btn.classList.add("reveal-correct");
+                }
+              } else if (optIdx === currentAnswer.selectedIndex) {
+                btn.classList.add("selected-incorrect");
+              }
+            } else {
+              btn.addEventListener("click", () => handleOptionSelection(optIdx));
+            }
+
+            optionsContainer.appendChild(btn);
+          });
+        }
+
+        renderFeedbackBanner();
+
+        if (btnPrevQ) btnPrevQ.disabled = currentFilteredIndex === 0;
+        if (btnNextQ) btnNextQ.disabled = currentFilteredIndex === currentFilteredQuestions.length - 1;
+
+        updatePillStates();
+      }
+
+      function handleOptionSelection(selectedIdx) {
+        const q = currentFilteredQuestions[currentFilteredIndex];
+        const isCorrect = selectedIdx === q.correctIndex;
+
+        userAnswers[q.id] = {
+          selectedIndex: selectedIdx,
+          isCorrect: isCorrect
+        };
+
+        renderCurrentQuestion();
+        updateAccuracyWheel();
+
+        if (isCorrect) {
+          showToast(`Question ${currentFilteredIndex + 1}: Correct! Excellent work.`);
+        } else {
+          showToast(`Question ${currentFilteredIndex + 1}: Conceptual review required.`);
+        }
+      }
+
+      function renderFeedbackBanner() {
+        if (!feedbackBanner) return;
+        const q = currentFilteredQuestions[currentFilteredIndex];
+        if (!q) return;
+
+        const answer = userAnswers[q.id];
+        if (!answer) {
+          feedbackBanner.style.display = "none";
+          feedbackBanner.className = "feedback-banner";
+          return;
+        }
+
+        feedbackBanner.style.display = "block";
+
+        if (answer.isCorrect) {
+          feedbackBanner.className = "feedback-banner success";
+          feedbackTitle.innerHTML = `
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>Correct Answer! ${q.successComplement}</span>
+          `;
+          feedbackExplanation.innerHTML = `<strong>Academic Explanation:</strong> ${q.explanation}`;
+        } else {
+          feedbackBanner.className = "feedback-banner error";
+          feedbackTitle.innerHTML = `
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="15" y1="9" x2="9" y2="15"></line>
+              <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+            <span>Incorrect Selection — Academic Clarification</span>
+          `;
+          feedbackExplanation.innerHTML = `
+            <div><strong>Why this is wrong &amp; what the correct answer is:</strong></div>
+            <div style="margin-top:6px;">${q.explanation}</div>
+          `;
+        }
+      }
+
+      if (btnPrevQ) {
+        btnPrevQ.addEventListener("click", () => {
+          if (currentFilteredIndex > 0) {
+            currentFilteredIndex--;
+            renderCurrentQuestion();
+          }
+        });
+      }
+
+      if (btnNextQ) {
+        btnNextQ.addEventListener("click", () => {
+          if (currentFilteredIndex < currentFilteredQuestions.length - 1) {
+            currentFilteredIndex++;
+            renderCurrentQuestion();
+          }
+        });
+      }
+
+      function resetQuizState() {
+        for (const key in userAnswers) {
+          delete userAnswers[key];
+        }
+        currentFilteredIndex = 0;
+        renderCurrentQuestion();
+        updateAccuracyWheel();
+        showToast("Quiz answers reset. Ready for re-evaluation.");
+      }
+
+      if (btnResetQuiz) {
+        btnResetQuiz.addEventListener("click", resetQuizState);
+      }
+
+      /* ==========================================================================
+         7. DYNAMIC CIRCULAR PROGRESS ACCURACY WHEEL (Requirement 5)
+         ========================================================================== */
+      const wheelArc = document.getElementById("wheel-arc");
+      const wheelPercentageText = document.getElementById("wheel-percentage-text");
+      const statCorrectCount = document.getElementById("stat-correct-count");
+      const statWrongCount = document.getElementById("stat-wrong-count");
+      const statRemainingCount = document.getElementById("stat-remaining-count");
+      const statAcademicRank = document.getElementById("stat-academic-rank");
+
+      const CIRCUMFERENCE = 2 * Math.PI * 45; // ~282.7433
+
+      function updateAccuracyWheel() {
+        const totalQuestions = ALL_QUESTIONS.length;
+        const answeredKeys = Object.keys(userAnswers);
+        const answeredCount = answeredKeys.length;
+
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        answeredKeys.forEach(k => {
+          if (userAnswers[k].isCorrect) {
+            correctCount++;
+          } else {
+            wrongCount++;
+          }
+        });
+
+        const remainingCount = totalQuestions - answeredCount;
+
+        let accuracyPercent = 0;
+        if (answeredCount > 0) {
+          accuracyPercent = Math.round((correctCount / answeredCount) * 100);
+        }
+
+        if (wheelArc) {
+          const offset = CIRCUMFERENCE - (accuracyPercent / 100) * CIRCUMFERENCE;
+          wheelArc.style.strokeDashoffset = offset;
+        }
+
+        if (wheelPercentageText) {
+          wheelPercentageText.textContent = `${accuracyPercent}%`;
+        }
+
+        if (statCorrectCount) statCorrectCount.textContent = correctCount;
+        if (statWrongCount) statWrongCount.textContent = wrongCount;
+        if (statRemainingCount) statRemainingCount.textContent = remainingCount;
+
+        if (statAcademicRank) {
+          if (answeredCount === 0) {
+            statAcademicRank.textContent = "Standby";
+            statAcademicRank.style.color = "var(--text-muted)";
+          } else if (accuracyPercent >= 85) {
+            statAcademicRank.textContent = "High Distinction";
+            statAcademicRank.style.color = "var(--accent-emerald)";
+          } else if (accuracyPercent >= 65) {
+            statAcademicRank.textContent = "Proficient";
+            statAcademicRank.style.color = "var(--accent-cyan)";
+          } else {
+            statAcademicRank.textContent = "Review Needed";
+            statAcademicRank.style.color = "var(--accent-amber)";
+          }
+        }
+      }
+
+      /* Toast Notification helper */
+      function showToast(message) {
+        const container = document.getElementById("toast-hub");
+        if (!container) return;
+
+        const toast = document.createElement("div");
+        toast.className = "toast-msg";
+        toast.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>${message}</span>
+        `;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(10px)";
+          toast.style.transition = "all 0.3s ease";
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 300);
+        }, 3200);
+      }
+
+      /* ==========================================================================
+         8. APP INITIALIZATION
+         ========================================================================== */
+      function initApp() {
+        startStopwatch();
+        initQuizNavigationPills();
+        renderCurrentQuestion();
+        updateAccuracyWheel();
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initApp);
+      } else {
+        initApp();
+      }
+
+      window.resetQuizState = resetQuizState;
+
+    })();
+  </script>
+</body>
+</html>
