@@ -2617,6 +2617,309 @@
       padding-top: 16px;
     }
 
+    
+    /* ==========================================================================
+       CARD INLINE DEEP BREAKDOWN DRAWER (Right below the button clicked!)
+       ========================================================================== */
+    .card-inline-drawer {
+      margin-top: 14px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.97));
+      border: 1.5px solid var(--accent-cyan);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(14, 165, 233, 0.25);
+      animation: fadeInSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .card-inline-drawer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-emerald));
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .drawer-title-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-icon {
+      font-size: 1.4rem;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .drawer-title {
+      font-size: 1.02rem;
+      color: #ffffff;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .drawer-badge {
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .drawer-header-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drawer-btn-modal, .drawer-btn-close {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .drawer-btn-modal:hover {
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      background: rgba(14, 165, 233, 0.18);
+    }
+
+    .drawer-btn-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      justify-content: center;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+
+    .drawer-btn-close:hover {
+      color: #ffffff;
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      transform: rotate(90deg);
+    }
+
+    .drawer-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .drawer-block {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+
+    .drawer-sec-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .drawer-prose {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .drawer-formula-strip {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #38bdf8;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed var(--border-cyan);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      word-break: break-word;
+    }
+
+    .drawer-motivation-block {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .drawer-motivation-block .drawer-sec-title {
+      color: #fbbf24;
+    }
+
+    .drawer-motiv-prose {
+      color: #fde68a;
+      font-style: italic;
+    }
+
+    .drawer-actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-drawer-pill {
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      background: rgba(30, 41, 59, 0.85);
+      color: var(--text-main);
+    }
+
+    .btn-drawer-pill.primary {
+      background: rgba(14, 165, 233, 0.18);
+      border-color: var(--border-cyan);
+      color: #38bdf8;
+    }
+
+    .btn-drawer-pill.primary:hover {
+      background: var(--accent-cyan);
+      color: #0f172a;
+      transform: translateY(-1px);
+    }
+
+    .btn-drawer-pill.secondary {
+      background: rgba(139, 92, 246, 0.18);
+      border-color: rgba(139, 92, 246, 0.4);
+      color: #c084fc;
+    }
+
+    .btn-drawer-pill.secondary:hover {
+      background: var(--accent-purple);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-drawer-pill.close:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+
+    /* 50 Motivational Quotes Gallery Modal */
+    .quotes-gallery-modal-box {
+      max-width: 840px;
+      max-height: 85vh;
+      width: 92%;
+      overflow-y: auto;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98));
+      border: 1.5px solid var(--accent-amber);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.25);
+      position: relative;
+    }
+
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .quote-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .quote-card:hover {
+      border-color: var(--accent-amber);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.2);
+      background: rgba(30, 41, 59, 0.85);
+    }
+
+    .quote-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .quote-card-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.15);
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+
+    .quote-card-speak {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+    }
+
+    .quote-card-text {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--text-main);
+    }
+
+    .btn-open-quotes-pill {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid var(--accent-amber);
+      color: #fbbf24;
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      margin-top: 6px;
+      display: inline-block;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-open-quotes-pill:hover {
+      background: var(--accent-amber);
+      color: #0f172a;
+    }
+
     /* Glitch-Free Cursor Styles */
     body {
       cursor: default !important;
@@ -3021,7 +3324,7 @@
       </p>
     </section>
 
-    <div class="subjects-grid">
+            <div class="subjects-grid">
 
       <!-- Subject 1: Mathematics -->
       <article class="subject-card" data-subject="math" onclick="touchSubject('math')">
@@ -3047,26 +3350,26 @@
         <div class="topics-tree">
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Calculus</span>
-              <span class="topic-level-tag">Analysis</span>
+              <span class="topic-name" id="card-math-top1"><span class="topic-bullet"></span>Calculus</span>
+              <span class="topic-level-tag" id="card-math-tag1">Analysis</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Limits &amp; Derivatives</span>
-                <span class="subtopic-badge">Core</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('math')">
+                <span id="card-math-sub1">Limits &amp; Derivatives</span>
+                <span class="subtopic-badge" id="card-math-subbadge1">Core</span>
               </div>
             </div>
           </div>
 
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Matrices</span>
-              <span class="topic-level-tag">Linear Alg</span>
+              <span class="topic-name" id="card-math-top2"><span class="topic-bullet"></span>Matrices</span>
+              <span class="topic-level-tag" id="card-math-tag2">Linear Alg</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Determinants</span>
-                <span class="subtopic-badge">Applied</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('math')">
+                <span id="card-math-sub2">Determinants</span>
+                <span class="subtopic-badge" id="card-math-subbadge2">Applied</span>
               </div>
             </div>
           </div>
@@ -3077,11 +3380,74 @@
             <span class='btn-theory-txt'>📖 Deep Breakdown</span>
           </button>
           <button class="btn-action-pill" onclick="openSubjectMindMap('math')">
-            <span>🧠 Huge Mind Map</span>
+            <span class='btn-mm-txt'>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Mathematics')">
-            <span>🎯 25 Questions &rarr;</span>
+            <span class='btn-quiz-txt'>🎯 25 Questions &rarr;</span>
           </button>
+        </div>
+
+        <!-- In-Card Breakdown Drawer: Directly below the button! -->
+        <div class="card-inline-drawer" id="drawer-math" style="display:none;" onclick="event.stopPropagation()">
+          <div class="drawer-header">
+            <div class="drawer-title-box">
+              <span class="drawer-icon">📐</span>
+              <div>
+                <h4 class="drawer-title" id="drawer-title-math">Mathematics Deep Breakdown</h4>
+                <span class="drawer-badge" id="drawer-badge-math">Module 01 • Rigorous Calculus &amp; Linear Algebra</span>
+              </div>
+            </div>
+            <div class="drawer-header-btns">
+              <button class="drawer-btn-modal" onclick="openBreakdownModal('math')" title="Full Modal View">🔍 <span id="drawer-btn-modal-math">Maximize</span></button>
+              <button class="drawer-btn-close" onclick="closeCardDrawer('math')" title="Close">✖</button>
+            </div>
+          </div>
+
+          <div class="drawer-body">
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="drawer-lbl-theory-math">Theoretical Framework &amp; Axioms</span>
+              </div>
+              <p class="drawer-prose" id="drawer-theory-math"></p>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span id="drawer-lbl-formulas-math">Governing Mathematical Formulas</span>
+              </div>
+              <div class="drawer-formula-strip" id="drawer-formulas-math"></div>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                <span id="drawer-lbl-app-math">Industrial &amp; Engineering Applications</span>
+              </div>
+              <p class="drawer-prose" id="drawer-app-math"></p>
+            </div>
+
+            <div class="drawer-block drawer-motivation-block">
+              <div class="drawer-sec-title">
+                <span>🌟</span>
+                <span id="drawer-lbl-motiv-math">Inspiring Student Reflection &amp; Motivational Dialogue</span>
+              </div>
+              <p class="drawer-prose drawer-motiv-prose" id="drawer-motiv-math"></p>
+            </div>
+
+            <div class="drawer-actions-bar">
+              <button class="btn-drawer-pill primary" onclick="filterQuizSubject('Mathematics')">
+                <span id="drawer-btn-quiz-math">🎯 Practice 25 Questions</span>
+              </button>
+              <button class="btn-drawer-pill secondary" onclick="openSubjectMindMap('math')">
+                <span id="drawer-btn-mm-math">🧠 Explore Huge Mind Map</span>
+              </button>
+              <button class="btn-drawer-pill close" onclick="closeCardDrawer('math')">
+                <span id="drawer-btn-close-math">✖ Close Breakdown</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -3109,26 +3475,26 @@
         <div class="topics-tree">
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Organic Chemistry</span>
-              <span class="topic-level-tag">Synthesis</span>
+              <span class="topic-name" id="card-chem-top1"><span class="topic-bullet"></span>Organic Chemistry</span>
+              <span class="topic-level-tag" id="card-chem-tag1">Synthesis</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Hydrocarbons</span>
-                <span class="subtopic-badge">Core</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('chem')">
+                <span id="card-chem-sub1">Hydrocarbons</span>
+                <span class="subtopic-badge" id="card-chem-subbadge1">Core</span>
               </div>
             </div>
           </div>
 
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Periodic Table</span>
-              <span class="topic-level-tag">Inorganic</span>
+              <span class="topic-name" id="card-chem-top2"><span class="topic-bullet"></span>Periodic Table</span>
+              <span class="topic-level-tag" id="card-chem-tag2">Inorganic</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Chemical Bonding</span>
-                <span class="subtopic-badge">Foundational</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('chem')">
+                <span id="card-chem-sub2">Chemical Bonding</span>
+                <span class="subtopic-badge" id="card-chem-subbadge2">Foundational</span>
               </div>
             </div>
           </div>
@@ -3139,11 +3505,74 @@
             <span class='btn-theory-txt'>📖 Deep Breakdown</span>
           </button>
           <button class="btn-action-pill" onclick="openSubjectMindMap('chem')">
-            <span>🧠 Huge Mind Map</span>
+            <span class='btn-mm-txt'>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Chemistry')">
-            <span>🎯 25 Questions &rarr;</span>
+            <span class='btn-quiz-txt'>🎯 25 Questions &rarr;</span>
           </button>
+        </div>
+
+        <!-- In-Card Breakdown Drawer: Directly below the button! -->
+        <div class="card-inline-drawer" id="drawer-chem" style="display:none;" onclick="event.stopPropagation()">
+          <div class="drawer-header">
+            <div class="drawer-title-box">
+              <span class="drawer-icon">🧪</span>
+              <div>
+                <h4 class="drawer-title" id="drawer-title-chem">Chemistry Deep Breakdown</h4>
+                <span class="drawer-badge" id="drawer-badge-chem">Module 02 • Organic Mechanisms &amp; Periodic Trends</span>
+              </div>
+            </div>
+            <div class="drawer-header-btns">
+              <button class="drawer-btn-modal" onclick="openBreakdownModal('chem')" title="Full Modal View">🔍 <span id="drawer-btn-modal-chem">Maximize</span></button>
+              <button class="drawer-btn-close" onclick="closeCardDrawer('chem')" title="Close">✖</button>
+            </div>
+          </div>
+
+          <div class="drawer-body">
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="drawer-lbl-theory-chem">Theoretical Framework &amp; Axioms</span>
+              </div>
+              <p class="drawer-prose" id="drawer-theory-chem"></p>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span id="drawer-lbl-formulas-chem">Governing Chemical Formulas</span>
+              </div>
+              <div class="drawer-formula-strip" id="drawer-formulas-chem"></div>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                <span id="drawer-lbl-app-chem">Industrial &amp; Engineering Applications</span>
+              </div>
+              <p class="drawer-prose" id="drawer-app-chem"></p>
+            </div>
+
+            <div class="drawer-block drawer-motivation-block">
+              <div class="drawer-sec-title">
+                <span>🌟</span>
+                <span id="drawer-lbl-motiv-chem">Inspiring Student Reflection &amp; Motivational Dialogue</span>
+              </div>
+              <p class="drawer-prose drawer-motiv-prose" id="drawer-motiv-chem"></p>
+            </div>
+
+            <div class="drawer-actions-bar">
+              <button class="btn-drawer-pill primary" onclick="filterQuizSubject('Chemistry')">
+                <span id="drawer-btn-quiz-chem">🎯 Practice 25 Questions</span>
+              </button>
+              <button class="btn-drawer-pill secondary" onclick="openSubjectMindMap('chem')">
+                <span id="drawer-btn-mm-chem">🧠 Explore Huge Mind Map</span>
+              </button>
+              <button class="btn-drawer-pill close" onclick="closeCardDrawer('chem')">
+                <span id="drawer-btn-close-chem">✖ Close Breakdown</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -3171,26 +3600,26 @@
         <div class="topics-tree">
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Mechanics</span>
-              <span class="topic-level-tag">Classical</span>
+              <span class="topic-name" id="card-phys-top1"><span class="topic-bullet"></span>Mechanics</span>
+              <span class="topic-level-tag" id="card-phys-tag1">Classical</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Kinematics</span>
-                <span class="subtopic-badge">Core</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('phys')">
+                <span id="card-phys-sub1">Kinematics</span>
+                <span class="subtopic-badge" id="card-phys-subbadge1">Core</span>
               </div>
             </div>
           </div>
 
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Electromagnetism</span>
-              <span class="topic-level-tag">Fields</span>
+              <span class="topic-name" id="card-phys-top2"><span class="topic-bullet"></span>Electromagnetism</span>
+              <span class="topic-level-tag" id="card-phys-tag2">Fields</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Magnetic Induction</span>
-                <span class="subtopic-badge">High Yield</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('phys')">
+                <span id="card-phys-sub2">Magnetic Induction</span>
+                <span class="subtopic-badge" id="card-phys-subbadge2">High Yield</span>
               </div>
             </div>
           </div>
@@ -3201,11 +3630,74 @@
             <span class='btn-theory-txt'>📖 Deep Breakdown</span>
           </button>
           <button class="btn-action-pill" onclick="openSubjectMindMap('phys')">
-            <span>🧠 Huge Mind Map</span>
+            <span class='btn-mm-txt'>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Physics')">
-            <span>🎯 25 Questions &rarr;</span>
+            <span class='btn-quiz-txt'>🎯 25 Questions &rarr;</span>
           </button>
+        </div>
+
+        <!-- In-Card Breakdown Drawer: Directly below the button! -->
+        <div class="card-inline-drawer" id="drawer-phys" style="display:none;" onclick="event.stopPropagation()">
+          <div class="drawer-header">
+            <div class="drawer-title-box">
+              <span class="drawer-icon">⚛️</span>
+              <div>
+                <h4 class="drawer-title" id="drawer-title-phys">Physics Deep Breakdown</h4>
+                <span class="drawer-badge" id="drawer-badge-phys">Module 03 • Classical Mechanics &amp; Electromagnetism</span>
+              </div>
+            </div>
+            <div class="drawer-header-btns">
+              <button class="drawer-btn-modal" onclick="openBreakdownModal('phys')" title="Full Modal View">🔍 <span id="drawer-btn-modal-phys">Maximize</span></button>
+              <button class="drawer-btn-close" onclick="closeCardDrawer('phys')" title="Close">✖</button>
+            </div>
+          </div>
+
+          <div class="drawer-body">
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="drawer-lbl-theory-phys">Theoretical Framework &amp; Axioms</span>
+              </div>
+              <p class="drawer-prose" id="drawer-theory-phys"></p>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span id="drawer-lbl-formulas-phys">Governing Physical Laws</span>
+              </div>
+              <div class="drawer-formula-strip" id="drawer-formulas-phys"></div>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                <span id="drawer-lbl-app-phys">Industrial &amp; Engineering Applications</span>
+              </div>
+              <p class="drawer-prose" id="drawer-app-phys"></p>
+            </div>
+
+            <div class="drawer-block drawer-motivation-block">
+              <div class="drawer-sec-title">
+                <span>🌟</span>
+                <span id="drawer-lbl-motiv-phys">Inspiring Student Reflection &amp; Motivational Dialogue</span>
+              </div>
+              <p class="drawer-prose drawer-motiv-prose" id="drawer-motiv-phys"></p>
+            </div>
+
+            <div class="drawer-actions-bar">
+              <button class="btn-drawer-pill primary" onclick="filterQuizSubject('Physics')">
+                <span id="drawer-btn-quiz-phys">🎯 Practice 25 Questions</span>
+              </button>
+              <button class="btn-drawer-pill secondary" onclick="openSubjectMindMap('phys')">
+                <span id="drawer-btn-mm-phys">🧠 Explore Huge Mind Map</span>
+              </button>
+              <button class="btn-drawer-pill close" onclick="closeCardDrawer('phys')">
+                <span id="drawer-btn-close-phys">✖ Close Breakdown</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -3233,26 +3725,26 @@
         <div class="topics-tree">
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Grammar</span>
-              <span class="topic-level-tag">Linguistics</span>
+              <span class="topic-name" id="card-eng-top1"><span class="topic-bullet"></span>Grammar</span>
+              <span class="topic-level-tag" id="card-eng-tag1">Linguistics</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Tenses &amp; Clauses</span>
-                <span class="subtopic-badge">Applied</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('eng')">
+                <span id="card-eng-sub1">Tenses &amp; Clauses</span>
+                <span class="subtopic-badge" id="card-eng-subbadge1">Applied</span>
               </div>
             </div>
           </div>
 
           <div class="topic-node">
             <div class="topic-header">
-              <span class="topic-name"><span class="topic-bullet"></span>Literature</span>
-              <span class="topic-level-tag">Criticism</span>
+              <span class="topic-name" id="card-eng-top2"><span class="topic-bullet"></span>Literature</span>
+              <span class="topic-level-tag" id="card-eng-tag2">Criticism</span>
             </div>
             <div class="subtopics-container">
-              <div class="subtopic-item">
-                <span>Poetry Analysis</span>
-                <span class="subtopic-badge">Core</span>
+              <div class="subtopic-item" onclick="event.stopPropagation(); touchSubject('eng')">
+                <span id="card-eng-sub2">Poetry Analysis</span>
+                <span class="subtopic-badge" id="card-eng-subbadge2">Core</span>
               </div>
             </div>
           </div>
@@ -3263,11 +3755,74 @@
             <span class='btn-theory-txt'>📖 Deep Breakdown</span>
           </button>
           <button class="btn-action-pill" onclick="openSubjectMindMap('eng')">
-            <span>🧠 Huge Mind Map</span>
+            <span class='btn-mm-txt'>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('English')">
-            <span>🎯 25 Questions &rarr;</span>
+            <span class='btn-quiz-txt'>🎯 25 Questions &rarr;</span>
           </button>
+        </div>
+
+        <!-- In-Card Breakdown Drawer: Directly below the button! -->
+        <div class="card-inline-drawer" id="drawer-eng" style="display:none;" onclick="event.stopPropagation()">
+          <div class="drawer-header">
+            <div class="drawer-title-box">
+              <span class="drawer-icon">📖</span>
+              <div>
+                <h4 class="drawer-title" id="drawer-title-eng">English Deep Breakdown</h4>
+                <span class="drawer-badge" id="drawer-badge-eng">Module 04 • Grammar Syntax &amp; Literary Poetics</span>
+              </div>
+            </div>
+            <div class="drawer-header-btns">
+              <button class="drawer-btn-modal" onclick="openBreakdownModal('eng')" title="Full Modal View">🔍 <span id="drawer-btn-modal-eng">Maximize</span></button>
+              <button class="drawer-btn-close" onclick="closeCardDrawer('eng')" title="Close">✖</button>
+            </div>
+          </div>
+
+          <div class="drawer-body">
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <span id="drawer-lbl-theory-eng">Theoretical Framework &amp; Axioms</span>
+              </div>
+              <p class="drawer-prose" id="drawer-theory-eng"></p>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span id="drawer-lbl-formulas-eng">Governing Poetic &amp; Syntactic Structures</span>
+              </div>
+              <div class="drawer-formula-strip" id="drawer-formulas-eng"></div>
+            </div>
+
+            <div class="drawer-block">
+              <div class="drawer-sec-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                <span id="drawer-lbl-app-eng">Industrial &amp; Professional Applications</span>
+              </div>
+              <p class="drawer-prose" id="drawer-app-eng"></p>
+            </div>
+
+            <div class="drawer-block drawer-motivation-block">
+              <div class="drawer-sec-title">
+                <span>🌟</span>
+                <span id="drawer-lbl-motiv-eng">Inspiring Student Reflection &amp; Motivational Dialogue</span>
+              </div>
+              <p class="drawer-prose drawer-motiv-prose" id="drawer-motiv-eng"></p>
+            </div>
+
+            <div class="drawer-actions-bar">
+              <button class="btn-drawer-pill primary" onclick="filterQuizSubject('English')">
+                <span id="drawer-btn-quiz-eng">🎯 Practice 25 Questions</span>
+              </button>
+              <button class="btn-drawer-pill secondary" onclick="openSubjectMindMap('eng')">
+                <span id="drawer-btn-mm-eng">🧠 Explore Huge Mind Map</span>
+              </button>
+              <button class="btn-drawer-pill close" onclick="closeCardDrawer('eng')">
+                <span id="drawer-btn-close-eng">✖ Close Breakdown</span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -4318,7 +4873,13 @@
      ACADEMIC DATA STORE: 100 CURATED QUESTIONS ACROSS 4 SUBJECTS (25 EACH)
      ========================================================================== */
   const ALL_QUESTIONS = [{"id": 1, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Calculus: Limits", "question": "What is the fundamental limit of (sin x) / x as x approaches 0?", "options": ["0", "1", "Infinity", "Undefined"], "correctIndex": 1, "successComplement": "🎯 Brilliant! You recognized the cornerstone trigonometric limit of calculus!", "explanation": "As x approaches 0, sin(x)/x approaches 1. This can be derived by the Squeeze Theorem using geometric unit circle sectors (cos x < sin x / x < 1) or by L'Hôpital's Rule: lim cos(x)/1 = cos(0) = 1."}, {"id": 2, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Calculus: Power Rule", "question": "Using the Power Rule, what is the derivative d/dx [x^4]?", "options": ["4x^3", "3x^4", "4x^5", "x^3 / 4"], "correctIndex": 0, "successComplement": "✨ Superb derivative computation! Clean power rule execution!", "explanation": "By the power rule d/dx [x^n] = n * x^(n-1). Here n = 4, so d/dx [x^4] = 4 * x^(4-1) = 4x^3."}, {"id": 3, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Calculus: Constant Rule", "question": "What is the derivative of any constant value c with respect to x (d/dx [c])?", "options": ["c", "1", "0", "x"], "correctIndex": 2, "successComplement": "🌟 Spot-on axiom recall! Constants have zero rate of change!", "explanation": "Because a constant does not change as x changes, its rate of change (slope of a horizontal line) is identically 0. Therefore, d/dx [c] = 0."}, {"id": 4, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Matrices: Identity", "question": "For any 2x2 matrix A, what is the product A * I, where I is the 2x2 Identity Matrix?", "options": ["Zero Matrix", "Matrix A", "Inverse of A", "Transpose of A"], "correctIndex": 1, "successComplement": "💎 Perfect understanding of matrix identity elements!", "explanation": "The identity matrix I acts as the multiplicative identity in linear algebra, analogous to 1 in real numbers. For any conformable matrix A, A * I = I * A = A."}, {"id": 5, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Matrices: Determinants", "question": "What is the determinant of a 2x2 matrix [[3, 2], [1, 4]]?", "options": ["10", "14", "12", "8"], "correctIndex": 0, "successComplement": "🔥 Outstanding calculation! det = ad - bc executed cleanly!", "explanation": "For matrix [[a, b], [c, d]], det = ad - bc. Here a=3, b=2, c=1, d=4. det = (3 * 4) - (2 * 1) = 12 - 2 = 10."}, {"id": 6, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Calculus: Linearity", "question": "What is the derivative of f(x) = 3x^2 + 5x?", "options": ["6x + 5", "3x + 5", "6x^2 + 5", "5x + 3"], "correctIndex": 0, "successComplement": "⚡ Excellent linearity application across polynomial terms!", "explanation": "By linearity of differentiation: d/dx [3x^2 + 5x] = 3 * d/dx[x^2] + 5 * d/dx[x] = 3(2x) + 5(1) = 6x + 5."}, {"id": 7, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Matrices: Order", "question": "If matrix A has dimension 3x2 and matrix B has dimension 2x4, what is the dimension of the product AB?", "options": ["3x4", "2x2", "3x2", "Multiplication is undefined"], "correctIndex": 0, "successComplement": "🚀 Flawless matrix dimension compatibility check!", "explanation": "When multiplying an (m x k) matrix by a (k x n) matrix, the inner dimensions match (k=2), yielding a resulting matrix of dimension (m x n) = 3x4."}, {"id": 8, "subject": "Mathematics", "difficulty": "easy", "subtopic": "Calculus: Trigonometric Limits", "question": "What is the value of lim (x → 0) [cos(x)]?", "options": ["1", "0", "Undefined", "-1"], "correctIndex": 0, "successComplement": "🎉 Great job! Direct substitution in continuous trigonometric functions!", "explanation": "Since cos(x) is continuous everywhere on the real line, we evaluate the limit directly by substitution: lim (x → 0) cos(x) = cos(0) = 1."}, {"id": 9, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: Product Rule", "question": "Using the Product Rule, what is the derivative d/dx [x * sin(x)]?", "options": ["sin(x) + x*cos(x)", "cos(x)", "x * cos(x)", "sin(x) - x*cos(x)"], "correctIndex": 0, "successComplement": "🧠 Exceptional execution of the Leibniz product rule (u'v + uv')!", "explanation": "By the product rule d/dx [u * v] = u'v + uv'. Here u = x (u' = 1) and v = sin(x) (v' = cos(x)). Thus d/dx [x * sin(x)] = 1 * sin(x) + x * cos(x)."}, {"id": 10, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: Chain Rule", "question": "What is the derivative of composite function f(x) = (2x + 1)^3?", "options": ["6(2x + 1)^2", "3(2x + 1)^2", "6x^2", "12(2x + 1)"], "correctIndex": 0, "successComplement": "✨ Masterful chain rule application! Outer derivative multiplied by inner derivative!", "explanation": "Let u = 2x + 1. Then f(u) = u^3. df/dx = (df/du) * (du/dx) = 3u^2 * 2 = 6(2x + 1)^2."}, {"id": 11, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Matrices: Invertibility", "question": "A square matrix M is invertible (non-singular) if and only if:", "options": ["det(M) ≠ 0", "det(M) = 0", "Trace(M) = 0", "M is symmetric"], "correctIndex": 0, "successComplement": "🎯 Precision insight! Non-zero determinant ensures volume non-collapse!", "explanation": "The inverse of matrix M is given by M^(-1) = (1 / det(M)) * adj(M). Division by zero is undefined; thus M is invertible if and only if det(M) ≠ 0."}, {"id": 12, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: L'Hôpital's Rule", "question": "Evaluate lim (x → 0) [(e^x - 1) / x] using L'Hôpital's Rule:", "options": ["1", "0", "e", "Infinity"], "correctIndex": 0, "successComplement": "🌟 Elegant asymptotic analysis with L'Hôpital's rule!", "explanation": "Direct substitution gives indeterminate form 0/0. Applying L'Hôpital's rule: differentiate numerator (e^x) and denominator (1): lim (x → 0) [e^x / 1] = e^0 / 1 = 1."}, {"id": 13, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Matrices: Transpose Properties", "question": "For two conformable square matrices A and B, what is (A * B)^T equal to?", "options": ["B^T * A^T", "A^T * B^T", "A * B", "(A + B)^T"], "correctIndex": 0, "successComplement": "🔥 Classic linear algebra law! Transpose reverses multiplication order!", "explanation": "Because matrix multiplication involves row-by-column inner products, taking the transpose swaps rows and columns, reversing the order of operands: (AB)^T = B^T * A^T."}, {"id": 14, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: Critical Points", "question": "For the curve f(x) = x^3 - 3x, at what values of x do critical points occur?", "options": ["x = ±1", "x = 0, 3", "x = ±√3", "x = 1, 2"], "correctIndex": 0, "successComplement": "⚡ Stellar optimization calculus! Setting f'(x) = 0 solved correctly!", "explanation": "Critical points occur where f'(x) = 0. f'(x) = 3x^2 - 3 = 3(x^2 - 1) = 0. Hence x^2 = 1, giving x = 1 and x = -1."}, {"id": 15, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: Exponential Derivative", "question": "What is the derivative of f(x) = ln(x) for x > 0?", "options": ["1 / x", "1 / x^2", "e^x", "x * ln(x)"], "correctIndex": 0, "successComplement": "🎉 Outstanding recall of natural logarithmic differentiation!", "explanation": "By definition of the natural logarithm derivative, d/dx [ln(x)] = 1/x for all x in its domain (0, ∞)."}, {"id": 16, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Matrices: Trace", "question": "What is the trace of matrix M = [[5, 2], [7, -3]]?", "options": ["2", "-15", "9", "-29"], "correctIndex": 0, "successComplement": "💡 Quick and accurate! Sum of principal diagonal entries!", "explanation": "The trace of a square matrix is the sum of its main diagonal elements. Here trace(M) = 5 + (-3) = 2."}, {"id": 17, "subject": "Mathematics", "difficulty": "medium", "subtopic": "Calculus: Definite Integral", "question": "Evaluate the definite integral ∫ from 0 to 2 of (3x^2) dx:", "options": ["8", "6", "12", "4"], "correctIndex": 0, "successComplement": "🚀 Superb Fundamental Theorem of Calculus application!", "explanation": "The antiderivative of 3x^2 is x^3. Evaluating between limits [x^3] from 0 to 2 gives 2^3 - 0^3 = 8 - 0 = 8."}, {"id": 18, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Calculus: Second Derivative Test", "question": "If f'(c) = 0 and f''(c) < 0 at an interior point c, what does the Second Derivative Test guarantee?", "options": ["Local Maximum at c", "Local Minimum at c", "Inflection Point at c", "Test is inconclusive"], "correctIndex": 0, "successComplement": "🏆 High-level analytical mastery! Concave down forces local maximum!", "explanation": "f''(c) < 0 implies the graph is concave down (resembling an upside-down parabola ∩) at c. Since the tangent is horizontal (f'(c)=0), the curve peaks, establishing a strict local maximum."}, {"id": 19, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Matrices: Eigenvalues", "question": "The characteristic equation used to solve for eigenvalues λ of matrix A is given by:", "options": ["det(A - λI) = 0", "Trace(A) = λ", "A * λ = I", "det(A) + λ = 0"], "correctIndex": 0, "successComplement": "🌟 Elite linear algebra acumen! Non-trivial null space condition!", "explanation": "By definition, an eigenvector v satisfies Av = λv, which rearranges to (A - λI)v = 0. For non-zero v to exist, the operator (A - λI) must be singular, meaning det(A - λI) = 0."}, {"id": 20, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Calculus: Euler's Number Limit", "question": "What is the value of the canonical compound interest limit lim (x → ∞) [(1 + 1/x)^x]?", "options": ["e (Euler's Number ≈ 2.718)", "1", "Infinity", "0"], "correctIndex": 0, "successComplement": "🔥 Mathematical genius! The exact analytical definition of base e!", "explanation": "Taking natural logarithm y = lim (1 + 1/x)^x leads to ln(y) = lim [ln(1 + 1/x) / (1/x)]. Applying L'Hôpital's rule yields ln(y) = 1, meaning y = e^1 = e."}, {"id": 21, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Calculus: Integration by Parts", "question": "According to the Integration by Parts formula ∫ u dv, what is the expansion?", "options": ["u*v - ∫ v du", "u*v + ∫ v du", "u'*v - u*v'", "∫ u du * ∫ v dv"], "correctIndex": 0, "successComplement": "🎯 Magnificent integral calculus mastery! Direct inversion of product rule!", "explanation": "Integrating the product rule d(uv) = u dv + v du yields uv = ∫ u dv + ∫ v du. Rearranging gives the formula: ∫ u dv = uv - ∫ v du."}, {"id": 22, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Matrices: Cramer's Rule", "question": "In solving linear system Ax = b using Cramer's Rule, the i-th variable x_i is calculated as:", "options": ["det(A_i) / det(A)", "det(A) / det(A_i)", "det(A * A_i)", "Trace(A_i) / Trace(A)"], "correctIndex": 0, "successComplement": "✨ Pristine linear algebra formula recall! Determinant volume quotient!", "explanation": "Cramer's rule states that each variable x_i is the ratio of det(A_i) (the matrix formed by replacing the i-th column of A with constant vector b) to the system determinant det(A)."}, {"id": 23, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Calculus: Implicit Differentiation", "question": "For the unit circle x^2 + y^2 = 1, what is dy/dx at any point (x, y) where y ≠ 0?", "options": ["-x / y", "x / y", "-y / x", "1 / (2y)"], "correctIndex": 0, "successComplement": "🚀 Superb implicit differentiation! Treating y as a function of x executed flawlessly!", "explanation": "Differentiating both sides with respect to x: d/dx[x^2] + d/dx[y^2] = d/dx[1] → 2x + 2y(dy/dx) = 0. Solving for dy/dx yields dy/dx = -2x / (2y) = -x / y."}, {"id": 24, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Matrices: Orthogonal Matrices", "question": "If a real square matrix Q is orthogonal, which fundamental property holds true?", "options": ["Q^T * Q = I (so Q^(-1) = Q^T)", "det(Q) = 0", "Q^T = -Q", "Q is a diagonal matrix"], "correctIndex": 0, "successComplement": "💎 Brilliant insight into isometric linear operators!", "explanation": "An orthogonal matrix preserves vector Euclidean lengths and dot products. Its columns form an orthonormal basis, satisfying Q^T * Q = I, which implies its inverse equals its transpose: Q^(-1) = Q^T."}, {"id": 25, "subject": "Mathematics", "difficulty": "hard", "subtopic": "Calculus: Mean Value Theorem", "question": "If f(x) is continuous on [a, b] and differentiable on (a, b), the Mean Value Theorem guarantees at least one c in (a, b) such that f'(c) equals:", "options": ["[f(b) - f(a)] / (b - a)", "[f(b) + f(a)] / 2", "0", "f'(a) + f'(b)"], "correctIndex": 0, "successComplement": "🎉 Stellar calculus theorem mastery! Instantaneous slope matches average secant slope!", "explanation": "The Mean Value Theorem guarantees that there is at least one tangent line slope f'(c) equal to the average secant rate of change [f(b) - f(a)] / (b - a)."}, {"id": 26, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Organic Chemistry: Hydrocarbons", "question": "What is the general molecular formula for acyclic saturated alkanes?", "options": ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], "correctIndex": 0, "successComplement": "🎯 Spot on! You identified the classic saturated alkane formula!", "explanation": "Alkanes contain only single carbon-carbon bonds and maximum possible hydrogen atoms, adhering strictly to the formula CnH2n+2 (e.g., Methane CH4, Ethane C2H6)."}, {"id": 27, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Chemical Bonding: Ionic Bonds", "question": "Ionic bonds are formed primarily by what atomic mechanism?", "options": ["Complete transfer of valence electrons from metal to non-metal", "Equal sharing of electron pairs", "Delocalized sea of mobile electrons", "Weak dispersion dipole attractions"], "correctIndex": 0, "successComplement": "✨ Superb electrostatic insight! Complete electron transfer creates ionic lattices!", "explanation": "Ionic bonds arise when a low electronegativity electropositive metal transfers valence electrons completely to a high electronegativity non-metal, forming oppositely charged cations and anions held by Coulombic forces."}, {"id": 28, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Organic Chemistry: Hybridization", "question": "What is the bond angle in a symmetrical tetrahedral sp3 hybridized methane molecule (CH4)?", "options": ["109.5°", "120°", "180°", "90°"], "correctIndex": 0, "successComplement": "🌟 Flawless VSEPR geometry recall! 109.5° defines the tetrahedral regular polyhedron!", "explanation": "In methane (CH4), carbon undergoes sp3 hybridization forming 4 equivalent bonding orbitals oriented in 3D space to minimize electron-pair repulsion, establishing the 109.5° tetrahedral angle."}, {"id": 29, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Periodic Table: Trends", "question": "Moving from left to right across a period in the modern periodic table, what happens to atomic electronegativity?", "options": ["Increases", "Decreases", "Remains constant", "Drops to zero"], "correctIndex": 0, "successComplement": "🔥 Outstanding periodic trend deduction! Nuclear charge pull increases across periods!", "explanation": "Across a period, nuclear charge (Z_eff) increases while electrons are added to the same principal energy shell. This stronger nuclear pull attracts bonding electrons more vigorously, increasing electronegativity."}, {"id": 30, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Chemical Bonding: Covalent", "question": "Covalent bonding involves which fundamental atomic interaction?", "options": ["Sharing of electron pairs between non-metallic atoms", "Transfer of protons between atomic nuclei", "Attraction between positive ions and free electrons", "Nuclear fission between atomic orbitals"], "correctIndex": 0, "successComplement": "⚡ Perfect! Mutual sharing of valence pairs satisfies octet rules!", "explanation": "Covalent bonds form when non-metal atoms of similar electronegativity overlap atomic orbitals and share valence electron pairs to attain stable noble gas octet electron configurations."}, {"id": 31, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Organic Chemistry: Functional Groups", "question": "Which characteristic functional group defines alcohols in organic chemistry?", "options": ["Hydroxyl group (-OH)", "Carboxyl group (-COOH)", "Carbonyl group (C=O)", "Amino group (-NH2)"], "correctIndex": 0, "successComplement": "🚀 Crisp functional group recognition! -OH defines the alcohol family!", "explanation": "Alcohols possess a polar hydroxyl group (-OH) covalently bound to an sp3 hybridized alkyl carbon atom (e.g., Ethanol CH3CH2OH)."}, {"id": 32, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Periodic Table: Atomic Size", "question": "Moving down any group in the periodic table, what happens to atomic radius?", "options": ["Increases due to addition of principal electron shells", "Decreases due to nuclear compression", "Remains identical across all periods", "Fluctuates randomly"], "correctIndex": 0, "successComplement": "💎 Brilliant! New quantum energy levels expand electron cloud radius!", "explanation": "Descending a group, a new principal electron shell (n) is added at each period. Despite increasing nuclear charge, effective electron shielding and greater quantum distance cause atomic radius to expand."}, {"id": 33, "subject": "Chemistry", "difficulty": "easy", "subtopic": "Organic Chemistry: Alkenes", "question": "What is the general molecular formula for mono-unsaturated straight-chain alkenes containing one double bond?", "options": ["CnH2n", "CnH2n+2", "CnH2n-2", "CnH2n+1"], "correctIndex": 0, "successComplement": "🎉 Stellar organic formula recall! Two hydrogens lost to form the π bond!", "explanation": "Alkenes possess one carbon-carbon double bond (one σ and one π bond), reducing the hydrogen count by two relative to alkanes, resulting in the formula CnH2n (e.g., Ethene C2H4)."}, {"id": 34, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Organic Chemistry: Hybridization", "question": "What is the hybridization state and molecular geometry around carbon atoms in ethene (C2H4)?", "options": ["sp2 hybridized with trigonal planar 120° geometry", "sp3 hybridized with tetrahedral 109.5° geometry", "sp hybridized with linear 180° geometry", "dsp2 hybridized with square planar geometry"], "correctIndex": 0, "successComplement": "🧠 Exceptional orbital hybridization deduction! Trigonal planar sp2 confirmed!", "explanation": "Each carbon in ethene forms 3 σ bonds (two with hydrogen, one with carbon) using sp2 hybridized orbitals in a 120° plane, while unhybridized 2p orbitals overlap sideways to form the orthogonal π bond."}, {"id": 35, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Organic Chemistry: Aromaticity", "question": "According to Hückel's Rule of aromatic stability, a planar cyclic conjugated system is aromatic if it contains:", "options": ["(4n + 2) delocalized π-electrons (where n is non-negative integer)", "4n delocalized π-electrons", "Any even number of π-electrons", "2n + 1 π-electrons"], "correctIndex": 0, "successComplement": "✨ Masterful chemical physics! Hückel's (4n+2) rule governs aromatic resonance!", "explanation": "Hückel's Rule states that planar, fully cyclic, conjugated polyenes possessing (4n + 2) delocalized π-electrons (e.g., Benzene with n=1 → 6 π-electrons) gain exceptional thermodynamic resonance stabilization."}, {"id": 36, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Chemical Bonding: VSEPR", "question": "Why is the bond angle in water (H2O) 104.5° instead of the ideal tetrahedral 109.5°?", "options": ["Repulsion from two oxygen lone pairs compresses the H-O-H bond angle", "Hydrogen atoms attract each other electrostatically", "Oxygen undergoes sp hybridization", "Water is a linear molecule"], "correctIndex": 0, "successComplement": "🎯 Acute stereochemical insight! Lone pair-lone pair repulsion dominates bonding pairs!", "explanation": "Oxygen in H2O has 4 electron domains (2 bonding pairs, 2 lone pairs). According to VSEPR theory, non-bonding lone pairs occupy greater angular space, exerting repulsive force that compresses the bond angle from 109.5° down to 104.5°."}, {"id": 37, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Chemical Bonding: Intermolecular Forces", "question": "Hydrogen bonding occurs specifically when hydrogen is covalently bonded to which set of highly electronegative elements?", "options": ["Nitrogen, Oxygen, or Fluorine (N, O, F)", "Carbon, Sulfur, or Chlorine", "Sodium, Potassium, or Lithium", "Helium, Neon, or Argon"], "correctIndex": 0, "successComplement": "🌟 Flawless intermolecular chemistry! Small atomic radii and high EN create strong H-bonds!", "explanation": "N, O, and F are the most electronegative elements with compact atomic radii. When bonded to hydrogen, they polarize electron density intensely, leaving hydrogen as a bare unshielded proton that forms strong dipolar hydrogen bonds."}, {"id": 38, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Periodic Table: Ionization Energy", "question": "Why is the first ionization energy of Nitrogen (Group 15) slightly higher than that of Oxygen (Group 16)?", "options": ["Nitrogen possesses a stable half-filled 2p^3 subshell with zero electron pairing repulsion", "Oxygen has a larger atomic radius", "Nitrogen has more protons in its nucleus", "Oxygen is less electronegative than nitrogen"], "correctIndex": 0, "successComplement": "🔥 Elite electronic configuration analysis! Half-filled subshell stability verified!", "explanation": "Nitrogen has electron configuration 1s^2 2s^2 2p^3 (half-filled p subshell with one electron in each p orbital). Oxygen has 1s^2 2s^2 2p^4, where the paired electron in one 2p orbital experiences electron-electron repulsion, making it easier to ionize."}, {"id": 39, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Chemical Bonding: Dipole Moment", "question": "Carbon dioxide (CO2) contains two polar C=O bonds, yet has a net molecular dipole moment of zero because:", "options": ["Its linear symmetrical geometry causes the two opposing bond dipoles to cancel vectorially", "C=O bonds are non-polar", "Carbon has higher electronegativity than oxygen", "CO2 forms ionic crystal structures"], "correctIndex": 0, "successComplement": "⚡ Outstanding vector dipole physics! Linear symmetry cancels molecular polarity!", "explanation": "CO2 is linear (O=C=O, 180°). Both C=O bonds are strongly polar toward oxygen, but because they point in exactly opposite directions with equal magnitude, the vector sum of the dipole moments is identically zero (μ = 0)."}, {"id": 40, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Organic Chemistry: Isomerism", "question": "Molecules that possess the same molecular formula but different orders of atomic connectivity are classified as:", "options": ["Structural (Constitutional) Isomers", "Enantiomers", "Geometric (Cis-Trans) Isomers", "Conformers"], "correctIndex": 0, "successComplement": "🎉 Spot-on isomer classification! Connectivity differences define structural isomers!", "explanation": "Structural or constitutional isomers share identical molecular formulas but have different bonding connectivity sequences (e.g., n-butane vs isobutane C4H10)."}, {"id": 41, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Chemical Bonding: Octet Exceptions", "question": "Which of the following stable molecules is an example of an expanded octet (hypervalent center)?", "options": ["Sulfur Hexafluoride (SF6, 12 valence electrons)", "Water (H2O)", "Methane (CH4)", "Ammonia (NH3)"], "correctIndex": 0, "successComplement": "💡 High-level bonding acumen! Period 3 elements utilize vacant d-orbitals for hypervalency!", "explanation": "Sulfur is in Period 3 and possesses accessible 3d orbitals, allowing it to expand its valence shell beyond 8 electrons to accommodate 6 S-F single bonds (12 shared electrons) in SF6 with octahedral geometry."}, {"id": 42, "subject": "Chemistry", "difficulty": "medium", "subtopic": "Organic Chemistry: Alkynes", "question": "In ethyne (acetylene, C2H2), what is the carbon-carbon triple bond composed of?", "options": ["One σ (sigma) bond and two orthogonal π (pi) bonds", "Three σ bonds", "Three π bonds", "Two σ bonds and one π bond"], "correctIndex": 0, "successComplement": "🚀 Perfect orbital mechanics! One coaxial sigma and two orthogonal pi bonds!", "explanation": "The triple bond in sp hybridized ethyne consists of one head-on axial σ bond formed by overlapping sp-sp orbitals, and two mutually perpendicular π bonds formed by lateral overlap of unhybridized 2py and 2pz orbitals."}, {"id": 43, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Organic Chemistry: Resonance Energy", "question": "The theoretical heat of hydrogenation of hypothetical 1,3,5-cyclohexatriene is ~360 kJ/mol, while benzene is only 208 kJ/mol. What does this difference (~152 kJ/mol) measure?", "options": ["Benzene's aromatic resonance stabilization energy", "Steric hindrance energy between hydrogens", "Ionic lattice energy of benzene", "Activation energy of combustion"], "correctIndex": 0, "successComplement": "🏆 Elite physical organic chemistry insight! 152 kJ/mol measures empirical aromatic resonance energy!", "explanation": "The ~152 kJ/mol (36 kcal/mol) energy discrepancy represents the aromatic resonance stabilization energy of benzene resulting from cyclic delocalization of its 6 π-electrons across all six carbon nuclei."}, {"id": 44, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Chemical Bonding: Born-Haber Cycle", "question": "In the Born-Haber thermochemical cycle for sodium chloride (NaCl), which energetic quantity is defined as exothermic?", "options": ["Lattice Energy (formation of solid crystalline NaCl from gaseous Na+ and Cl- ions)", "Sublimation energy of solid sodium", "Ionization enthalpy of sodium gas", "Bond dissociation energy of chlorine gas"], "correctIndex": 0, "successComplement": "🌟 Magnificent thermodynamic precision! Crystal lattice formation releases vast Coulombic energy!", "explanation": "Bringing separated gaseous cations (Na+) and anions (Cl-) together into an ordered ionic crystal lattice releases massive electrostatic energy, making lattice formation highly exothermic (ΔH < 0)."}, {"id": 45, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Organic Chemistry: Markovnikov's Rule", "question": "According to Markovnikov's Rule, electrophilic addition of hydrogen halide (HX) to an unsymmetrical alkene directs H+ to:", "options": ["The carbon with the greater number of hydrogen atoms, producing the more stable carbocation intermediate", "The more substituted carbon atom", "The terminal carbon regardless of structure", "Either carbon with equal 50:50 probability"], "correctIndex": 0, "successComplement": "🔥 Outstanding mechanistic mastery! Carbocation stability governs regioselectivity!", "explanation": "Electrophilic H+ adds to the less substituted double-bond carbon (having more hydrogens) so that the positive charge forms on the more substituted carbon, yielding a tertiary/secondary carbocation stabilized by hyperconjugation."}, {"id": 46, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Chemical Bonding: Coordinate Covalence", "question": "When ammonia (NH3) reacts with a proton (H+) to form the ammonium ion (NH4+), what type of bond is created?", "options": ["Coordinate Covalent (Dative) Bond", "Pure Ionic Bond", "Metallic Bond", "Hydrogen Bond"], "correctIndex": 0, "successComplement": "🎯 Brilliant bonding mechanism! Nitrogen donates both electrons from its lone pair!", "explanation": "In NH3, nitrogen has a lone pair of electrons. An incoming proton (H+) possesses an empty 1s orbital. Nitrogen donates both electrons to form the N-H bond, which is a coordinate covalent (dative) bond."}, {"id": 47, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Organic Chemistry: Carbocation Stability", "question": "What is the correct decreasing order of thermodynamic stability among alkyl carbocations?", "options": ["Tertiary (3°) > Secondary (2°) > Primary (1°) > Methyl (+CH3)", "Methyl > Primary > Secondary > Tertiary", "Secondary > Tertiary > Primary > Methyl", "All carbocations possess identical stability"], "correctIndex": 0, "successComplement": "✨ Masterful organic reactive intermediate knowledge! Alkyl induction and hyperconjugation stabilize positive charge!", "explanation": "Tertiary carbocations have 3 electron-donating alkyl groups providing inductive +I electron release and extensive σ-C-H to empty p-orbital hyperconjugation (up to 9 hyperconjugative structures), making 3° the most stable."}, {"id": 48, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Chemical Bonding: London Dispersion", "question": "Why does boiling point increase down the noble gas group (He < Ne < Ar < Kr < Xe)?", "options": ["Larger atomic polarizability increases the strength of temporary London dispersion forces", "Increasing nuclear charge repels surrounding atoms", "Higher atomic mass increases chemical reactivity", "Stronger ionic bond formation occurs"], "correctIndex": 0, "successComplement": "🚀 Exceptional physical chemistry reasoning! Polarizability drives London dispersion!", "explanation": "Heavier noble gases have more electrons held further from the nucleus. This larger electron cloud is more easily distorted (higher polarizability), creating stronger instantaneous induced dipoles and higher boiling points."}, {"id": 49, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Periodic Table: Diagonal Relationship", "question": "Lithium exhibits an anomalous diagonal similarity with Magnesium in chemical behavior primarily due to:", "options": ["Similar ionic charge-to-radius ratios (polarizing power)", "Identical valence electron counts", "Same number of principal electron shells", "Matching atomic masses"], "correctIndex": 0, "successComplement": "💎 Pristine inorganic chemistry insight! Charge density and polarizing power match diagonally!", "explanation": "The polarizing power (ionic charge divided by ionic radius) of Li+ and Mg2+ are remarkably similar because moving right across the periodic table increases charge while moving down increases radius, balancing their chemical properties."}, {"id": 50, "subject": "Chemistry", "difficulty": "hard", "subtopic": "Chemical Bonding: Molecular Orbital Theory", "question": "According to Molecular Orbital (MO) Theory, why is molecular oxygen (O2) paramagnetic?", "options": ["It possesses two unpaired electrons in degenerate antibonding π*2px and π*2py orbitals", "It has an odd number of total electrons", "All valence electrons are paired into σ bonding orbitals", "Oxygen forms an ionic coordinate complex"], "correctIndex": 0, "successComplement": "🎉 Stellar quantum bonding triumph! Hund's rule in antibonding orbitals explains paramagnetism!", "explanation": "In O2 MO configuration, the 12 valence electrons fill orbitals up to the degenerate π*2p antibonding level. By Hund's rule, two electrons occupy separate degenerate π*2px and π*2py orbitals with parallel spins, causing paramagnetism."}, {"id": 51, "subject": "Physics", "difficulty": "easy", "subtopic": "Mechanics: Kinematic Equations", "question": "Which kinematic formula calculates final velocity (v) under constant linear acceleration (a) over time (t)?", "options": ["v = u + at", "v = u + 0.5at^2", "v^2 = u + at", "s = vt + at^2"], "correctIndex": 0, "successComplement": "🎯 Spot on! The fundamental linear acceleration relation!", "explanation": "From the definition of constant acceleration a = (v - u) / t, multiplying by t and adding initial velocity u yields v = u + at."}, {"id": 52, "subject": "Physics", "difficulty": "easy", "subtopic": "Mechanics: Free Fall", "question": "Near the surface of the Earth, what is the approximate acceleration due to gravity (g) in free fall (ignoring air resistance)?", "options": ["9.8 m/s^2", "3.0 x 10^8 m/s^2", "1.6 x 10^-19 m/s^2", "6.67 x 10^-11 m/s^2"], "correctIndex": 0, "successComplement": "✨ Clean physical constant recall! g ≈ 9.8 m/s^2 acts on all falling masses!", "explanation": "Under standard Earth gravity near sea level, gravitational acceleration imparts a constant downward rate of change of velocity of approximately 9.8 m/s^2, independent of the falling object's mass."}, {"id": 53, "subject": "Physics", "difficulty": "easy", "subtopic": "Electromagnetism: Magnetic Flux", "question": "What is the standard SI unit of magnetic flux (Φ_B)?", "options": ["Weber (Wb)", "Tesla (T)", "Henry (H)", "Farad (F)"], "correctIndex": 0, "successComplement": "🌟 Flawless electromagnetic unit knowledge! Weber equals Tesla * square meter!", "explanation": "Magnetic flux Φ = B * A has the SI derived unit of Weber (Wb), named after Wilhelm Eduard Weber. 1 Wb = 1 Tesla * meter^2 (1 T·m^2)."}, {"id": 54, "subject": "Physics", "difficulty": "easy", "subtopic": "Mechanics: Graphical Calculus", "question": "On a velocity-time (v-t) graph, what does the slope of the curve represent?", "options": ["Instantaneous Acceleration (a = dv/dt)", "Total Displacement (s)", "Kinetic Energy (KE)", "Momentum (p)"], "correctIndex": 0, "successComplement": "🔥 Brilliant kinematic calculus! The derivative of velocity is acceleration!", "explanation": "The gradient of a velocity-time curve represents the rate of change of velocity with respect to time, which is definitionally the instantaneous acceleration a = dv/dt."}, {"id": 55, "subject": "Physics", "difficulty": "easy", "subtopic": "Mechanics: Newton's Laws", "question": "What is the SI unit of force defined by Newton's Second Law (F = ma)?", "options": ["Newton (N = kg·m/s^2)", "Joule (J)", "Watt (W)", "Pascal (Pa)"], "correctIndex": 0, "successComplement": "⚡ Perfect physical dimensions! 1 Newton accelerates 1 kg at 1 m/s^2!", "explanation": "Force is mass times acceleration. In SI base units, [kg] * [m/s^2] = kg·m/s^2, which is defined as one Newton (N)."}, {"id": 56, "subject": "Physics", "difficulty": "easy", "subtopic": "Electromagnetism: Magnetic Field Unit", "question": "What is the SI unit of magnetic flux density (B)?", "options": ["Tesla (T)", "Weber (Wb)", "Ohm (Ω)", "Ampere (A)"], "correctIndex": 0, "successComplement": "🚀 Spot-on! Tesla measures magnetic field strength per unit area!", "explanation": "The magnetic B-field (flux density) is measured in Tesla (T), where 1 Tesla = 1 Weber per square meter (Wb/m^2) = 1 N / (A·m)."}, {"id": 57, "subject": "Physics", "difficulty": "easy", "subtopic": "Mechanics: Scalar vs Vector", "question": "Which of the following physical quantities is a vector quantity (possessing both magnitude and direction)?", "options": ["Velocity", "Speed", "Kinetic Energy", "Mass"], "correctIndex": 0, "successComplement": "💎 Precision vector mechanics! Velocity requires both speed and vector heading!", "explanation": "Velocity specifies both how fast an object is moving and in what directional vector. In contrast, speed, mass, and kinetic energy are scalar quantities possessing only magnitude."}, {"id": 58, "subject": "Physics", "difficulty": "easy", "subtopic": "Electromagnetism: Faraday's Discovery", "question": "Faraday discovered that an electric current is induced in a closed loop whenever:", "options": ["The magnetic flux linked with the loop changes over time", "A steady constant magnetic field is present", "The wire loop is held stationary in air", "Temperature drops to zero"], "correctIndex": 0, "successComplement": "🎉 Stellar electromagnetic induction principle! Dynamic flux rate generates EMF!", "explanation": "Faraday's Law dictates that electromagnetic induction requires a time-varying magnetic flux (dΦ/dt ≠ 0). A static magnetic field produces zero induced EMF."}, {"id": 59, "subject": "Physics", "difficulty": "medium", "subtopic": "Mechanics: Kinematic Position", "question": "Which formula computes displacement (s) under constant acceleration starting with initial velocity (u)?", "options": ["s = ut + 0.5at^2", "s = ut + at^2", "s = vt - at", "s = 0.5(u + v)t^2"], "correctIndex": 0, "successComplement": "🧠 Superb derivation! Integrating v(t) = u + at yields ut + 0.5at^2!", "explanation": "Integrating velocity with respect to time: s = ∫ (u + at) dt = ut + 0.5at^2 + C. Setting s(0) = 0 yields the canonical displacement formula s = ut + 0.5at^2."}, {"id": 60, "subject": "Physics", "difficulty": "medium", "subtopic": "Mechanics: Definite Integral of Motion", "question": "On a velocity-time (v-t) graph, what does the definite area between the curve and time axis represent?", "options": ["Displacement (s = ∫ v dt)", "Acceleration (a)", "Momentum change divided by distance", "Jerk (da/dt)"], "correctIndex": 0, "successComplement": "✨ Masterful calculus kinematics! Area under rate curve gives accumulated quantity!", "explanation": "Because velocity v = ds/dt, integrating velocity across time s = ∫ v dt calculates the net displacement traversed between two time points."}, {"id": 61, "subject": "Physics", "difficulty": "medium", "subtopic": "Electromagnetism: Faraday's Formula", "question": "In Faraday's Law of Induction EMF = -N(dΦ/dt), what physical law does the negative sign reflect?", "options": ["Lenz's Law (Conservation of Energy)", "Coulomb's Law of Electrostatics", "Newton's Universal Gravitation", "Hooke's Elastic Law"], "correctIndex": 0, "successComplement": "🎯 Profound electromagnetic physics! Lenz's law enforces thermodynamic conservation!", "explanation": "The negative sign represents Lenz's Law: the induced electromotive force creates a current whose magnetic field opposes the original change in flux, ensuring energy is not generated from nothing."}, {"id": 62, "subject": "Physics", "difficulty": "medium", "subtopic": "Mechanics: Work-Energy Theorem", "question": "According to the Work-Energy Theorem, net external work W_net done on an object equals:", "options": ["Change in kinetic energy (ΔKE = 0.5mv^2 - 0.5mu^2)", "Change in potential energy exclusively", "Product of momentum and velocity", "Force multiplied by time"], "correctIndex": 0, "successComplement": "🌟 Excellent analytical physics! W_net = ΔKE binds dynamics directly to kinematics!", "explanation": "W_net = ∫ F ds = ∫ m(dv/dt) v dt = m ∫ v dv = 0.5mv^2 - 0.5mu^2 = ΔKE. Net work directly measures change in translational kinetic energy."}, {"id": 63, "subject": "Physics", "difficulty": "medium", "subtopic": "Electromagnetism: Lorentz Force", "question": "What is the magnetic Lorentz force experienced by a charge q moving with velocity v in magnetic field B?", "options": ["F = q(v x B) [Magnitude: q v B sin(θ)]", "F = q(v · B)", "F = q B / v", "F = m v^2 / B"], "correctIndex": 0, "successComplement": "🔥 Crisp vector physics! Cross product perpendicular force!", "explanation": "The magnetic Lorentz force is given by vector cross product F = q(v x B). Its magnitude is q v B sin(θ), acting perpendicular to both the velocity vector and magnetic field."}, {"id": 64, "subject": "Physics", "difficulty": "medium", "subtopic": "Mechanics: Projectile Motion", "question": "At what launch angle θ relative to the horizontal is the range of an ideal projectile maximized (over flat terrain)?", "options": ["45°", "30°", "60°", "90°"], "correctIndex": 0, "successComplement": "⚡ Classic ballistic optimization! sin(2θ) maximizes at θ = 45°!", "explanation": "Horizontal range R = (u^2 sin(2θ)) / g. The trigonometric factor sin(2θ) reaches its maximum value of 1 when 2θ = 90°, which yields the optimal angle θ = 45°."}, {"id": 65, "subject": "Physics", "difficulty": "medium", "subtopic": "Electromagnetism: Eddy Currents", "question": "Eddy currents induced inside solid conducting metal cores in transformers cause energy dissipation as heat. How is this mitigated?", "options": ["Using thin laminated sheets insulated from each other", "Increasing the core temperature", "Using solid copper blocks", "Wrapping the core in magnetic tape"], "correctIndex": 0, "successComplement": "🎉 Stellar electrical engineering concept! Lamination breaks large circulating loops!", "explanation": "Constructing transformer cores from thin sheets of silicon steel laminated with insulating varnish restricts eddy current loops to tiny paths, drastically reducing resistive I^2*R power loss."}, {"id": 66, "subject": "Physics", "difficulty": "medium", "subtopic": "Electromagnetism: Transformer Equation", "question": "For an ideal transformer with primary turns N_p and secondary turns N_s, the voltage relation is:", "options": ["V_s / V_p = N_s / N_p", "V_s * V_p = N_s * N_p", "V_s / V_p = N_p / N_s", "V_s = V_p * (N_s)^2"], "correctIndex": 0, "successComplement": "💡 Outstanding transformer law! Voltage ratio equals turns ratio!", "explanation": "By Faraday's law of mutual induction across shared core flux dΦ/dt, V_p = N_p(dΦ/dt) and V_s = N_s(dΦ/dt). Dividing the two gives V_s / V_p = N_s / N_p."}, {"id": 67, "subject": "Physics", "difficulty": "medium", "subtopic": "Mechanics: Momentum Conservation", "question": "In any isolated physical system where no external forces act, what happens to total linear momentum?", "options": ["Remains constant (conserved)", "Decreases over time due to internal collisions", "Increases exponentially with velocity", "Converts entirely to heat"], "correctIndex": 0, "successComplement": "🚀 Invariant law of Newtonian physics! Zero net external force preserves momentum!", "explanation": "By Newton's second law F_ext = dp/dt. If F_ext = 0, then dp/dt = 0, proving that total system momentum p remains strictly invariant throughout all internal interactions."}, {"id": 68, "subject": "Physics", "difficulty": "hard", "subtopic": "Mechanics: Kinematic-Energy Derivation", "question": "Derive the kinematic equation v^2 = u^2 + 2as using the Work-Energy Theorem for constant force F = ma:", "options": ["W = F*s = (ma)s = ΔKE = 0.5m(v^2 - u^2) → 2as = v^2 - u^2", "W = F/s = mv^2 - mu^2", "W = m*a*t = v^2", "W = 0.5mv^2 + mgh"], "correctIndex": 0, "successComplement": "🏆 Magnificent theoretical physics derivation! Direct link from Newton's mechanics to kinematics!", "explanation": "Work W = F * s = (ma)s. By the Work-Energy Theorem, W = ΔKE = 0.5m(v^2 - u^2). Equating (ma)s = 0.5m(v^2 - u^2) and canceling m yields as = 0.5(v^2 - u^2), giving v^2 = u^2 + 2as."}, {"id": 69, "subject": "Physics", "difficulty": "hard", "subtopic": "Electromagnetism: AC Generator EMF", "question": "When a coil of N turns and area A rotates with angular speed ω in uniform magnetic field B, the induced EMF is:", "options": ["EMF = N B A ω sin(ωt)", "EMF = N B A cos(ωt) / ω", "EMF = N B A / ω", "EMF = N B A ω^2"], "correctIndex": 0, "successComplement": "🌟 Elite electromagnetic derivation! Time derivative of flux Φ = BA cos(ωt) gives sinusoidal EMF!", "explanation": "The flux through the rotating coil is Φ(t) = B A cos(ωt). By Faraday's Law, EMF = -N(dΦ/dt) = -N B A (-ω sin(ωt)) = N B A ω sin(ωt), creating alternating sinusoidal current."}, {"id": 70, "subject": "Physics", "difficulty": "hard", "subtopic": "Mechanics: Fluid Dynamics & Viscosity", "question": "When an object falling through a viscous fluid reaches Terminal Velocity, which dynamic condition is established?", "options": ["Downward gravity force is exactly balanced by upward viscous drag and buoyant forces (Net Force = 0)", "Acceleration increases asymptotically", "Velocity drops to zero", "Gravity ceases to act on the body"], "correctIndex": 0, "successComplement": "🔥 Flawless fluid mechanics! Dynamic equilibrium terminates acceleration dv/dt = 0!", "explanation": "As velocity increases, viscous drag force (Stokes' Law F_d = 6πηrv) grows until upward drag plus buoyancy equals downward weight mg. Net force becomes zero, producing zero acceleration and constant terminal velocity."}, {"id": 71, "subject": "Physics", "difficulty": "hard", "subtopic": "Electromagnetism: Self-Inductance", "question": "The self-inductance L of a coil relates the self-induced back-EMF to the rate of change of current (di/dt) via:", "options": ["EMF = -L (di/dt)", "EMF = -L * i^2", "EMF = -di / (L dt)", "EMF = -L * t * i"], "correctIndex": 0, "successComplement": "🎯 Pristine inductance law! Self-inductance measures electrical inertia!", "explanation": "Self-inductance L represents the magnetic inertia of a circuit opposing changes in current. By Faraday's and Ampère's laws, the back-EMF produced is directly proportional to current rate of change: EMF = -L(di/dt)."}, {"id": 72, "subject": "Physics", "difficulty": "hard", "subtopic": "Mechanics: Conservative Force Fields", "question": "A force field F is mathematically conservative if and only if:", "options": ["Work done along any closed path is zero (∮ F · dr = 0, or curl(F) = 0)", "Force is independent of distance", "Force accelerates objects at constant velocity", "F is proportional to velocity squared"], "correctIndex": 0, "successComplement": "✨ Masterful vector calculus physics! Path independence defines potential energy fields!", "explanation": "In a conservative vector field, the work done in moving between two points is path-independent, meaning the closed loop line integral ∮ F · dr = 0, which by Stokes' Theorem is equivalent to curl(F) = ∇ x F = 0."}, {"id": 73, "subject": "Physics", "difficulty": "hard", "subtopic": "Electromagnetism: Maxwell's Displacement Current", "question": "What critical term did James Clerk Maxwell add to Ampère's Circuital Law to resolve charge conservation across capacitors?", "options": ["Displacement Current: ε_0 * (dΦ_E / dt)", "Eddy Current Factor", "Gravitational Flux Derivative", "Conduction Resistance Factor"], "correctIndex": 0, "successComplement": "🚀 Historical triumph of theoretical physics! Maxwell unified light and electromagnetism!", "explanation": "Ampère's law failed between capacitor plates where no conduction electrons flowed. Maxwell recognized that a time-varying electric flux (dΦ_E/dt) induces a magnetic field, introducing displacement current I_d = ε_0(dΦ_E/dt)."}, {"id": 74, "subject": "Physics", "difficulty": "hard", "subtopic": "Mechanics: Simple Harmonic Motion", "question": "For a mass-spring harmonic oscillator (m, k), the differential equation d^2x/dt^2 + (k/m)x = 0 has angular frequency ω equal to:", "options": ["ω = √(k / m)", "ω = √(m / k)", "ω = k * m", "ω = 2π * k / m"], "correctIndex": 0, "successComplement": "💎 Brilliant oscillatory mechanics! Hooke's restoring force yields natural frequency √(k/m)!", "explanation": "From F = -kx = m(d^2x/dt^2), rearranging gives d^2x/dt^2 + (k/m)x = 0. Comparing with the canonical SHM equation d^2x/dt^2 + ω^2 x = 0 gives angular frequency ω = √(k/m)."}, {"id": 75, "subject": "Physics", "difficulty": "hard", "subtopic": "Electromagnetism: Cyclotron Frequency", "question": "A charged particle q of mass m moving perpendicular to magnetic field B undergoes circular motion with orbital period T equal to:", "options": ["T = 2πm / (qB) (independent of particle speed v)", "T = 2πq / (mB)", "T = m v^2 / (qB)", "T = 2πr * v"], "correctIndex": 0, "successComplement": "🎉 Extraordinary relativistic cyclotron physics! Isochronous period independent of radius!", "explanation": "Equating magnetic Lorentz force to centripetal force: q v B = m v^2 / r → r = m v / (q B). Period T = 2πr / v = 2π(mv / qB) / v = 2πm / (qB). Speed cancels completely, creating the cyclotron resonance principle."}, {"id": 76, "subject": "English", "difficulty": "easy", "subtopic": "Grammar: Clauses", "question": "What is the defining characteristic of an independent clause in English grammar?", "options": ["It contains a subject and predicate and expresses a complete thought", "It begins with a subordinating conjunction and cannot stand alone", "It modifies a noun directly without a verb", "It contains only prepositional phrases"], "correctIndex": 0, "successComplement": "🎯 Spot on! An independent clause can stand alone as a complete sentence!", "explanation": "An independent clause contains both a syntactic subject and a finite predicate verb and forms a grammatically complete proposition that can stand alone as a standalone simple sentence."}, {"id": 77, "subject": "English", "difficulty": "easy", "subtopic": "Literature: Poetic Forms", "question": "How many lines does a traditional Shakespearean or Petrarchan sonnet contain?", "options": ["14 lines", "12 lines", "16 lines", "10 lines"], "correctIndex": 0, "successComplement": "✨ Classic poetic architecture! The 14-line sonnet form is timeless!", "explanation": "All traditional classical sonnets (including Italian/Petrarchan, English/Shakespearean, and Spenserian variants) consist of exactly 14 lines composed in metric verse."}, {"id": 78, "subject": "English", "difficulty": "easy", "subtopic": "Literature: Figurative Language", "question": "Which figurative device makes an explicit comparison between two dissimilar things using 'like' or 'as'?", "options": ["Simile", "Metaphor", "Hyperbole", "Oxymoron"], "correctIndex": 0, "successComplement": "🌟 Flawless literary trope identification! 'Like' or 'as' signals a simile!", "explanation": "A simile creates a figurative analogy between two distinct entities using explicit connecting prepositions, predominantly 'like' or 'as' (e.g., 'Her eyes shone like stars')."}, {"id": 79, "subject": "English", "difficulty": "easy", "subtopic": "Grammar: Subject-Verb Agreement", "question": "Choose the grammatically correct sentence exhibiting accurate subject-verb agreement:", "options": ["The bouquet of yellow roses smells fragrant.", "The bouquet of yellow roses smell fragrant.", "The bouquet of yellow roses are smelling fragrant.", "The bouquet of yellow roses were fragrant smells."], "correctIndex": 0, "successComplement": "🔥 Sharp grammatical eye! Singular head noun 'bouquet' governs verb 'smells'!", "explanation": "The grammatical head of the noun phrase is the singular noun 'bouquet'. The intervening plural prepositional phrase 'of yellow roses' does not alter the head noun's singular inflection: 'bouquet smells'."}, {"id": 80, "subject": "English", "difficulty": "easy", "subtopic": "Literature: Acoustic Devices", "question": "The repetition of identical initial consonant sounds in neighboring words ('Peter Piper picked a peck') is called:", "options": ["Alliteration", "Onomatopoeia", "Assonance", "Enjambment"], "correctIndex": 0, "successComplement": "⚡ Perfect phonetic terminology! Initial consonant repetition is alliteration!", "explanation": "Alliteration is the stylistic repetition of identical or phonetic consonant sounds at the start of closely situated words or accented syllables to create acoustic rhythm."}, {"id": 81, "subject": "English", "difficulty": "easy", "subtopic": "Grammar: Parts of Speech", "question": "In the sentence 'The swift runner quickly finished the marathon', what part of speech is 'quickly'?", "options": ["Adverb", "Adjective", "Preposition", "Conjunction"], "correctIndex": 0, "successComplement": "🚀 Clean grammatical identification! 'Quickly' modifies the action verb 'finished'!", "explanation": "Adverbs modify verbs, adjectives, or other adverbs, answering questions like 'how', 'when', or 'where'. Here 'quickly' modifies how the runner finished."}, {"id": 82, "subject": "English", "difficulty": "easy", "subtopic": "Grammar: Tenses", "question": "What is the simple past tense of the irregular verb 'begin'?", "options": ["Began", "Begun", "Beginned", "Begins"], "correctIndex": 0, "successComplement": "💎 Crisp irregular verb inflection! Began is the correct simple past!", "explanation": "The irregular verb 'begin' inflects as: base form 'begin', simple past 'began', and past participle 'begun' (used with auxiliary 'has/had begun')."}, {"id": 83, "subject": "English", "difficulty": "easy", "subtopic": "Literature: Personification", "question": "Endowing non-human objects, animals, or abstract ideas with human emotions or actions is known as:", "options": ["Personification", "Allusion", "Irony", "Euphemism"], "correctIndex": 0, "successComplement": "🎉 Spot-on! Giving human traits to inanimate concepts is personification!", "explanation": "Personification attributes human qualities, agency, or consciousness to non-human entities (e.g., 'The cruel wind howled through the barren trees')."}, {"id": 84, "subject": "English", "difficulty": "medium", "subtopic": "Literature: Scansion & Meter", "question": "In poetic scansion, Iambic Pentameter consists of how many metric feet per line, and what is its rhythm?", "options": ["5 metric feet per line, each consisting of an unstressed followed by a stressed syllable (da-DUM)", "4 metric feet per line of stressed followed by unstressed syllables", "6 metric feet of rhyming couplets", "3 metric feet of dactylic syllables"], "correctIndex": 0, "successComplement": "🧠 Elite prosodic mastery! 5 iambs (unstressed-stressed) totaling 10 syllables per line!", "explanation": "An iamb is a metrical foot consisting of one unstressed syllable followed by one stressed syllable (˘ /). Pentameter specifies 5 feet per line, giving the classic 10-syllable Shakespearean heartbeat rhythm."}, {"id": 85, "subject": "English", "difficulty": "medium", "subtopic": "Literature: Sonnet Rhyme Schemes", "question": "What is the canonical rhyme scheme of an English (Shakespearean) Sonnet?", "options": ["ABAB CDCD EFEF GG (Three quatrains followed by a rhyming couplet)", "ABBA ABBA CDECDE (Octave and sestet)", "AABB CCDD EEFF GG", "AAAA BBBB CCCC DD"], "correctIndex": 0, "successComplement": "✨ Masterful poetic architecture! Three alternating quatrains capped by a heroic couplet!", "explanation": "Shakespearean sonnets structure 14 lines into three alternating four-line quatrains (ABAB CDCD EFEF) presenting an evolving argument, concluded by a decisive two-line rhyming couplet (GG)."}, {"id": 86, "subject": "English", "difficulty": "medium", "subtopic": "Grammar: Punctuation Mechanics", "question": "When is a semicolon (;) used correctly to connect clauses without coordinating conjunctions?", "options": ["To join two closely related independent clauses", "To introduce a direct quotation or long list", "To connect a dependent fragment to an independent clause", "After every introductory prepositional phrase"], "correctIndex": 0, "successComplement": "🎯 Flawless punctuation mechanics! Semicolons bridge related independent thoughts!", "explanation": "A semicolon joins two independent clauses that are closely linked in thematic meaning when no coordinating conjunction (and, but, for, nor, or, so, yet) is used: 'The storm was fierce; the sailors remained calm'."}, {"id": 87, "subject": "English", "difficulty": "medium", "subtopic": "Grammar: Tense Aspects", "question": "In the sentence 'She had completed the research before the conference began', what grammatical tense aspect is 'had completed'?", "options": ["Past Perfect Tense", "Present Perfect Tense", "Past Continuous Tense", "Future Perfect Tense"], "correctIndex": 0, "successComplement": "🌟 Outstanding tense aspect mastery! Past Perfect anchors an event prior to another past event!", "explanation": "The Past Perfect tense ('had' + past participle) designates an action completed in the past before another definite past reference event ('before the conference began')."}, {"id": 88, "subject": "English", "difficulty": "medium", "subtopic": "Grammar: Comma Splices", "question": "Which sentence contains an erroneous 'comma splice' error?", "options": ["I submitted my thesis early, I wanted to review the feedback.", "I submitted my thesis early because I wanted to review the feedback.", "I submitted my thesis early; I wanted to review the feedback.", "I submitted my thesis early, for I wanted to review the feedback."], "correctIndex": 0, "successComplement": "🔥 Sharp editorial eye! Joining two independent clauses with only a comma creates a comma splice!", "explanation": "A comma splice occurs when two complete independent clauses are joined with only a comma without a coordinating conjunction. It must be repaired with a semicolon, period, or coordinating conjunction."}, {"id": 89, "subject": "English", "difficulty": "medium", "subtopic": "Literature: Metaphor vs Simile", "question": "Unlike a simile, how does a metaphor create figurative equivalence?", "options": ["By asserting that one thing directly IS another without using 'like' or 'as'", "By using explicit connective adverbs", "By exaggerating numbers unrealistically", "By rhyming the final syllables of alternating verses"], "correctIndex": 0, "successComplement": "⚡ Perfect figurative distinction! Metaphors declare direct symbolic identity!", "explanation": "A metaphor asserts direct symbolic equivalence (e.g., 'Time is a thief'), transferring the qualities of the vehicle directly onto the tenor without mediating comparative words like 'like' or 'as'."}, {"id": 90, "subject": "English", "difficulty": "medium", "subtopic": "Grammar: Subordinating Conjunctions", "question": "Which word functions as a subordinating conjunction introducing a dependent adverbial clause?", "options": ["Although", "And", "Or", "Therefore"], "correctIndex": 0, "successComplement": "🎉 Pristine clause syntax! 'Although' subordinates its following clause!", "explanation": "'Although' subordinates the clause it introduces ('Although it rained...'), rendering it syntactically dependent and unable to stand alone without a governing main clause."}, {"id": 91, "subject": "English", "difficulty": "medium", "subtopic": "Literature: Assonance", "question": "The vowel repetition in Edgar Allan Poe's 'Hear the mellow wedding bells' exemplifies which literary device?", "options": ["Assonance (repetition of internal vowel sounds)", "Consonance", "Alliteration", "Anaphora"], "correctIndex": 0, "successComplement": "💡 Acoustic mastery! Repetition of the short /e/ vowel creates assonance!", "explanation": "Assonance is the stylistic repetition of identical or matching internal vowel sounds in proximate words ('mellow wedding bells') without repeating identical consonant frames."}, {"id": 92, "subject": "English", "difficulty": "medium", "subtopic": "Grammar: Collective Nouns", "question": "In standard American English, when a collective noun (e.g., 'committee', 'jury') acts as a unified singular entity, what verb form does it take?", "options": ["Singular verb (e.g., 'The committee has decided')", "Plural verb exclusively", "Passive infinitive", "Subjunctive verb only"], "correctIndex": 0, "successComplement": "🚀 Flawless subject agreement logic! Unified collective bodies take singular verbs!", "explanation": "When a collective noun functions as a single unified operational body, it agrees grammatically with a singular verb: 'The committee has issued its final report'."}, {"id": 93, "subject": "English", "difficulty": "hard", "subtopic": "Literature: The Sonnet Volta", "question": "In classical sonnet architecture, what is the 'Volta', and where does it typically occur in a Shakespearean Sonnet?", "options": ["The dramatic thematic shift or psychological turn, occurring at line 9 or line 13 (the final couplet)", "The rhyme between the first two lines", "The musical scansion pause in the middle of a line", "The metrical substitution of a spondee"], "correctIndex": 0, "successComplement": "🏆 High-level literary scholarship! The Volta is the philosophical turn of the sonnet!", "explanation": "The Volta (Italian for 'turn') represents the crucial rhetorical pivot where the poet transitions from problem to resolution or introduces an ironic reversal, typically at the octave-sestet boundary (Petrarchan) or final couplet (Shakespearean)."}, {"id": 94, "subject": "English", "difficulty": "hard", "subtopic": "Grammar: Dangling Modifiers", "question": "Identify the dangling modifier in the sentence: 'Walking through the ancient forest, the towering trees inspired wonder.'", "options": ["The participle phrase 'Walking through the ancient forest' illogically modifies 'trees' instead of the unstated human walker", "The adjective 'ancient' modifies the wrong noun", "The verb 'inspired' lacks an object", "The word 'wonder' is used as an intransitive verb"], "correctIndex": 0, "successComplement": "🌟 Elite syntactic analysis! Participial modifiers must logically attach to the immediate subject!", "explanation": "A dangling modifier occurs when the grammatical subject of the sentence ('trees') cannot logically perform the action in the participial introductory phrase ('walking'). Correction: 'Walking through the ancient forest, we were inspired by the towering trees'."}, {"id": 95, "subject": "English", "difficulty": "hard", "subtopic": "Literature: Metaphysical Conceits", "question": "In poetry, what defines an extended 'Conceit' (as popularized by John Donne and metaphysical poets)?", "options": ["An elaborate, intellectually complex metaphor that unifies an entire poem by comparing two radically disparate entities", "A simple rhyming pattern", "A stanza of three lines", "A literal historical narrative"], "correctIndex": 0, "successComplement": "🔥 Profound literary theory mastery! The metaphysical conceit bridges striking conceptual chasms!", "explanation": "A conceit is an ingenious, extended metaphorical framework where an unexpected or paradoxical comparison (e.g., comparing lovers' souls to the two legs of a drafting compass in Donne's 'A Valediction') sustains the philosophical argument of the entire work."}, {"id": 96, "subject": "English", "difficulty": "hard", "subtopic": "Grammar: Subjunctive Mood", "question": "Which sentence correctly employs the past subjunctive mood for a hypothetical condition contrary to fact?", "options": ["If I were the president, I would prioritize scientific research.", "If I was the president, I would prioritize scientific research.", "If I am the president, I would prioritize scientific research.", "If I be the president, I will prioritize scientific research."], "correctIndex": 0, "successComplement": "🎯 Exquisite mastery of English moods! 'Were' marks the counterfactual subjunctive!", "explanation": "In standard formal English, counterfactual or hypothetical statements contrary to reality demand the subjunctive form 'were' across all persons, including first-person singular: 'If I were' (not 'was')."}, {"id": 97, "subject": "English", "difficulty": "hard", "subtopic": "Literature: Synecdoche vs Metonymy", "question": "Using 'All hands on deck' to represent the entire crew of sailors is an example of:", "options": ["Synecdoche (a specific figure where a physical part represents the whole)", "Metonymy (an associated concept representing another)", "Apostrophe", "Litotes"], "correctIndex": 0, "successComplement": "✨ Masterful distinction in tropes! Part-for-whole defines Synecdoche!", "explanation": "Synecdoche is a specific subset of trope wherein a physical part of an entity directly represents the entire whole ('hands' for sailors, 'wheels' for cars), whereas metonymy uses an associated attribute ('the Crown' for monarchy)."}, {"id": 98, "subject": "English", "difficulty": "hard", "subtopic": "Literature: Petrarchan vs Shakespearean", "question": "What is the structural organization of an Italian (Petrarchan) Sonnet?", "options": ["An 8-line Octave (ABBAABBA) presenting an emotional dilemma, followed by a 6-line Sestet (CDECDE or CDCDCD) offering resolution", "Three quatrains and a rhyming couplet", "Seven rhyming couplets", "Four tercets and two refrains"], "correctIndex": 0, "successComplement": "🚀 Pristine comparative literature knowledge! Octave and sestet partition Italian sonnets!", "explanation": "The Petrarchan sonnet establishes an 8-line octave rhymed ABBAABBA that sets up an intellectual tension, followed by a volta and a 6-line sestet (CDECDE or CDCDCD) that resolves or reinterprets the problem."}, {"id": 99, "subject": "English", "difficulty": "hard", "subtopic": "Grammar: Parallel Structure", "question": "Which sentence demonstrates flawless parallel structure across coordinates?", "options": ["The scholar enjoys researching ancient texts, translating rare manuscripts, and writing analytical treatises.", "The scholar enjoys researching ancient texts, to translate rare manuscripts, and writing analytical treatises.", "The scholar enjoys research of ancient texts, translating rare manuscripts, and to write analytical treatises.", "The scholar enjoys to research ancient texts, translating rare manuscripts, and writes analytical treatises."], "correctIndex": 0, "successComplement": "💎 Supreme rhetorical polish! Parallel gerunds (-ing) maintain syntactic rhythm!", "explanation": "Coordinate elements linked in a series must maintain parallel syntactic grammatical forms. Here, all three coordinates are parallel gerund phrases: 'researching...', 'translating...', 'writing...'."}, {"id": 100, "subject": "English", "difficulty": "hard", "subtopic": "Literature: Trochaic Substitution", "question": "When Shakespeare opens Hamlet with 'Now is the winter of our discontent', what metric substitution occurs in the first foot ('NOW is')?", "options": ["A Trochaic substitution (stressed-unstressed: / ˘) inverting the standard iambic rhythm for dramatic emphasis", "An Anapestic foot (˘ ˘ /)", "A Dactylic foot (/ ˘ ˘)", "A Pyrrhic foot (˘ ˘)"], "correctIndex": 0, "successComplement": "🎉 Extraordinary prosodic expertise! Trochaic inversion commands immediate theatrical focus!", "explanation": "Shakespeare masterfully inverts the first foot from an iamb (˘ /) to a trochee (/ ˘: 'NOW is'), stressing the first syllable to grab auditory attention and underline temporal urgency."}];
-  const I18N_DATA = {"en": {"appTitle": "Smart Study Hub", "tagline": "Academic Portal • Dual Time Hub & Deep Theory Studio Active", "versionBadge": "v3.0 Multi-Lang & 100Q", "pitchDeckBtn": "🏆 Deck", "closeSessionBtn": "Close Session", "timeModeStopwatch": "⏱️ Stopwatch", "timeModeTimer": "⏳ Timer", "stopwatchSubtext": "Total Elapsed Session", "timerSubtext": "Focus Countdown Sprint", "startTimer": "Start", "pauseTimer": "Pause", "reset": "Reset", "orientationPortrait": "Mobile Portrait Mode Active • Touch layout enabled", "orientationLandscape": "Widescreen Landscape View • Full concept canvas active", "rotateTip": "Rotate for Wide Mind Map", "curriculumTitle": "Core Academic Modules", "curriculumEyebrow": "Curriculum Architecture", "curriculumDesc": "Touch any subject below to launch its dedicated in-place Deep Breakdown and explore its Huge Mind Map.", "studyTheoryBtn": "📚 Study Theory", "openMindMapBtn": "🗺️ Open Mind Map", "takeQuizBtn": "🎯 Take Quiz", "theoryStudioTitle": "Comprehensive Theory & Visual Studio", "theoryStudioEyebrow": "Interactive Laboratory", "theoryStudioDesc": "Explore foundational axioms, visual animations, and real-world engineering simulations.", "mindMapStudioTitle": "Huge Mind Map Studio (Per-Subject Knowledge Graphs)", "mindMapStudioEyebrow": "Expansive Concept Graph", "mindMapStudioDesc": "Explore complete hierarchical concept trees for every subject mapping foundational axioms to advanced analytical systems.", "mindMapInspectorPrompt": "💡 Tap any concept node above to inspect its deep theoretical framework, industrial applications, and motivational dialogue.", "quizStudioTitle": "Self-Evaluation Assessment Engine (100 Questions Across 3 Difficulties)", "quizStudioEyebrow": "Cognitive Benchmark & Accuracy Wheel", "quizStudioDesc": "Test your mastery across 25 curated questions per subject categorized into Easy, Medium, and Hard tiers.", "difficultyAll": "All (25)", "difficultyEasy": "🟢 Easy (8)", "difficultyMedium": "🟡 Medium (9)", "difficultyHard": "🔴 Hard (8)", "subjectMath": "📐 Mathematics", "subjectChem": "🧪 Chemistry", "subjectPhys": "⚛️ Physics", "subjectEng": "📖 English", "questionLabel": "Question", "ofLabel": "of", "scoreLabel": "Score", "streakLabel": "Streak", "accuracyLabel": "Accuracy", "correctStat": "Correct", "wrongStat": "Incorrect", "remainingStat": "Remaining", "rankStandby": "Standby", "rankHighDistinction": "High Distinction", "rankProficient": "Proficient", "rankReviewNeeded": "Review Needed", "prevBtn": "← Previous", "nextBtn": "Next Question →", "resetQuizBtn": "Reset Assessment", "mascotName": "StudyBot", "mascotDefaultSpeech": "Hello! I am StudyBot! Let's conquer concepts together! ✨", "mascotCheer": "Incredible job! Keep learning, you are unstoppable! 🌟", "inspectDialogTitle": "Concept Deep-Dive & Motivational Studio", "inspectAxiomLabel": "Core Academic Principles & Formulas", "inspectAppLabel": "Real-World Engineering & Industrial Application", "inspectMotivationLabel": "🌟 Motivational Reflection & Student Dialogue", "practiceBtn": "🎯 Practice Subject Questions", "closeBtn": "Close Window", "siteTitle": "Smart Study Hub", "siteTagline": "Academic Portal • Dual Time Hub & Deep Theory Studio Active", "touchCueText": "👆 Touch for Deep Breakdown & Huge Mind Map", "btnDeepBreakdown": "📖 Deep Breakdown", "btnHugeMindMap": "🧠 Huge Mind Map", "btnQuestions25": "🎯 25 Questions →", "mathTitle": "Mathematics", "mathBadge": "Module 01", "mathTopic1": "Calculus", "mathSubtopic1": "Limits & Derivatives", "mathTopic2": "Matrices", "mathSubtopic2": "Determinants", "chemTitle": "Chemistry", "chemBadge": "Module 02", "chemTopic1": "Organic Chemistry", "chemSubtopic1": "Hydrocarbons & Hybridization", "chemTopic2": "Inorganic Chemistry", "chemSubtopic2": "Periodic Trends", "physTitle": "Physics", "physBadge": "Module 03", "physTopic1": "Mechanics", "physSubtopic1": "Kinematics & Motion", "physTopic2": "Electromagnetism", "physSubtopic2": "Faraday's Induction", "engTitle": "English", "engBadge": "Module 04", "engTopic1": "Grammar & Syntax", "engSubtopic1": "Clause Hierarchy & Tenses", "engTopic2": "Literature", "engSubtopic2": "Shakespearean Sonnets & Poetics", "tbTheoryLbl": "📜 Foundational Theoretical Framework & Governing Axioms", "tbAppLbl": "⚙️ Industrial & Engineering Applications", "tbMotivationLbl": "🌟 Inspiring Student Reflection & Motivational Dialogue", "tbBtnPractice": "🎯 Practice 25 Subject Questions", "tbBtnMindmap": "🧠 Explore Huge Mind Map", "tbBtnClose": "✖ Close Breakdown", "quizEyebrow": "Evaluation Engine • Exactly 25 Questions Per Subject (100 Total)", "quizTitle": "Self-Evaluation Assessment Engine", "quizDesc": "100 curated multiple-choice academic benchmarks (exactly 25 questions per subject across Easy, Medium, and Hard tiers). Select any subject below to practice its dedicated 25-question test.", "qBtnMath": "📐 Mathematics (25 Qs)", "qBtnChem": "🧪 Chemistry (25 Qs)", "qBtnPhys": "⚛️ Physics (25 Qs)", "qBtnEng": "📖 English (25 Qs)", "qDiffAll": "All (25)", "qDiffEasy": "🟢 Easy (8)", "qDiffMedium": "🟡 Medium (9)", "qDiffHard": "🔴 Hard (8)", "qPrev": "← Previous", "qNext": "Next Question →", "qReset": "Reset Assessment", "qCorrectStat": "Correct", "qWrongStat": "Incorrect", "qRemainingStat": "Remaining", "qAccuracyStat": "Accuracy", "qRankStat": "Academic Rank", "qRankStandby": "Standby", "qRankHigh": "High Distinction", "qRankProficient": "Proficient", "qRankReview": "Review Needed", "qSuccessTitle": "Correct Answer! Outstanding Concept Mastery!", "qErrorTitle": "Incorrect Selection — Academic Clarification", "qWhyWrong": "Academic Clarification & Correct Derivation:"}, "ta": {"appTitle": "ஸ்மார்ட் ஸ்டடி ஹப்", "tagline": "கல்வி போர்டல் • இருவழி நேர கண்காணிப்பு & விரிவான ஆய்வகம் செயலில்", "versionBadge": "v3.0 முமொழி & 100 வினாக்கள்", "pitchDeckBtn": "🏆 விளக்கக்காட்சி", "closeSessionBtn": "அமர்வை மூடு", "timeModeStopwatch": "⏱️ நிறுத்து கடிகாரம்", "timeModeTimer": "⏳ நேரமானி", "stopwatchSubtext": "மொத்த கற்றல் அமர்வு நேரம்", "timerSubtext": "கவனம் செலுத்தும் கவுண்ட்டவுன்", "startTimer": "தொடங்கு", "pauseTimer": "நிறுத்து", "reset": "மீட்டமை", "orientationPortrait": "மொபைல் செங்குத்து காட்சி செயலில் • தொடுதிரை அமைப்பு தயார்", "orientationLandscape": "அகன்ற கிடைமட்ட காட்சி • முழுமையான வரைபடம் இயங்குகிறது", "rotateTip": "அகன்ற மன வரைபடத்திற்கு சுழற்றவும்", "curriculumTitle": "முதன்மை பாடப் பிரிவுகள்", "curriculumEyebrow": "கல்வி கட்டமைப்பு", "curriculumDesc": "ஆழமான தத்துவ விளக்கம் மற்றும் மன வரைபடத்தை அந்த இடத்திலேயே காண கீழே உள்ள ஏதேனும் ஒரு பாடத்தைத் தொடவும்.", "studyTheoryBtn": "📚 கோட்பாட்டைப் படி", "openMindMapBtn": "🗺️ மன வரைபடம்", "takeQuizBtn": "🎯 வினாடி வினா", "theoryStudioTitle": "முழுமையான கோட்பாடு & காட்சி ஆய்வகம்", "theoryStudioEyebrow": "ஊடாடும் ஆய்வகம்", "theoryStudioDesc": "அடிப்படை விதிகள், வரைபட உருவகப்படுத்துதல்கள் மற்றும் நிஜ உலகப் பயன்பாடுகளை ஆராயுங்கள்.", "mindMapStudioTitle": "விரிவான மன வரைபட அரங்கம் (பாடவாரியான வரைபடங்கள்)", "mindMapStudioEyebrow": "விரிவான கருத்து வரைபடம்", "mindMapStudioDesc": "அடிப்படை தத்துவங்கள் முதல் உயர்நிலை பகுப்பாய்வு முறைகள் வரையிலான கருத்து மரத்தை ஆராயுங்கள்.", "mindMapInspectorPrompt": "💡 ஆழமான அறிவியல் விளக்கம், தொழில்முறை பயன்பாடு மற்றும் ஊக்கமளிக்கும் உரையாடலைக் காண மேலே உள்ள ஏதேனும் ஒரு கருத்தைத் தொடவும்.", "quizStudioTitle": "சுய மதிப்பீட்டு வினாடி வினா (3 நிலைகளில் 100 வினாக்கள்)", "quizStudioEyebrow": "துல்லிய சக்கரம் & அறிவு சோதனை", "quizStudioDesc": "ஒவ்வொரு பாடத்திற்கும் எளிது, நடுத்தரம், கடினம் என பிரிக்கப்பட்ட 25 வினாக்களில் உங்கள் அறிவைச் சோதிக்கவும்.", "difficultyAll": "அனைத்தும் (25)", "difficultyEasy": "🟢 எளிது (8)", "difficultyMedium": "🟡 நடுத்தரம் (9)", "difficultyHard": "🔴 கடினம் (8)", "subjectMath": "📐 கணிதம்", "subjectChem": "🧪 வேதியியல்", "subjectPhys": "⚛️ இயற்பியல்", "subjectEng": "📖 ஆங்கிலம்", "questionLabel": "வினா", "ofLabel": "/", "scoreLabel": "மதிப்பெண்", "streakLabel": "தொடர் வெற்றி", "accuracyLabel": "துல்லியம்", "correctStat": "சரி", "wrongStat": "தவறு", "remainingStat": "மீதம்", "rankStandby": "காத்திருப்பு", "rankHighDistinction": "உயர் சிறப்புத் தேர்ச்சி", "rankProficient": "சிறந்த தேர்ச்சி", "rankReviewNeeded": "மறுபயிற்சி தேவை", "prevBtn": "← முந்தையது", "nextBtn": "அடுத்த வினா →", "resetQuizBtn": "வினாடி வினாவை மீட்டமை", "mascotName": "ஸ்டடிபாட்", "mascotDefaultSpeech": "வணக்கம்! நான் ஸ்டடிபாட்! வாருங்கள் புதிய கருத்துக்களைக் கற்போம்! ✨", "mascotCheer": "அற்புதம்! தொடர்ந்து முயற்சி செய், நீ நிச்சயம் சாதிப்பாய்! 🌟", "inspectDialogTitle": "கருத்து ஆழம் & ஊக்கமளிக்கும் அரங்கம்", "inspectAxiomLabel": "அடிப்படை அறிவியல் விதிகள் & சமன்பாடுகள்", "inspectAppLabel": "நிஜ உலக பொறியியல் & தொழில்முறை பயன்பாடுகள்", "inspectMotivationLabel": "🌟 மாணவர்களுக்கான ஊக்கமளிக்கும் பொன்மொழி", "practiceBtn": "🎯 பாட வினாக்களைப் பயிற்சி செய்", "closeBtn": "சாளரத்தை மூடு", "siteTitle": "ஸ்மார்ட் ஸ்டடி ஹப்", "siteTagline": "கல்வி போர்டல் • இருவழி நேர கண்காணிப்பு & விரிவான ஆய்வகம் செயலில்", "touchCueText": "👆 ஆழமான விளக்கம் & மன வரைபடத்திற்கு தொடவும்", "btnDeepBreakdown": "📖 ஆழமான விளக்கம்", "btnHugeMindMap": "🧠 மன வரைபடம்", "btnQuestions25": "🎯 25 வினாக்கள் →", "mathTitle": "கணிதம்", "mathBadge": "பிரிவு 01", "mathTopic1": "நுண்கணிதம்", "mathSubtopic1": "எல்லைகள் & வகைக்கெழுக்கள்", "mathTopic2": "அணிகள்", "mathSubtopic2": "அணிக்கோவைகள்", "chemTitle": "வேதியியல்", "chemBadge": "பிரிவு 02", "chemTopic1": "கரிம வேதியியல்", "chemSubtopic1": "ஹைட்ரோகார்பன்கள் & கலப்பினமாக்கல்", "chemTopic2": "கனிம வேதியியல்", "chemSubtopic2": "தனிம வரிசை பண்புகள்", "physTitle": "இயற்பியல்", "physBadge": "பிரிவு 03", "physTopic1": "இயக்கவியல்", "physSubtopic1": "இயக்க சமன்பாடுகள் & இடப்பெயர்ச்சி", "physTopic2": "மின்காந்தவியல்", "physSubtopic2": "பாரடேயின் தூண்டல் விதி", "engTitle": "ஆங்கிலம்", "engBadge": "பிரிவு 04", "engTopic1": "இலக்கணம் & வாக்கியம்", "engSubtopic1": "வாக்கிய அடுக்குகள் & காலங்கள்", "engTopic2": "இலக்கியம்", "engSubtopic2": "ஷேக்ஸ்பியர் சானட்டுகள் & செய்யுள் வடிவம்", "tbTheoryLbl": "📜 அடிப்படை தத்துவ விதிகள் & சமன்பாடுகள்", "tbAppLbl": "⚙️ நிஜ உலக பொறியியல் & தொழில்முறை பயன்பாடுகள்", "tbMotivationLbl": "🌟 மாணவர்களுக்கான ஊக்கமளிக்கும் பொன்மொழி", "tbBtnPractice": "🎯 25 பாட வினாக்களைப் பயிற்சி செய்", "tbBtnMindmap": "🧠 மன வரைபடத்தை ஆராய்", "tbBtnClose": "✖ விளக்கத்தை மூடு", "quizEyebrow": "மதிப்பீட்டு அரங்கம் • பாடத்திற்கு 25 வினாக்கள் (மொத்தம் 100)", "quizTitle": "சுய மதிப்பீட்டு வினாடி வினா", "quizDesc": "ஒவ்வொரு பாடத்திற்கும் எளிது, நடுத்தரம், கடினம் என பிரிக்கப்பட்ட 25 வினாக்களில் உங்கள் அறிவைச் சோதிக்கவும். கீழே உள்ள பாடத்தைத் தேர்ந்தெடுக்கவும்.", "qBtnMath": "📐 கணிதம் (25 வினாக்கள்)", "qBtnChem": "🧪 வேதியியல் (25 வினாக்கள்)", "qBtnPhys": "⚛️ இயற்பியல் (25 வினாக்கள்)", "qBtnEng": "📖 ஆங்கிலம் (25 வினாக்கள்)", "qDiffAll": "அனைத்தும் (25)", "qDiffEasy": "🟢 எளிது (8)", "qDiffMedium": "🟡 நடுத்தரம் (9)", "qDiffHard": "🔴 கடினம் (8)", "qPrev": "← முந்தையது", "qNext": "அடுத்த வினா →", "qReset": "வினாடி வினாவை மீட்டமை", "qCorrectStat": "சரி", "qWrongStat": "தவறு", "qRemainingStat": "மீதம்", "qAccuracyStat": "துல்லியம்", "qRankStat": "தகுதி நிலை", "qRankStandby": "காத்திருப்பு", "qRankHigh": "உயர் சிறப்புத் தேர்ச்சி", "qRankProficient": "சிறந்த தேர்ச்சி", "qRankReview": "மறுபயிற்சி தேவை", "qSuccessTitle": "சரியான விடை! அற்புதம்!", "qErrorTitle": "தவறான தேர்வு — கல்வி விளக்கம்", "qWhyWrong": "கல்வி விளக்கம் & சரியான வழிமுறை:"}, "hi": {"appTitle": "स्मार्ट स्टडी हब", "tagline": "शैक्षणिक पोर्टल • दोहरा समय ट्रैकर एवं गहन सिद्धांत स्टूडियो सक्रिय", "versionBadge": "v3.0 त्रिभाषी एवं 100 प्रश्न", "pitchDeckBtn": "🏆 डेक", "closeSessionBtn": "सत्र समाप्त करें", "timeModeStopwatch": "⏱️ स्टॉपवॉच", "timeModeTimer": "⏳ टाइमर", "stopwatchSubtext": "कुल व्यतीत अध्ययन समय", "timerSubtext": "एकाग्रता उल्टी गिनती", "startTimer": "प्रारंभ", "pauseTimer": "विराम", "reset": "रीसेट", "orientationPortrait": "मोबाइल पोर्ट्रेट मोड सक्रिय • टच लेआउट सक्षम", "orientationLandscape": "वाइडस्क्रीन लैंडस्केप दृश्य • पूर्ण माइंड मैप सक्रिय", "rotateTip": "विशाल माइंड मैप के लिए घुमाएं", "curriculumTitle": "मुख्य शैक्षणिक मॉड्यूल", "curriculumEyebrow": "शैक्षणिक वास्तुकला", "curriculumDesc": "समर्पित गहन विश्लेषण और माइंड मैप देखने के लिए नीचे किसी भी विषय को स्पर्श करें।", "studyTheoryBtn": "📚 सिद्धांत पढ़ें", "openMindMapBtn": "🗺️ माइंड मैप", "takeQuizBtn": "🎯 क्विज़ प्रारंभ करें", "theoryStudioTitle": "व्यापक सिद्धांत एवं दृश्य प्रयोगशाला", "theoryStudioEyebrow": "इंटरएक्टिव प्रयोगशाला", "theoryStudioDesc": "बुनियादी नियमों, दृश्य एनिमेशन और वास्तविक दुनिया के अनुप्रयोगों का अन्वेषण करें।", "mindMapStudioTitle": "विशाल माइंड मैप स्टूडियो (विषय-वार ज्ञान ग्राफ)", "mindMapStudioEyebrow": "विस्तृत अवधारणा ग्राफ", "mindMapStudioDesc": "प्रत्येक विषय के लिए मूलभूत सिद्धांतों से उन्नत विश्लेषणात्मक प्रणालियों तक के ज्ञान वृक्ष का अन्वेषण करें।", "mindMapInspectorPrompt": "💡 गहन वैज्ञानिक व्याख्या, औद्योगिक अनुप्रयोग और प्रेरक संवाद देखने के लिए ऊपर किसी भी अवधारणा पर क्लिक करें।", "quizStudioTitle": "स्व-मूल्यांकन क्विज़ इंजन (3 स्तरों में 100 प्रश्न)", "quizStudioEyebrow": "सटीकता चक्र और संज्ञान परीक्षण", "quizStudioDesc": "सरल, मध्यम और कठिन श्रेणियों में विभाजित प्रति विषय 25 प्रश्नों के माध्यम से अपनी दक्षता का परीक्षण करें।", "difficultyAll": "सभी (25)", "difficultyEasy": "🟢 सरल (8)", "difficultyMedium": "🟡 मध्यम (9)", "difficultyHard": "🔴 कठिन (8)", "subjectMath": "📐 गणित", "subjectChem": "🧪 रसायन विज्ञान", "subjectPhys": "⚛️ भौतिक विज्ञान", "subjectEng": "📖 अंग्रेज़ी", "questionLabel": "प्रश्न", "ofLabel": "/", "scoreLabel": "अंक", "streakLabel": "लगातार सही", "accuracyLabel": "सटीकता", "correctStat": "सही", "wrongStat": "गलत", "remainingStat": "शेष", "rankStandby": "प्रतीक्षारत", "rankHighDistinction": "उच्च विशिष्टता", "rankProficient": "कुशल", "rankReviewNeeded": "समीक्षा आवश्यक", "prevBtn": "← पिछला", "nextBtn": "अगला प्रश्न →", "resetQuizBtn": "क्विज़ रीसेट करें", "mascotName": "स्टडीबॉट", "mascotDefaultSpeech": "नमस्ते! मैं स्टडीबॉट हूँ! आइए मिलकर नई अवधारणाएं सीखें! ✨", "mascotCheer": "शानदार! निरंतर प्रयास ही सफलता की कुंजी है! 🌟", "inspectDialogTitle": "अवधारणा विश्लेषण एवं प्रेरक स्टूडियो", "inspectAxiomLabel": "मुख्य शैक्षणिक सिद्धांत एवं सूत्र", "inspectAppLabel": "वास्तविक दुनिया के इंजीनियरिंग अनुप्रयोग", "inspectMotivationLabel": "🌟 छात्रों के लिए प्रेरक विचार एवं संवाद", "practiceBtn": "🎯 विषय प्रश्नों का अभ्यास करें", "closeBtn": "विंडो बंद करें", "siteTitle": "स्मार्ट स्टडी हब", "siteTagline": "शैक्षणिक पोर्टल • दोहरा समय ट्रैकर एवं गहन सिद्धांत स्टूडियो सक्रिय", "touchCueText": "👆 गहन विश्लेषण एवं माइंड मैप के लिए स्पर्श करें", "btnDeepBreakdown": "📖 गहन विश्लेषण", "btnHugeMindMap": "🧠 विशाल माइंड मैप", "btnQuestions25": "🎯 25 प्रश्न →", "mathTitle": "गणित", "mathBadge": "मॉड्यूल 01", "mathTopic1": "कलन", "mathSubtopic1": "सीमाएं एवं अवकलन", "mathTopic2": "आव्यूह", "mathSubtopic2": "सारणिक", "chemTitle": "रसायन विज्ञान", "chemBadge": "मॉड्यूल 02", "chemTopic1": "कार्बनिक रसायन", "chemSubtopic1": "हाइड्रोकार्बन एवं संकरण", "chemTopic2": "अकार्बनिक रसायन", "chemSubtopic2": "आवर्त सारणी प्रवृत्तियां", "physTitle": "भौतिक विज्ञान", "physBadge": "मॉड्यूल 03", "physTopic1": "यांत्रिकी", "physSubtopic1": "गतिकी एवं गति", "physTopic2": "विद्युत चुंबकत्व", "physSubtopic2": "फैराडे का प्रेरण नियम", "engTitle": "अंग्रेज़ी", "engBadge": "मॉड्यूल 04", "engTopic1": "व्याकरण एवं वाक्य", "engSubtopic1": "उपवाक्य एवं काल", "engTopic2": "साहित्य", "engSubtopic2": "सॉनेट एवं काव्य रचना", "tbTheoryLbl": "📜 मूलभूत शैक्षणिक सिद्धांत एवं सूत्र", "tbAppLbl": "⚙️ औद्योगिक एवं इंजीनियरिंग अनुप्रयोग", "tbMotivationLbl": "🌟 छात्रों के लिए प्रेरक विचार एवं संवाद", "tbBtnPractice": "🎯 25 विषय प्रश्नों का अभ्यास करें", "tbBtnMindmap": "🧠 माइंड मैप का अन्वेषण करें", "tbBtnClose": "✖ विश्लेषण बंद करें", "quizEyebrow": "मूल्यांकन इंजन • प्रति विषय 25 प्रश्न (कुल 100)", "quizTitle": "स्व-मूल्यांकन क्विज़ इंजन", "quizDesc": "सरल, मध्यम और कठिन श्रेणियों में विभाजित प्रति विषय 25 प्रश्नों के माध्यम से अपनी दक्षता का परीक्षण करें। नीचे विषय चुनें।", "qBtnMath": "📐 गणित (25 प्रश्न)", "qBtnChem": "🧪 रसायन विज्ञान (25 प्रश्न)", "qBtnPhys": "⚛️ भौतिक विज्ञान (25 प्रश्न)", "qBtnEng": "📖 अंग्रेज़ी (25 प्रश्न)", "qDiffAll": "सभी (25)", "qDiffEasy": "🟢 सरल (8)", "qDiffMedium": "🟡 मध्यम (9)", "qDiffHard": "🔴 कठिन (8)", "qPrev": "← पिछला", "qNext": "अगला प्रश्न →", "qReset": "क्विज़ रीसेट करें", "qCorrectStat": "सही", "qWrongStat": "गलत", "qRemainingStat": "शेष", "qAccuracyStat": "सटीकता", "qRankStat": "शैक्षणिक स्तर", "qRankStandby": "प्रतीक्षारत", "qRankHigh": "उच्च विशिष्टता", "qRankProficient": "कुशल", "qRankReview": "समीक्षा आवश्यक", "qSuccessTitle": "सही उत्तर! शानदार संकल्पना स्पष्टता!", "qErrorTitle": "गलत विकल्प — शैक्षणिक स्पष्टीकरण", "qWhyWrong": "शैक्षणिक स्पष्टीकरण एवं सही विधि:"}};
+  const I18N_DATA = {"en": {"siteTitle": "Smart Study Hub", "siteTagline": "Academic Portal • Dual Time Hub & Deep Theory Studio Active", "versionBadge": "v3.0 Multi-Lang & 100Q", "pitchDeckBtn": "🏆 Deck", "closeSessionBtn": "Close Session", "timeModeStopwatch": "⏱️ Stopwatch", "timeModeTimer": "⏳ Timer", "stopwatchSubtext": "Total Elapsed Session", "timerSubtext": "Focus Countdown Sprint", "startTimer": "Start", "pauseTimer": "Pause", "reset": "Reset", "preset25": "25m Focus Sprint", "preset15": "15m Rapid Review", "preset45": "45m Deep Mastery", "orientationPortrait": "Mobile Portrait Mode Active • Touch layout enabled", "orientationLandscape": "Widescreen Landscape View • Full concept canvas active", "rotateTip": "Rotate for Wide Mind Map", "curriculumTitle": "Core Academic Modules", "curriculumEyebrow": "Curriculum Architecture", "curriculumDesc": "Touch any subject below to launch its dedicated in-place Deep Breakdown directly below the button and explore its Huge Mind Map.", "touchCueText": "👆 Touch for Deep Breakdown & Huge Mind Map", "btnDeepBreakdown": "📖 Deep Breakdown", "btnHugeMindMap": "🧠 Huge Mind Map", "btnQuestions25": "🎯 25 Questions →", "mathTitle": "Mathematics", "mathBadge": "Module 01", "cardMathTop1": "Calculus", "cardMathTag1": "Analysis", "cardMathSub1": "Limits & Derivatives", "cardMathSubbadge1": "Core", "cardMathTop2": "Matrices", "cardMathTag2": "Linear Alg", "cardMathSub2": "Determinants", "cardMathSubbadge2": "Applied", "chemTitle": "Chemistry", "chemBadge": "Module 02", "cardChemTop1": "Organic Chemistry", "cardChemTag1": "Synthesis", "cardChemSub1": "Hydrocarbons", "cardChemSubbadge1": "Core", "cardChemTop2": "Periodic Table", "cardChemTag2": "Inorganic", "cardChemSub2": "Chemical Bonding", "cardChemSubbadge2": "Foundational", "physTitle": "Physics", "physBadge": "Module 03", "cardPhysTop1": "Mechanics", "cardPhysTag1": "Classical", "cardPhysSub1": "Kinematics", "cardPhysSubbadge1": "Core", "cardPhysTop2": "Electromagnetism", "cardPhysTag2": "Fields", "cardPhysSub2": "Magnetic Induction", "cardPhysSubbadge2": "High Yield", "engTitle": "English", "engBadge": "Module 04", "cardEngTop1": "Grammar", "cardEngTag1": "Linguistics", "cardEngSub1": "Tenses & Clauses", "cardEngSubbadge1": "Applied", "cardEngTop2": "Literature", "cardEngTag2": "Criticism", "cardEngSub2": "Poetry Analysis", "cardEngSubbadge2": "Core", "drawerTheoryLbl": "Theoretical Framework & Axioms", "drawerFormulasLbl": "Governing Mathematical Formulas", "drawerAppLbl": "Industrial & Engineering Applications", "drawerMotivLbl": "Inspiring Student Reflection & Motivational Dialogue", "drawerBtnQuiz": "🎯 Practice 25 Questions", "drawerBtnMm": "🧠 Explore Huge Mind Map", "drawerBtnClose": "✖ Close Breakdown", "drawerBtnModal": "Maximize", "quotesGalleryEyebrow": "Curated Academic Wisdom", "quotesGalleryTitle": "50 Inspiring Motivational Quotes", "quotesGalleryDesc": "Click any quote card to hear StudyBot cheer and celebrate with sound & confetti!", "quotesSearchPlaceholder": "Search quotes...", "quotesBtnRandom": "Random Quote", "quotesBtnClose": "Close Gallery", "theoryStudioEyebrow": "Expanded Academic Theory & Derivations", "theoryStudioTitle": "Comprehensive Subject Theory Studio", "theoryStudioDesc": "Exhaustive academic treatises covering fundamental proofs, governing physical laws, reaction orbital mechanisms, and syntactic trees with rich vector visualizations.", "theoryTabMath": "📐 Mathematics Treatise", "theoryTabChem": "🧪 Chemistry Treatise", "theoryTabPhys": "⚛️ Physics Treatise", "theoryTabEng": "📖 English Treatise", "mindMapStudioEyebrow": "Expansive Concept Graph", "mindMapStudioTitle": "Huge Mind Map Studio (Per-Subject Knowledge Graphs)", "mindMapStudioDesc": "Explore complete hierarchical concept trees for every subject mapping foundational axioms to advanced analytical systems.", "mindMapInspectorPrompt": "💡 Tap any concept node above to inspect its deep theoretical framework, industrial applications, and motivational dialogue.", "quizEyebrow": "Evaluation Engine • Exactly 25 Questions Per Subject (100 Total)", "quizTitle": "Self-Evaluation Assessment Engine", "quizDesc": "100 curated multiple-choice academic benchmarks (exactly 25 questions per subject across Easy, Medium, and Hard tiers). Select any subject below to practice its dedicated 25-question test.", "qBtnMath": "📐 Mathematics (25 Qs)", "qBtnChem": "🧪 Chemistry (25 Qs)", "qBtnPhys": "⚛️ Physics (25 Qs)", "qBtnEng": "📖 English (25 Qs)", "qDiffAll": "All (25)", "qDiffEasy": "🟢 Easy (8)", "qDiffMedium": "🟡 Medium (9)", "qDiffHard": "🔴 Hard (8)", "qCorrectStat": "Correct", "qWrongStat": "Incorrect", "qRemainingStat": "Remaining", "qAccuracyStat": "Accuracy", "qRankStat": "Academic Rank", "qPrev": "← Previous", "qNext": "Next Question →", "qReset": "Reset Assessment", "aiSeqEyebrow": "Adaptive AI Recommendation Engine", "aiSeqTitle": "Personalized Learning Resource Sequencer", "aiSeqDesc": "Learners may not know what to study next after a practice session. This AI analyzes quiz accuracy and recommends optimal topics.", "aiSeqStrengthsLbl": "Demonstrated Strengths:", "aiSeqGapsLbl": "Critical Knowledge Gaps:", "aiSeqNextLbl": "AI Recommended Next Topic:", "aiSeqReasonLbl": "Algorithmic Rationale:", "aiSeqBtnLaunch": "🚀 Launch Recommended Deep Study", "aiSeqBtnRefresh": "🔄 Re-evaluate Recommendations", "mascotCheer": "Incredible job! Keep learning, you are unstoppable! 🌟", "mascotDefaultSpeech": "Hello! I am StudyBot! Let's conquer concepts together! ✨", "inspectAxiomLabel": "Core Academic Principles & Formulas", "inspectAppLabel": "Real-World Engineering & Industrial Application", "inspectMotivationLabel": "🌟 Motivational Reflection & Student Dialogue", "practiceBtn": "🎯 Practice Subject Questions", "closeBtn": "Close Window"}, "ta": {"siteTitle": "ஸ்மார்ட் ஸ்டடி ஹப்", "siteTagline": "கல்வி போர்டல் • இருவழி நேர கண்காணிப்பு & விரிவான ஆய்வகம் செயலில்", "versionBadge": "v3.0 முமொழி & 100 வினாக்கள்", "pitchDeckBtn": "🏆 விளக்கக்காட்சி", "closeSessionBtn": "அமர்வை மூடு", "timeModeStopwatch": "⏱️ நிறுத்து கடிகாரம்", "timeModeTimer": "⏳ நேரமானி", "stopwatchSubtext": "மொத்த கற்றல் அமர்வு நேரம்", "timerSubtext": "கவனம் செலுத்தும் கவுண்ட்டவுன்", "startTimer": "தொடங்கு", "pauseTimer": "நிறுத்து", "reset": "மீட்டமை", "preset25": "25நி கவனம்", "preset15": "15நி விரைவு மறுபார்வை", "preset45": "45நி ஆழ்ந்த கற்றல்", "orientationPortrait": "மொபைல் செங்குத்து காட்சி செயலில் • தொடுதிரை அமைப்பு தயார்", "orientationLandscape": "அகன்ற கிடைமட்ட காட்சி • முழுமையான வரைபடம் இயங்குகிறது", "rotateTip": "அகன்ற மன வரைபடத்திற்கு சுழற்றவும்", "curriculumTitle": "முதன்மை பாடப் பிரிவுகள்", "curriculumEyebrow": "கல்வி கட்டமைப்பு", "curriculumDesc": "ஆழமான தத்துவ விளக்கம் மற்றும் மன வரைபடத்தை அந்த இடத்திலேயே காண கீழே உள்ள ஏதேனும் ஒரு பாடத்தைத் தொடவும்.", "touchCueText": "👆 ஆழமான விளக்கம் & மன வரைபடத்திற்கு தொடவும்", "btnDeepBreakdown": "📖 ஆழமான விளக்கம்", "btnHugeMindMap": "🧠 மன வரைபடம்", "btnQuestions25": "🎯 25 வினாக்கள் →", "mathTitle": "கணிதம்", "mathBadge": "பிரிவு 01", "cardMathTop1": "நுண்கணிதம்", "cardMathTag1": "பகுப்பாய்வு", "cardMathSub1": "எல்லைகள் & வகைக்கெழுக்கள்", "cardMathSubbadge1": "முதன்மை", "cardMathTop2": "அணிகள்", "cardMathTag2": "நேரியல் இயற்கணிதம்", "cardMathSub2": "அணிக்கோவைகள்", "cardMathSubbadge2": "பயன்பாட்டு", "chemTitle": "வேதியியல்", "chemBadge": "பிரிவு 02", "cardChemTop1": "கரிம வேதியியல்", "cardChemTag1": "தொகுப்பு", "cardChemSub1": "ஹைட்ரோகார்பன்கள்", "cardChemSubbadge1": "முதன்மை", "cardChemTop2": "தனிம வரிசை அட்டவணை", "cardChemTag2": "கனிம வேதியியல்", "cardChemSub2": "வேதிப் பிணைப்பு", "cardChemSubbadge2": "அடிப்படை", "physTitle": "இயற்பியல்", "physBadge": "பிரிவு 03", "cardPhysTop1": "இயக்கவியல்", "cardPhysTag1": "செவ்வியல்", "cardPhysSub1": "இயக்க சமன்பாடுகள்", "cardPhysSubbadge1": "முதன்மை", "cardPhysTop2": "மின்காந்தவியல்", "cardPhysTag2": "புலங்கள்", "cardPhysSub2": "காந்தத் தூண்டல்", "cardPhysSubbadge2": "முக்கிய பகுதி", "engTitle": "ஆங்கிலம்", "engBadge": "பிரிவு 04", "cardEngTop1": "இலக்கணம்", "cardEngTag1": "மொழியியல்", "cardEngSub1": "காலங்கள் & வாக்கிய அடுக்குகள்", "cardEngSubbadge1": "பயன்பாட்டு", "cardEngTop2": "இலக்கியம்", "cardEngTag2": "விமர்சனம்", "cardEngSub2": "கவிதை பகுப்பாய்வு", "cardEngSubbadge2": "முதன்மை", "drawerTheoryLbl": "அடிப்படை தத்துவ விதிகள் & சமன்பாடுகள்", "drawerFormulasLbl": "முக்கிய கணித / அறிவியல் சமன்பாடுகள்", "drawerAppLbl": "தொழில்முறை & பொறியியல் பயன்பாடுகள்", "drawerMotivLbl": "மாணவர்களுக்கான ஊக்கமளிக்கும் பொன்மொழி", "drawerBtnQuiz": "🎯 25 வினாக்களைப் பயிற்சி செய்", "drawerBtnMm": "🧠 மன வரைபடத்தை ஆராய்", "drawerBtnClose": "✖ விளக்கத்தை மூடு", "drawerBtnModal": "பெரிதாக்கு", "quotesGalleryEyebrow": "சிறந்த கல்வி ஞானம்", "quotesGalleryTitle": "50 ஊக்கமளிக்கும் பொன்மொழிகள்", "quotesGalleryDesc": "ஸ்டடிபாட் மூலம் பொன்மொழிகளைக் கேட்டு மகிழ ஏதேனும் ஒரு அட்டையைத் தொடவும்!", "quotesSearchPlaceholder": "பொன்மொழிகளைத் தேடு...", "quotesBtnRandom": "ஏதேனும் ஒரு பொன்மொழி", "quotesBtnClose": "சாளரத்தை மூடு", "theoryStudioEyebrow": "விரிவான கல்வி கோட்பாடுகள் & சமன்பாட்டு வழிகள்", "theoryStudioTitle": "முழுமையான பாட கோட்பாட்டு அரங்கம்", "theoryStudioDesc": "அடிப்படை நிரூபணங்கள், இயற்பியல் விதிகள் மற்றும் வேதி வினைகளை விளக்கும் விரிவான ஆய்வகம்.", "theoryTabMath": "📐 கணித ஆய்வறிக்கை", "theoryTabChem": "🧪 வேதியியல் ஆய்வறிக்கை", "theoryTabPhys": "⚛️ இயற்பியல் ஆய்வறிக்கை", "theoryTabEng": "📖 ஆங்கில ஆய்வறிக்கை", "mindMapStudioEyebrow": "விரிவான கருத்து வரைபடம்", "mindMapStudioTitle": "விரிவான மன வரைபட அரங்கம் (பாடவாரியான வரைபடங்கள்)", "mindMapStudioDesc": "அடிப்படை தத்துவங்கள் முதல் உயர்நிலை பகுப்பாய்வு முறைகள் வரையிலான கருத்து மரத்தை ஆராயுங்கள்.", "mindMapInspectorPrompt": "💡 ஆழமான அறிவியல் விளக்கம், தொழில்முறை பயன்பாடு மற்றும் ஊக்கமளிக்கும் உரையாடலைக் காண மேலே உள்ள ஏதேனும் ஒரு கருத்தைத் தொடவும்.", "quizEyebrow": "மதிப்பீட்டு அரங்கம் • பாடத்திற்கு 25 வினாக்கள் (மொத்தம் 100)", "quizTitle": "சுய மதிப்பீட்டு வினாடி வினா", "quizDesc": "ஒவ்வொரு பாடத்திற்கும் எளிது, நடுத்தரம், கடினம் என பிரிக்கப்பட்ட 25 வினாக்களில் உங்கள் அறிவைச் சோதிக்கவும். கீழே உள்ள பாடத்தைத் தேர்ந்தெடுக்கவும்.", "qBtnMath": "📐 கணிதம் (25 வினாக்கள்)", "qBtnChem": "🧪 வேதியியல் (25 வினாக்கள்)", "qBtnPhys": "⚛️ இயற்பியல் (25 வினாக்கள்)", "qBtnEng": "📖 ஆங்கிலம் (25 வினாக்கள்)", "qDiffAll": "அனைத்தும் (25)", "qDiffEasy": "🟢 எளிது (8)", "qDiffMedium": "🟡 நடுத்தரம் (9)", "qDiffHard": "🔴 கடினம் (8)", "qCorrectStat": "சரி", "qWrongStat": "தவறு", "qRemainingStat": "மீதம்", "qAccuracyStat": "துல்லியம்", "qRankStat": "தகுதி நிலை", "qPrev": "← முந்தையது", "qNext": "அடுத்த வினா →", "qReset": "வினாடி வினாவை மீட்டமை", "aiSeqEyebrow": "தகவமைப்பு AI பரிந்துரை இயந்திரம்", "aiSeqTitle": "தனிப்பயனாக்கப்பட்ட கற்றல் வரிசைப்படுத்தி", "aiSeqDesc": "பயிற்சிக்கு பின் எதை படிக்க வேண்டும் என்பதை AI துல்லியமாக பகுப்பாய்வு செய்து அடுத்த தலைப்பை பரிந்துரைக்கிறது.", "aiSeqStrengthsLbl": "நிரூபிக்கப்பட்ட பலங்கள்:", "aiSeqGapsLbl": "கற்றல் இடைவெளிகள்:", "aiSeqNextLbl": "AI பரிந்துரைக்கும் அடுத்த தலைப்பு:", "aiSeqReasonLbl": "பரிந்துரைக்கான காரணம்:", "aiSeqBtnLaunch": "🚀 பரிந்துரைக்கப்பட்ட பாடத்தைத் தொடங்கு", "aiSeqBtnRefresh": "🔄 பரிந்துரைகளை புதுப்பி", "mascotCheer": "அற்புதம்! தொடர்ந்து முயற்சி செய், நீ நிச்சயம் சாதிப்பாய்! 🌟", "mascotDefaultSpeech": "வணக்கம்! நான் ஸ்டடிபாட்! வாருங்கள் புதிய கருத்துக்களைக் கற்போம்! ✨", "inspectAxiomLabel": "அடிப்படை அறிவியல் விதிகள் & சமன்பாடுகள்", "inspectAppLabel": "நிஜ உலக பொறியியல் & தொழில்முறை பயன்பாடுகள்", "inspectMotivationLabel": "🌟 மாணவர்களுக்கான ஊக்கமளிக்கும் பொன்மொழி", "practiceBtn": "🎯 பாட வினாக்களைப் பயிற்சி செய்", "closeBtn": "சாளரத்தை மூடு"}, "hi": {"siteTitle": "स्मार्ट स्टडी हब", "siteTagline": "शैक्षणिक पोर्टल • दोहरा समय ट्रैकर एवं गहन सिद्धांत स्टूडियो सक्रिय", "versionBadge": "v3.0 त्रिभाषी एवं 100 प्रश्न", "pitchDeckBtn": "🏆 डेक", "closeSessionBtn": "सत्र समाप्त करें", "timeModeStopwatch": "⏱️ स्टॉपवॉच", "timeModeTimer": "⏳ टाइमर", "stopwatchSubtext": "कुल व्यतीत अध्ययन समय", "timerSubtext": "एकाग्रता उल्टी गिनती", "startTimer": "प्रारंभ", "pauseTimer": "विराम", "reset": "रीसेट", "preset25": "25मि एकाग्रता", "preset15": "15मि त्वरित समीक्षा", "preset45": "45मि गहन अध्ययन", "orientationPortrait": "मोबाइल पोर्ट्रेट मोड सक्रिय • टच लेआउट सक्षम", "orientationLandscape": "वाइडस्क्रीन लैंडस्केप दृश्य • पूर्ण माइंड मैप सक्रिय", "rotateTip": "विशाल माइंड मैप के लिए घुमाएं", "curriculumTitle": "मुख्य शैक्षणिक मॉड्यूल", "curriculumEyebrow": "शैक्षणिक वास्तुकला", "curriculumDesc": "समर्पित गहन विश्लेषण और माइंड मैप देखने के लिए नीचे किसी भी विषय को स्पर्श करें।", "touchCueText": "👆 गहन विश्लेषण एवं माइंड मैप के लिए स्पर्श करें", "btnDeepBreakdown": "📖 गहन विश्लेषण", "btnHugeMindMap": "🧠 विशाल माइंड मैप", "btnQuestions25": "🎯 25 प्रश्न →", "mathTitle": "गणित", "mathBadge": "मॉड्यूल 01", "cardMathTop1": "कलन", "cardMathTag1": "विश्लेषण", "cardMathSub1": "सीमाएं एवं अवकलन", "cardMathSubbadge1": "मूल", "cardMathTop2": "आव्यूह", "cardMathTag2": "रैखिक बीजगणित", "cardMathSub2": "सारणिक", "cardMathSubbadge2": "अनुप्रयुक्त", "chemTitle": "रसायन विज्ञान", "chemBadge": "मॉड्यूल 02", "cardChemTop1": "कार्बनिक रसायन", "cardChemTag1": "संश्लेषण", "cardChemSub1": "हाइड्रोकार्बन", "cardChemSubbadge1": "मूल", "cardChemTop2": "आवर्त सारणी", "cardChemTag2": "अकार्बनिक", "cardChemSub2": "रासायनिक बंधन", "cardChemSubbadge2": "आधारभूत", "physTitle": "भौतिक विज्ञान", "physBadge": "मॉड्यूल 03", "cardPhysTop1": "यांत्रिकी", "cardPhysTag1": "चिरसम्मत", "cardPhysSub1": "शुद्धगतिकी", "cardPhysSubbadge1": "मूल", "cardPhysTop2": "विद्युत चुंबकत्व", "cardPhysTag2": "क्षेत्र", "cardPhysSub2": "चुंबकीय प्रेरण", "cardPhysSubbadge2": "अति महत्वपूर्ण", "engTitle": "अंग्रेज़ी", "engBadge": "मॉड्यूल 04", "cardEngTop1": "व्याकरण", "cardEngTag1": "भाषा विज्ञान", "cardEngSub1": "काल एवं उपवाक्य", "cardEngSubbadge1": "अनुप्रयुक्त", "cardEngTop2": "साहित्य", "cardEngTag2": "समालोचना", "cardEngSub2": "काव्य विश्लेषण", "cardEngSubbadge2": "मूल", "drawerTheoryLbl": "मूलभूत शैक्षणिक सिद्धांत एवं सूत्र", "drawerFormulasLbl": "मुख्य नियामक सूत्र", "drawerAppLbl": "औद्योगिक एवं इंजीनियरिंग अनुप्रयोग", "drawerMotivLbl": "छात्रों के लिए प्रेरक विचार एवं संवाद", "drawerBtnQuiz": "🎯 25 प्रश्नों का अभ्यास करें", "drawerBtnMm": "🧠 माइंड मैप का अन्वेषण करें", "drawerBtnClose": "✖ विश्लेषण बंद करें", "drawerBtnModal": "बड़ा करें", "quotesGalleryEyebrow": "चयनित शैक्षणिक ज्ञान", "quotesGalleryTitle": "50 प्रेरक शैक्षणिक विचार", "quotesGalleryDesc": "स्टडीबॉट से सुनने एवं उत्सव के लिए किसी भी विचार पर क्लिक करें!", "quotesSearchPlaceholder": "विचार खोजें...", "quotesBtnRandom": "यादृच्छिक विचार", "quotesBtnClose": "गैलरी बंद करें", "theoryStudioEyebrow": "विस्तृत शैक्षणिक सिद्धांत एवं व्युत्पत्ति", "theoryStudioTitle": "व्यापक विषय सिद्धांत स्टूडियो", "theoryStudioDesc": "मूलभूत प्रमाणों, भौतिक नियमों और रासायनिक क्रियाविधियों को समझाने वाली व्यापक प्रयोगशाला।", "theoryTabMath": "📐 गणित शोध प्रबंध", "theoryTabChem": "🧪 रसायन विज्ञान शोध प्रबंध", "theoryTabPhys": "⚛️ भौतिक विज्ञान शोध प्रबंध", "theoryTabEng": "📖 अंग्रेज़ी शोध प्रबंध", "mindMapStudioEyebrow": "विस्तृत अवधारणा ग्राफ", "mindMapStudioTitle": "विशाल माइंड मैप स्टूडियो (विषय-वार ज्ञान ग्राफ)", "mindMapStudioDesc": "मूलभूत सिद्धांतों से उन्नत विश्लेषणात्मक प्रणालियों तक के ज्ञान वृक्ष का अन्वेषण करें।", "mindMapInspectorPrompt": "💡 गहन वैज्ञानिक व्याख्या, औद्योगिक अनुप्रयोग और प्रेरक संवाद देखने के लिए ऊपर किसी भी अवधारणा पर क्लिक करें।", "quizEyebrow": "मूल्यांकन इंजन • प्रति विषय 25 प्रश्न (कुल 100)", "quizTitle": "स्व-मूल्यांकन क्विज़ इंजन", "quizDesc": "सरल, मध्यम और कठिन श्रेणियों में विभाजित प्रति विषय 25 प्रश्नों के माध्यम से अपनी दक्षता का परीक्षण करें। नीचे विषय चुनें।", "qBtnMath": "📐 गणित (25 प्रश्न)", "qBtnChem": "🧪 रसायन विज्ञान (25 प्रश्न)", "qBtnPhys": "⚛️ भौतिक विज्ञान (25 प्रश्न)", "qBtnEng": "📖 अंग्रेज़ी (25 प्रश्न)", "qDiffAll": "सभी (25)", "qDiffEasy": "🟢 सरल (8)", "qDiffMedium": "🟡 मध्यम (9)", "qDiffHard": "🔴 कठिन (8)", "qCorrectStat": "सही", "qWrongStat": "गलत", "qRemainingStat": "शेष", "qAccuracyStat": "सटीकता", "qRankStat": "शैक्षणिक स्तर", "qPrev": "← पिछला", "qNext": "अगला प्रश्न →", "qReset": "क्विज़ रीसेट करें", "aiSeqEyebrow": "अनुकूली एआई अनुशंसा इंजन", "aiSeqTitle": "व्यक्तिगत शिक्षण अनुक्रमक", "aiSeqDesc": "अभ्यास के बाद आगे क्या पढ़ना चाहिए, यह एआई आपकी सटीकता का विश्लेषण कर सर्वोत्तम विषय की अनुशंसा करता है।", "aiSeqStrengthsLbl": "प्रदर्शित शक्तियाँ:", "aiSeqGapsLbl": "महत्वपूर्ण कमियाँ:", "aiSeqNextLbl": "एआई अनुशंसित अगला विषय:", "aiSeqReasonLbl": "अनुशंसा का कारण:", "aiSeqBtnLaunch": "🚀 अनुशंसित गहन अध्ययन प्रारंभ करें", "aiSeqBtnRefresh": "🔄 अनुशंसाएं पुनर्मूल्यांकित करें", "mascotCheer": "शानदार! निरंतर प्रयास ही सफलता की कुंजी है! 🌟", "mascotDefaultSpeech": "नमस्ते! मैं स्टडीबॉट हूँ! आइए मिलकर नई अवधारणाएं सीखें! ✨", "inspectAxiomLabel": "मुख्य शैक्षणिक सिद्धांत एवं सूत्र", "inspectAppLabel": "वास्तविक दुनिया के इंजीनियरिंग अनुप्रयोग", "inspectMotivationLabel": "🌟 छात्रों के लिए प्रेरक विचार एवं संवाद", "practiceBtn": "🎯 विषय प्रश्नों का अभ्यास करें", "closeBtn": "विंडो बंद करें"}};
+  const MOTIVATION_QUOTES = {
+    en: ["Success in mathematics and science comes from daily consistency, not overnight luck.", "Every complex problem is simply a series of small, solvable challenges chained together.", "Like the derivative in calculus, even a small positive rate of change f'(x) > 0 leads to extraordinary heights over time.", "Mistakes are data points on the path to mastery; analyze them, adjust, and continue forward.", "Resonance makes benzene stable, and mental resilience makes you unbreakable in the face of academic obstacles.", "Faraday proved that dynamic flux induces electromotive force; step outside your comfort zone to generate your greatest energy.", "Discipline is the bridge between your academic goals and your ultimate accomplishments.", "Kinematic motion reminds us: continuous acceleration, however modest, overcomes any initial resting inertia.", "A square matrix remains invertible as long as its determinant is non-zero; never let your confidence collapse to zero.", "True intelligence is not just knowing facts, but mastering the courage to question, derive, and create.", "The mind is like an expandable octet: it can hold far more knowledge and capacity than you initially imagine.", "Small daily improvements are the compound interest of academic excellence.", "Energy can neither be created nor destroyed—the effort you invest in studying is always transformed into intellectual mastery.", "When equations seem chaotic, search for symmetry; when life feels demanding, rely on structured discipline.", "Your potential is an asymptote: with continuous striving, you approach perfection ever closer every single day.", "Euler's identity unites fundamental constants in harmony; unite your habits, focus, and curiosity for breakthrough results.", "Difficulties in study are not barriers; they are the friction that provides the traction to move forward.", "Just as covalent bonds share electrons for stability, collaborative learning elevates everyone involved.", "The steepest gradients often lead to the most breathtaking panoramic viewpoints; keep climbing.", "In both physics and life, applied force over distance equals real work accomplished; stay persistent.", "Every expert was once a novice who refused to quit when the derivations grew challenging.", "The Archimedes principle of learning: your intellectual buoyancy increases with every concept you immerse yourself in.", "Do not fear tough exam questions; they are invitations to demonstrate your deep analytical problem-solving.", "The second law of thermodynamics warns against entropy; create daily order through purposeful revision.", "Focus is a convex lens: when you concentrate scattered thoughts into a single focal point, you ignite unstoppable power.", "Like light traversing a prism, your unique spectrum of talents separates into brilliance when illuminated by curiosity.", "Momentum is mass times velocity; your accumulated study habits give you unstoppable academic momentum.", "In programming and mathematics, edge cases teach us the deepest truths about system architecture.", "A sonnet turns its argument at the volta; your study sessions can turn around any difficult subject with the right strategy.", "Doubt kills more dreams than failure ever will; trust your preparation and step boldly into each challenge.", "Like constructive interference in wave mechanics, combining varied study methods amplifies your cognitive recall.", "No reaction proceeds without activation energy; starting the first five minutes is often the secret to hours of flow.", "Your brain forms new synaptic pathways every time you struggle through a difficult derivation.", "Precision in vocabulary and grammar creates clarity in thinking, communication, and decision making.", "A true scholar embraces the unknown not with anxiety, but with eager, analytical fascination.", "Patience in solving quadratic roots reminds us that complex challenges sometimes yield two magnificent pathways forward.", "In chromatography, components separate through patience and steady mobile phase; steady progress reveals your true gifts.", "The Doppler effect shows that approaching a source shifts frequency higher; run toward your challenges to elevate your mind.", "Even the greatest supercomputers execute one instruction at a time; conquer your syllabus one concept at a time.", "When you feel like giving up, remember why you started this academic voyage.", "A diamond is simply carbon under immense pressure; embrace academic rigor to reveal your rarest brilliance.", "Curiosity is the spark, discipline is the fuel, and persistence is the engine of lifelong achievement.", "Do not compare your learning curve to others; your journey has its own unique wavelength and amplitude.", "Like a compass needle aligning with geomagnetic fields, align your daily priorities with your ultimate vision.", "The beauty of geometry is that from simple axioms arise endless majestic theorems; master your fundamentals first.", "Every formula you learn is a key unlocking another hidden dimension of how the universe operates.", "Rest is not wasted time; it is the biological refractory period required to consolidate neural learning.", "The difference between ordinary and extraordinary is that little extra effort you put into practice today.", "Knowledge is the one asset that multiplies when shared; explain what you learn to someone else to seal your mastery.", "You are capable of far more than your doubts whisper; believe in your mind, breathe deep, and conquer this test!"],
+    ta: ["கணிதத்திலும் அறிவியலிலும் வெற்றி என்பது தினசரி விடாமுயற்சியால் மட்டுமே சாத்தியம்.", "எவ்வளவு பெரிய சிக்கலான கணக்காக இருந்தாலும், அது எளிய படிகளின் தொடர்ச்சியே.", "நுண்கணிதத்தில் சிறிய வகைக்கெழு கூட காலப்போக்கில் மாபெரும் வளர்ச்சியை உருவாக்குகிறது.", "தவறுகள் என்பவை தோல்விகள் அல்ல, அவை உங்களை செதுக்கும் பாடங்கள்.", "பென்சீன் அதிர்வு மூலம் நிலைத்தன்மை பெறுவது போல, உங்கள் மன உறுதி உங்களை உறுதியாக்கும்.", "பாரடேயின் விதியைப் போல, மாற்றங்களை எதிர்கொள்ளும்போது மட்டுமே புதிய ஆற்றல் உருவாகும்.", "ஒழுக்கமும் திட்டமிடுதலும் உங்கள் கல்வி லட்சியங்களை சாதனைகளாக மாற்றும் பாலம்.", "இயக்கவியல் விதி கூறுவது போல, தொடர் முடுக்கம் எந்தவொரு தொடக்கத் தயக்கத்தையும் வெல்லும்.", "அணிக்கோவை பூஜ்யமாகாத வரை அணிக்கு மதிப்புண்டு; உங்கள் தன்னம்பிக்கையை இழக்காதீர்கள்.", "உண்மையான அறிவு என்பது மனப்பாடம் செய்வதில் இல்லை, சிந்தித்து செயலாற்றுவதில் உள்ளது.", "அறிவை விரிவுபடுத்திக்கொண்டே இருங்கள்; மனித மனதிற்கு எல்லைகளே கிடையாது.", "தினமும் செய்யும் சிறு சிறு முன்னேற்றங்களே நாளைய மாபெரும் சாதனைக்கு வித்திடும்.", "ஆற்றல் அழிவின்மை விதியைப் போல, உங்கள் கல்விக்கான உழைப்பு ஒருபோதும் வீணாகாது.", "சூழ்நிலைகள் கடினமாகும்போது சீரான ஒழுக்கத்தையும் அமைதியையும் பின்பற்றுங்கள்.", "விடாமுயற்சியோடு பயின்றால் எந்தவொரு கடினமான பாடமும் எளிதாக மாறும்.", "ஆய்லர் சமன்பாடு அழகியலை வெளிப்படுத்துவது போல, நல்ல பழக்கங்கள் உங்கள் வாழ்வை அழகாக்கும்.", "கல்வியில் வரும் சிரமங்கள் தடைகள் அல்ல, அவை உங்களை முன்னேற்றும் படிக்கட்டுகள்.", "சகப்பிணைப்பு எலக்ட்ரான்களைப் பகிர்வது போல, கூட்டுப் படிப்பு அனைவரையும் உயர்த்தும்.", "செங்குத்தான மலைப்பாதைகளே அழகான சிகரத்திற்கு அழைத்துச் செல்லும்; தொடர்ந்து முன்னேறுங்கள்.", "இயற்பியலில் விசை மற்றும் இடப்பெயர்ச்சியே வேலை; உங்கள் உழைப்பு நிச்சயம் பலன் தரும்.", "இன்று வல்லுநராக இருப்பவர்கள் அனைவரும் ஒரு காலத்தில் கடினமான நிலைகளைக் கடந்தவர்களே.", "ஆர்க்கிமிடீஸ் தத்துவத்தைப் போல, நீங்கள் கற்கும் ஒவ்வொரு கருத்தும் உங்கள் அறிவை உயர்த்தும்.", "கடினமான வினாக்களுக்கு அஞ்சாதீர்கள்; அவை உங்கள் அறிவை வெளிப்படுத்தும் வாய்ப்புகள்.", "வெப்ப இயக்கவியல் விதி கூறுவது போல, தினசரி மீள்பார்வை சிந்தனையைத் தெளிவாக்கும்.", "குவிந்த லென்ஸைப் போல, உங்கள் கவனத்தை ஒருமுகப்படுத்தினால் ஆற்றல் பெருகும்.", "முப்பட்டகத்தில் ஒளிரும் வண்ணங்களைப் போல, உங்கள் திறமைகள் பிரகாசிக்கட்டும்.", "உந்தம் நிறை மற்றும் திசைவேகத்தைச் சார்ந்தது; உங்கள் தொடர் பயிற்சி உங்களை வெல்லமுடியாதவராக்கும்.", "சிக்கலான கணிதக் கோட்பாடுகளே ஆழ்ந்த தத்துவங்களை நமக்குக் கற்பிக்கின்றன.", "கவிதையின் இறுதி திருப்பம் போல, சரியான உத்தி எந்தவொரு தோல்வியையும் வெற்றியாக்கும்.", "சந்தேகம் கனவுகளை அழித்துவிடும்; உங்கள் தயாரிப்பை நம்பி தைரியமாக தேர்வு எழுதுங்கள்.", "அலைகளின் குறுக்கீட்டு விளைவு போல, பல வழிகளில் கற்பது நினைவாற்றலை பலப்படுத்தும்.", "கிளர்வுறு ஆற்றல் இல்லாமல் வேதிவினை நிகழாது; முதல் ஐந்து நிமிட முயற்சியே முக்கியம்.", "கடினமான கணக்குகளைத் தீர்க்கும்போது உங்கள் மூளையின் நரம்பு இணைப்புகள் பலமடைகின்றன.", "இலக்கணத் துல்லியம் உங்கள் சிந்தனையிலும் தொடர்பாடலிலும் தெளிவை உண்டாக்கும்.", "உண்மையான அறிஞர் அறியாதவற்றைக் கண்டு அஞ்சுவதில்லை, ஆர்வத்தோடு கற்கிறார்.", "இருபடிச் சமன்பாடுகள் இரண்டு தீர்வுகளைத் தருவது போல, சவால்களுக்கு பல தீர்வுகள் உண்டு.", "வண்ணப்பிரிகை முறையில் படிப்படியாக பொருட்கள் பிரிவது போல, சீரான உழைப்பு திறனை வெளிப்படுத்தும்.", "டாப்ளர் விளைவு போல, சவால்களை நோக்கி முன்னேறும்போது உங்கள் மதிப்பு உயரும்.", "சூப்பர் கணினிகள் கூட ஒரு நேரத்தில் ஒரு கட்டளையையே செய்கின்றன; பாடங்களை ஒவ்வொன்றாக படியுங்கள்.", "மனம் தளரும்போது, நீங்கள் ஏன் இந்தக் கல்வியைத் தொடங்கினீர்கள் என்பதை நினைத்துப் பாருங்கள்.", "அதிக அழுத்தத்திற்கு உட்படும் கார்பனே வைரமாகிறது; கடின உழைப்பே உங்களை ஒளிரச் செய்யும்.", "ஆர்வம் தொடக்கம், ஒழுக்கம் எரிபொருள், விடாமுயற்சி உங்கள் வெற்றிப் பயணத்தின் இயந்திரம்.", "உங்களை மற்றவர்களுடன் ஒப்பிடாதீர்கள்; உங்கள் கற்றல் பயணம் தனித்துவமானது.", "காந்த ஊசி திசையைக் காட்டுவது போல, உங்கள் இலக்கை நோக்கி தினசரி பணிகளை அமைத்துக் கொள்ளுங்கள்.", "எளிய விதிகளிலிருந்து மாபெரும் தேற்றங்கள் உருவாவது போல, அடிப்படைகளை நன்கு கற்பது அவசியம்.", "ஒவ்வொரு சூத்திரமும் உலகத்தை ஆளும் அறிவியல் ரகசியங்களைத் திறக்கும் திறவுகோல்.", "முறையான ஓய்வு என்பது நேர விரயம் அல்ல; அது மூளையின் கற்றலை உறுதிப்படுத்தும் மறுவாழ்வு.", "சாதாரணத்திற்கும் அசாதாரணத்திற்கும் உள்ள ஒரே வித்தியாசம் நீங்கள் கொடுக்கும் கூடுதல் உழைப்பு.", "அறிவு என்பது பகிரும்போது பெருகும் செல்வம்; மற்றவர்களுக்குக் கற்பித்து உங்கள் அறிவை வளருங்கள்.", "உங்கள் சந்தேகங்களை விட உங்கள் ஆற்றல் மிகப்பெரியது; உங்களை நம்புங்கள், வெற்றி பெறுங்கள்!"],
+    hi: ["गणित और विज्ञान में सफलता रातों-रात नहीं, दैनिक निरंतरता और समर्पण से मिलती है।", "हर कठिन समस्या वास्तव में छोटी, हल करने योग्य चुनौतियों की एक श्रृंखला है।", "अवकलन की तरह, छोटा सकारात्मक परिवर्तन f'(x) > 0 भी समय के साथ शिखर तक पहुँचाता है।", "गलतियाँ असफलता नहीं हैं, बल्कि वे सीखने और निपुण बनने के महत्वपूर्ण अवसर हैं।", "बेंजीन की अनुनाद स्थिरता की तरह, आपका मानसिक धैर्य आपको हर संकट में स्थिर रखेगा।", "फैराडे के नियम की तरह, परिवर्तन को अपनाने पर ही जीवन में नई ऊर्जा का संचार होता है।", "अनुशासन ही आपके शैक्षणिक लक्ष्यों और वास्तविक उपलब्धियों के बीच का सेतु है।", "गतिकी का नियम सिखाता है: निरंतर त्वरण किसी भी प्रारंभिक जड़त्व को पार कर लेता है।", "आव्यूह तब तक व्युत्क्रमणीय है जब तक सारणिक शून्य न हो; अपना आत्मविश्वास कभी न खोएं।", "सच्ची बुद्धिमत्ता केवल तथ्यों को रटने में नहीं, बल्कि तर्क करने और समझने में है।", "अपने ज्ञान का विस्तार करते रहें; मानव मस्तिष्क की सीखने की क्षमता असीम है।", "प्रतिदिन किया गया छोटा सुधार भविष्य में बड़ी शैक्षणिक सफलता की नींव रखता है।", "ऊर्जा संरक्षण के नियम की तरह, आपकी पढ़ाई में की गई मेहनत कभी व्यर्थ नहीं जाती।", "जब समीकरण कठिन लगें तो समरूपता खोजें; जब जीवन चुनौतीपूर्ण हो तो अनुशासन अपनाएं।", "कठिन परिश्रम और धैर्य से अध्ययन करने पर हर जटिल विषय सरल बन जाता है।", "आयलर का सूत्र जिस प्रकार सुंदरता दर्शाता है, वैसे ही अच्छी आदतें जीवन को संवारती हैं।", "पढ़ाई में आने वाली कठिनाइयाँ रुकावटें नहीं, बल्कि आगे बढ़ने की सीढ़ियाँ हैं।", "सहसंयोजक बंध में इलेक्ट्रॉनों के साझाकरण की तरह, मिलकर पढ़ने से सभी आगे बढ़ते हैं।", "कठिन और खड़ी चढ़ाई ही सबसे खूबसूरत दृश्य की ओर ले जाती है; आगे बढ़ते रहें।", "भौतिकी में बल और विस्थापन ही कार्य है; आपका निरंतर प्रयास अवश्य रंग लाएगा।", "आज के विशेषज्ञ भी कभी शुरुआती थे जिन्होंने कठिन परिस्थितियों में हार नहीं मानी।", "आर्किमिडीज सिद्धांत की तरह, हर नई अवधारणा आपके ज्ञान के स्तर को ऊपर उठाती है।", "कठिन प्रश्नों से कभी न डरें; वे आपकी विश्लेषणात्मक क्षमता दिखाने का अवसर हैं।", "ऊष्मागतिकी के नियम की तरह, नियमित पुनरावृत्ति मन में स्पष्टता और क्रम लाती है।", "उत्तल लेंस की तरह, जब आप अपने ध्यान को केंद्रित करते हैं, तो अद्भुत ऊर्जा उत्पन्न होती है।", "प्रिज्म से गुजरने वाले प्रकाश की तरह, आपकी प्रतिभा भी जिज्ञासा से निखरती है।", "संवेग द्रव्यमान और वेग का गुणनफल है; आपकी नियमित अध्ययन की आदतें आपको अजेय बनाती हैं।", "जटिल गणितीय सिद्धांत हमें जीवन के गहरे सत्यों और वास्तुकला को समझना सिखाते हैं।", "काव्य के अंतिम मोड़ की तरह, सही रणनीति किसी भी कठिन परीक्षा का रुख बदल सकती है।", "संदेह सपनों को खत्म कर देता है; अपनी तैयारी पर भरोसा रखें और निडर होकर आगे बढ़ें।", "तरंगों के रचनात्मक व्यतिकरण की तरह, विभिन्न तरीकों से सीखना स्मृति को मजबूत करता है।", "सक्रियण ऊर्जा के बिना रासायनिक क्रिया नहीं होती; पहले 5 मिनट का प्रयास ही प्रवाह लाता है।", "कठिन गणितीय व्युत्पत्ति को हल करने से आपके मस्तिष्क के न्यूरॉन्स मजबूत होते हैं।", "व्याकरण और भाषा की सटीकता आपके विचारों और संचार में स्पष्टता लाती है।", "सच्चा विद्यार्थी अज्ञात से डरता नहीं, बल्कि उत्सुकता और लगन से सीखता है।", "द्विघात समीकरण के दो हलों की तरह, जीवन की समस्याओं के भी कई समाधान होते हैं।", "वर्णलेखन की तरह, धैर्यपूर्वक किया गया सतत प्रयास आपकी वास्तविक क्षमताओं को प्रकट करता है।", "डॉप्लर प्रभाव की तरह, चुनौतियों की ओर दौड़ने से आपका आत्मविश्वास और ज्ञान बढ़ता है।", "सुपरकंप्यूटर भी एक समय में एक निर्देश पूरा करता है; पाठ्यक्रम को एक-एक कदम में जीतें।", "जब मन निराश होने लगे, तो याद करें कि आपने यह यात्रा क्यों शुरू की थी।", "अत्यधिक दबाव में ही कोयला हीरा बनता है; शैक्षणिक तपस्या ही आपको चमकाएगी।", "जिज्ञासा चिंगारी है, अनुशासन ईंधन है, और दृढ़ता आपकी सफलता का इंजन है।", "अपनी तुलना दूसरों से न करें; आपकी सीखने की यात्रा अद्वितीय और विशेष है।", "चुंबकीय सुई की तरह, अपनी दैनिक प्राथमिकताओं को अपने अंतिम लक्ष्य के अनुरूप रखें।", "सरल नियमों से ही महान प्रमेय बनते हैं; हमेशा अपने मूल सिद्धांतों को मजबूत रखें।", "प्रत्येक वैज्ञानिक सूत्र प्रकृति के गहरे रहस्यों को खोलने की एक सुनहरी कुंजी है।", "उचित विश्राम समय की बर्बादी नहीं, बल्कि सीखी गई बातों को मस्तिष्क में स्थिर करने का समय है।", "साधारण और असाधारण के बीच का अंतर केवल आज का थोड़ा सा अतिरिक्त प्रयास है।", "ज्ञान वह अनमोल धन है जो बांटने से बढ़ता है; दूसरों को सिखाकर अपनी पकड़ मजबूत करें।", "आपकी क्षमता आपके संदेहों से कहीं अधिक विशाल है; खुद पर विश्वास रखें और विजय प्राप्त करें!"]
+  };
+
   const CONCEPT_DEEP_DATA = {"Limits & Continuity": {"subject": "Mathematics", "category": "Calculus", "axiom": "A limit L = lim (x → c) f(x) exists if and only if for every ε > 0 there exists δ > 0 such that 0 < |x - c| < δ implies |f(x) - L| < ε. Indeterminate forms 0/0 and ∞/∞ are evaluated via Cauchy's Mean Value Theorem yielding L'Hôpital's Rule: lim [f(x)/g(x)] = lim [f'(x)/g'(x)].", "application": "Aerospace trajectories, electrical signal convergence, and neural network gradient clipping rely on limits to prevent numerical singularity explosions.", "motivationEN": "🔥 'Never limit your challenges; challenge your limits! Calculus proves that as you approach your goals with infinitesimal consistency, you reach the summit of mastery!'", "motivationTA": "🌟 'விடாமுயற்சியே வெற்றியின் எல்லை! சிறிய தொடர் முயற்சிகளே மாபெரும் சாதனைகளை உருவாக்குகின்றன. நம்பிக்கையோடு முன்னேறு!'", "motivationHI": "🚀 'अपनी सीमाओं को कभी सीमित मत समझो; सीमाओं को चुनौती दो! निरंतर अभ्यास ही असंभव को संभव बनाता है!'"}, "Derivatives & Rates": {"subject": "Mathematics", "category": "Calculus", "axiom": "The derivative f'(x) = lim (h → 0) [f(x+h) - f(x)] / h defines the instantaneous tangent slope and instantaneous rate of change. It is the foundation of differential geometry and optimization.", "application": "Autonomous vehicle velocity tracking, algorithmic financial volatility modeling, and rocket thrust vectoring.", "motivationEN": "✨ 'Your growth rate matters more than where you start! Even a tiny positive derivative f'(x) > 0 sustained over time lifts you to astronomical heights!'", "motivationTA": "💡 'நீ எங்கு தொடங்கினாய் என்பது முக்கியமல்ல, உன் முன்னேற்றத்தின் வேகம் என்ன என்பதே முக்கியம்! உழைப்பைத் தொடர்!'", "motivationHI": "🎯 'शुरुआत कहाँ से हुई यह महत्वपूर्ण नहीं है, आपकी सीखने की गति महत्वपूर्ण है। हर दिन बेहतर बनो!'"}, "Differentiation Rules": {"subject": "Mathematics", "category": "Calculus", "axiom": "Operational rules govern combinations: Power Rule d/dx[x^n] = n x^(n-1); Product Rule d(uv) = u'v + uv'; Quotient Rule d(u/v) = (u'v - uv') / v^2; Chain Rule d/dx[f(g(x))] = f'(g(x)) * g'(x).", "application": "Backpropagation in deep learning neural networks calculates weights layer-by-layer via systematic nested chain rule expansions.", "motivationEN": "💎 'Complex challenges are just simple rules chained together! Break down massive problems into small derivatives, and conquer them step by step!'", "motivationTA": "🔥 'பெரிய சவால்கள் என்பவை சிறிய விதிகளின் தொகுப்பே! ஒவ்வொன்றாக தீர்த்து வெற்றியை அடை!'", "motivationHI": "🌟 'कठिन समस्याएं भी सरल नियमों से सुलझती हैं। बड़े लक्ष्यों को छोटे चरणों में विभाजित करें और जीतें!'"}, "Optimization & Extrema": {"subject": "Mathematics", "category": "Calculus", "axiom": "Critical points occur where f'(x) = 0 or f'(x) is undefined. By the Second Derivative Test: f''(c) < 0 establishes a strict local maximum; f''(c) > 0 establishes a local minimum.", "application": "Structural bridge weight minimization, industrial logistics routing, and chemical reactor yield maximization.", "motivationEN": "🏆 'To reach the global maximum of your potential, you must push through valleys of effort. Keep optimizing your mind daily!'", "motivationTA": "🌈 'உன் திறமையின் உச்சத்தை அடைய கடின உழைப்பின் பாதையைக் கடக்க வேண்டும். தினமும் உன்னை நீயே மேம்படுத்து!'", "motivationHI": "✨ 'अपनी क्षमता के शिखर तक पहुँचने के लिए निरंतर परिश्रम जरूरी है। खुद को हर दिन बेहतर बनाएं!'"}, "Matrix Operations": {"subject": "Mathematics", "category": "Matrices", "axiom": "Matrix multiplication C = AB is defined by row-by-column inner products C_ij = ∑ A_ik B_kj. It is associative A(BC) = (AB)C and distributive, but strictly non-commutative in general: AB ≠ BA.", "application": "3D computer graphics rendering pipelines, robotic arm kinematic transforms, and quantum state linear operators.", "motivationEN": "🌟 'Like matrix transformations warping space, disciplined knowledge reshapes your destiny and opens multidimensional opportunities!'", "motivationTA": "⚡ 'முறையான அறிவும் பயிற்சியும் உன் வாழ்வை அடுத்த தளத்திற்கு கொண்டு செல்லும்! புதிய திறன்களைக் கற்றுக்கொள்!'", "motivationHI": "🚀 'अनुशासन और ज्ञान आपके जीवन को एक नई दिशा और आयाम देते हैं। सदैव सीखते रहें!'"}, "Determinants": {"subject": "Mathematics", "category": "Matrices", "axiom": "For 2x2 matrix [[a,b],[c,d]], det = ad - bc. Geometrically, det(M) represents the oriented signed volume scaling factor of unit space under linear transformation M.", "application": "Jacobian matrix determinants govern coordinate transformations in multi-variable thermodynamics and aerodynamic finite-element analysis.", "motivationEN": "🎯 'A non-zero determinant means your space never collapses! Stay non-singular, resilient, and unbreakable!'", "motivationTA": "💎 'எந்த சூழ்நிலையிலும் மனம் தளராதே! உன் உறுதி உன்னை எப்போதும் தலைநிமிர்ந்து நிற்க வைக்கும்!'", "motivationHI": "🔥 'मुश्किलों के आगे कभी मत झुकें। आपका दृढ़ संकल्प आपको हर परिस्थिति में मजबूत बनाए रखेगा!'"}, "Inverses & Singularity": {"subject": "Mathematics", "category": "Matrices", "axiom": "A square matrix possesses inverse A^(-1) = adj(A) / det(A) if and only if det(A) ≠ 0. If det(A) = 0, the transformation collapses dimensions and has no inverse.", "application": "Cryptography encryption key inversion, electrical grid nodal admittance inversion, and GPS satellite trilateration.", "motivationEN": "✨ 'Every mistake can be inverted into wisdom! As long as your will is non-zero, there is always a mathematical pathway forward!'", "motivationTA": "🌟 'ஒவ்வொரு தவறும் ஒரு சிறந்த பாடம்! நம்பிக்கை இருக்கும் வரை வெற்றிக்கு எப்போதும் ஒரு வழி உண்டு!'", "motivationHI": "💡 'हर गलती सीखने का अवसर है। जब तक आपका आत्मविश्वास अटूट है, सफलता का मार्ग हमेशा खुला रहता है!'"}, "Linear Systems": {"subject": "Mathematics", "category": "Matrices", "axiom": "Linear systems Ax = b are solved systematically via Gaussian elimination, LU decomposition, or Cramer's Rule x_i = det(A_i) / det(A).", "application": "Macroeconomic equilibrium forecasting, civil engineering truss load distributions, and telecommunications signal filtering.", "motivationEN": "🔥 'When equations balance, clarity reigns! Align your daily habits with your aspirations, and success becomes a mathematical certainty!'", "motivationTA": "🚀 'உன் தினசரி பழக்கங்களை உன் கனவுகளோடு இணைத்தால் வெற்றி என்பது உறுதியாகும்! தீர்க்கமாக செயலாற்று!'", "motivationHI": "🎯 'जब आपके प्रयास आपके सपनों के अनुरूप होते हैं, तो सफलता निश्चित हो जाती है। पूरे मन से प्रयास करें!'"}, "Aliphatic Hydrocarbons": {"subject": "Chemistry", "category": "Organic Chemistry", "axiom": "Alkanes (CnH2n+2) feature single σ C-C bonds; Alkenes (CnH2n) contain reactive π bonds; Alkynes (CnH2n-2) have linear triple bonds with sp carbon centers.", "application": "Petroleum refining, polymer synthesis (polyethylene, polypropylene), and high-efficiency hydrocarbon biofuels.", "motivationEN": "🌟 'Like strong covalent bonds, build enduring habits and genuine friendships that never break under heat!'", "motivationTA": "💎 'வலுவான சகப்பிணைப்பைப் போல, உன் நல்ல பழக்கங்களையும் விடாமுயற்சியையும் உறுதியாக உருவாக்கிக்கொள்!'", "motivationHI": "🔥 'मजबूत सहसंयोजक बंधों की तरह अपनी अच्छी आदतों को कभी टूटने न दें। निरंतर प्रयासरत रहें!'"}, "Bond Hybridization": {"subject": "Chemistry", "category": "Organic Chemistry", "axiom": "Linear combination of atomic orbitals produces hybrid sets: sp3 (109.5° tetrahedral), sp2 (120° trigonal planar), and sp (180° linear), dictating molecular shape.", "application": "Pharmaceutical drug receptor docking design, semiconductor graphene sheets, and carbon nanotube aerospace composites.", "motivationEN": "✨ 'Adaptability is your greatest catalyst! Hybridize your skills across disciplines to create unique, indestructible value!'", "motivationTA": "🌈 'சூழ்நிலைக்கு ஏற்ப தகவமைத்துக் கொள்வதே புத்திசாலித்தனம்! பல துறைகளின் அறிவை இணைத்து சாதி!'", "motivationHI": "🚀 'विभिन्न कौशलों को मिलाकर खुद को बहुमुखी बनाएं। अनुकूलनशीलता ही सफलता की सबसे बड़ी कुंजी है!'"}, "Aromatic Systems": {"subject": "Chemistry", "category": "Organic Chemistry", "axiom": "Planar cyclic conjugated systems containing (4n+2) π-electrons gain exceptional thermodynamic resonance energy (~152 kJ/mol in benzene), resisting addition and favoring substitution.", "application": "Aromatic polymers (Kevlar body armor), advanced dyes, optical organic LEDs, and lifesaving antibiotics.", "motivationEN": "🏆 'Resonance makes benzene unbreakable! Develop mental resilience so that life's challenges distribute harmlessly across your inner peace!'", "motivationTA": "⚡ 'பென்சீனைப் போல மன உறுதியோடு இரு! துன்பங்களை பகிர்ந்தளித்து உள் அமைதியைக் காத்து சாதி!'", "motivationHI": "💎 'बेंजीन की तरह अटूट और स्थिर बनें। विपरीत परिस्थितियों में भी अपना धैर्य और संतुलन बनाए रखें!'"}, "Functional Families": {"subject": "Chemistry", "category": "Organic Chemistry", "axiom": "Specific atomic groupings dictate chemical reactivity: Alcohols (-OH), Carboxylic Acids (-COOH), Aldehydes (-CHO), Esters (-COOR), and Amines (-NH2).", "application": "Synthetic fragrance synthesis, targeted oncology chemotherapy, and biodegradable polymer plastics.", "motivationEN": "💡 'A single functional group changes a molecule's destiny! A single positive habit can transform your entire life!'", "motivationTA": "🎯 'ஒரு சிறிய வேதித் தொகுதி ஒரு மூலக்கூறின் தன்மையையே மாற்றிவிடும்! ஒரு நல்ல பழக்கம் உன் வாழ்க்கையையே மாற்றும்!'", "motivationHI": "🌟 'एक छोटी सी अच्छी आदत आपके पूरे जीवन को बदल सकती है। सकारात्मक बदलाव लाएं!'"}, "Periodic Trends": {"subject": "Chemistry", "category": "Inorganic Chemistry", "axiom": "Nuclear charge (Z_eff) increases across periods, pulling valence electrons tighter (increasing electronegativity and ionization energy, decreasing atomic radius). Group descent adds shells.", "application": "Solid-state semiconductor doping (silicon-germanium), lithium-ion battery cathode selection, and catalytic alloy synthesis.", "motivationEN": "🔥 'Every element has its unique period and group! You have your unique timeline—embrace your journey and shine brightly!'", "motivationTA": "✨ 'ஒவ்வொரு தனிமத்திற்கும் ஒரு தனித்துவம் உண்டு! உனக்கும் ஒரு தனிப் பாதை உண்டு—தன்னம்பிக்கையோடு முன்னேறு!'", "motivationHI": "🚀 'हर तत्व का अपना स्थान और महत्व होता है। अपनी अनूठी प्रतिभा को पहचानें और आगे बढ़ें!'"}, "Kinematic Equations": {"subject": "Physics", "category": "Mechanics", "axiom": "Under constant acceleration: v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as. These equations seamlessly bridge differential calculus and physical displacement.", "application": "High-speed maglev train braking curves, planetary lander descent computers, and roller-coaster loop safety dynamics.", "motivationEN": "🚀 'Even with modest initial velocity u, consistent acceleration a over time t propels you to extraordinary heights! Keep accelerating!'", "motivationTA": "🌟 'தொடக்க வேகம் குறைவாக இருந்தாலும், தொடர் முடுக்கம் உன்னை உச்சத்திற்கு கொண்டு செல்லும்! முன்னேறிக்கொண்டே இரு!'", "motivationHI": "🎯 'निरंतर प्रयास और गति आपको हर मंजिल तक पहुँचाएगी। अपनी गति बनाए रखें और बढ़ते रहें!'"}, "Faraday's Induction Law": {"subject": "Physics", "category": "Electromagnetism", "axiom": "EMF = -N (dΦ_B / dt). A changing magnetic flux through a conductor induces an electromotive force. Lenz's law dictates that the induced current opposes the flux variation.", "application": "Hydroelectric power generators, wind turbine alternators, wireless inductive smartphone charging, and MRI medical scanners.", "motivationEN": "⚡ 'Dynamic change induces electric power! Step out of your comfort zone, embrace change, and illuminate the world!'", "motivationTA": "🔥 'மாற்றங்களே மகத்தான ஆற்றலை உருவாக்குகின்றன! உன் வசதியான சூழலை விட்டு வெளியேறி பிரகாசி!'", "motivationHI": "🌟 'परिवर्तन ही ऊर्जा का स्रोत है। नई चुनौतियों को स्वीकार करें और दुनिया को अपनी क्षमता दिखाएं!'"}, "Sonnet Structural Forms": {"subject": "English", "category": "Literature", "axiom": "14 lines in Iambic Pentameter. Shakespearean: 3 quatrains + rhyming couplet (ABAB CDCD EFEF GG); Petrarchan: octave + sestet (ABBAABBA CDECDE) with the Volta turning argument.", "application": "Classical lyric scansion, modern rhetorical speechwriting, high-impact branding copy, and cadence engineering.", "motivationEN": "📖 'Structure unleashes creative power! Discipline is not a limitation—it is the poetic framework that transforms thoughts into masterpieces!'", "motivationTA": "✨ 'ஒழுக்கமும் கட்டமைப்பும் உன் திறமைக்கு எல்லைகள் அல்ல—அவை உன் எண்ணங்களை காவியமாக மாற்றும் கருவிகள்!'", "motivationHI": "💎 'अनुशासन आपकी स्वतंत्रता को सीमित नहीं करता, बल्कि आपकी प्रतिभा को निखार कर उत्कृष्ट बनाता है!'"}};
   const TOPIC_BREAKDOWN_DATA = {"math": {"icon": "📐", "title": {"en": "Mathematics Deep Breakdown", "ta": "கணிதம் ஆழமான கோட்பாட்டு விளக்கம்", "hi": "गणित गहन सैद्धांतिक विश्लेषण"}, "badge": {"en": "Module 01 • Rigorous Calculus & Linear Algebra", "ta": "பிரிவு 01 • நுண்கணிதம் & நேரியல் இயற்கணிதம்", "hi": "मॉड्यूल 01 • कलन एवं रैखिक बीजगणित"}, "theory": {"en": "Formalized via Cauchy-Weierstrass limits, differential calculus studies instantaneous rates of change f'(x) = lim(h→0)[(f(x+h)-f(x))/h]. Indeterminate forms 0/0 are solved via L'Hôpital's Rule. In linear algebra, square matrices A map dimensional spaces, where invertibility A^(-1) = adj(A)/det(A) is guaranteed if and only if det(A) ≠ 0.", "ta": "கௌச்சி-வியர்ஸ்ட்ராஸ் எல்லைகளின் அடிப்படையில் நுண்கணிதம் கணநேர மாற்ற விகிதத்தை விவரிக்கிறது: f'(x) = lim(h→0)[(f(x+h)-f(x))/h]. 0/0 போன்ற தீர்மானிக்க முடியாத வடிவங்கள் எல்'ஹாபிடல் விதி மூலம் தீர்க்கப்படுகின்றன. அணிகளில் det(A) ≠ 0 ஆக இருக்கும்போது மட்டுமே நேர்மாறு அணி A^(-1) சாத்தியமாகும்.", "hi": "कौशी-वीयरस्ट्रास सीमाओं के माध्यम से विभेदक कलन तात्कालिक परिवर्तन दर f'(x) = lim(h→0)[(f(x+h)-f(x))/h] का अध्ययन करता है। अनिश्चित रूप 0/0 को ल'हॉस्पिटल नियम से हल किया जाता है। आव्यूह में det(A) ≠ 0 होने पर ही व्युत्क्रम A^(-1) अस्तित्व में होता है।"}, "formulas": "f'(x) = lim(h→0) [f(x+h)-f(x)]/h | Power: d/dx[xⁿ] = n·xⁿ⁻¹ | Chain: d/dx[f(g(x))] = f'(g(x))·g'(x) | Inverse: A⁻¹ = adj(A)/det(A)", "app": {"en": "Deep neural network backpropagation relies completely on the multi-variable chain rule to adjust synaptic weights. Determinants and matrix eigenvalues govern 3D computer graphics transformations, quantum linear states, and aerospace trajectory mechanics.", "ta": "செயற்கை நுண்ணறிவு நியூரல் நெட்வொர்க்குகளில் எடைகளை சரிசெய்ய சங்கிலி விதி பயன்படுகிறது. 3D கணினி கிராபிக்ஸ், விண்வெளி பாதைகள் மற்றும் குவாண்டம் அமைப்புகளை இயக்க அணிக்கோவைகள் இன்றியமையாதவை.", "hi": "डीप न्यूरल नेटवर्क बैकप्रॉपैगैशन भार को समायोजित करने के लिए श्रृंखला नियम पर निर्भर करता है। 3D कंप्यूटर ग्राफिक्स, अंतरिक्ष उड़ान पथ और क्वांटम सिस्टम आव्यूह बीजगणित पर संचालित होते हैं।"}, "motivation": {"en": "🔥 'Never limit your challenges; challenge your limits! Calculus proves that infinitesimal steps taken with daily consistency integrate into monumental mastery!'", "ta": "🌟 'விடாமுயற்சியே வெற்றியின் எல்லை! சிறிய தொடர் முயற்சிகளே மாபெரும் சாதனைகளை உருவாக்குகின்றன. நம்பிக்கையோடு முன்னேறு!'", "hi": "🚀 'अपनी सीमाओं को कभी सीमित मत समझो; सीमाओं को चुनौती दो! निरंतर अभ्यास ही असंभव को संभव बनाता है!'"}}, "chem": {"icon": "🧪", "title": {"en": "Chemistry Deep Breakdown", "ta": "வேதியியல் ஆழமான கோட்பாட்டு விளக்கம்", "hi": "रसायन विज्ञान गहन सैद्धांतिक विश्लेषण"}, "badge": {"en": "Module 02 • Organic Mechanisms & Periodic Trends", "ta": "பிரிவு 02 • கரிம வழிமுறைகள் & தனிம வரிசை பண்புகள்", "hi": "मॉड्यूल 02 • कार्बनिक क्रियाविधि एवं आवर्त प्रवृत्तियां"}, "theory": {"en": "Orbital hybridization blends s and p atomic wavefunctions into sp³ (109.5° tetrahedral), sp² (120° trigonal planar), and sp (180° linear) sets. Aromatic stability follows Hückel's (4n+2) π-electron rule yielding extraordinary resonance energy (~152 kJ/mol in benzene). Periodic trends dictate that effective nuclear charge Z_eff increases left-to-right, contracting atomic radii and raising ionization energies.", "ta": "ஆர்பிட்டால் கலப்பினமாக்கல் s மற்றும் p அலைவரிசைகளை sp³ (109.5° நான்முகி), sp² (120° தள முக்கோணம்), மற்றும் sp (180° நேர்கோடு) அமைப்புகளாக இணைக்கிறது. ஹக்கல் விதியின்படி (4n+2) π எலக்ட்ரான்கள் கொண்ட பென்சீன் (~152 kJ/mol) அசாதாரண அதிர்வு நிலைத்தன்மையைப் பெறுகிறது.", "hi": "कक्षक संकरण s और p परमाणु कक्षकों को sp³ (109.5° चतुष्फलकीय), sp² (120° त्रिकोणीय समतल) और sp (180° रेखीय) में मिश्रित करता है। हकल नियम (4n+2) π-इलेक्ट्रॉनों के साथ बेंजीन को अत्यधिक अनुनाद स्थिरता (~152 kJ/mol) प्रदान करता है।"}, "formulas": "Hybrid: sp³ (109.5°), sp² (120°), sp (180°) | Hückel: (4n+2) π electrons | Z_eff = Z - S | Alkane: CₙH₂ₙ₊₂ | Alkene: CₙH₂ₙ", "app": {"en": "Targeted drug design utilizes hybridization angles for precise receptor lock-and-key docking. Aromatic resonance underpins Kevlar body armor, carbon fiber composites, and organic solar cell polymers.", "ta": "மருந்து கண்டுபிடிப்பில் மூலக்கூறுகள் துல்லியமாக இணைவதற்கு கலப்பினமாக்கல் கோணங்கள் பயன்படுகின்றன. கெவ்லர் கவச உடைகள் மற்றும் கார்பன் இழை பொருட்களுக்கு பென்சீன் அதிர்வு நிலைத்தன்மை ஆதாரமாகும்.", "hi": "लक्षित दवा निर्माण में संकरण कोणों का उपयोग सटीक रिसेप्टर लॉकिंग के लिए किया जाता है। केवलर बुलेटप्रूफ जैकेट और कार्बन फाइबर में सुगंधित अनुनाद का उपयोग होता है।"}, "motivation": {"en": "💎 'Resonance makes benzene unbreakable! Develop mental resilience so that life's challenges distribute harmlessly across your inner peace!'", "ta": "⚡ 'பென்சீனைப் போல மன உறுதியோடு இரு! துன்பங்களை பகிர்ந்தளித்து உள் அமைதியைக் காத்து சாதி!'", "hi": "🌟 'बेंजीन की तरह अटूट और स्थिर बनें। विपरीत परिस्थितियों में भी अपना धैर्य और संतुलन बनाए रखें!'"}}, "phys": {"icon": "⚛️", "title": {"en": "Physics Deep Breakdown", "ta": "இயற்பியல் ஆழமான கோட்பாட்டு விளக்கம்", "hi": "भौतिक विज्ञान गहन सैद्धांतिक विश्लेषण"}, "badge": {"en": "Module 03 • Classical Mechanics & Electromagnetism", "ta": "பிரிவு 03 • செவ்வியல் இயக்கவியல் & மின்காந்தவியல்", "hi": "मॉड्यूल 03 • चिरसम्मत यांत्रिकी एवं विद्युत चुंबकत्व"}, "theory": {"en": "Constant acceleration mechanics are governed by kinematic equations v = u + at, s = ut + 0.5at², and v² = u² + 2as. In electromagnetism, Faraday's Law dictates that an electromotive force (EMF) is induced by changing magnetic flux: EMF = -N(dΦ_B/dt). Lenz's Law ensures energy conservation: induced currents oppose the change creating them.", "ta": "மாறா முடுக்கத்தின் இயக்க சமன்பாடுகள் v = u + at, s = ut + 0.5at², மற்றும் v² = u² + 2as ஆகும். மின்காந்தவியலில் காந்தப்பாய மாற்றத்தால் மின்னியக்கு விசை தூண்டப்படுகிறது: EMF = -N(dΦ_B/dt). லென்ஸ் விதி ஆற்றல் மாறா கோட்பாட்டை உறுதிசெய்கிறது.", "hi": "एकसमान त्वरण की गतिकी समीकरणें v = u + at, s = ut + 0.5at², तथा v² = u² + 2as हैं। विद्युत चुंबकत्व में फैराडे का नियम बदलती चुंबकीय फ्लक्स द्वारा प्रेरित विद्युत वाहक बल को परिभाषित करता है: EMF = -N(dΦ_B/dt)।"}, "formulas": "v = u + at | s = ut + ½at² | v² = u² + 2as | Faraday: EMF = -N(dΦ_B/dt) | Flux: Φ_B = B·A·cos(θ)", "app": {"en": "Kinematics guides autonomous high-speed bullet train regenerative braking and satellite re-entry retro-rockets. Faraday's induction powers modern hydroelectric generators, wind turbines, and wireless electric vehicle chargers.", "ta": "அதிவேக புல்லட் ரயில்களின் மீளுருவாக்க பிரேக்கிங் மற்றும் செயற்கைக்கோள் தரையிறங்குதலுக்கு இயக்கவியல் சமன்பாடுகள் பயன்படுகின்றன. நீர்மின் உற்பத்தி மற்றும் காற்றாலைகளுக்கு பாரடே விதி அடிப்படையாகும்.", "hi": "बुलेट ट्रेनों के पुनर्योजी ब्रेकिंग और अंतरिक्ष यान अवतरण में गतिकी का उपयोग होता है। पनबिजली जनरेटर और पवन टरबाइन फैराडे प्रेरण पर कार्य करते हैं।"}, "motivation": {"en": "🚀 'Dynamic change induces electric power! Step out of your comfort zone, embrace change, and illuminate the world!'", "ta": "🔥 'மாற்றங்களே மகத்தான ஆற்றலை உருவாக்குகின்றன! உன் வசதியான சூழலை விட்டு வெளியேறி பிரகாசி!'", "hi": "🎯 'परिवर्तन ही ऊर्जा का स्रोत है। नई चुनौतियों को स्वीकार करें और दुनिया को अपनी क्षमता दिखाएं!'"}}, "eng": {"icon": "📖", "title": {"en": "English Deep Breakdown", "ta": "ஆங்கிலம் ஆழமான கோட்பாட்டு விளக்கம்", "hi": "अंग्रेज़ी गहन सैद्धांतिक विश्लेषण"}, "badge": {"en": "Module 04 • Grammar Syntax & Literary Poetics", "ta": "பிரிவு 04 • இலக்கண வாக்கிய அமைப்பு & இலக்கிய கவிதை", "hi": "मॉड्यूल 04 • व्याकरण वाक्य विन्यास एवं काव्य रचना"}, "theory": {"en": "Syntactic hierarchy distinguishes between independent clauses (expressing complete thoughts) and subordinate dependent clauses. Precise semicolon usage bridges closely related independent assertions without comma splices. In poetics, the Shakespearean Sonnet features 14 lines of Iambic Pentameter (da-DUM × 5) with rhyme scheme ABAB CDCD EFEF GG, resolving thematic conflict at the final rhyming couplet Volta.", "ta": "வாக்கிய அமைப்பில் தனித்து இயங்கும் முதன்மை வாக்கியங்கள் மற்றும் சார்பு வாக்கியங்கள் பிரிக்கப்படுகின்றன. ஷேக்ஸ்பியர் சானட் என்பது ஐயம்பிக் பெண்டாமீட்டரில் (10 அசைகள்) 14 வரிகளைக் கொண்ட மரபு கவிதையாகும் (ABAB CDCD EFEF GG), இறுதி இரட்டை வரியில் கருத்தின் திருப்பம் (Volta) நிகழ்கிறது.", "hi": "वाक्य विन्यास स्वतंत्र और आश्रित उपवाक्यों में अंतर करता है। शेक्सपियर का सॉनेट 14 पंक्तियों का इयाम्बिक पेंटामीटर काव्य रूप है (ABAB CDCD EFEF GG), जिसमें अंतिम दोहे (Volta) में विचार का समाधान होता है।"}, "formulas": "Iambic Foot: ˘ / (da-DUM) | Meter: 5 Feet = 10 Syllables | Sonnet: 3 Quatrains + 1 Couplet (ABAB CDCD EFEF GG)", "app": {"en": "Grammatical precision is critical in constitutional legal drafting, international treaty accords, and high-impact corporate executive communication. Poetic cadence powers persuasive speechwriting and memorable advertising branding.", "ta": "சட்ட ஆவணங்கள், சர்வதேச உடன்படிக்கைகள் மற்றும் தலைமைத்துவ உரைகளில் இலக்கணத் துல்லியம் இன்றியமையாதது. கவிதை நடை உலகத்தரம் வாய்ந்த மேடைப் பேச்சுக்களுக்கு ஆற்றல் அளிக்கிறது.", "hi": "संवैधानिक कानूनी प्रारूपण और अंतरराष्ट्रीय समझौतों में व्याकरणिक सटीकता अनिवार्य है। काव्यात्मक लय प्रभावशाली भाषण और विज्ञापन ब्रांडिंग को शक्ति देती है।"}, "motivation": {"en": "📖 'Structure unleashes creative power! Discipline is not a limitation—it is the poetic framework that transforms thoughts into masterpieces!'", "ta": "✨ 'ஒழுக்கமும் கட்டமைப்பும் உன் திறமைக்கு எல்லைகள் அல்ல—அவை உன் எண்ணங்களை காவியமாக மாற்றும் கருவிகள்!'", "hi": "💎 'अनुशासन आपकी स्वतंत्रता को सीमित नहीं करता, बल्कि आपकी प्रतिभा को निखार कर उत्कृष्ट बनाता है!'"}}};
 
@@ -4512,84 +5073,244 @@
     }
   });
 
+  
   /* ==========================================================================
-     3. TOPIC DEEP BREAKDOWN IN-PLACE POPUP (Directly Below Topics!)
+     IN-CARD DEEP BREAKDOWN DRAWER CONTROLLERS (Directly Below The Button!)
      ========================================================================== */
-  function openTopicBreakdown(subjectKey) {
+  function renderCardDrawerContent(subjectKey) {
+    const data = TOPIC_BREAKDOWN_DATA[subjectKey];
+    if (!data) return;
+    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+
+    const setText = (id, text) => {
+      const el = document.getElementById(id);
+      if (el && text) el.textContent = text;
+    };
+
+    setText("drawer-title-" + subjectKey, data.title[currentLang] || data.title.en);
+    setText("drawer-badge-" + subjectKey, data.badge[currentLang] || data.badge.en);
+    setText("drawer-theory-" + subjectKey, data.theory[currentLang] || data.theory.en);
+    setText("drawer-formulas-" + subjectKey, data.formulas);
+    setText("drawer-app-" + subjectKey, data.app[currentLang] || data.app.en);
+    setText("drawer-motiv-" + subjectKey, data.motivation[currentLang] || data.motivation.en);
+
+    // Section Labels
+    setText("drawer-lbl-theory-" + subjectKey, dict.drawerTheoryLbl);
+    setText("drawer-lbl-formulas-" + subjectKey, dict.drawerFormulasLbl);
+    setText("drawer-lbl-app-" + subjectKey, dict.drawerAppLbl);
+    setText("drawer-lbl-motiv-" + subjectKey, dict.drawerMotivLbl);
+
+    // Buttons
+    setText("drawer-btn-quiz-" + subjectKey, dict.drawerBtnQuiz);
+    setText("drawer-btn-mm-" + subjectKey, dict.drawerBtnMm);
+    setText("drawer-btn-close-" + subjectKey, dict.drawerBtnClose);
+    setText("drawer-btn-modal-" + subjectKey, dict.drawerBtnModal);
+  }
+  window.renderCardDrawerContent = renderCardDrawerContent;
+
+  function toggleCardDrawer(subjectKey) {
+    currentTopicBreakdownKey = subjectKey;
+    const drawer = document.getElementById("drawer-" + subjectKey);
+    if (!drawer) return;
+
+    const isCurrentlyOpen = (drawer.style.display !== "none");
+
+    // Close any other open drawers
+    ["math", "chem", "phys", "eng"].forEach(k => {
+      if (k !== subjectKey) {
+        const d = document.getElementById("drawer-" + k);
+        if (d) d.style.display = "none";
+      }
+    });
+
+    if (isCurrentlyOpen) {
+      drawer.style.display = "none";
+    } else {
+      renderCardDrawerContent(subjectKey);
+      drawer.style.display = "block";
+      // Bring smoothly into view without jumping to page bottom
+      drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+      const nameMap = { math: dict.mathTitle, chem: dict.chemTitle, phys: dict.physTitle, eng: dict.engTitle };
+      showToast("Opened " + (nameMap[subjectKey] || subjectKey) + " Deep Breakdown!");
+    }
+  }
+  window.toggleCardDrawer = toggleCardDrawer;
+
+  function closeCardDrawer(subjectKey) {
+    const drawer = document.getElementById("drawer-" + subjectKey);
+    if (drawer) drawer.style.display = "none";
+  }
+  window.closeCardDrawer = closeCardDrawer;
+
+  /* Primary touchSubject: Unfolds drawer right below button clicked! */
+  window.touchSubject = function (subjectKey) {
+    toggleCardDrawer(subjectKey);
+  };
+
+  /* Front Centered Modal Maximize View */
+  function openBreakdownModal(subjectKey) {
     currentTopicBreakdownKey = subjectKey;
     const data = TOPIC_BREAKDOWN_DATA[subjectKey];
     if (!data) return;
+    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
 
-    const container = document.getElementById("topic-inline-breakdown");
-    const iconEl = document.getElementById("tb-icon");
-    const titleEl = document.getElementById("tb-title");
-    const badgeEl = document.getElementById("tb-badge");
-    const theoryEl = document.getElementById("tb-theory-text");
-    const formulaEl = document.getElementById("tb-formula-strip");
-    const appEl = document.getElementById("tb-app-text");
-    const motivEl = document.getElementById("tb-motivation-text");
+    const setText = (id, text) => {
+      const el = document.getElementById(id);
+      if (el && text) el.textContent = text;
+    };
 
-    if (iconEl) iconEl.textContent = data.icon;
-    if (titleEl) titleEl.textContent = data.title[currentLang] || data.title.en;
-    if (badgeEl) badgeEl.textContent = data.badge[currentLang] || data.badge.en;
-    if (theoryEl) theoryEl.textContent = data.theory[currentLang] || data.theory.en;
-    if (formulaEl) formulaEl.textContent = data.formulas;
-    if (appEl) appEl.textContent = data.app[currentLang] || data.app.en;
-    if (motivEl) motivEl.textContent = data.motivation[currentLang] || data.motivation.en;
+    setText("breakdown-modal-title", data.title[currentLang] || data.title.en);
+    setText("breakdown-modal-badge", data.badge[currentLang] || data.badge.en);
+    setText("breakdown-modal-theory", data.theory[currentLang] || data.theory.en);
+    setText("breakdown-modal-formulas", data.formulas);
+    setText("breakdown-modal-app", data.app[currentLang] || data.app.en);
+    setText("breakdown-modal-motiv", data.motivation[currentLang] || data.motivation.en);
 
-    if (container) {
-      container.style.display = "block";
-      // Bring smoothly into view without jumping to bottom
-      container.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    setText("breakdown-modal-lbl-theory", dict.drawerTheoryLbl);
+    setText("breakdown-modal-lbl-formulas", dict.drawerFormulasLbl);
+    setText("breakdown-modal-lbl-app", dict.drawerAppLbl);
+    setText("breakdown-modal-lbl-motiv", dict.drawerMotivLbl);
+
+    const modal = document.getElementById("concept-breakdown-modal");
+    if (modal) modal.style.display = "flex";
+  }
+  window.openBreakdownModal = openBreakdownModal;
+
+  function closeBreakdownModal() {
+    const modal = document.getElementById("concept-breakdown-modal");
+    if (modal) modal.style.display = "none";
+  }
+  window.closeBreakdownModal = closeBreakdownModal;
+
+  /* 50+ Motivational Quotes Gallery Modal */
+  function openQuotesGallery() {
+    renderQuotesGallery();
+    const modal = document.getElementById("quotes-gallery-modal");
+    if (modal) modal.style.display = "flex";
+  }
+  window.openQuotesGallery = openQuotesGallery;
+
+  function closeQuotesGallery() {
+    const modal = document.getElementById("quotes-gallery-modal");
+    if (modal) modal.style.display = "none";
+  }
+  window.closeQuotesGallery = closeQuotesGallery;
+
+  function renderQuotesGallery(filterQuery = "") {
+    const grid = document.getElementById("quotes-cards-grid");
+    if (!grid) return;
+    const quotes = MOTIVATION_QUOTES[currentLang] || MOTIVATION_QUOTES.en;
+    grid.innerHTML = "";
+
+    const query = filterQuery.toLowerCase().trim();
+    let count = 0;
+
+    quotes.forEach((q, idx) => {
+      if (query && !q.toLowerCase().includes(query)) return;
+      count++;
+      const card = document.createElement("div");
+      card.className = "quote-card";
+      card.onclick = () => {
+        triggerQuoteFromCard(idx, q);
+      };
+      card.innerHTML = `
+        <div class="quote-card-header">
+          <span class="quote-card-num">#${idx + 1}</span>
+          <span class="quote-card-speak">🔊 Tap to cheer</span>
+        </div>
+        <div class="quote-card-text">&ldquo;${q}&rdquo;</div>
+      `;
+      grid.appendChild(card);
+    });
+
+    const countInd = document.getElementById("quotes-count-indicator");
+    if (countInd) countInd.textContent = `Showing ${count} of ${quotes.length} Quotes (${currentLang.toUpperCase()})`;
+  }
+  window.renderQuotesGallery = renderQuotesGallery;
+
+  function filterQuotesBySearch() {
+    const input = document.getElementById("quotes-search-input");
+    const val = input ? input.value : "";
+    renderQuotesGallery(val);
+  }
+  window.filterQuotesBySearch = filterQuotesBySearch;
+
+  function triggerQuoteFromCard(idx, quoteText) {
+    playCuteChime();
+    const speech = document.getElementById("mascot-speech-text");
+    if (speech) {
+      speech.innerHTML = `<strong>StudyBot (#${idx + 1}):</strong> &ldquo;${quoteText}&rdquo; ✨`;
+    }
+    const modal = document.getElementById("quotes-gallery-modal");
+    if (modal) {
+      const rect = modal.getBoundingClientRect();
+      spawnCuteConfetti(rect.left + rect.width / 2, rect.top + 100);
+    }
+    showToast("StudyBot cheered Quote #" + (idx + 1) + "!");
+  }
+
+  function triggerRandomQuoteFromGallery() {
+    const quotes = MOTIVATION_QUOTES[currentLang] || MOTIVATION_QUOTES.en;
+    const randIdx = Math.floor(Math.random() * quotes.length);
+    triggerQuoteFromCard(randIdx, quotes[randIdx]);
+  }
+  window.triggerRandomQuoteFromGallery = triggerRandomQuoteFromGallery;
+
+  function playCuteChime() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        const ctx = new AudioCtx();
+        const now = ctx.currentTime;
+        const playNote = (freq, start, duration) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, start);
+          gain.gain.setValueAtTime(0.12, start);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(start);
+          osc.stop(start + duration);
+        };
+        playNote(523.25, now, 0.15); // C5
+        playNote(659.25, now + 0.12, 0.18); // E5
+        playNote(783.99, now + 0.24, 0.28); // G5
+        playNote(1046.50, now + 0.38, 0.35); // C6
+      }
+    } catch(e) {}
+  }
+  window.playCuteChime = playCuteChime;
+
+  function triggerMascotCheer() {
+    playCuteChime();
+
+    // Spawn confetti around mascot
+    const fab = document.getElementById("cute-mascot-fab");
+    if (fab) {
+      const rect = fab.getBoundingClientRect();
+      spawnCuteConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
     }
 
-    // Synchronize background panels
-    switchTheoryTab(subjectKey);
-    switchMindMapSubject(subjectKey);
+    // Pick random quote from 50
+    const quotes = MOTIVATION_QUOTES[currentLang] || MOTIVATION_QUOTES.en;
+    const randIdx = Math.floor(Math.random() * quotes.length);
+    const quote = quotes[randIdx];
 
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
-    const nameMap = { math: dict.mathTitle, chem: dict.chemTitle, phys: dict.physTitle, eng: dict.engTitle };
-    showToast("Loaded " + (nameMap[subjectKey] || subjectKey) + " Deep Breakdown!");
+    const speech = document.getElementById("mascot-speech-text");
+    if (speech) {
+      speech.innerHTML = `<strong>Quote #${randIdx + 1}/50:</strong> &ldquo;${quote}&rdquo; ✨`;
+    }
+    showToast("🌟 StudyBot: Quote #" + (randIdx + 1) + "/50!");
   }
-  window.openTopicBreakdown = openTopicBreakdown;
+  window.triggerMascotCheer = triggerMascotCheer;
 
-  function closeTopicBreakdown() {
-    const container = document.getElementById("topic-inline-breakdown");
-    if (container) container.style.display = "none";
-  }
-  window.closeTopicBreakdown = closeTopicBreakdown;
 
-  function practiceCurrentTopicQuiz() {
-    closeTopicBreakdown();
-    const map = { math: "Mathematics", chem: "Chemistry", phys: "Physics", eng: "English" };
-    filterQuizSubject(map[currentTopicBreakdownKey] || "Mathematics");
-    const quizSec = document.getElementById("quiz-section");
-    if (quizSec) quizSec.scrollIntoView({ behavior: "smooth" });
-  }
-  window.practiceCurrentTopicQuiz = practiceCurrentTopicQuiz;
-
-  function openCurrentTopicMindMap() {
-    closeTopicBreakdown();
-    switchMindMapSubject(currentTopicBreakdownKey);
-    const mmSec = document.getElementById("mindmap-section");
-    if (mmSec) mmSec.scrollIntoView({ behavior: "smooth" });
-  }
-  window.openCurrentTopicMindMap = openCurrentTopicMindMap;
-
-  /* Main touchSubject entry point: Opens Popup directly below topic! */
-  window.touchSubject = function (subjectKey) {
-    openTopicBreakdown(subjectKey);
-  };
-
-  window.openSubjectMindMap = function (subjectKey) {
-    switchMindMapSubject(subjectKey);
-    const mmSec = document.getElementById("mindmap-section");
-    if (mmSec) mmSec.scrollIntoView({ behavior: "smooth" });
-    const nameMap = { math: "Mathematics", chem: "Chemistry", phys: "Physics", eng: "English" };
-    showToast("Expanded " + (nameMap[subjectKey] || subjectKey) + " Huge Mind Map!");
-  };
-
-  window.switchTheoryTab = function (subjectKey) {
+  function switchTheoryTab(subjectKey) {
+  window.switchTheoryTab = switchTheoryTab;
     const tabs = ["math", "chem", "phys", "eng"];
     tabs.forEach(k => {
       const btn = document.getElementById("tab-btn-" + k);
@@ -4599,7 +5320,8 @@
     });
   };
 
-  window.switchMindMapSubject = function (subjectKey) {
+  function switchMindMapSubject(subjectKey) {
+  window.switchMindMapSubject = switchMindMapSubject;
     const subjects = ["math", "chem", "phys", "eng"];
     subjects.forEach(k => {
       const btn = document.getElementById("mm-btn-" + k);
@@ -4680,7 +5402,7 @@
     }
   });
 
-  function setLanguage(lang) {
+      function setLanguage(lang) {
     if (!I18N_DATA[lang]) return;
     currentLang = lang;
     const dict = I18N_DATA[lang];
@@ -4709,56 +5431,102 @@
     if (deckBtn) deckBtn.innerHTML = "<span>" + dict.pitchDeckBtn + "</span>";
     setText("btn-mode-stopwatch", dict.timeModeStopwatch);
     setText("btn-mode-timer", dict.timeModeTimer);
+    setText("stopwatch-subtext-lbl", dict.stopwatchSubtext);
+    setText("timer-subtext-lbl", dict.timerSubtext);
+    setText("timer-start-btn", dict.startTimer);
+    setText("timer-pause-btn", dict.pauseTimer);
+    setText("timer-reset-btn", dict.reset);
+    setText("preset-btn-25", dict.preset25);
+    setText("preset-btn-15", dict.preset15);
+    setText("preset-btn-45", dict.preset45);
 
-    // Curriculum / Cards
+    // Curriculum Header
     setText("curriculum-eyebrow", dict.curriculumEyebrow);
     setText("curriculum-title", dict.curriculumTitle);
     setText("curriculum-desc", dict.curriculumDesc);
+
+    // Subject 1: Mathematics Card
     setText("card-math-title", dict.mathTitle);
     setText("card-math-badge", dict.mathBadge);
+    setText("card-math-top1", dict.cardMathTop1);
+    setText("card-math-tag1", dict.cardMathTag1);
+    setText("card-math-sub1", dict.cardMathSub1);
+    setText("card-math-subbadge1", dict.cardMathSubbadge1);
+    setText("card-math-top2", dict.cardMathTop2);
+    setText("card-math-tag2", dict.cardMathTag2);
+    setText("card-math-sub2", dict.cardMathSub2);
+    setText("card-math-subbadge2", dict.cardMathSubbadge2);
+
+    // Subject 2: Chemistry Card
     setText("card-chem-title", dict.chemTitle);
     setText("card-chem-badge", dict.chemBadge);
+    setText("card-chem-top1", dict.cardChemTop1);
+    setText("card-chem-tag1", dict.cardChemTag1);
+    setText("card-chem-sub1", dict.cardChemSub1);
+    setText("card-chem-subbadge1", dict.cardChemSubbadge1);
+    setText("card-chem-top2", dict.cardChemTop2);
+    setText("card-chem-tag2", dict.cardChemTag2);
+    setText("card-chem-sub2", dict.cardChemSub2);
+    setText("card-chem-subbadge2", dict.cardChemSubbadge2);
+
+    // Subject 3: Physics Card
     setText("card-phys-title", dict.physTitle);
     setText("card-phys-badge", dict.physBadge);
+    setText("card-phys-top1", dict.cardPhysTop1);
+    setText("card-phys-tag1", dict.cardPhysTag1);
+    setText("card-phys-sub1", dict.cardPhysSub1);
+    setText("card-phys-subbadge1", dict.cardPhysSubbadge1);
+    setText("card-phys-top2", dict.cardPhysTop2);
+    setText("card-phys-tag2", dict.cardPhysTag2);
+    setText("card-phys-sub2", dict.cardPhysSub2);
+    setText("card-phys-subbadge2", dict.cardPhysSubbadge2);
+
+    // Subject 4: English Card
     setText("card-eng-title", dict.engTitle);
     setText("card-eng-badge", dict.engBadge);
+    setText("card-eng-top1", dict.cardEngTop1);
+    setText("card-eng-tag1", dict.cardEngTag1);
+    setText("card-eng-sub1", dict.cardEngSub1);
+    setText("card-eng-subbadge1", dict.cardEngSubbadge1);
+    setText("card-eng-top2", dict.cardEngTop2);
+    setText("card-eng-tag2", dict.cardEngTag2);
+    setText("card-eng-sub2", dict.cardEngSub2);
+    setText("card-eng-subbadge2", dict.cardEngSubbadge2);
+
+    // Common Card Buttons
     document.querySelectorAll(".touch-cue-txt").forEach(el => el.textContent = dict.touchCueText);
     document.querySelectorAll(".btn-theory-txt").forEach(el => el.textContent = dict.btnDeepBreakdown);
+    document.querySelectorAll(".btn-mm-txt").forEach(el => el.textContent = dict.btnHugeMindMap);
+    document.querySelectorAll(".btn-quiz-txt").forEach(el => el.textContent = dict.btnQuestions25);
+
+    // Refresh all in-card drawers
+    ["math", "chem", "phys", "eng"].forEach(k => renderCardDrawerContent(k));
 
     // Theory & Mind Map Tabs
-    setText("tab-btn-math", dict.qBtnMath);
-    setText("tab-btn-chem", dict.qBtnChem);
-    setText("tab-btn-phys", dict.qBtnPhys);
-    setText("tab-btn-eng", dict.qBtnEng);
+    setText("tab-btn-math", dict.theoryTabMath || dict.qBtnMath);
+    setText("tab-btn-chem", dict.theoryTabChem || dict.qBtnChem);
+    setText("tab-btn-phys", dict.theoryTabPhys || dict.qBtnPhys);
+    setText("tab-btn-eng", dict.theoryTabEng || dict.qBtnEng);
     setText("mm-btn-math", dict.qBtnMath);
     setText("mm-btn-chem", dict.qBtnChem);
     setText("mm-btn-phys", dict.qBtnPhys);
     setText("mm-btn-eng", dict.qBtnEng);
 
-    // Accuracy stats labels
-    setText("stat-lbl-correct", dict.qCorrectStat);
-    setText("stat-lbl-wrong", dict.qWrongStat);
-    setText("stat-lbl-remaining", dict.qRemainingStat);
-    setText("stat-lbl-rank", dict.qRankStat);
+    // Theory Studio Header
+    setText("theory-eyebrow", dict.theoryStudioEyebrow);
+    setText("theory-title", dict.theoryStudioTitle);
+    setText("theory-desc", dict.theoryStudioDesc);
 
-    // Deep Breakdown Inline
-    setText("tb-theory-lbl", dict.tbTheoryLbl);
-    setText("tb-app-lbl", dict.tbAppLbl);
-    setText("tb-motivation-lbl", dict.tbMotivationLbl);
-    const tbPrac = document.getElementById("tb-btn-practice");
-    if (tbPrac) tbPrac.innerHTML = "<span>" + dict.tbBtnPractice + "</span>";
-    const tbMm = document.getElementById("tb-btn-mindmap");
-    if (tbMm) tbMm.innerHTML = "<span>" + dict.tbBtnMindmap + "</span>";
-    const tbCl = document.getElementById("tb-btn-close");
-    if (tbCl) tbCl.innerHTML = "<span>" + dict.tbBtnClose + "</span>";
+    // Mind Map Studio Header
+    setText("mm-eyebrow", dict.mindMapStudioEyebrow);
+    setText("mm-title", dict.mindMapStudioTitle);
+    setText("mm-desc", dict.mindMapStudioDesc);
+    setText("mm-inspector-prompt", dict.mindMapInspectorPrompt);
 
-    // If breakdown is open, refresh its contents
-    const tbContainer = document.getElementById("topic-inline-breakdown");
-    if (tbContainer && tbContainer.style.display !== "none") {
-      openTopicBreakdown(currentTopicBreakdownKey);
-    }
-
-    // Quiz Filters & Diff
+    // Quiz Section
+    setText("quiz-eyebrow", dict.quizEyebrow);
+    setText("quiz-title", dict.quizTitle);
+    setText("quiz-desc", dict.quizDesc);
     setText("filter-btn-math", dict.qBtnMath);
     setText("filter-btn-chem", dict.qBtnChem);
     setText("filter-btn-phys", dict.qBtnPhys);
@@ -4767,8 +5535,11 @@
     setText("lbl-diff-easy", dict.qDiffEasy);
     setText("lbl-diff-medium", dict.qDiffMedium);
     setText("lbl-diff-hard", dict.qDiffHard);
+    setText("stat-lbl-correct", dict.qCorrectStat);
+    setText("stat-lbl-wrong", dict.qWrongStat);
+    setText("stat-lbl-remaining", dict.qRemainingStat);
+    setText("stat-lbl-rank", dict.qRankStat);
 
-    // Quiz Controls & Stats
     const prevQ = document.getElementById("btn-prev-q");
     if (prevQ) {
       const span = prevQ.querySelector("span");
@@ -4785,18 +5556,38 @@
       if (span) span.textContent = dict.qReset;
     }
 
-    setText("deep-modal-axiom-lbl", dict.inspectAxiomLabel);
-    setText("deep-modal-app-lbl", dict.inspectAppLabel);
-    setText("deep-modal-motivation-lbl", dict.inspectMotivationLabel);
-    setText("deep-modal-practice-btn", dict.practiceBtn);
-    setText("deep-modal-close-btn", dict.closeBtn);
+    // AI Sequencer
+    setText("ai-seq-eyebrow", dict.aiSeqEyebrow);
+    setText("ai-seq-title", dict.aiSeqTitle);
+    setText("ai-seq-desc", dict.aiSeqDesc);
+    setText("ai-seq-strengths-lbl", dict.aiSeqStrengthsLbl);
+    setText("ai-seq-gaps-lbl", dict.aiSeqGapsLbl);
+    setText("ai-seq-next-lbl", dict.aiSeqNextLbl);
+    setText("ai-seq-reason-lbl", dict.aiSeqReasonLbl);
+    setText("ai-seq-btn-launch", dict.aiSeqBtnLaunch);
+    setText("ai-seq-btn-refresh", dict.aiSeqBtnRefresh);
 
+    // Quotes Gallery Header
+    setText("quotes-gallery-eyebrow", dict.quotesGalleryEyebrow);
+    setText("quotes-gallery-title", dict.quotesGalleryTitle);
+    setText("quotes-gallery-desc", dict.quotesGalleryDesc);
+    const qSearch = document.getElementById("quotes-search-input");
+    if (qSearch) qSearch.placeholder = dict.quotesSearchPlaceholder;
+    setText("quotes-btn-random", dict.quotesBtnRandom);
+    setText("quotes-btn-close", dict.quotesBtnClose);
+
+    // Refresh Quotes Gallery if open
+    renderQuotesGallery();
+
+    // Mascot Speech Text default
     const speech = document.getElementById("mascot-speech-text");
-    if (speech) speech.textContent = dict.mascotDefaultSpeech;
+    if (speech && MOTIVATION_QUOTES[lang]) {
+      speech.innerHTML = `<strong>StudyBot:</strong> &ldquo;${MOTIVATION_QUOTES[lang][0]}&rdquo; ✨`;
+    }
 
     renderCurrentQuestion();
     updateAccuracyWheel();
-    showToast("Language: " + langNames[lang]);
+    showToast("Language switched to " + langNames[lang] + " (" + lang.toUpperCase() + ")");
   }
   window.setLanguage = setLanguage;
 
@@ -4837,7 +5628,8 @@
     renderCurrentQuestion();
   }
 
-  window.filterQuizSubject = function (subjectName) {
+  function filterQuizSubject(subjectName) {
+  window.filterQuizSubject = filterQuizSubject;
     activeSubjectFilter = subjectName;
 
     const filterBtns = {
@@ -5472,10 +6264,102 @@
   <!-- Cute Floating Mascot "StudyBot" -->
   <div class="cute-mascot-fab" id="cute-mascot-fab" onclick="triggerMascotCheer()" title="Tap StudyBot for cute encouragement!">
     <div class="mascot-speech-cloud" id="mascot-speech-cloud">
-      <span id="mascot-speech-text">Hello! I'm StudyBot! Tap me for cute motivation! ✨</span>
+      <div id="mascot-speech-text">Hello! I'm StudyBot! Tap me for cute motivation! ✨</div>
+      <button class="btn-open-quotes-pill" onclick="event.stopPropagation(); openQuotesGallery();" title="Browse all 50 quotes">🌟 50 Quotes Gallery</button>
     </div>
     <div class="mascot-avatar-circle" id="mascot-avatar-circle">
       🤖
+    </div>
+  </div>
+
+  
+  <!-- 50+ Motivational Quotes Gallery Modal -->
+  <div class="modal-overlay" id="quotes-gallery-modal" role="dialog" aria-modal="true" style="display:none;" onclick="if(event.target===this)closeQuotesGallery();">
+    <div class="quotes-gallery-modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+        <div>
+          <div class="section-eyebrow" style="margin-bottom:4px;">
+            <span>🌟</span>
+            <span id="quotes-gallery-eyebrow">Curated Academic Wisdom</span>
+          </div>
+          <h3 style="font-size:1.25rem; color:#ffffff; margin:0 0 4px 0;" id="quotes-gallery-title">50 Inspiring Motivational Quotes</h3>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;" id="quotes-gallery-desc">Click any quote card to hear StudyBot cheer and celebrate with sound &amp; confetti!</p>
+        </div>
+        <button class="btn-modal-close" onclick="closeQuotesGallery()" title="Close Gallery">&times;</button>
+      </div>
+
+      <!-- Search & Random Action Bar -->
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+        <input type="text" id="quotes-search-input" placeholder="Search quotes..." oninput="filterQuotesBySearch()" style="flex:1; min-width:200px; padding:8px 14px; background:rgba(15,23,42,0.85); border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:#ffffff; font-size:0.82rem;" />
+        <button class="btn-action-pill" onclick="triggerRandomQuoteFromGallery()">🎲 <span id="quotes-btn-random">Random Quote</span></button>
+      </div>
+
+      <!-- Quotes List Grid (50 Cards) -->
+      <div class="quotes-grid" id="quotes-cards-grid">
+        <!-- 50 Cards dynamically rendered -->
+      </div>
+
+      <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.75rem; color:var(--text-muted);" id="quotes-count-indicator">Showing 50 of 50 Quotes</span>
+        <button class="btn-action-pill" onclick="closeQuotesGallery()"><span id="quotes-btn-close">Close Gallery</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Centered Front Modal for Deep Breakdown (Optional Maximize View) -->
+  <div class="modal-overlay" id="concept-breakdown-modal" role="dialog" aria-modal="true" style="display:none;" onclick="if(event.target===this)closeBreakdownModal();">
+    <div class="concept-modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <span class="concept-header-pill" id="breakdown-modal-badge">Module 01</span>
+          <h3 class="concept-deep-title" id="breakdown-modal-title">Subject Deep Breakdown</h3>
+        </div>
+        <button class="btn-modal-close" onclick="closeBreakdownModal()" title="Close">&times;</button>
+      </div>
+
+      <div class="concept-section-block">
+        <div class="concept-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span id="breakdown-modal-lbl-theory">Theoretical Framework &amp; Axioms</span>
+        </div>
+        <div class="concept-section-content" id="breakdown-modal-theory"></div>
+      </div>
+
+      <div class="concept-section-block">
+        <div class="concept-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span id="breakdown-modal-lbl-formulas">Governing Formulas</span>
+        </div>
+        <div class="drawer-formula-strip" id="breakdown-modal-formulas"></div>
+      </div>
+
+      <div class="concept-section-block">
+        <div class="concept-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+          <span id="breakdown-modal-lbl-app">Industrial &amp; Engineering Applications</span>
+        </div>
+        <div class="concept-section-content" id="breakdown-modal-app"></div>
+      </div>
+
+      <div class="motivation-quote-box">
+        <div class="motivation-quote-title">
+          <span>🌟</span>
+          <span id="breakdown-modal-lbl-motiv">Inspiring Student Reflection &amp; Motivational Dialogue</span>
+        </div>
+        <div class="motivation-quote-text" id="breakdown-modal-motiv"></div>
+      </div>
+
+      <div class="modal-footer-btns">
+        <button class="btn-action-pill" id="breakdown-modal-btn-quiz" onclick="closeBreakdownModal(); practiceCurrentTopicQuiz();">
+          <span>🎯 Practice 25 Subject Questions</span>
+        </button>
+        <button class="btn-action-pill" id="breakdown-modal-btn-mm" onclick="closeBreakdownModal(); openCurrentTopicMindMap();">
+          <span>🧠 Explore Huge Mind Map</span>
+        </button>
+        <button class="btn-action-pill" onclick="closeBreakdownModal();">
+          <span>Close Window</span>
+        </button>
+      </div>
     </div>
   </div>
 

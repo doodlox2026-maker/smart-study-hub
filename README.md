@@ -8,7 +8,7 @@
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0_External_Libraries-emerald.svg)](https://github.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
-> **Elevator Pitch:** *Smart Study Hub is a lightweight, zero-dependency academic platform and AI-driven Personalized Learning Resource Sequencer. It eliminates learner inertia by diagnosing demonstrated strengths and knowledge gaps from practice sessions, recommending optimal next-topic study pathways through interactive prerequisite knowledge maps, and delivering 100 curated benchmarks across Mathematics, Chemistry, Physics, and English in 3 languages.*
+> **Elevator Pitch:** *Smart Study Hub is a lightweight, zero-dependency academic platform and AI-driven Personalized Learning Resource Sequencer. It eliminates learner inertia by diagnosing demonstrated strengths and knowledge gaps from practice sessions, recommending optimal next-topic study pathways through interactive prerequisite knowledge maps, and delivering 100 curated benchmarks across Mathematics, Chemistry, Physics, and English in 3 languages (English, தமிழ், हिन्दी) with 150 inspiring motivational quotes.*
 
 ---
 
@@ -30,13 +30,13 @@ flowchart LR
     A["🎯 Diagnostic Quiz Engine<br/>(100 Questions, Subtopic & Diff Tagged)"] -->|"Extracts Performance Matrix"| B["🧠 Knowledge Gap Analyzer<br/>(Identifies Strengths vs Gaps)"]
     B -->|"Queries Prerequisite Graph"| C["🗺️ Hierarchical Topic Map<br/>(Calculus &rarr; Limits &rarr; Derivatives)"]
     C -->|"Computes Optimal Path"| D["🤖 AI Resource Sequencer<br/>(Personalized Next-Action Recommendation)"]
-    D -->|"1-Click Action"| E["📖 Targeted Deep Breakdown<br/>or Unlocked Next Tier"]
+    D -->|"1-Click Action"| E["📖 In-Card Deep Breakdown<br/>Directly Below The Button!"]
 ```
 
 1. **Granular Diagnostic Extraction**: Every question is tagged by subtopic and difficulty tier (`Easy`, `Medium`, `Hard`). When questions are answered, the engine pinpoints specific conceptual boundaries (e.g., student understands Power Rule, but has an active gap in Trigonometric Limits).
 2. **Topological Prerequisite Graph**: The Huge Mind Map Studio acts as a directed knowledge graph connecting foundational axioms to advanced analytical systems.
 3. **Adaptive Recommendation Logic**:
-   * **Gap Detected ($\le 70\%$ accuracy)**: Sequencer triggers remediation, recommending the exact foundational Deep Breakdown.
+   * **Gap Detected ($\le 70\%$ accuracy)**: Sequencer triggers remediation, recommending the exact foundational Deep Breakdown directly under the topic card.
    * **Mastery Demonstrated ($\ge 70\%$ accuracy)**: Sequencer advances the student directly to Hard Tier sprints or next curriculum modules.
 
 ---
@@ -45,11 +45,12 @@ flowchart LR
 
 | Feature | Description | Engineering Highlights |
 | :--- | :--- | :--- |
+| **📖 In-Card Deep Breakdown Drawers** | Unfolds directly beneath the clicked button inside the subject card. | Zero jarring page scroll or layout jump; includes theory, formulas, industrial apps, and motivation dialogue. Maximize modal option included. |
+| **🌐 Full-Page Localization (Every Nook & Corner)** | 100% dynamic translation across English, தமிழ் (Tamil), and हिन्दी (Hindi). | Updates all card subtopics, level tags, badges, buttons, theory studio, mind maps, quizzes, timer presets, and AI sequencer. |
+| **🌟 150 Motivational Quotes (50 per Language)** | Exactly 50 quotes in English, 50 in Tamil, and 50 in Hindi. | StudyBot cheers with random quotes, celebratory confetti, and Web Audio synthesizers. Features a dedicated 50 Quotes Gallery Modal! |
 | **🤖 AI Resource Sequencer** | Autonomous next-topic recommendation based on live quiz diagnostics. | Evaluates demonstrated strengths vs knowledge gaps; prescribes exact 1-click study actions. |
 | **🎯 100 Academic Benchmarks** | Exactly 25 questions per subject (Math, Chem, Phys, Eng) across 3 tiers. | Categorized into Easy (8), Medium (9), Hard (8) with instant academic explanations & confetti cheers. |
-| **🌐 Trilingual Localization** | Complete instant switching across English, தமிழ் (Tamil), and हिन्दी (Hindi). | Seamless client-side i18n engine updating cards, theory, mind maps, quizzes, and dialogs. |
 | **⏱️ Dual Time Tracker** | Active count-up Stopwatch + Countdown Focus Sprint Timer (25m / 15m / 45m). | Non-blocking dual time engine with audible focus completion alarms and session summary modals. |
-| **📖 In-Place Deep Breakdown** | Theoretical treatises, formulas, and motivational dialogue right below topics. | Modal & inline popup view with zero jarring page jumping or layout reflow. |
 | **🧠 Huge Subject Mind Maps** | Expansive interactive knowledge topologies for every subject module. | Clickable concept nodes with live deep-dive inspector and student motivation dialogue. |
 | **⭕ Progress Accuracy Wheel** | Circular vector graphic progress wheel updating in real-time per subject. | Hardware-accelerated SVG `stroke-dashoffset` transition with live percentage and rank indicators. |
 | **🖱️ Glitch-Free Custom Aura** | Smooth magnetic cybernetic ring and cyan dot with tactile mobile ripples. | Native pointer stays 100% responsive (`cursor: default`); GPU `translate3d` tracking. |
@@ -104,7 +105,7 @@ smart-study-hub/
 ### Activate Free Hosting with GitHub Pages:
 1. In your repository, go to **Settings** $\rightarrow$ **Pages** (in the left sidebar).
 2. Under **"Branch"**, select `main` (or `master`) and folder `/(root)`, then click **Save**.
-3. In under 1 minute, your live website will be live at:
+3. In under 1 minute, your website will be live at:
    ```
    https://<your-username>.github.io/smart-study-hub/
    ```
