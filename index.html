@@ -2693,6 +2693,187 @@
       }
     }
 
+  
+    /* ==========================================================================
+       AI & INTELLIGENT AUTOMATION: PERSONALIZED LEARNING RESOURCE SEQUENCER
+       ========================================================================== */
+    .ai-sequencer-card {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(24, 24, 47, 0.98));
+      border: 1.5px solid rgba(139, 92, 246, 0.4);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      margin-top: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-sequencer-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8b5cf6, #0ea5e9, #10b981);
+    }
+
+    .sequencer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .sequencer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sequencer-ai-badge {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: #c4b5fd;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sequencer-grid-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .sequencer-subpanel {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+
+    .sequencer-subpanel-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .sequencer-badge-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 32px;
+    }
+
+    .concept-tag-strength {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      font-size: 0.76rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .concept-tag-gap {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      color: #fda4af;
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      font-size: 0.76rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .concept-tag-neutral {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-md);
+      font-size: 0.76rem;
+      font-style: italic;
+    }
+
+    .sequencer-recommendation-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(14, 165, 233, 0.08));
+      border: 1.5px solid rgba(139, 92, 246, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rec-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .rec-target-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rec-rationale-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .rec-actions-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-sequencer-action {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(14, 165, 233, 0.35));
+      border: 1px solid rgba(139, 92, 246, 0.6);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-sequencer-action:hover {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(14, 165, 233, 0.6));
+      box-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+      transform: translateY(-1px);
+    }
+
   </style>
 </head>
 <body>
@@ -3986,7 +4167,71 @@
 
         </div>
 
-      </div>
+      
+        <!-- AI & INTELLIGENT AUTOMATION: PERSONALIZED LEARNING RESOURCE SEQUENCER -->
+        <div class="ai-sequencer-card" id="ai-sequencer-widget">
+          <div class="sequencer-header">
+            <div class="sequencer-title-group">
+              <span style="font-size:1.6rem;">🤖</span>
+              <div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <h3 id="seq-main-title" style="margin:0; font-size:1.15rem; color:var(--text-main);">AI Personalized Learning Resource Sequencer</h3>
+                  <span class="sequencer-ai-badge">AI Automation Track</span>
+                </div>
+                <div id="seq-main-sub" style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
+                  Autonomous Cognitive Diagnostic &amp; Adaptive Next-Topic Recommendation Engine
+                </div>
+              </div>
+            </div>
+            <div class="time-live-indicator" style="background:#8b5cf6; box-shadow:0 0 8px #8b5cf6;" title="Active Sequencer Model"></div>
+          </div>
+
+          <div class="sequencer-grid-two">
+            <!-- Strengths Panel -->
+            <div class="sequencer-subpanel">
+              <div class="sequencer-subpanel-title" style="color:var(--accent-emerald);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span id="seq-lbl-strengths">Demonstrated Strengths (Mastered Concepts)</span>
+              </div>
+              <div class="sequencer-badge-cluster" id="seq-cluster-strengths">
+                <span class="concept-tag-neutral">Answer quiz questions to identify strengths...</span>
+              </div>
+            </div>
+
+            <!-- Gaps Panel -->
+            <div class="sequencer-subpanel">
+              <div class="sequencer-subpanel-title" style="color:#fda4af;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span id="seq-lbl-gaps">Identified Knowledge Gaps (Remediation Targets)</span>
+              </div>
+              <div class="sequencer-badge-cluster" id="seq-cluster-gaps">
+                <span class="concept-tag-neutral">Diagnostic active — zero critical gaps detected yet!</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Adaptive Recommendation Output -->
+          <div class="sequencer-recommendation-box" id="seq-rec-box">
+            <div class="rec-box-header">
+              <div class="rec-target-title" id="seq-rec-title">
+                <span>🎯</span>
+                <span id="seq-rec-action-text">Recommended Next Step: Diagnostic Sprint</span>
+              </div>
+              <span id="seq-rec-badge" class="subject-badge" style="background:rgba(139,92,246,0.2); border-color:rgba(139,92,246,0.4); color:#c4b5fd;">
+                Adaptive Sequencer Output
+              </span>
+            </div>
+            <p class="rec-rationale-text" id="seq-rec-rationale">
+              Begin by answering questions across your active module. The intelligent sequencer maps your cognitive response trajectory to prescribe the optimal learning sequence.
+            </p>
+            <div class="rec-actions-strip" id="seq-rec-actions">
+              <button class="btn-sequencer-action" id="btn-seq-remediate" onclick="launchSequencerAction()">
+                <span>📖 Launch Recommended Study Resource</span>
+              </button>
+            </div>
+          </div>
+        </div>
+</div>
     </section>
 
   </main>
@@ -5057,7 +5302,156 @@
   /* ==========================================================================
      8. APP INITIALIZATION
      ========================================================================== */
-  function initApp() {
+  
+      /* ==========================================================================
+         AI & INTELLIGENT AUTOMATION: PERSONALIZED RESOURCE SEQUENCER LOGIC
+         ========================================================================== */
+      let currentSequencerTarget = {
+        subjectKey: 'math',
+        subtopic: 'Calculus: Limits',
+        mode: 'theory'
+      };
+
+      function updateAISequencer() {
+        const strengthCluster = document.getElementById("seq-cluster-strengths");
+        const gapCluster = document.getElementById("seq-cluster-gaps");
+        const recTitle = document.getElementById("seq-rec-action-text");
+        const recRationale = document.getElementById("seq-rec-rationale");
+        const recBtn = document.getElementById("btn-seq-remediate");
+
+        if (!strengthCluster || !gapCluster || !recTitle || !recRationale) return;
+
+        const answeredIds = Object.keys(userAnswers);
+        if (answeredIds.length === 0) {
+          strengthCluster.innerHTML = '<span class="concept-tag-neutral">Answer quiz questions to identify strengths...</span>';
+          gapCluster.innerHTML = '<span class="concept-tag-neutral">Diagnostic active — zero critical gaps detected yet!</span>';
+          
+          if (currentLang === "ta") {
+            recTitle.textContent = "பரிந்துரைக்கப்பட்ட அடுத்த படி: மதிப்பீட்டு பயிற்சி";
+            recRationale.textContent = "உங்கள் அறிவாற்றல் நிலையை அறிந்து கொள்ள வினாடி வினாவில் உள்ள வினாக்களுக்கு விடையளிக்கவும். அறிவார்ந்த சீக்வென்சர் தானாகவே அடுத்த தலைப்பை பரிந்துரைக்கும்.";
+          } else if (currentLang === "hi") {
+            recTitle.textContent = "अनुशंसित अगला कदम: नैदानिक मूल्यांकन";
+            recRationale.textContent = "अपनी दक्षता का आकलन करने के लिए क्विज़ प्रश्नों के उत्तर दें। बुद्धिमान सीक्वेंसर स्वचालित रूप से आपके लिए अगले विषय की सिफारिश करेगा।";
+          } else {
+            recTitle.textContent = "Recommended Next Step: Diagnostic Evaluation";
+            recRationale.textContent = "Answer questions in the active subject module to activate autonomous knowledge tracing and adaptive resource recommendations.";
+          }
+          return;
+        }
+
+        // Subtopic mastery map
+        const subtopicStats = {};
+        answeredIds.forEach(id => {
+          const q = ALL_QUESTIONS.find(item => item.id == id);
+          if (!q) return;
+          const key = q.subtopic;
+          if (!subtopicStats[key]) {
+            subtopicStats[key] = { correct: 0, total: 0, subject: q.subject };
+          }
+          subtopicStats[key].total++;
+          if (userAnswers[id].isCorrect) {
+            subtopicStats[key].correct++;
+          }
+        });
+
+        const strengths = [];
+        const gaps = [];
+
+        for (const subtopic in subtopicStats) {
+          const stat = subtopicStats[subtopic];
+          const accuracy = stat.correct / stat.total;
+          if (accuracy >= 0.70) {
+            strengths.push({ subtopic, stat });
+          } else {
+            gaps.push({ subtopic, stat });
+          }
+        }
+
+        // Render Strengths
+        if (strengths.length > 0) {
+          strengthCluster.innerHTML = strengths.map(s => 
+            `<span class="concept-tag-strength">✓ ${s.subtopic} (${Math.round((s.stat.correct/s.stat.total)*100)}%)</span>`
+          ).join("");
+        } else {
+          strengthCluster.innerHTML = '<span class="concept-tag-neutral">Consolidating fundamental concept mastery...</span>';
+        }
+
+        // Render Gaps
+        if (gaps.length > 0) {
+          gapCluster.innerHTML = gaps.map(g => 
+            `<span class="concept-tag-gap">⚠️ ${g.subtopic} (${Math.round((g.stat.correct/g.stat.total)*100)}%)</span>`
+          ).join("");
+        } else {
+          gapCluster.innerHTML = '<span class="concept-tag-strength">✨ Zero knowledge gaps in attempted concepts!</span>';
+        }
+
+        // Formulate Intelligent Recommendation
+        const subjectKeyMap = {
+          "Mathematics": "math",
+          "Chemistry": "chem",
+          "Physics": "phys",
+          "English": "eng"
+        };
+
+        if (gaps.length > 0) {
+          const priorityGap = gaps[0];
+          currentSequencerTarget = {
+            subjectKey: subjectKeyMap[priorityGap.stat.subject] || "math",
+            subtopic: priorityGap.subtopic,
+            mode: "theory"
+          };
+
+          if (currentLang === "ta") {
+            recTitle.textContent = `அடுத்த பரிந்துரை: ${priorityGap.subtopic} - கோட்பாடு மறுபார்வை`;
+            recRationale.textContent = `அறிவார்ந்த அறிவு வரைபடம் '${priorityGap.subtopic}' பகுதியில் இடைவெளியைக் கண்டறிந்துள்ளது. அடுத்த நிலைக்கு முன்னேறும் முன் அடிப்படை விதிகளையும் சமன்பாடுகளையும் மறுபார்வை செய்ய பரிந்துரைக்கப்படுகிறது.`;
+            if (recBtn) recBtn.innerHTML = `<span>📖 ${priorityGap.subtopic} - ஆழமான விளக்கம்</span>`;
+          } else if (currentLang === "hi") {
+            recTitle.textContent = `अनुशंसित अगला कदम: ${priorityGap.subtopic} - सैद्धांतिक समीक्षा`;
+            recRationale.textContent = `सीक्वेंसर ने '${priorityGap.subtopic}' में ज्ञान की कमी की पहचान की है। उच्च स्तर पर जाने से पहले इस विषय के बुनियादी सूत्रों और सिद्धांतों की समीक्षा करें।`;
+            if (recBtn) recBtn.innerHTML = `<span>📖 ${priorityGap.subtopic} - गहन विश्लेषण देखें</span>`;
+          } else {
+            recTitle.textContent = `Targeted Remediation: ${priorityGap.subtopic}`;
+            recRationale.textContent = `Cognitive diagnostic indicates a knowledge gap in '${priorityGap.subtopic}' (${Math.round((priorityGap.stat.correct/priorityGap.stat.total)*100)}% accuracy). The prerequisite knowledge graph recommends reinforcing foundational axioms before advancing to Hard tier problems.`;
+            if (recBtn) recBtn.innerHTML = `<span>📖 Study ${priorityGap.subtopic} Deep Breakdown</span>`;
+          }
+        } else {
+          // All good! Acceleration recommendation
+          const subj = activeSubjectFilter;
+          currentSequencerTarget = {
+            subjectKey: subjectKeyMap[subj] || "math",
+            subtopic: "Advanced Evaluation",
+            mode: "quiz_hard"
+          };
+
+          if (currentLang === "ta") {
+            recTitle.textContent = `அடுத்த பரிந்துரை: ${subj} - கடின நிலை வினாடி வினா`;
+            recRationale.textContent = `அற்புதம்! அடிப்படை கருத்துக்களில் முழு தேர்ச்சி பெற்றுள்ளீர்கள். உயர் நிலை சிந்தனைக்கான கடின வினாக்களைப் பயிற்சி செய்ய பரிந்துரைக்கப்படுகிறது.`;
+            if (recBtn) recBtn.innerHTML = `<span>🔴 ${subj} கடின வினாக்கள் (Hard Tier)</span>`;
+          } else if (currentLang === "hi") {
+            recTitle.textContent = `अनुशंसित अगला कदम: ${subj} - कठिन स्तर चुनौती`;
+            recRationale.textContent = `शानदार प्रदर्शन! आपने सभी मूलभूत सिद्धांतों में उत्कृष्ट सटीकता प्रदर्शित की है। अब कठिन स्तर के प्रश्नों का अभ्यास करें।`;
+            if (recBtn) recBtn.innerHTML = `<span>🔴 ${subj} कठिन स्तर प्रारंभ करें</span>`;
+          } else {
+            recTitle.textContent = `Cognitive Acceleration: Advance ${subj} Tier`;
+            recRationale.textContent = `Outstanding mastery demonstrated! Prerequisite knowledge requirements satisfied across all attempted concepts. Sequencer recommends advancing directly to the Hard Tier Challenge.`;
+            if (recBtn) recBtn.innerHTML = `<span>🔴 Launch ${subj} Hard Tier Challenge</span>`;
+          }
+        }
+      }
+      window.updateAISequencer = updateAISequencer;
+
+      function launchSequencerAction() {
+        if (currentSequencerTarget.mode === "theory") {
+          openTopicBreakdown(currentSequencerTarget.subjectKey);
+        } else {
+          filterDifficulty('hard');
+          const quizSec = document.getElementById("quiz-section");
+          if (quizSec) quizSec.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      window.launchSequencerAction = launchSequencerAction;
+
+      function initApp() {
     startDualTimeEngines();
     setLanguage('en');
     filterQuizSubject('Mathematics');
