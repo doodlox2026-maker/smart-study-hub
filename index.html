@@ -1535,9 +1535,390 @@
       color: var(--accent-cyan);
       font-weight: 600;
     }
+
+    /* ==========================================================================
+       CUSTOM CURSOR EFFECT (DESKTOP MAGNETIC GLOW & MOBILE TOUCH BURST)
+       ========================================================================== */
+    @media (hover: hover) and (pointer: fine) {
+      body {
+        cursor: none !important;
+      }
+      a, button, input, [role="button"], .subject-card, .mm-node-pill, .q-pill, .option-btn, .theory-tab-btn, .mm-select-btn, .filter-btn {
+        cursor: none !important;
+      }
+    }
+
+    .custom-cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, transform 0.08s ease;
+      box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
+      will-change: transform;
+    }
+
+    .custom-cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid rgba(14, 165, 233, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: width 0.22s ease, height 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 0 14px var(--accent-cyan-glow);
+      will-change: transform;
+    }
+
+    .custom-cursor-ring.cursor-hover {
+      width: 52px;
+      height: 52px;
+      border-color: var(--accent-emerald);
+      background-color: rgba(16, 185, 129, 0.12);
+      box-shadow: 0 0 24px var(--accent-emerald-glow);
+    }
+
+    .custom-cursor-ring.cursor-active {
+      width: 22px;
+      height: 22px;
+      border-color: var(--accent-amber);
+      background-color: rgba(245, 158, 11, 0.2);
+    }
+
+    /* Click & Touch Ripple Burst (Works everywhere!) */
+    .cursor-ripple-burst {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99997;
+      transform: translate(-50%, -50%);
+      border: 2px solid var(--accent-cyan);
+      box-shadow: 0 0 18px var(--accent-cyan-glow);
+      animation: rippleExpand 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes rippleExpand {
+      0% {
+        width: 8px;
+        height: 8px;
+        opacity: 0.95;
+        border-color: var(--accent-cyan);
+      }
+      50% {
+        border-color: var(--accent-emerald);
+      }
+      100% {
+        width: 70px;
+        height: 70px;
+        opacity: 0;
+        border-color: transparent;
+      }
+    }
+
+    /* Hide desktop cursor rings on touch-only mobile devices */
+    @media (hover: none) and (pointer: coarse) {
+      .custom-cursor-dot,
+      .custom-cursor-ring {
+        display: none !important;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVENESS OVERHAUL (Screens <= 768px & <= 480px)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .app-container {
+        padding: 0 14px 40px 14px;
+      }
+
+      .app-header {
+        padding: 12px 0;
+        margin-bottom: 20px;
+      }
+
+      .header-content {
+        padding: 0 14px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .brand-group {
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .brand-icon-wrapper {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+      }
+
+      .brand-text h1 {
+        font-size: 1.2rem;
+      }
+
+      .hackathon-tag-pill {
+        font-size: 0.62rem;
+        padding: 2px 6px;
+      }
+
+      .header-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .stopwatch-badge {
+        padding: 6px 12px;
+        gap: 8px;
+        flex: 1;
+        min-width: 135px;
+      }
+
+      .stopwatch-digits {
+        font-size: 1.05rem;
+        min-width: 52px;
+      }
+
+      .btn-hackathon-info,
+      .btn-close-session {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+      }
+
+      .section-description {
+        font-size: 0.84rem;
+      }
+
+      /* Core Subject Cards */
+      .subjects-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+
+      .subject-card {
+        padding: 16px 14px;
+      }
+
+      .subject-footer-actions {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .btn-action-pill {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 6px;
+        font-size: 0.72rem;
+      }
+
+      /* Theory Lab */
+      .theory-lab-section {
+        padding: 18px 14px;
+        margin-bottom: 30px;
+        border-radius: var(--radius-lg);
+      }
+
+      .theory-lab-tabs {
+        gap: 6px;
+        padding-bottom: 10px;
+        margin-bottom: 16px;
+      }
+
+      .theory-tab-btn {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
+
+      .theory-topic-block {
+        padding: 14px 12px;
+      }
+
+      .theory-topic-title {
+        font-size: 0.98rem;
+      }
+
+      .visual-canvas-box {
+        padding: 8px;
+      }
+
+      .visual-canvas-box svg {
+        max-height: 150px;
+      }
+
+      /* Huge Mind Map mobile adaptation */
+      .huge-mindmap-section {
+        padding: 18px 14px;
+        margin-bottom: 30px;
+        border-radius: var(--radius-lg);
+      }
+
+      .mindmap-subject-selector {
+        gap: 6px;
+        padding-bottom: 10px;
+      }
+
+      .mm-select-btn {
+        padding: 7px 12px;
+        font-size: 0.76rem;
+      }
+
+      .mindmap-canvas-container {
+        padding: 14px 10px;
+      }
+
+      .huge-mindmap-tree {
+        min-width: 100% !important;
+        gap: 16px;
+      }
+
+      .mm-root-node {
+        font-size: 0.92rem;
+        padding: 8px 16px;
+        text-align: center;
+      }
+
+      .mm-branches-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .mm-branch-card {
+        padding: 14px 12px;
+      }
+
+      .mm-subclusters-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .mm-cross-connector-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 0.75rem;
+      }
+
+      /* Quiz Mind System Mobile */
+      .quiz-subject-filter-bar {
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+
+      .quiz-card {
+        padding: 18px 14px;
+      }
+
+      .quiz-navigator-pills {
+        gap: 5px;
+        margin-bottom: 14px;
+      }
+
+      .q-pill {
+        width: 28px;
+        height: 28px;
+        font-size: 0.72rem;
+      }
+
+      .question-prompt {
+        font-size: 1.02rem;
+        margin-bottom: 16px;
+      }
+
+      .option-btn {
+        padding: 12px 14px;
+        font-size: 0.86rem;
+        gap: 10px;
+        min-height: 48px;
+      }
+
+      .feedback-banner {
+        padding: 14px 12px;
+      }
+
+      .feedback-text {
+        font-size: 0.82rem;
+      }
+
+      .wheel-card {
+        padding: 20px 16px;
+      }
+
+      .wheel-visual-container {
+        width: 160px;
+        height: 160px;
+      }
+
+      .wheel-percentage-value {
+        font-size: 1.85rem;
+      }
+
+      /* Modals Mobile */
+      .modal-box {
+        padding: 20px 16px;
+        max-width: 94vw;
+        max-height: 88vh;
+        overflow-y: auto;
+      }
+
+      .modal-title {
+        font-size: 1.15rem;
+      }
+
+      .modal-message {
+        font-size: 0.84rem;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .stopwatch-badge {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .btn-hackathon-info,
+      .btn-close-session {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Custom Glowing Cursor (Desktop Magnet & Mobile Touch Ripple) -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
 
   <!-- ==========================================================================
        HEADER & NAVIGATION BAR (WITH STOPWATCH)
@@ -3862,11 +4243,93 @@
           setTimeout(() => {
             if (toast.parentNode) toast.parentNode.removeChild(toast);
           }, 300);
-        }, 3200);
+        }, 3000);
+      }
+      /* ==========================================================================
+         8. CUSTOM CURSOR & MOBILE TOUCH INTERACTION
+         ========================================================================== */
+      const cursorDot = document.getElementById("cursor-dot");
+      const cursorRing = document.getElementById("cursor-ring");
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let isTouchDevice = false;
+
+      window.addEventListener("touchstart", () => {
+        isTouchDevice = true;
+      }, { once: true, passive: true });
+
+      // Track cursor position on desktop
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (cursorDot) {
+          cursorDot.style.left = `${mouseX}px`;
+          cursorDot.style.top = `${mouseY}px`;
+        }
+      });
+
+      // Smooth trailing ring physics via requestAnimationFrame
+      function animateCursorRing() {
+        if (!isTouchDevice && cursorRing) {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+        }
+        requestAnimationFrame(animateCursorRing);
+      }
+      requestAnimationFrame(animateCursorRing);
+
+      // Magnetic hover expansion on clickable items
+      const interactiveElementsSelector = 'a, button, [role="button"], .subject-card, .mm-node-pill, .q-pill, .option-btn, .theory-tab-btn, .mm-select-btn, .filter-btn, .btn-action-pill';
+      
+      document.addEventListener("mouseover", (e) => {
+        if (e.target.closest(interactiveElementsSelector)) {
+          if (cursorRing) cursorRing.classList.add("cursor-hover");
+        }
+      });
+
+      document.addEventListener("mouseout", (e) => {
+        if (e.target.closest(interactiveElementsSelector)) {
+          if (cursorRing) cursorRing.classList.remove("cursor-hover");
+        }
+      });
+
+      document.addEventListener("mousedown", () => {
+        if (cursorRing) cursorRing.classList.add("cursor-active");
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (cursorRing) cursorRing.classList.remove("cursor-active");
+      });
+
+      // Spawn glowing ripple burst on both desktop click and mobile tap
+      function spawnClickRipple(x, y) {
+        const ripple = document.createElement("div");
+        ripple.className = "cursor-ripple-burst";
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => {
+          if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+        }, 600);
       }
 
+      window.addEventListener("click", (e) => {
+        spawnClickRipple(e.clientX, e.clientY);
+      });
+
+      window.addEventListener("touchstart", (e) => {
+        if (e.touches && e.touches[0]) {
+          spawnClickRipple(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
+
       /* ==========================================================================
-         8. APP INITIALIZATION
+         9. APP INITIALIZATION
          ========================================================================== */
       function initApp() {
         startStopwatch();
