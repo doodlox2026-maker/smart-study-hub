@@ -1558,31 +1558,33 @@
       border-radius: 50%;
       pointer-events: none;
       z-index: 99999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.2s ease, transform 0.08s ease;
+      transform: translate3d(-100px, -100px, 0);
       box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
       will-change: transform;
+      transition: opacity 0.2s ease;
+      opacity: 0;
     }
 
     .custom-cursor-ring {
       position: fixed;
       top: 0;
       left: 0;
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border: 1.5px solid rgba(14, 165, 233, 0.7);
       border-radius: 50%;
       pointer-events: none;
       z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: width 0.22s ease, height 0.22s ease, border-color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+      transform: translate3d(-100px, -100px, 0);
+      transition: width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
       box-shadow: 0 0 14px var(--accent-cyan-glow);
       will-change: transform;
+      opacity: 0;
     }
 
     .custom-cursor-ring.cursor-hover {
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
       border-color: var(--accent-emerald);
       background-color: rgba(16, 185, 129, 0.12);
       box-shadow: 0 0 24px var(--accent-emerald-glow);
@@ -2721,7 +2723,7 @@
             <span>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Mathematics')">
-            <span>🎯 10 Qs &rarr;</span>
+            <span>🎯 25 Questions &rarr;</span>
           </button>
         </div>
       </article>
@@ -2783,7 +2785,7 @@
             <span>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Chemistry')">
-            <span>🎯 10 Qs &rarr;</span>
+            <span>🎯 25 Questions &rarr;</span>
           </button>
         </div>
       </article>
@@ -2845,7 +2847,7 @@
             <span>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('Physics')">
-            <span>🎯 10 Qs &rarr;</span>
+            <span>🎯 25 Questions &rarr;</span>
           </button>
         </div>
       </article>
@@ -2907,7 +2909,7 @@
             <span>🧠 Huge Mind Map</span>
           </button>
           <button class="btn-action-pill" onclick="filterQuizSubject('English')">
-            <span>🎯 10 Qs &rarr;</span>
+            <span>🎯 25 Questions &rarr;</span>
           </button>
         </div>
       </article>
@@ -3653,34 +3655,30 @@
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
-          <span>Evaluation Engine • 10 Questions Per Subject</span>
+          <span>Evaluation Engine • Exactly 25 Questions Per Subject (100 Total)</span>
         </div>
         <h2 class="section-title">Interactive Quiz Mind System</h2>
         <p class="section-description">
-          40 curated multiple-choice benchmarks across all 4 subjects (10 questions each). Every answer provides real-time feedback with green victory complements or in-depth academic corrections.
+          100 curated multiple-choice academic benchmarks (exactly 25 questions per subject across Easy, Medium, and Hard tiers). Select any subject below to practice its dedicated 25-question test.
         </p>
       </div>
 
       <!-- Subject Filter Tabs -->
       <div class="quiz-subject-filter-bar">
-        <button class="filter-btn active" id="filter-btn-all" onclick="filterQuizSubject('All')">
-          🌐 All Subjects (40)
-        </button>
-        <button class="filter-btn" id="filter-btn-math" onclick="filterQuizSubject('Mathematics')">
-          📐 Mathematics (10)
+        <button class="filter-btn active" id="filter-btn-math" onclick="filterQuizSubject('Mathematics')">
+          📐 Mathematics (25 Qs)
         </button>
         <button class="filter-btn" id="filter-btn-chem" onclick="filterQuizSubject('Chemistry')">
-          🧪 Chemistry (10)
+          🧪 Chemistry (25 Qs)
         </button>
         <button class="filter-btn" id="filter-btn-phys" onclick="filterQuizSubject('Physics')">
-          ⚛️ Physics (10)
+          ⚛️ Physics (25 Qs)
         </button>
         <button class="filter-btn" id="filter-btn-eng" onclick="filterQuizSubject('English')">
-          📖 English (10)
+          📖 English (25 Qs)
         </button>
       </div>
-
-            <!-- Difficulty Filter (Easy, Medium, Hard) -->
+      <!-- Difficulty Filter (Easy, Medium, Hard) -->
       <div class="quiz-difficulty-bar" id="quiz-difficulty-bar">
         <button class="diff-btn active" id="diff-btn-all" onclick="filterDifficulty('all')">
           <span id="lbl-diff-all">All (25)</span>
@@ -6188,8 +6186,8 @@
       /* ==========================================================================
          2. STATE MANAGEMENT
          ========================================================================== */
-      let activeSubjectFilter = "All";
-      let currentFilteredQuestions = [...ALL_QUESTIONS];
+      let activeSubjectFilter = "Mathematics";
+      let currentFilteredQuestions = ALL_QUESTIONS.filter(q => q.subject === "Mathematics");
       let currentFilteredIndex = 0;
       const userAnswers = {};
 
@@ -6649,58 +6647,73 @@
         }, 3000);
       }
       /* ==========================================================================
-         8. CUSTOM CURSOR & MOBILE TOUCH INTERACTION
+         8. GLITCH-FREE CUSTOM CURSOR & MOBILE TOUCH INTERACTION
          ========================================================================== */
       const cursorDot = document.getElementById("cursor-dot");
       const cursorRing = document.getElementById("cursor-ring");
 
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let ringX = mouseX;
-      let ringY = mouseY;
-      let isTouchDevice = false;
+      let mouseX = -100;
+      let mouseY = -100;
+      let ringX = -100;
+      let ringY = -100;
+      let isCursorActive = false;
+      let isTouchActive = false;
 
-      window.addEventListener("touchstart", () => {
-        isTouchDevice = true;
-      }, { once: true, passive: true });
-
-      // Track cursor position on desktop
+      // Direct GPU transform update on mousemove with zero layout reflow
       window.addEventListener("mousemove", (e) => {
+        isTouchActive = false;
         mouseX = e.clientX;
         mouseY = e.clientY;
+
+        if (!isCursorActive) {
+          isCursorActive = true;
+          ringX = mouseX;
+          ringY = mouseY;
+          if (cursorDot) cursorDot.style.opacity = "1";
+          if (cursorRing) cursorRing.style.opacity = "1";
+        }
+
         if (cursorDot) {
-          cursorDot.style.left = `${mouseX}px`;
-          cursorDot.style.top = `${mouseY}px`;
+          cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         }
-      });
 
-      // Smooth trailing ring physics via requestAnimationFrame
-      function animateCursorRing() {
-        if (!isTouchDevice && cursorRing) {
-          ringX += (mouseX - ringX) * 0.18;
-          ringY += (mouseY - ringY) * 0.18;
-          cursorRing.style.left = `${ringX}px`;
-          cursorRing.style.top = `${ringY}px`;
+        // Glitch-free hover detection: Check directly on mouse position without mouseover/mouseout flicker
+        const interactiveSelector = 'a, button, [role="button"], .subject-card, .mm-node-pill, .q-pill-25, .option-btn, .theory-tab-btn, .mm-select-btn, .filter-btn, .diff-btn, .btn-action-pill, .time-mode-btn, .time-mini-btn, .preset-chip';
+        const isInteractive = !!e.target.closest(interactiveSelector);
+        if (cursorRing) {
+          cursorRing.classList.toggle("cursor-hover", isInteractive);
         }
-        requestAnimationFrame(animateCursorRing);
+      }, { passive: true });
+
+      // Smooth lag-free trailing ring using translate3d
+      function renderCursorRing() {
+        if (!isTouchActive && isCursorActive && cursorRing) {
+          ringX += (mouseX - ringX) * 0.25;
+          ringY += (mouseY - ringY) * 0.25;
+          cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+        }
+        requestAnimationFrame(renderCursorRing);
       }
-      requestAnimationFrame(animateCursorRing);
+      requestAnimationFrame(renderCursorRing);
 
-      // Magnetic hover expansion on clickable items
-      const interactiveElementsSelector = 'a, button, [role="button"], .subject-card, .mm-node-pill, .q-pill, .option-btn, .theory-tab-btn, .mm-select-btn, .filter-btn, .btn-action-pill';
-      
-      document.addEventListener("mouseover", (e) => {
-        if (e.target.closest(interactiveElementsSelector)) {
-          if (cursorRing) cursorRing.classList.add("cursor-hover");
-        }
+      // Hide cursor smoothly when leaving browser window
+      document.addEventListener("mouseleave", () => {
+        isCursorActive = false;
+        if (cursorDot) cursorDot.style.opacity = "0";
+        if (cursorRing) cursorRing.style.opacity = "0";
       });
 
-      document.addEventListener("mouseout", (e) => {
-        if (e.target.closest(interactiveElementsSelector)) {
-          if (cursorRing) cursorRing.classList.remove("cursor-hover");
-        }
+      document.addEventListener("mouseenter", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        ringX = mouseX;
+        ringY = mouseY;
+        isCursorActive = true;
+        if (cursorDot) cursorDot.style.opacity = "1";
+        if (cursorRing) cursorRing.style.opacity = "1";
       });
 
+      // Click pulse
       document.addEventListener("mousedown", () => {
         if (cursorRing) cursorRing.classList.add("cursor-active");
       });
@@ -6708,6 +6721,17 @@
       document.addEventListener("mouseup", () => {
         if (cursorRing) cursorRing.classList.remove("cursor-active");
       });
+
+      // Touch events: Hide custom desktop cursor during touch, spawn tactile ripple
+      window.addEventListener("touchstart", (e) => {
+        isTouchActive = true;
+        isCursorActive = false;
+        if (cursorDot) cursorDot.style.opacity = "0";
+        if (cursorRing) cursorRing.style.opacity = "0";
+        if (e.touches && e.touches[0]) {
+          spawnClickRipple(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: true });
 
       // Spawn glowing ripple burst on both desktop click and mobile tap
       function spawnClickRipple(x, y) {
@@ -6718,11 +6742,13 @@
         document.body.appendChild(ripple);
         setTimeout(() => {
           if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
-        }, 600);
+        }, 550);
       }
 
       window.addEventListener("click", (e) => {
-        spawnClickRipple(e.clientX, e.clientY);
+        if (!isTouchActive) {
+          spawnClickRipple(e.clientX, e.clientY);
+        }
       });
 
       window.addEventListener("touchstart", (e) => {
@@ -6773,8 +6799,8 @@
          ========================================================================== */
       function initApp() {
         startDualTimeEngines();
-        initQuizNavigationPills();
-        renderCurrentQuestion();
+        setLanguage('en');
+        applyFilters();
         updateAccuracyWheel();
         updateOrientationDisplay();
       }
