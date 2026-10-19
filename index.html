@@ -1637,85 +1637,126 @@
     }
 
     /* ==========================================================================
-       MOBILE RESPONSIVENESS OVERHAUL (Screens <= 768px & <= 480px)
+       MOBILE & PORTRAIT RESPONSIVENESS (Screens <= 820px & Orientation: Portrait)
        ========================================================================== */
-    @media (max-width: 768px) {
+    @media (max-width: 820px), screen and (orientation: portrait) and (max-width: 900px) {
       .app-container {
-        padding: 0 14px 40px 14px;
+        padding: 0 12px 40px 12px;
       }
 
+      /* Compact, thumb-friendly sticky header */
       .app-header {
-        padding: 12px 0;
-        margin-bottom: 20px;
+        padding: 8px 0;
+        margin-bottom: 16px;
       }
 
       .header-content {
-        padding: 0 14px;
+        padding: 0 12px;
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
+        gap: 8px;
       }
 
       .brand-group {
-        justify-content: flex-start;
-        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 8px;
       }
 
       .brand-icon-wrapper {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
         flex-shrink: 0;
       }
 
       .brand-text h1 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
       }
 
-      .hackathon-tag-pill {
-        font-size: 0.62rem;
-        padding: 2px 6px;
+      .brand-tagline {
+        display: none; /* Hide tagline in mobile portrait to save vertical space */
       }
 
+      /* 2-column action bar: Row 1 = Stopwatch (full width), Row 2 = Deck + Close (50% each) */
       .header-actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 8px;
         width: 100%;
       }
 
       .stopwatch-badge {
+        grid-column: span 2;
+        width: 100%;
         padding: 6px 12px;
-        gap: 8px;
-        flex: 1;
-        min-width: 135px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 0;
+        background: rgba(15, 23, 42, 0.9);
       }
 
       .stopwatch-digits {
         font-size: 1.05rem;
-        min-width: 52px;
       }
 
-      .btn-hackathon-info,
+      .btn-hackathon-info {
+        grid-column: span 1;
+        width: 100%;
+        padding: 8px 6px;
+        font-size: 0.74rem;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
       .btn-close-session {
+        grid-column: span 1;
+        width: 100%;
+        padding: 8px 6px;
+        font-size: 0.74rem;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      /* Mobile Orientation Helper Banner */
+      .mobile-orientation-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(14, 165, 233, 0.08);
+        border: 1px solid rgba(14, 165, 233, 0.22);
+        border-radius: var(--radius-md);
         padding: 8px 12px;
-        font-size: 0.78rem;
+        margin-bottom: 16px;
+        gap: 8px;
+      }
+
+      .orient-badge {
+        background: rgba(16, 185, 129, 0.15);
+        border: 1px solid var(--border-emerald);
+        color: var(--accent-emerald);
+        padding: 3px 8px;
+        border-radius: var(--radius-full);
+        font-size: 0.68rem;
+        font-weight: 600;
+        white-space: nowrap;
       }
 
       .section-title {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
       }
 
       .section-description {
-        font-size: 0.84rem;
+        font-size: 0.82rem;
       }
 
-      /* Core Subject Cards */
+      /* 1. Core Subject Cards */
       .subjects-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
-        margin-bottom: 28px;
+        gap: 12px;
+        margin-bottom: 24px;
       }
 
       .subject-card {
@@ -1723,33 +1764,47 @@
       }
 
       .subject-footer-actions {
-        flex-wrap: wrap;
-        gap: 6px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
 
       .btn-action-pill {
-        flex: 1;
+        width: 100%;
         justify-content: center;
         padding: 8px 6px;
-        font-size: 0.72rem;
+        font-size: 0.74rem;
+        text-align: center;
       }
 
-      /* Theory Lab */
+      /* 2. Theory & Visual Studio */
       .theory-lab-section {
-        padding: 18px 14px;
-        margin-bottom: 30px;
+        padding: 16px 12px;
+        margin-bottom: 24px;
         border-radius: var(--radius-lg);
       }
 
       .theory-lab-tabs {
-        gap: 6px;
-        padding-bottom: 10px;
-        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        margin-bottom: 14px;
+        border-bottom: none;
       }
 
       .theory-tab-btn {
-        padding: 8px 12px;
-        font-size: 0.78rem;
+        justify-content: center;
+        padding: 9px 8px;
+        font-size: 0.76rem;
+        text-align: center;
+        white-space: normal;
+      }
+
+      .theory-grid-two-col {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .theory-topic-block {
@@ -1762,56 +1817,110 @@
 
       .visual-canvas-box {
         padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .visual-canvas-box svg {
-        max-height: 150px;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        max-height: 160px;
       }
 
-      /* Huge Mind Map mobile adaptation */
+      /* 3. Huge Mind Map Studio (Portrait Stacked Graph) */
       .huge-mindmap-section {
-        padding: 18px 14px;
-        margin-bottom: 30px;
+        padding: 16px 12px;
+        margin-bottom: 24px;
         border-radius: var(--radius-lg);
       }
 
       .mindmap-subject-selector {
-        gap: 6px;
-        padding-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        margin-bottom: 14px;
       }
 
       .mm-select-btn {
-        padding: 7px 12px;
+        justify-content: center;
+        padding: 9px 8px;
         font-size: 0.76rem;
+        text-align: center;
+        white-space: normal;
       }
 
       .mindmap-canvas-container {
         padding: 14px 10px;
+        overflow-x: hidden; /* Zero horizontal jitter in portrait */
+        border-radius: var(--radius-md);
       }
 
       .huge-mindmap-tree {
         min-width: 100% !important;
-        gap: 16px;
-      }
-
-      .mm-root-node {
-        font-size: 0.92rem;
-        padding: 8px 16px;
-        text-align: center;
-      }
-
-      .mm-branches-row {
-        grid-template-columns: 1fr;
+        max-width: 100% !important;
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
         gap: 14px;
       }
 
+      .mm-root-cluster {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .mm-root-node {
+        width: 100%;
+        max-width: 300px;
+        font-size: 0.88rem;
+        padding: 9px 14px;
+        text-align: center;
+        justify-content: center;
+        border-radius: var(--radius-md);
+      }
+
+      .mm-branches-row {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+      }
+
       .mm-branch-card {
+        width: 100%;
         padding: 14px 12px;
+        border-radius: var(--radius-md);
       }
 
       .mm-subclusters-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 8px;
+        width: 100%;
+      }
+
+      .mm-node-pill {
+        padding: 11px 12px;
+        min-height: 48px;
+        border-radius: var(--radius-md);
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        background: rgba(15, 23, 42, 0.88);
+      }
+
+      .mm-node-name {
+        font-size: 0.86rem;
+        font-weight: 600;
+      }
+
+      .mm-node-meta {
+        font-size: 0.72rem;
       }
 
       .mm-cross-connector-strip {
@@ -1819,44 +1928,71 @@
         align-items: flex-start;
         gap: 8px;
         font-size: 0.75rem;
+        padding: 10px 12px;
       }
 
-      /* Quiz Mind System Mobile */
+      .revision-steps-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      /* 4. Quiz Mind System (Portrait Touch Navigation) */
       .quiz-subject-filter-bar {
-        gap: 6px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        overflow-x: visible;
+        padding-bottom: 0;
         margin-bottom: 14px;
       }
 
       .filter-btn {
-        padding: 6px 12px;
-        font-size: 0.75rem;
+        justify-content: center;
+        padding: 8px 6px;
+        font-size: 0.74rem;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .quiz-wrapper-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .quiz-card {
         padding: 18px 14px;
       }
 
+      /* 2 rows of 5 pills: All 10 questions fully visible on portrait */
       .quiz-navigator-pills {
-        gap: 5px;
-        margin-bottom: 14px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        margin-bottom: 16px;
       }
 
       .q-pill {
-        width: 28px;
-        height: 28px;
-        font-size: 0.72rem;
+        width: 100%;
+        height: 38px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        border-radius: var(--radius-sm);
       }
 
       .question-prompt {
-        font-size: 1.02rem;
+        font-size: 0.98rem;
+        line-height: 1.5;
         margin-bottom: 16px;
       }
 
       .option-btn {
         padding: 12px 14px;
         font-size: 0.86rem;
+        min-height: 52px;
         gap: 10px;
-        min-height: 48px;
+        line-height: 1.4;
       }
 
       .feedback-banner {
@@ -1868,50 +2004,517 @@
       }
 
       .wheel-card {
-        padding: 20px 16px;
+        padding: 18px 14px;
       }
 
       .wheel-visual-container {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
       }
 
       .wheel-percentage-value {
-        font-size: 1.85rem;
+        font-size: 1.65rem;
       }
 
-      /* Modals Mobile */
+      /* 5. Mobile Modals */
       .modal-box {
-        padding: 20px 16px;
-        max-width: 94vw;
+        padding: 18px 14px;
+        width: 95vw;
+        max-width: 95vw;
         max-height: 88vh;
         overflow-y: auto;
       }
 
       .modal-title {
-        font-size: 1.15rem;
+        font-size: 1.12rem;
       }
 
       .modal-message {
         font-size: 0.84rem;
       }
     }
+  
+    /* ==========================================================================
+       V3.0 SUPER STYLES: DUAL TIME HUB, MULTI-LANG, 100Q, CUTE MASCOT & CONFETTI
+       ========================================================================== */
+    /* Language Switcher Dropdown in Header */
+    .lang-switcher-box {
+      position: relative;
+      display: inline-block;
+    }
 
-    @media (max-width: 440px) {
-      .header-actions {
-        flex-direction: column;
-        align-items: stretch;
+    .btn-lang-trigger {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 7px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-lang-trigger:hover {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px var(--accent-cyan-glow);
+    }
+
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 105%;
+      right: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      min-width: 150px;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .lang-dropdown-menu.show {
+      display: flex;
+      animation: fadeInSlide 0.2s ease forwards;
+    }
+
+    .lang-opt-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      text-align: left;
+      transition: var(--transition-fast);
+    }
+
+    .lang-opt-btn:hover {
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+    }
+
+    .lang-opt-btn.active {
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      border-left: 2px solid var(--accent-cyan);
+    }
+
+    /* Dual Time Tracker Widget (Stopwatch + Timer) */
+    .dual-time-widget {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 4px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 210px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .time-mode-tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 3px;
+    }
+
+    .time-mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .time-mode-btn.active {
+      background: rgba(14, 165, 233, 0.15);
+      color: var(--accent-cyan);
+      border-bottom: 1.5px solid var(--accent-cyan);
+    }
+
+    .time-display-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 2px 4px;
+    }
+
+    .time-live-indicator {
+      width: 7px;
+      height: 7px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-emerald);
+      animation: pulseGreen 1.5s infinite;
+    }
+
+    .time-digits-display {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      min-width: 70px;
+    }
+
+    .time-ctrl-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .time-mini-btn {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: var(--transition-fast);
+    }
+
+    .time-mini-btn:hover {
+      border-color: var(--accent-cyan);
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+    }
+
+    .timer-presets-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .preset-chip {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: var(--transition-fast);
+    }
+
+    .preset-chip.active, .preset-chip:hover {
+      background: var(--accent-cyan-dim);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Quiz Difficulty Filter Bar */
+    .quiz-difficulty-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .diff-btn {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .diff-btn:hover {
+      color: #ffffff;
+      border-color: var(--accent-cyan);
+    }
+
+    .diff-btn.active {
+      background: var(--accent-cyan-dim);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan-glow);
+    }
+
+    .diff-btn.diff-easy.active {
+      background: var(--accent-emerald-dim);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald-glow);
+    }
+
+    .diff-btn.diff-medium.active {
+      background: var(--accent-amber-dim);
+      border-color: var(--accent-amber);
+      color: var(--accent-amber);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .diff-btn.diff-hard.active {
+      background: var(--accent-rose-dim);
+      border-color: var(--accent-rose);
+      color: var(--accent-rose);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+    }
+
+    /* 25-Question Navigator Grid */
+    .quiz-navigator-pills-25 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .q-pill-25 {
+      width: 100%;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .q-pill-25:hover {
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .q-pill-25.active {
+      background: var(--accent-cyan-dim);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan-glow);
+    }
+
+    .q-pill-25.correct {
+      background: var(--accent-emerald-dim);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .q-pill-25.wrong {
+      background: var(--accent-rose-dim);
+      border-color: var(--accent-rose);
+      color: var(--accent-rose);
+    }
+
+    .diff-dot-pip {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .diff-dot-easy { background: var(--accent-emerald); }
+    .diff-dot-medium { background: var(--accent-amber); }
+    .diff-dot-hard { background: var(--accent-rose); }
+
+    /* Cute Mascot "StudyBot" Floating Widget */
+    .cute-mascot-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 990;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .mascot-avatar-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9, #10b981);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: 2px solid #ffffff;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: cuteFloat 3s ease-in-out infinite;
+    }
+
+    .cute-mascot-fab:hover .mascot-avatar-circle {
+      transform: scale(1.15) rotate(8deg);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+    }
+
+    .mascot-speech-cloud {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 14px;
+      padding: 8px 14px;
+      margin-bottom: 8px;
+      max-width: 220px;
+      font-size: 0.78rem;
+      color: #ffffff;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      animation: fadeInSlide 0.3s ease;
+      line-height: 1.4;
+    }
+
+    .mascot-speech-cloud::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid var(--accent-cyan);
+    }
+
+    /* Confetti Burst Particle */
+    .cute-confetti-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      font-size: 1.25rem;
+      animation: confettiDrift 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes cuteFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes confettiDrift {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
       }
-      .stopwatch-badge {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .btn-hackathon-info,
-      .btn-close-session {
-        width: 100%;
-        justify-content: center;
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(var(--dr));
       }
     }
+
+    /* Deep Concept Inspector Modal */
+    .concept-modal-box {
+      max-width: 600px;
+      width: 95vw;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--accent-cyan);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      box-shadow: 0 0 40px var(--accent-cyan-glow);
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: modalPop 0.25s ease forwards;
+    }
+
+    .concept-header-pill {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      background: var(--accent-cyan-dim);
+      border: 1px solid var(--border-cyan);
+      color: var(--accent-cyan);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .concept-deep-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .concept-section-block {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .concept-section-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+
+    .concept-section-content {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .motivation-quote-box {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(16, 185, 129, 0.15));
+      border: 1.5px dashed var(--accent-emerald);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .motivation-quote-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .motivation-quote-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-style: italic;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
   </style>
 </head>
 <body>
@@ -1933,9 +2536,10 @@
           </svg>
         </div>
         <div class="brand-text">
-          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
             <h1>Smart Study Hub</h1>
             <span class="hackathon-tag-pill">🏆 Hackathon 2026 Showcase</span>
+            <span class="version-tag-pill" style="font-size:0.62rem; padding:2px 6px; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:var(--accent-emerald); border-radius:9999px; font-weight:700;">v2.5 Portrait Ready</span>
           </div>
           <div class="brand-tagline">
             <span class="status-dot"></span>
@@ -1945,38 +2549,78 @@
       </div>
 
       <div class="header-actions">
-        <!-- Hackathon Info Button -->
-        <button class="btn-hackathon-info" id="btn-hackathon-info" type="button" title="View Hackathon Submission Details">
-          <span>🏆 Hackathon Deck</span>
-        </button>
-
-        <!-- Running Stop Watch (Transformed from Countdown Timer) -->
-        <div class="stopwatch-badge" id="session-stopwatch-widget" title="Live Session Elapsed Stopwatch">
-          <div class="stopwatch-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 10"/>
-            </svg>
+        <!-- Dual Time Tracker (Stopwatch + Timer) -->
+        <div class="dual-time-widget" id="dual-time-widget">
+          <div class="time-mode-tabs">
+            <button class="time-mode-btn active" id="btn-mode-stopwatch" onclick="setTimeMode('stopwatch')">
+              ⏱️ Stopwatch
+            </button>
+            <button class="time-mode-btn" id="btn-mode-timer" onclick="setTimeMode('timer')">
+              ⏳ Timer
+            </button>
           </div>
-          <div>
-            <div class="stopwatch-label">Stop Watch</div>
-            <div class="stopwatch-digits" id="stopwatch-display">00:00</div>
+          <!-- Stopwatch Pane -->
+          <div class="time-display-row" id="pane-stopwatch">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span class="time-live-indicator" id="stopwatch-pulse-dot"></span>
+              <span class="time-digits-display" id="stopwatch-display">00:00:00</span>
+            </div>
+            <div class="time-ctrl-actions">
+              <button class="time-mini-btn" id="btn-stopwatch-toggle" onclick="toggleStopwatch()" title="Pause/Resume">⏸️</button>
+              <button class="time-mini-btn" onclick="resetStopwatch()" title="Reset">🔄</button>
+            </div>
           </div>
-          <button class="btn-stopwatch-toggle" id="btn-stopwatch-toggle" title="Pause / Resume Stopwatch" type="button">
-            <svg id="stopwatch-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="6" y="4" width="4" height="16"></rect>
-              <rect x="14" y="4" width="4" height="16"></rect>
-            </svg>
-          </button>
+          <!-- Countdown Timer Pane -->
+          <div class="time-display-row" id="pane-timer" style="display:none;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span style="font-size:0.8rem;">⏳</span>
+              <span class="time-digits-display" id="timer-display" style="color:var(--accent-cyan);">25:00</span>
+            </div>
+            <div class="time-ctrl-actions">
+              <button class="time-mini-btn" id="btn-timer-toggle" onclick="toggleTimer()" title="Start/Pause">▶️</button>
+              <button class="time-mini-btn" onclick="resetTimer()" title="Reset">🔄</button>
+            </div>
+          </div>
+          <div class="timer-presets-row" id="timer-presets-strip" style="display:none;">
+            <button class="preset-chip active" id="chip-25" onclick="setTimerPreset(25)">25m</button>
+            <button class="preset-chip" id="chip-15" onclick="setTimerPreset(15)">15m</button>
+            <button class="preset-chip" id="chip-45" onclick="setTimerPreset(45)">45m</button>
+          </div>
         </div>
+
+        <!-- Language Switcher Dropdown (English, Tamil, Hindi) -->
+        <div class="lang-switcher-box">
+          <button class="btn-lang-trigger" id="btn-lang-trigger" onclick="toggleLangMenu()" title="Select Portal Language">
+            <span>🌐</span>
+            <span id="current-lang-name">English</span>
+            <span style="font-size:0.65rem;">▼</span>
+          </button>
+          <div class="lang-dropdown-menu" id="lang-dropdown-menu">
+            <button class="lang-opt-btn active" id="lang-opt-en" onclick="setLanguage('en')">
+              <span>🇬🇧 English</span>
+              <span>✓</span>
+            </button>
+            <button class="lang-opt-btn" id="lang-opt-ta" onclick="setLanguage('ta')">
+              <span>🇮🇳 தமிழ் (Tamil)</span>
+            </button>
+            <button class="lang-opt-btn" id="lang-opt-hi" onclick="setLanguage('hi')">
+              <span>🇮🇳 हिन्दी (Hindi)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hackathon Pitch Deck Info Button -->
+        <button class="btn-hackathon-info" id="btn-hackathon-info" type="button" title="View Hackathon Submission Details">
+          <span>🏆 Deck</span>
+        </button>
 
         <!-- Close Session Button -->
         <button class="btn-close-session" id="btn-close-session" type="button" aria-label="Close Current Session">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
             <line x1="12" y1="2" x2="12" y2="12"/>
           </svg>
-          <span>Close Session</span>
+          <span id="close-session-text">Close</span>
         </button>
       </div>
     </div>
@@ -1986,6 +2630,18 @@
        MAIN APP WORKSPACE
        ========================================================================== -->
   <main class="app-container">
+
+    <!-- Dynamic Mobile Orientation Banner (Auto-adjusts for Portrait / Landscape) -->
+    <div class="mobile-orientation-banner" id="mobile-orientation-banner">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:1.1rem;">📱</span>
+        <div>
+          <strong style="color:var(--text-main); font-size:0.82rem;">Mobile Portrait Mode Active</strong>
+          <div style="color:var(--text-muted); font-size:0.72rem;">Vertical touch layout enabled</div>
+        </div>
+      </div>
+      <span class="orient-badge">Rotate for Wide Mind Map</span>
+    </div>
 
     <!-- ==========================================================================
          SECTION 1: CORE MODULES (TOUCH TO INSPECT THEORY & HUGE MIND MAP)
@@ -3024,7 +3680,22 @@
         </button>
       </div>
 
-      <div class="quiz-wrapper-layout">
+            <!-- Difficulty Filter (Easy, Medium, Hard) -->
+      <div class="quiz-difficulty-bar" id="quiz-difficulty-bar">
+        <button class="diff-btn active" id="diff-btn-all" onclick="filterDifficulty('all')">
+          <span id="lbl-diff-all">All (25)</span>
+        </button>
+        <button class="diff-btn diff-easy" id="diff-btn-easy" onclick="filterDifficulty('easy')">
+          <span id="lbl-diff-easy">🟢 Easy (8)</span>
+        </button>
+        <button class="diff-btn diff-medium" id="diff-btn-medium" onclick="filterDifficulty('medium')">
+          <span id="lbl-diff-medium">🟡 Medium (9)</span>
+        </button>
+        <button class="diff-btn diff-hard" id="diff-btn-hard" onclick="filterDifficulty('hard')">
+          <span id="lbl-diff-hard">🔴 Hard (8)</span>
+        </button>
+      </div>
+    <div class="quiz-wrapper-layout">
 
         <!-- Quiz Presentation Card -->
         <div class="quiz-card" id="quiz-card">
@@ -3228,482 +3899,2291 @@
          1. COMPREHENSIVE 40-QUESTION BANK (EXACTLY 10 QUESTIONS PER SUBJECT)
          ========================================================================== */
       const ALL_QUESTIONS = [
-        /* -------------------------------------------------------------
-           MATHEMATICS (10 QUESTIONS)
-           ------------------------------------------------------------- */
-        {
-          id: 1,
-          subject: "Mathematics",
-          subtopic: "Calculus: Limits",
-          question: "Evaluate the fundamental limit as x approaches 0: lim (x → 0) [sin(x) / x].",
-          options: ["0", "1", "Infinity (∞)", "Undefined"],
-          correctIndex: 1,
-          successComplement: "🎯 Brilliant mathematical deduction! You recognized the fundamental trigonometric limit.",
-          explanation: "The correct answer is 1. Direct substitution yields 0/0; applying L'Hôpital's Rule gives lim (x → 0) [cos(x)/1] = cos(0) = 1. Geometrically, by the Squeeze Theorem using unit circle sectors, cos(x) < sin(x)/x < 1; as x → 0, both bounds approach 1, forcing the limit to 1."
-        },
-        {
-          id: 2,
-          subject: "Mathematics",
-          subtopic: "Matrices: Determinants",
-          question: "For a 2x2 matrix M = [[a, b], [c, d]], what is the algebraic determinant det(M)?",
-          options: ["ad + bc", "ac - bd", "ad - bc", "(a + d) / (b + c)"],
-          correctIndex: 2,
-          successComplement: "✨ Outstanding algebraic precision! Matrix determinants govern volume scaling and invertibility.",
-          explanation: "The correct answer is ad - bc. For any second-order square matrix, the determinant represents the oriented area scaling factor of the transformation, calculated by subtracting the product of off-diagonal elements (bc) from the main diagonal product (ad)."
-        },
-        {
-          id: 3,
-          subject: "Mathematics",
-          subtopic: "Calculus: Power Rule",
-          question: "Using the Power Rule of differential calculus, what is the derivative d/dx [x^5]?",
-          options: ["5x^4", "x^4", "5x^5", "x^6 / 6"],
-          correctIndex: 0,
-          successComplement: "⚡ Flawless! You correctly executed the foundational power rule of differential calculus.",
-          explanation: "The correct answer is 5x^4. By the rule d/dx [x^n] = n * x^(n-1), differentiating x^5 brings down the exponent 5 as a coefficient and decrements the exponent by 1 to yield 5x^4. Option D corresponds to the antiderivative."
-        },
-        {
-          id: 4,
-          subject: "Mathematics",
-          subtopic: "Calculus: Product Rule",
-          question: "What is the derivative of the product of two differentiable functions [f(x) * g(x)]?",
-          options: ["f'(x) * g'(x)", "f'(x)g(x) + f(x)g'(x)", "f'(x)g'(x) - f(x)g(x)", "f'(x) / g'(x)"],
-          correctIndex: 1,
-          successComplement: "🎯 Superb mastery of the differential calculus product rule!",
-          explanation: "The correct answer is f'(x)g(x) + f(x)g'(x). Differentiation is not linear across multiplication. The rate of change of an area f(x)*g(x) expands in both dimensions, demanding the sum of f'g and fg'."
-        },
-        {
-          id: 5,
-          subject: "Mathematics",
-          subtopic: "Matrices: Singularity",
-          question: "Under what condition is a square matrix A classified as singular (non-invertible)?",
-          options: ["det(A) = 1", "det(A) = 0", "Trace(A) = 0", "All diagonal elements are positive"],
-          correctIndex: 1,
-          successComplement: "🌟 Excellent! You understand matrix singularity and dimensionality collapse.",
-          explanation: "The correct answer is det(A) = 0. When the determinant equals zero, the matrix collapses space into a lower dimension (e.g. 2D plane into a line or point), rendering the transformation non-bijective and non-invertible."
-        },
-        {
-          id: 6,
-          subject: "Mathematics",
-          subtopic: "Calculus: Tangent Slopes",
-          question: "What is the slope of the tangent line to the curve y = x^2 - 3x + 2 at x = 4?",
-          options: ["2", "5", "8", "6"],
-          correctIndex: 1,
-          successComplement: "📈 Spot on! You found the instantaneous rate of change via differentiation.",
-          explanation: "The correct answer is 5. Differentiating y = x^2 - 3x + 2 gives dy/dx = 2x - 3. Evaluating at x = 4 yields 2(4) - 3 = 8 - 3 = 5."
-        },
-        {
-          id: 7,
-          subject: "Mathematics",
-          subtopic: "Matrices: Identity Matrix",
-          question: "What is the determinant of any n x n identity matrix I_n?",
-          options: ["0", "n", "1", "Infinity"],
-          correctIndex: 2,
-          successComplement: "✨ Flawless! The identity transformation preserves oriented hypervolume exactly.",
-          explanation: "The correct answer is 1. The identity matrix I_n has 1s on the main diagonal and 0s elsewhere. As a diagonal matrix, its determinant is the product of diagonal entries: 1 * 1 * ... * 1 = 1."
-        },
-        {
-          id: 8,
-          subject: "Mathematics",
-          subtopic: "Calculus: Natural Logarithm",
-          question: "What is the derivative of the natural logarithm function d/dx [ln(x)] for x > 0?",
-          options: ["1 / x", "e^x", "1 / x^2", "ln(x) - 1"],
-          correctIndex: 0,
-          successComplement: "🎯 Spot on! The natural logarithm's derivative is the reciprocal function.",
-          explanation: "The correct answer is 1 / x. By inverse function differentiation of e^y = x, d/dx [ln(x)] = 1/x. Its integral yields ln|x| + C."
-        },
-        {
-          id: 9,
-          subject: "Mathematics",
-          subtopic: "Matrices: Trace & Determinant",
-          question: "For the matrix M = [[3, 1], [4, 2]], what are its Trace and Determinant?",
-          options: ["Trace = 5, det = 2", "Trace = 6, det = 5", "Trace = 2, det = 5", "Trace = 5, det = 10"],
-          correctIndex: 0,
-          successComplement: "🧮 Remarkable calculation! Trace is diagonal sum and determinant is ad - bc.",
-          explanation: "The correct answer is Trace = 5, det = 2. Trace is the sum of main diagonal entries: 3 + 2 = 5. Determinant is ad - bc = (3)(2) - (1)(4) = 6 - 4 = 2."
-        },
-        {
-          id: 10,
-          subject: "Mathematics",
-          subtopic: "Calculus: Euler's Number",
-          question: "What mathematical constant is defined by the limit lim (n → ∞) [(1 + 1/n)^n]?",
-          options: ["π ≈ 3.14159", "e ≈ 2.71828", "φ ≈ 1.61803", "1"],
-          correctIndex: 1,
-          successComplement: "🌟 Extraordinary! You recognized the foundational limit defining Euler's constant.",
-          explanation: "The correct answer is e ≈ 2.71828. This limit arises from continuous compounding growth models and serves as the unique base for the natural exponential function whose derivative equals itself."
-        },
+  {
+    "id": 1,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Calculus: Limits",
+    "question": "What is the fundamental limit of (sin x) / x as x approaches 0?",
+    "options": [
+      "0",
+      "1",
+      "Infinity",
+      "Undefined"
+    ],
+    "correctIndex": 1,
+    "successComplement": "🎯 Brilliant! You recognized the cornerstone trigonometric limit of calculus!",
+    "explanation": "As x approaches 0, sin(x)/x approaches 1. This can be derived by the Squeeze Theorem using geometric unit circle sectors (cos x < sin x / x < 1) or by L'Hôpital's Rule: lim cos(x)/1 = cos(0) = 1."
+  },
+  {
+    "id": 2,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Calculus: Power Rule",
+    "question": "Using the Power Rule, what is the derivative d/dx [x^4]?",
+    "options": [
+      "4x^3",
+      "3x^4",
+      "4x^5",
+      "x^3 / 4"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Superb derivative computation! Clean power rule execution!",
+    "explanation": "By the power rule d/dx [x^n] = n * x^(n-1). Here n = 4, so d/dx [x^4] = 4 * x^(4-1) = 4x^3."
+  },
+  {
+    "id": 3,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Calculus: Constant Rule",
+    "question": "What is the derivative of any constant value c with respect to x (d/dx [c])?",
+    "options": [
+      "c",
+      "1",
+      "0",
+      "x"
+    ],
+    "correctIndex": 2,
+    "successComplement": "🌟 Spot-on axiom recall! Constants have zero rate of change!",
+    "explanation": "Because a constant does not change as x changes, its rate of change (slope of a horizontal line) is identically 0. Therefore, d/dx [c] = 0."
+  },
+  {
+    "id": 4,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Matrices: Identity",
+    "question": "For any 2x2 matrix A, what is the product A * I, where I is the 2x2 Identity Matrix?",
+    "options": [
+      "Zero Matrix",
+      "Matrix A",
+      "Inverse of A",
+      "Transpose of A"
+    ],
+    "correctIndex": 1,
+    "successComplement": "💎 Perfect understanding of matrix identity elements!",
+    "explanation": "The identity matrix I acts as the multiplicative identity in linear algebra, analogous to 1 in real numbers. For any conformable matrix A, A * I = I * A = A."
+  },
+  {
+    "id": 5,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Matrices: Determinants",
+    "question": "What is the determinant of a 2x2 matrix [[3, 2], [1, 4]]?",
+    "options": [
+      "10",
+      "14",
+      "12",
+      "8"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Outstanding calculation! det = ad - bc executed cleanly!",
+    "explanation": "For matrix [[a, b], [c, d]], det = ad - bc. Here a=3, b=2, c=1, d=4. det = (3 * 4) - (2 * 1) = 12 - 2 = 10."
+  },
+  {
+    "id": 6,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Calculus: Linearity",
+    "question": "What is the derivative of f(x) = 3x^2 + 5x?",
+    "options": [
+      "6x + 5",
+      "3x + 5",
+      "6x^2 + 5",
+      "5x + 3"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Excellent linearity application across polynomial terms!",
+    "explanation": "By linearity of differentiation: d/dx [3x^2 + 5x] = 3 * d/dx[x^2] + 5 * d/dx[x] = 3(2x) + 5(1) = 6x + 5."
+  },
+  {
+    "id": 7,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Matrices: Order",
+    "question": "If matrix A has dimension 3x2 and matrix B has dimension 2x4, what is the dimension of the product AB?",
+    "options": [
+      "3x4",
+      "2x2",
+      "3x2",
+      "Multiplication is undefined"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Flawless matrix dimension compatibility check!",
+    "explanation": "When multiplying an (m x k) matrix by a (k x n) matrix, the inner dimensions match (k=2), yielding a resulting matrix of dimension (m x n) = 3x4."
+  },
+  {
+    "id": 8,
+    "subject": "Mathematics",
+    "difficulty": "easy",
+    "subtopic": "Calculus: Trigonometric Limits",
+    "question": "What is the value of lim (x → 0) [cos(x)]?",
+    "options": [
+      "1",
+      "0",
+      "Undefined",
+      "-1"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Great job! Direct substitution in continuous trigonometric functions!",
+    "explanation": "Since cos(x) is continuous everywhere on the real line, we evaluate the limit directly by substitution: lim (x → 0) cos(x) = cos(0) = 1."
+  },
+  {
+    "id": 9,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: Product Rule",
+    "question": "Using the Product Rule, what is the derivative d/dx [x * sin(x)]?",
+    "options": [
+      "sin(x) + x*cos(x)",
+      "cos(x)",
+      "x * cos(x)",
+      "sin(x) - x*cos(x)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🧠 Exceptional execution of the Leibniz product rule (u'v + uv')!",
+    "explanation": "By the product rule d/dx [u * v] = u'v + uv'. Here u = x (u' = 1) and v = sin(x) (v' = cos(x)). Thus d/dx [x * sin(x)] = 1 * sin(x) + x * cos(x)."
+  },
+  {
+    "id": 10,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: Chain Rule",
+    "question": "What is the derivative of composite function f(x) = (2x + 1)^3?",
+    "options": [
+      "6(2x + 1)^2",
+      "3(2x + 1)^2",
+      "6x^2",
+      "12(2x + 1)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful chain rule application! Outer derivative multiplied by inner derivative!",
+    "explanation": "Let u = 2x + 1. Then f(u) = u^3. df/dx = (df/du) * (du/dx) = 3u^2 * 2 = 6(2x + 1)^2."
+  },
+  {
+    "id": 11,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Matrices: Invertibility",
+    "question": "A square matrix M is invertible (non-singular) if and only if:",
+    "options": [
+      "det(M) ≠ 0",
+      "det(M) = 0",
+      "Trace(M) = 0",
+      "M is symmetric"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Precision insight! Non-zero determinant ensures volume non-collapse!",
+    "explanation": "The inverse of matrix M is given by M^(-1) = (1 / det(M)) * adj(M). Division by zero is undefined; thus M is invertible if and only if det(M) ≠ 0."
+  },
+  {
+    "id": 12,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: L'Hôpital's Rule",
+    "question": "Evaluate lim (x → 0) [(e^x - 1) / x] using L'Hôpital's Rule:",
+    "options": [
+      "1",
+      "0",
+      "e",
+      "Infinity"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Elegant asymptotic analysis with L'Hôpital's rule!",
+    "explanation": "Direct substitution gives indeterminate form 0/0. Applying L'Hôpital's rule: differentiate numerator (e^x) and denominator (1): lim (x → 0) [e^x / 1] = e^0 / 1 = 1."
+  },
+  {
+    "id": 13,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Matrices: Transpose Properties",
+    "question": "For two conformable square matrices A and B, what is (A * B)^T equal to?",
+    "options": [
+      "B^T * A^T",
+      "A^T * B^T",
+      "A * B",
+      "(A + B)^T"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Classic linear algebra law! Transpose reverses multiplication order!",
+    "explanation": "Because matrix multiplication involves row-by-column inner products, taking the transpose swaps rows and columns, reversing the order of operands: (AB)^T = B^T * A^T."
+  },
+  {
+    "id": 14,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: Critical Points",
+    "question": "For the curve f(x) = x^3 - 3x, at what values of x do critical points occur?",
+    "options": [
+      "x = ±1",
+      "x = 0, 3",
+      "x = ±√3",
+      "x = 1, 2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Stellar optimization calculus! Setting f'(x) = 0 solved correctly!",
+    "explanation": "Critical points occur where f'(x) = 0. f'(x) = 3x^2 - 3 = 3(x^2 - 1) = 0. Hence x^2 = 1, giving x = 1 and x = -1."
+  },
+  {
+    "id": 15,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: Exponential Derivative",
+    "question": "What is the derivative of f(x) = ln(x) for x > 0?",
+    "options": [
+      "1 / x",
+      "1 / x^2",
+      "e^x",
+      "x * ln(x)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Outstanding recall of natural logarithmic differentiation!",
+    "explanation": "By definition of the natural logarithm derivative, d/dx [ln(x)] = 1/x for all x in its domain (0, ∞)."
+  },
+  {
+    "id": 16,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Matrices: Trace",
+    "question": "What is the trace of matrix M = [[5, 2], [7, -3]]?",
+    "options": [
+      "2",
+      "-15",
+      "9",
+      "-29"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💡 Quick and accurate! Sum of principal diagonal entries!",
+    "explanation": "The trace of a square matrix is the sum of its main diagonal elements. Here trace(M) = 5 + (-3) = 2."
+  },
+  {
+    "id": 17,
+    "subject": "Mathematics",
+    "difficulty": "medium",
+    "subtopic": "Calculus: Definite Integral",
+    "question": "Evaluate the definite integral ∫ from 0 to 2 of (3x^2) dx:",
+    "options": [
+      "8",
+      "6",
+      "12",
+      "4"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Superb Fundamental Theorem of Calculus application!",
+    "explanation": "The antiderivative of 3x^2 is x^3. Evaluating between limits [x^3] from 0 to 2 gives 2^3 - 0^3 = 8 - 0 = 8."
+  },
+  {
+    "id": 18,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Calculus: Second Derivative Test",
+    "question": "If f'(c) = 0 and f''(c) < 0 at an interior point c, what does the Second Derivative Test guarantee?",
+    "options": [
+      "Local Maximum at c",
+      "Local Minimum at c",
+      "Inflection Point at c",
+      "Test is inconclusive"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🏆 High-level analytical mastery! Concave down forces local maximum!",
+    "explanation": "f''(c) < 0 implies the graph is concave down (resembling an upside-down parabola ∩) at c. Since the tangent is horizontal (f'(c)=0), the curve peaks, establishing a strict local maximum."
+  },
+  {
+    "id": 19,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Matrices: Eigenvalues",
+    "question": "The characteristic equation used to solve for eigenvalues λ of matrix A is given by:",
+    "options": [
+      "det(A - λI) = 0",
+      "Trace(A) = λ",
+      "A * λ = I",
+      "det(A) + λ = 0"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Elite linear algebra acumen! Non-trivial null space condition!",
+    "explanation": "By definition, an eigenvector v satisfies Av = λv, which rearranges to (A - λI)v = 0. For non-zero v to exist, the operator (A - λI) must be singular, meaning det(A - λI) = 0."
+  },
+  {
+    "id": 20,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Calculus: Euler's Number Limit",
+    "question": "What is the value of the canonical compound interest limit lim (x → ∞) [(1 + 1/x)^x]?",
+    "options": [
+      "e (Euler's Number ≈ 2.718)",
+      "1",
+      "Infinity",
+      "0"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Mathematical genius! The exact analytical definition of base e!",
+    "explanation": "Taking natural logarithm y = lim (1 + 1/x)^x leads to ln(y) = lim [ln(1 + 1/x) / (1/x)]. Applying L'Hôpital's rule yields ln(y) = 1, meaning y = e^1 = e."
+  },
+  {
+    "id": 21,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Calculus: Integration by Parts",
+    "question": "According to the Integration by Parts formula ∫ u dv, what is the expansion?",
+    "options": [
+      "u*v - ∫ v du",
+      "u*v + ∫ v du",
+      "u'*v - u*v'",
+      "∫ u du * ∫ v dv"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Magnificent integral calculus mastery! Direct inversion of product rule!",
+    "explanation": "Integrating the product rule d(uv) = u dv + v du yields uv = ∫ u dv + ∫ v du. Rearranging gives the formula: ∫ u dv = uv - ∫ v du."
+  },
+  {
+    "id": 22,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Matrices: Cramer's Rule",
+    "question": "In solving linear system Ax = b using Cramer's Rule, the i-th variable x_i is calculated as:",
+    "options": [
+      "det(A_i) / det(A)",
+      "det(A) / det(A_i)",
+      "det(A * A_i)",
+      "Trace(A_i) / Trace(A)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Pristine linear algebra formula recall! Determinant volume quotient!",
+    "explanation": "Cramer's rule states that each variable x_i is the ratio of det(A_i) (the matrix formed by replacing the i-th column of A with constant vector b) to the system determinant det(A)."
+  },
+  {
+    "id": 23,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Calculus: Implicit Differentiation",
+    "question": "For the unit circle x^2 + y^2 = 1, what is dy/dx at any point (x, y) where y ≠ 0?",
+    "options": [
+      "-x / y",
+      "x / y",
+      "-y / x",
+      "1 / (2y)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Superb implicit differentiation! Treating y as a function of x executed flawlessly!",
+    "explanation": "Differentiating both sides with respect to x: d/dx[x^2] + d/dx[y^2] = d/dx[1] → 2x + 2y(dy/dx) = 0. Solving for dy/dx yields dy/dx = -2x / (2y) = -x / y."
+  },
+  {
+    "id": 24,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Matrices: Orthogonal Matrices",
+    "question": "If a real square matrix Q is orthogonal, which fundamental property holds true?",
+    "options": [
+      "Q^T * Q = I (so Q^(-1) = Q^T)",
+      "det(Q) = 0",
+      "Q^T = -Q",
+      "Q is a diagonal matrix"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Brilliant insight into isometric linear operators!",
+    "explanation": "An orthogonal matrix preserves vector Euclidean lengths and dot products. Its columns form an orthonormal basis, satisfying Q^T * Q = I, which implies its inverse equals its transpose: Q^(-1) = Q^T."
+  },
+  {
+    "id": 25,
+    "subject": "Mathematics",
+    "difficulty": "hard",
+    "subtopic": "Calculus: Mean Value Theorem",
+    "question": "If f(x) is continuous on [a, b] and differentiable on (a, b), the Mean Value Theorem guarantees at least one c in (a, b) such that f'(c) equals:",
+    "options": [
+      "[f(b) - f(a)] / (b - a)",
+      "[f(b) + f(a)] / 2",
+      "0",
+      "f'(a) + f'(b)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Stellar calculus theorem mastery! Instantaneous slope matches average secant slope!",
+    "explanation": "The Mean Value Theorem guarantees that there is at least one tangent line slope f'(c) equal to the average secant rate of change [f(b) - f(a)] / (b - a)."
+  },
+  {
+    "id": 26,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Organic Chemistry: Hydrocarbons",
+    "question": "What is the general molecular formula for acyclic saturated alkanes?",
+    "options": [
+      "CnH2n+2",
+      "CnH2n",
+      "CnH2n-2",
+      "CnHn"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Spot on! You identified the classic saturated alkane formula!",
+    "explanation": "Alkanes contain only single carbon-carbon bonds and maximum possible hydrogen atoms, adhering strictly to the formula CnH2n+2 (e.g., Methane CH4, Ethane C2H6)."
+  },
+  {
+    "id": 27,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Chemical Bonding: Ionic Bonds",
+    "question": "Ionic bonds are formed primarily by what atomic mechanism?",
+    "options": [
+      "Complete transfer of valence electrons from metal to non-metal",
+      "Equal sharing of electron pairs",
+      "Delocalized sea of mobile electrons",
+      "Weak dispersion dipole attractions"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Superb electrostatic insight! Complete electron transfer creates ionic lattices!",
+    "explanation": "Ionic bonds arise when a low electronegativity electropositive metal transfers valence electrons completely to a high electronegativity non-metal, forming oppositely charged cations and anions held by Coulombic forces."
+  },
+  {
+    "id": 28,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Organic Chemistry: Hybridization",
+    "question": "What is the bond angle in a symmetrical tetrahedral sp3 hybridized methane molecule (CH4)?",
+    "options": [
+      "109.5°",
+      "120°",
+      "180°",
+      "90°"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Flawless VSEPR geometry recall! 109.5° defines the tetrahedral regular polyhedron!",
+    "explanation": "In methane (CH4), carbon undergoes sp3 hybridization forming 4 equivalent bonding orbitals oriented in 3D space to minimize electron-pair repulsion, establishing the 109.5° tetrahedral angle."
+  },
+  {
+    "id": 29,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Periodic Table: Trends",
+    "question": "Moving from left to right across a period in the modern periodic table, what happens to atomic electronegativity?",
+    "options": [
+      "Increases",
+      "Decreases",
+      "Remains constant",
+      "Drops to zero"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Outstanding periodic trend deduction! Nuclear charge pull increases across periods!",
+    "explanation": "Across a period, nuclear charge (Z_eff) increases while electrons are added to the same principal energy shell. This stronger nuclear pull attracts bonding electrons more vigorously, increasing electronegativity."
+  },
+  {
+    "id": 30,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Chemical Bonding: Covalent",
+    "question": "Covalent bonding involves which fundamental atomic interaction?",
+    "options": [
+      "Sharing of electron pairs between non-metallic atoms",
+      "Transfer of protons between atomic nuclei",
+      "Attraction between positive ions and free electrons",
+      "Nuclear fission between atomic orbitals"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Perfect! Mutual sharing of valence pairs satisfies octet rules!",
+    "explanation": "Covalent bonds form when non-metal atoms of similar electronegativity overlap atomic orbitals and share valence electron pairs to attain stable noble gas octet electron configurations."
+  },
+  {
+    "id": 31,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Organic Chemistry: Functional Groups",
+    "question": "Which characteristic functional group defines alcohols in organic chemistry?",
+    "options": [
+      "Hydroxyl group (-OH)",
+      "Carboxyl group (-COOH)",
+      "Carbonyl group (C=O)",
+      "Amino group (-NH2)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Crisp functional group recognition! -OH defines the alcohol family!",
+    "explanation": "Alcohols possess a polar hydroxyl group (-OH) covalently bound to an sp3 hybridized alkyl carbon atom (e.g., Ethanol CH3CH2OH)."
+  },
+  {
+    "id": 32,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Periodic Table: Atomic Size",
+    "question": "Moving down any group in the periodic table, what happens to atomic radius?",
+    "options": [
+      "Increases due to addition of principal electron shells",
+      "Decreases due to nuclear compression",
+      "Remains identical across all periods",
+      "Fluctuates randomly"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Brilliant! New quantum energy levels expand electron cloud radius!",
+    "explanation": "Descending a group, a new principal electron shell (n) is added at each period. Despite increasing nuclear charge, effective electron shielding and greater quantum distance cause atomic radius to expand."
+  },
+  {
+    "id": 33,
+    "subject": "Chemistry",
+    "difficulty": "easy",
+    "subtopic": "Organic Chemistry: Alkenes",
+    "question": "What is the general molecular formula for mono-unsaturated straight-chain alkenes containing one double bond?",
+    "options": [
+      "CnH2n",
+      "CnH2n+2",
+      "CnH2n-2",
+      "CnH2n+1"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Stellar organic formula recall! Two hydrogens lost to form the π bond!",
+    "explanation": "Alkenes possess one carbon-carbon double bond (one σ and one π bond), reducing the hydrogen count by two relative to alkanes, resulting in the formula CnH2n (e.g., Ethene C2H4)."
+  },
+  {
+    "id": 34,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Organic Chemistry: Hybridization",
+    "question": "What is the hybridization state and molecular geometry around carbon atoms in ethene (C2H4)?",
+    "options": [
+      "sp2 hybridized with trigonal planar 120° geometry",
+      "sp3 hybridized with tetrahedral 109.5° geometry",
+      "sp hybridized with linear 180° geometry",
+      "dsp2 hybridized with square planar geometry"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🧠 Exceptional orbital hybridization deduction! Trigonal planar sp2 confirmed!",
+    "explanation": "Each carbon in ethene forms 3 σ bonds (two with hydrogen, one with carbon) using sp2 hybridized orbitals in a 120° plane, while unhybridized 2p orbitals overlap sideways to form the orthogonal π bond."
+  },
+  {
+    "id": 35,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Organic Chemistry: Aromaticity",
+    "question": "According to Hückel's Rule of aromatic stability, a planar cyclic conjugated system is aromatic if it contains:",
+    "options": [
+      "(4n + 2) delocalized π-electrons (where n is non-negative integer)",
+      "4n delocalized π-electrons",
+      "Any even number of π-electrons",
+      "2n + 1 π-electrons"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful chemical physics! Hückel's (4n+2) rule governs aromatic resonance!",
+    "explanation": "Hückel's Rule states that planar, fully cyclic, conjugated polyenes possessing (4n + 2) delocalized π-electrons (e.g., Benzene with n=1 → 6 π-electrons) gain exceptional thermodynamic resonance stabilization."
+  },
+  {
+    "id": 36,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Chemical Bonding: VSEPR",
+    "question": "Why is the bond angle in water (H2O) 104.5° instead of the ideal tetrahedral 109.5°?",
+    "options": [
+      "Repulsion from two oxygen lone pairs compresses the H-O-H bond angle",
+      "Hydrogen atoms attract each other electrostatically",
+      "Oxygen undergoes sp hybridization",
+      "Water is a linear molecule"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Acute stereochemical insight! Lone pair-lone pair repulsion dominates bonding pairs!",
+    "explanation": "Oxygen in H2O has 4 electron domains (2 bonding pairs, 2 lone pairs). According to VSEPR theory, non-bonding lone pairs occupy greater angular space, exerting repulsive force that compresses the bond angle from 109.5° down to 104.5°."
+  },
+  {
+    "id": 37,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Chemical Bonding: Intermolecular Forces",
+    "question": "Hydrogen bonding occurs specifically when hydrogen is covalently bonded to which set of highly electronegative elements?",
+    "options": [
+      "Nitrogen, Oxygen, or Fluorine (N, O, F)",
+      "Carbon, Sulfur, or Chlorine",
+      "Sodium, Potassium, or Lithium",
+      "Helium, Neon, or Argon"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Flawless intermolecular chemistry! Small atomic radii and high EN create strong H-bonds!",
+    "explanation": "N, O, and F are the most electronegative elements with compact atomic radii. When bonded to hydrogen, they polarize electron density intensely, leaving hydrogen as a bare unshielded proton that forms strong dipolar hydrogen bonds."
+  },
+  {
+    "id": 38,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Periodic Table: Ionization Energy",
+    "question": "Why is the first ionization energy of Nitrogen (Group 15) slightly higher than that of Oxygen (Group 16)?",
+    "options": [
+      "Nitrogen possesses a stable half-filled 2p^3 subshell with zero electron pairing repulsion",
+      "Oxygen has a larger atomic radius",
+      "Nitrogen has more protons in its nucleus",
+      "Oxygen is less electronegative than nitrogen"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Elite electronic configuration analysis! Half-filled subshell stability verified!",
+    "explanation": "Nitrogen has electron configuration 1s^2 2s^2 2p^3 (half-filled p subshell with one electron in each p orbital). Oxygen has 1s^2 2s^2 2p^4, where the paired electron in one 2p orbital experiences electron-electron repulsion, making it easier to ionize."
+  },
+  {
+    "id": 39,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Chemical Bonding: Dipole Moment",
+    "question": "Carbon dioxide (CO2) contains two polar C=O bonds, yet has a net molecular dipole moment of zero because:",
+    "options": [
+      "Its linear symmetrical geometry causes the two opposing bond dipoles to cancel vectorially",
+      "C=O bonds are non-polar",
+      "Carbon has higher electronegativity than oxygen",
+      "CO2 forms ionic crystal structures"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Outstanding vector dipole physics! Linear symmetry cancels molecular polarity!",
+    "explanation": "CO2 is linear (O=C=O, 180°). Both C=O bonds are strongly polar toward oxygen, but because they point in exactly opposite directions with equal magnitude, the vector sum of the dipole moments is identically zero (μ = 0)."
+  },
+  {
+    "id": 40,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Organic Chemistry: Isomerism",
+    "question": "Molecules that possess the same molecular formula but different orders of atomic connectivity are classified as:",
+    "options": [
+      "Structural (Constitutional) Isomers",
+      "Enantiomers",
+      "Geometric (Cis-Trans) Isomers",
+      "Conformers"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Spot-on isomer classification! Connectivity differences define structural isomers!",
+    "explanation": "Structural or constitutional isomers share identical molecular formulas but have different bonding connectivity sequences (e.g., n-butane vs isobutane C4H10)."
+  },
+  {
+    "id": 41,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Chemical Bonding: Octet Exceptions",
+    "question": "Which of the following stable molecules is an example of an expanded octet (hypervalent center)?",
+    "options": [
+      "Sulfur Hexafluoride (SF6, 12 valence electrons)",
+      "Water (H2O)",
+      "Methane (CH4)",
+      "Ammonia (NH3)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💡 High-level bonding acumen! Period 3 elements utilize vacant d-orbitals for hypervalency!",
+    "explanation": "Sulfur is in Period 3 and possesses accessible 3d orbitals, allowing it to expand its valence shell beyond 8 electrons to accommodate 6 S-F single bonds (12 shared electrons) in SF6 with octahedral geometry."
+  },
+  {
+    "id": 42,
+    "subject": "Chemistry",
+    "difficulty": "medium",
+    "subtopic": "Organic Chemistry: Alkynes",
+    "question": "In ethyne (acetylene, C2H2), what is the carbon-carbon triple bond composed of?",
+    "options": [
+      "One σ (sigma) bond and two orthogonal π (pi) bonds",
+      "Three σ bonds",
+      "Three π bonds",
+      "Two σ bonds and one π bond"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Perfect orbital mechanics! One coaxial sigma and two orthogonal pi bonds!",
+    "explanation": "The triple bond in sp hybridized ethyne consists of one head-on axial σ bond formed by overlapping sp-sp orbitals, and two mutually perpendicular π bonds formed by lateral overlap of unhybridized 2py and 2pz orbitals."
+  },
+  {
+    "id": 43,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Organic Chemistry: Resonance Energy",
+    "question": "The theoretical heat of hydrogenation of hypothetical 1,3,5-cyclohexatriene is ~360 kJ/mol, while benzene is only 208 kJ/mol. What does this difference (~152 kJ/mol) measure?",
+    "options": [
+      "Benzene's aromatic resonance stabilization energy",
+      "Steric hindrance energy between hydrogens",
+      "Ionic lattice energy of benzene",
+      "Activation energy of combustion"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🏆 Elite physical organic chemistry insight! 152 kJ/mol measures empirical aromatic resonance energy!",
+    "explanation": "The ~152 kJ/mol (36 kcal/mol) energy discrepancy represents the aromatic resonance stabilization energy of benzene resulting from cyclic delocalization of its 6 π-electrons across all six carbon nuclei."
+  },
+  {
+    "id": 44,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Chemical Bonding: Born-Haber Cycle",
+    "question": "In the Born-Haber thermochemical cycle for sodium chloride (NaCl), which energetic quantity is defined as exothermic?",
+    "options": [
+      "Lattice Energy (formation of solid crystalline NaCl from gaseous Na+ and Cl- ions)",
+      "Sublimation energy of solid sodium",
+      "Ionization enthalpy of sodium gas",
+      "Bond dissociation energy of chlorine gas"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Magnificent thermodynamic precision! Crystal lattice formation releases vast Coulombic energy!",
+    "explanation": "Bringing separated gaseous cations (Na+) and anions (Cl-) together into an ordered ionic crystal lattice releases massive electrostatic energy, making lattice formation highly exothermic (ΔH < 0)."
+  },
+  {
+    "id": 45,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Organic Chemistry: Markovnikov's Rule",
+    "question": "According to Markovnikov's Rule, electrophilic addition of hydrogen halide (HX) to an unsymmetrical alkene directs H+ to:",
+    "options": [
+      "The carbon with the greater number of hydrogen atoms, producing the more stable carbocation intermediate",
+      "The more substituted carbon atom",
+      "The terminal carbon regardless of structure",
+      "Either carbon with equal 50:50 probability"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Outstanding mechanistic mastery! Carbocation stability governs regioselectivity!",
+    "explanation": "Electrophilic H+ adds to the less substituted double-bond carbon (having more hydrogens) so that the positive charge forms on the more substituted carbon, yielding a tertiary/secondary carbocation stabilized by hyperconjugation."
+  },
+  {
+    "id": 46,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Chemical Bonding: Coordinate Covalence",
+    "question": "When ammonia (NH3) reacts with a proton (H+) to form the ammonium ion (NH4+), what type of bond is created?",
+    "options": [
+      "Coordinate Covalent (Dative) Bond",
+      "Pure Ionic Bond",
+      "Metallic Bond",
+      "Hydrogen Bond"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Brilliant bonding mechanism! Nitrogen donates both electrons from its lone pair!",
+    "explanation": "In NH3, nitrogen has a lone pair of electrons. An incoming proton (H+) possesses an empty 1s orbital. Nitrogen donates both electrons to form the N-H bond, which is a coordinate covalent (dative) bond."
+  },
+  {
+    "id": 47,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Organic Chemistry: Carbocation Stability",
+    "question": "What is the correct decreasing order of thermodynamic stability among alkyl carbocations?",
+    "options": [
+      "Tertiary (3°) > Secondary (2°) > Primary (1°) > Methyl (+CH3)",
+      "Methyl > Primary > Secondary > Tertiary",
+      "Secondary > Tertiary > Primary > Methyl",
+      "All carbocations possess identical stability"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful organic reactive intermediate knowledge! Alkyl induction and hyperconjugation stabilize positive charge!",
+    "explanation": "Tertiary carbocations have 3 electron-donating alkyl groups providing inductive +I electron release and extensive σ-C-H to empty p-orbital hyperconjugation (up to 9 hyperconjugative structures), making 3° the most stable."
+  },
+  {
+    "id": 48,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Chemical Bonding: London Dispersion",
+    "question": "Why does boiling point increase down the noble gas group (He < Ne < Ar < Kr < Xe)?",
+    "options": [
+      "Larger atomic polarizability increases the strength of temporary London dispersion forces",
+      "Increasing nuclear charge repels surrounding atoms",
+      "Higher atomic mass increases chemical reactivity",
+      "Stronger ionic bond formation occurs"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Exceptional physical chemistry reasoning! Polarizability drives London dispersion!",
+    "explanation": "Heavier noble gases have more electrons held further from the nucleus. This larger electron cloud is more easily distorted (higher polarizability), creating stronger instantaneous induced dipoles and higher boiling points."
+  },
+  {
+    "id": 49,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Periodic Table: Diagonal Relationship",
+    "question": "Lithium exhibits an anomalous diagonal similarity with Magnesium in chemical behavior primarily due to:",
+    "options": [
+      "Similar ionic charge-to-radius ratios (polarizing power)",
+      "Identical valence electron counts",
+      "Same number of principal electron shells",
+      "Matching atomic masses"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Pristine inorganic chemistry insight! Charge density and polarizing power match diagonally!",
+    "explanation": "The polarizing power (ionic charge divided by ionic radius) of Li+ and Mg2+ are remarkably similar because moving right across the periodic table increases charge while moving down increases radius, balancing their chemical properties."
+  },
+  {
+    "id": 50,
+    "subject": "Chemistry",
+    "difficulty": "hard",
+    "subtopic": "Chemical Bonding: Molecular Orbital Theory",
+    "question": "According to Molecular Orbital (MO) Theory, why is molecular oxygen (O2) paramagnetic?",
+    "options": [
+      "It possesses two unpaired electrons in degenerate antibonding π*2px and π*2py orbitals",
+      "It has an odd number of total electrons",
+      "All valence electrons are paired into σ bonding orbitals",
+      "Oxygen forms an ionic coordinate complex"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Stellar quantum bonding triumph! Hund's rule in antibonding orbitals explains paramagnetism!",
+    "explanation": "In O2 MO configuration, the 12 valence electrons fill orbitals up to the degenerate π*2p antibonding level. By Hund's rule, two electrons occupy separate degenerate π*2px and π*2py orbitals with parallel spins, causing paramagnetism."
+  },
+  {
+    "id": 51,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Mechanics: Kinematic Equations",
+    "question": "Which kinematic formula calculates final velocity (v) under constant linear acceleration (a) over time (t)?",
+    "options": [
+      "v = u + at",
+      "v = u + 0.5at^2",
+      "v^2 = u + at",
+      "s = vt + at^2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Spot on! The fundamental linear acceleration relation!",
+    "explanation": "From the definition of constant acceleration a = (v - u) / t, multiplying by t and adding initial velocity u yields v = u + at."
+  },
+  {
+    "id": 52,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Mechanics: Free Fall",
+    "question": "Near the surface of the Earth, what is the approximate acceleration due to gravity (g) in free fall (ignoring air resistance)?",
+    "options": [
+      "9.8 m/s^2",
+      "3.0 x 10^8 m/s^2",
+      "1.6 x 10^-19 m/s^2",
+      "6.67 x 10^-11 m/s^2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Clean physical constant recall! g ≈ 9.8 m/s^2 acts on all falling masses!",
+    "explanation": "Under standard Earth gravity near sea level, gravitational acceleration imparts a constant downward rate of change of velocity of approximately 9.8 m/s^2, independent of the falling object's mass."
+  },
+  {
+    "id": 53,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Electromagnetism: Magnetic Flux",
+    "question": "What is the standard SI unit of magnetic flux (Φ_B)?",
+    "options": [
+      "Weber (Wb)",
+      "Tesla (T)",
+      "Henry (H)",
+      "Farad (F)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Flawless electromagnetic unit knowledge! Weber equals Tesla * square meter!",
+    "explanation": "Magnetic flux Φ = B * A has the SI derived unit of Weber (Wb), named after Wilhelm Eduard Weber. 1 Wb = 1 Tesla * meter^2 (1 T·m^2)."
+  },
+  {
+    "id": 54,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Mechanics: Graphical Calculus",
+    "question": "On a velocity-time (v-t) graph, what does the slope of the curve represent?",
+    "options": [
+      "Instantaneous Acceleration (a = dv/dt)",
+      "Total Displacement (s)",
+      "Kinetic Energy (KE)",
+      "Momentum (p)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Brilliant kinematic calculus! The derivative of velocity is acceleration!",
+    "explanation": "The gradient of a velocity-time curve represents the rate of change of velocity with respect to time, which is definitionally the instantaneous acceleration a = dv/dt."
+  },
+  {
+    "id": 55,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Mechanics: Newton's Laws",
+    "question": "What is the SI unit of force defined by Newton's Second Law (F = ma)?",
+    "options": [
+      "Newton (N = kg·m/s^2)",
+      "Joule (J)",
+      "Watt (W)",
+      "Pascal (Pa)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Perfect physical dimensions! 1 Newton accelerates 1 kg at 1 m/s^2!",
+    "explanation": "Force is mass times acceleration. In SI base units, [kg] * [m/s^2] = kg·m/s^2, which is defined as one Newton (N)."
+  },
+  {
+    "id": 56,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Electromagnetism: Magnetic Field Unit",
+    "question": "What is the SI unit of magnetic flux density (B)?",
+    "options": [
+      "Tesla (T)",
+      "Weber (Wb)",
+      "Ohm (Ω)",
+      "Ampere (A)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Spot-on! Tesla measures magnetic field strength per unit area!",
+    "explanation": "The magnetic B-field (flux density) is measured in Tesla (T), where 1 Tesla = 1 Weber per square meter (Wb/m^2) = 1 N / (A·m)."
+  },
+  {
+    "id": 57,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Mechanics: Scalar vs Vector",
+    "question": "Which of the following physical quantities is a vector quantity (possessing both magnitude and direction)?",
+    "options": [
+      "Velocity",
+      "Speed",
+      "Kinetic Energy",
+      "Mass"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Precision vector mechanics! Velocity requires both speed and vector heading!",
+    "explanation": "Velocity specifies both how fast an object is moving and in what directional vector. In contrast, speed, mass, and kinetic energy are scalar quantities possessing only magnitude."
+  },
+  {
+    "id": 58,
+    "subject": "Physics",
+    "difficulty": "easy",
+    "subtopic": "Electromagnetism: Faraday's Discovery",
+    "question": "Faraday discovered that an electric current is induced in a closed loop whenever:",
+    "options": [
+      "The magnetic flux linked with the loop changes over time",
+      "A steady constant magnetic field is present",
+      "The wire loop is held stationary in air",
+      "Temperature drops to zero"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Stellar electromagnetic induction principle! Dynamic flux rate generates EMF!",
+    "explanation": "Faraday's Law dictates that electromagnetic induction requires a time-varying magnetic flux (dΦ/dt ≠ 0). A static magnetic field produces zero induced EMF."
+  },
+  {
+    "id": 59,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Mechanics: Kinematic Position",
+    "question": "Which formula computes displacement (s) under constant acceleration starting with initial velocity (u)?",
+    "options": [
+      "s = ut + 0.5at^2",
+      "s = ut + at^2",
+      "s = vt - at",
+      "s = 0.5(u + v)t^2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🧠 Superb derivation! Integrating v(t) = u + at yields ut + 0.5at^2!",
+    "explanation": "Integrating velocity with respect to time: s = ∫ (u + at) dt = ut + 0.5at^2 + C. Setting s(0) = 0 yields the canonical displacement formula s = ut + 0.5at^2."
+  },
+  {
+    "id": 60,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Mechanics: Definite Integral of Motion",
+    "question": "On a velocity-time (v-t) graph, what does the definite area between the curve and time axis represent?",
+    "options": [
+      "Displacement (s = ∫ v dt)",
+      "Acceleration (a)",
+      "Momentum change divided by distance",
+      "Jerk (da/dt)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful calculus kinematics! Area under rate curve gives accumulated quantity!",
+    "explanation": "Because velocity v = ds/dt, integrating velocity across time s = ∫ v dt calculates the net displacement traversed between two time points."
+  },
+  {
+    "id": 61,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Electromagnetism: Faraday's Formula",
+    "question": "In Faraday's Law of Induction EMF = -N(dΦ/dt), what physical law does the negative sign reflect?",
+    "options": [
+      "Lenz's Law (Conservation of Energy)",
+      "Coulomb's Law of Electrostatics",
+      "Newton's Universal Gravitation",
+      "Hooke's Elastic Law"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Profound electromagnetic physics! Lenz's law enforces thermodynamic conservation!",
+    "explanation": "The negative sign represents Lenz's Law: the induced electromotive force creates a current whose magnetic field opposes the original change in flux, ensuring energy is not generated from nothing."
+  },
+  {
+    "id": 62,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Mechanics: Work-Energy Theorem",
+    "question": "According to the Work-Energy Theorem, net external work W_net done on an object equals:",
+    "options": [
+      "Change in kinetic energy (ΔKE = 0.5mv^2 - 0.5mu^2)",
+      "Change in potential energy exclusively",
+      "Product of momentum and velocity",
+      "Force multiplied by time"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Excellent analytical physics! W_net = ΔKE binds dynamics directly to kinematics!",
+    "explanation": "W_net = ∫ F ds = ∫ m(dv/dt) v dt = m ∫ v dv = 0.5mv^2 - 0.5mu^2 = ΔKE. Net work directly measures change in translational kinetic energy."
+  },
+  {
+    "id": 63,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Electromagnetism: Lorentz Force",
+    "question": "What is the magnetic Lorentz force experienced by a charge q moving with velocity v in magnetic field B?",
+    "options": [
+      "F = q(v x B) [Magnitude: q v B sin(θ)]",
+      "F = q(v · B)",
+      "F = q B / v",
+      "F = m v^2 / B"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Crisp vector physics! Cross product perpendicular force!",
+    "explanation": "The magnetic Lorentz force is given by vector cross product F = q(v x B). Its magnitude is q v B sin(θ), acting perpendicular to both the velocity vector and magnetic field."
+  },
+  {
+    "id": 64,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Mechanics: Projectile Motion",
+    "question": "At what launch angle θ relative to the horizontal is the range of an ideal projectile maximized (over flat terrain)?",
+    "options": [
+      "45°",
+      "30°",
+      "60°",
+      "90°"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Classic ballistic optimization! sin(2θ) maximizes at θ = 45°!",
+    "explanation": "Horizontal range R = (u^2 sin(2θ)) / g. The trigonometric factor sin(2θ) reaches its maximum value of 1 when 2θ = 90°, which yields the optimal angle θ = 45°."
+  },
+  {
+    "id": 65,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Electromagnetism: Eddy Currents",
+    "question": "Eddy currents induced inside solid conducting metal cores in transformers cause energy dissipation as heat. How is this mitigated?",
+    "options": [
+      "Using thin laminated sheets insulated from each other",
+      "Increasing the core temperature",
+      "Using solid copper blocks",
+      "Wrapping the core in magnetic tape"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Stellar electrical engineering concept! Lamination breaks large circulating loops!",
+    "explanation": "Constructing transformer cores from thin sheets of silicon steel laminated with insulating varnish restricts eddy current loops to tiny paths, drastically reducing resistive I^2*R power loss."
+  },
+  {
+    "id": 66,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Electromagnetism: Transformer Equation",
+    "question": "For an ideal transformer with primary turns N_p and secondary turns N_s, the voltage relation is:",
+    "options": [
+      "V_s / V_p = N_s / N_p",
+      "V_s * V_p = N_s * N_p",
+      "V_s / V_p = N_p / N_s",
+      "V_s = V_p * (N_s)^2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💡 Outstanding transformer law! Voltage ratio equals turns ratio!",
+    "explanation": "By Faraday's law of mutual induction across shared core flux dΦ/dt, V_p = N_p(dΦ/dt) and V_s = N_s(dΦ/dt). Dividing the two gives V_s / V_p = N_s / N_p."
+  },
+  {
+    "id": 67,
+    "subject": "Physics",
+    "difficulty": "medium",
+    "subtopic": "Mechanics: Momentum Conservation",
+    "question": "In any isolated physical system where no external forces act, what happens to total linear momentum?",
+    "options": [
+      "Remains constant (conserved)",
+      "Decreases over time due to internal collisions",
+      "Increases exponentially with velocity",
+      "Converts entirely to heat"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Invariant law of Newtonian physics! Zero net external force preserves momentum!",
+    "explanation": "By Newton's second law F_ext = dp/dt. If F_ext = 0, then dp/dt = 0, proving that total system momentum p remains strictly invariant throughout all internal interactions."
+  },
+  {
+    "id": 68,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Mechanics: Kinematic-Energy Derivation",
+    "question": "Derive the kinematic equation v^2 = u^2 + 2as using the Work-Energy Theorem for constant force F = ma:",
+    "options": [
+      "W = F*s = (ma)s = ΔKE = 0.5m(v^2 - u^2) → 2as = v^2 - u^2",
+      "W = F/s = mv^2 - mu^2",
+      "W = m*a*t = v^2",
+      "W = 0.5mv^2 + mgh"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🏆 Magnificent theoretical physics derivation! Direct link from Newton's mechanics to kinematics!",
+    "explanation": "Work W = F * s = (ma)s. By the Work-Energy Theorem, W = ΔKE = 0.5m(v^2 - u^2). Equating (ma)s = 0.5m(v^2 - u^2) and canceling m yields as = 0.5(v^2 - u^2), giving v^2 = u^2 + 2as."
+  },
+  {
+    "id": 69,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Electromagnetism: AC Generator EMF",
+    "question": "When a coil of N turns and area A rotates with angular speed ω in uniform magnetic field B, the induced EMF is:",
+    "options": [
+      "EMF = N B A ω sin(ωt)",
+      "EMF = N B A cos(ωt) / ω",
+      "EMF = N B A / ω",
+      "EMF = N B A ω^2"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Elite electromagnetic derivation! Time derivative of flux Φ = BA cos(ωt) gives sinusoidal EMF!",
+    "explanation": "The flux through the rotating coil is Φ(t) = B A cos(ωt). By Faraday's Law, EMF = -N(dΦ/dt) = -N B A (-ω sin(ωt)) = N B A ω sin(ωt), creating alternating sinusoidal current."
+  },
+  {
+    "id": 70,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Mechanics: Fluid Dynamics & Viscosity",
+    "question": "When an object falling through a viscous fluid reaches Terminal Velocity, which dynamic condition is established?",
+    "options": [
+      "Downward gravity force is exactly balanced by upward viscous drag and buoyant forces (Net Force = 0)",
+      "Acceleration increases asymptotically",
+      "Velocity drops to zero",
+      "Gravity ceases to act on the body"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Flawless fluid mechanics! Dynamic equilibrium terminates acceleration dv/dt = 0!",
+    "explanation": "As velocity increases, viscous drag force (Stokes' Law F_d = 6πηrv) grows until upward drag plus buoyancy equals downward weight mg. Net force becomes zero, producing zero acceleration and constant terminal velocity."
+  },
+  {
+    "id": 71,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Electromagnetism: Self-Inductance",
+    "question": "The self-inductance L of a coil relates the self-induced back-EMF to the rate of change of current (di/dt) via:",
+    "options": [
+      "EMF = -L (di/dt)",
+      "EMF = -L * i^2",
+      "EMF = -di / (L dt)",
+      "EMF = -L * t * i"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Pristine inductance law! Self-inductance measures electrical inertia!",
+    "explanation": "Self-inductance L represents the magnetic inertia of a circuit opposing changes in current. By Faraday's and Ampère's laws, the back-EMF produced is directly proportional to current rate of change: EMF = -L(di/dt)."
+  },
+  {
+    "id": 72,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Mechanics: Conservative Force Fields",
+    "question": "A force field F is mathematically conservative if and only if:",
+    "options": [
+      "Work done along any closed path is zero (∮ F · dr = 0, or curl(F) = 0)",
+      "Force is independent of distance",
+      "Force accelerates objects at constant velocity",
+      "F is proportional to velocity squared"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful vector calculus physics! Path independence defines potential energy fields!",
+    "explanation": "In a conservative vector field, the work done in moving between two points is path-independent, meaning the closed loop line integral ∮ F · dr = 0, which by Stokes' Theorem is equivalent to curl(F) = ∇ x F = 0."
+  },
+  {
+    "id": 73,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Electromagnetism: Maxwell's Displacement Current",
+    "question": "What critical term did James Clerk Maxwell add to Ampère's Circuital Law to resolve charge conservation across capacitors?",
+    "options": [
+      "Displacement Current: ε_0 * (dΦ_E / dt)",
+      "Eddy Current Factor",
+      "Gravitational Flux Derivative",
+      "Conduction Resistance Factor"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Historical triumph of theoretical physics! Maxwell unified light and electromagnetism!",
+    "explanation": "Ampère's law failed between capacitor plates where no conduction electrons flowed. Maxwell recognized that a time-varying electric flux (dΦ_E/dt) induces a magnetic field, introducing displacement current I_d = ε_0(dΦ_E/dt)."
+  },
+  {
+    "id": 74,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Mechanics: Simple Harmonic Motion",
+    "question": "For a mass-spring harmonic oscillator (m, k), the differential equation d^2x/dt^2 + (k/m)x = 0 has angular frequency ω equal to:",
+    "options": [
+      "ω = √(k / m)",
+      "ω = √(m / k)",
+      "ω = k * m",
+      "ω = 2π * k / m"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Brilliant oscillatory mechanics! Hooke's restoring force yields natural frequency √(k/m)!",
+    "explanation": "From F = -kx = m(d^2x/dt^2), rearranging gives d^2x/dt^2 + (k/m)x = 0. Comparing with the canonical SHM equation d^2x/dt^2 + ω^2 x = 0 gives angular frequency ω = √(k/m)."
+  },
+  {
+    "id": 75,
+    "subject": "Physics",
+    "difficulty": "hard",
+    "subtopic": "Electromagnetism: Cyclotron Frequency",
+    "question": "A charged particle q of mass m moving perpendicular to magnetic field B undergoes circular motion with orbital period T equal to:",
+    "options": [
+      "T = 2πm / (qB) (independent of particle speed v)",
+      "T = 2πq / (mB)",
+      "T = m v^2 / (qB)",
+      "T = 2πr * v"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Extraordinary relativistic cyclotron physics! Isochronous period independent of radius!",
+    "explanation": "Equating magnetic Lorentz force to centripetal force: q v B = m v^2 / r → r = m v / (q B). Period T = 2πr / v = 2π(mv / qB) / v = 2πm / (qB). Speed cancels completely, creating the cyclotron resonance principle."
+  },
+  {
+    "id": 76,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Grammar: Clauses",
+    "question": "What is the defining characteristic of an independent clause in English grammar?",
+    "options": [
+      "It contains a subject and predicate and expresses a complete thought",
+      "It begins with a subordinating conjunction and cannot stand alone",
+      "It modifies a noun directly without a verb",
+      "It contains only prepositional phrases"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Spot on! An independent clause can stand alone as a complete sentence!",
+    "explanation": "An independent clause contains both a syntactic subject and a finite predicate verb and forms a grammatically complete proposition that can stand alone as a standalone simple sentence."
+  },
+  {
+    "id": 77,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Literature: Poetic Forms",
+    "question": "How many lines does a traditional Shakespearean or Petrarchan sonnet contain?",
+    "options": [
+      "14 lines",
+      "12 lines",
+      "16 lines",
+      "10 lines"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Classic poetic architecture! The 14-line sonnet form is timeless!",
+    "explanation": "All traditional classical sonnets (including Italian/Petrarchan, English/Shakespearean, and Spenserian variants) consist of exactly 14 lines composed in metric verse."
+  },
+  {
+    "id": 78,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Literature: Figurative Language",
+    "question": "Which figurative device makes an explicit comparison between two dissimilar things using 'like' or 'as'?",
+    "options": [
+      "Simile",
+      "Metaphor",
+      "Hyperbole",
+      "Oxymoron"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Flawless literary trope identification! 'Like' or 'as' signals a simile!",
+    "explanation": "A simile creates a figurative analogy between two distinct entities using explicit connecting prepositions, predominantly 'like' or 'as' (e.g., 'Her eyes shone like stars')."
+  },
+  {
+    "id": 79,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Grammar: Subject-Verb Agreement",
+    "question": "Choose the grammatically correct sentence exhibiting accurate subject-verb agreement:",
+    "options": [
+      "The bouquet of yellow roses smells fragrant.",
+      "The bouquet of yellow roses smell fragrant.",
+      "The bouquet of yellow roses are smelling fragrant.",
+      "The bouquet of yellow roses were fragrant smells."
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Sharp grammatical eye! Singular head noun 'bouquet' governs verb 'smells'!",
+    "explanation": "The grammatical head of the noun phrase is the singular noun 'bouquet'. The intervening plural prepositional phrase 'of yellow roses' does not alter the head noun's singular inflection: 'bouquet smells'."
+  },
+  {
+    "id": 80,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Literature: Acoustic Devices",
+    "question": "The repetition of identical initial consonant sounds in neighboring words ('Peter Piper picked a peck') is called:",
+    "options": [
+      "Alliteration",
+      "Onomatopoeia",
+      "Assonance",
+      "Enjambment"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Perfect phonetic terminology! Initial consonant repetition is alliteration!",
+    "explanation": "Alliteration is the stylistic repetition of identical or phonetic consonant sounds at the start of closely situated words or accented syllables to create acoustic rhythm."
+  },
+  {
+    "id": 81,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Grammar: Parts of Speech",
+    "question": "In the sentence 'The swift runner quickly finished the marathon', what part of speech is 'quickly'?",
+    "options": [
+      "Adverb",
+      "Adjective",
+      "Preposition",
+      "Conjunction"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Clean grammatical identification! 'Quickly' modifies the action verb 'finished'!",
+    "explanation": "Adverbs modify verbs, adjectives, or other adverbs, answering questions like 'how', 'when', or 'where'. Here 'quickly' modifies how the runner finished."
+  },
+  {
+    "id": 82,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Grammar: Tenses",
+    "question": "What is the simple past tense of the irregular verb 'begin'?",
+    "options": [
+      "Began",
+      "Begun",
+      "Beginned",
+      "Begins"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Crisp irregular verb inflection! Began is the correct simple past!",
+    "explanation": "The irregular verb 'begin' inflects as: base form 'begin', simple past 'began', and past participle 'begun' (used with auxiliary 'has/had begun')."
+  },
+  {
+    "id": 83,
+    "subject": "English",
+    "difficulty": "easy",
+    "subtopic": "Literature: Personification",
+    "question": "Endowing non-human objects, animals, or abstract ideas with human emotions or actions is known as:",
+    "options": [
+      "Personification",
+      "Allusion",
+      "Irony",
+      "Euphemism"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Spot-on! Giving human traits to inanimate concepts is personification!",
+    "explanation": "Personification attributes human qualities, agency, or consciousness to non-human entities (e.g., 'The cruel wind howled through the barren trees')."
+  },
+  {
+    "id": 84,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Literature: Scansion & Meter",
+    "question": "In poetic scansion, Iambic Pentameter consists of how many metric feet per line, and what is its rhythm?",
+    "options": [
+      "5 metric feet per line, each consisting of an unstressed followed by a stressed syllable (da-DUM)",
+      "4 metric feet per line of stressed followed by unstressed syllables",
+      "6 metric feet of rhyming couplets",
+      "3 metric feet of dactylic syllables"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🧠 Elite prosodic mastery! 5 iambs (unstressed-stressed) totaling 10 syllables per line!",
+    "explanation": "An iamb is a metrical foot consisting of one unstressed syllable followed by one stressed syllable (˘ /). Pentameter specifies 5 feet per line, giving the classic 10-syllable Shakespearean heartbeat rhythm."
+  },
+  {
+    "id": 85,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Literature: Sonnet Rhyme Schemes",
+    "question": "What is the canonical rhyme scheme of an English (Shakespearean) Sonnet?",
+    "options": [
+      "ABAB CDCD EFEF GG (Three quatrains followed by a rhyming couplet)",
+      "ABBA ABBA CDECDE (Octave and sestet)",
+      "AABB CCDD EEFF GG",
+      "AAAA BBBB CCCC DD"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful poetic architecture! Three alternating quatrains capped by a heroic couplet!",
+    "explanation": "Shakespearean sonnets structure 14 lines into three alternating four-line quatrains (ABAB CDCD EFEF) presenting an evolving argument, concluded by a decisive two-line rhyming couplet (GG)."
+  },
+  {
+    "id": 86,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Grammar: Punctuation Mechanics",
+    "question": "When is a semicolon (;) used correctly to connect clauses without coordinating conjunctions?",
+    "options": [
+      "To join two closely related independent clauses",
+      "To introduce a direct quotation or long list",
+      "To connect a dependent fragment to an independent clause",
+      "After every introductory prepositional phrase"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Flawless punctuation mechanics! Semicolons bridge related independent thoughts!",
+    "explanation": "A semicolon joins two independent clauses that are closely linked in thematic meaning when no coordinating conjunction (and, but, for, nor, or, so, yet) is used: 'The storm was fierce; the sailors remained calm'."
+  },
+  {
+    "id": 87,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Grammar: Tense Aspects",
+    "question": "In the sentence 'She had completed the research before the conference began', what grammatical tense aspect is 'had completed'?",
+    "options": [
+      "Past Perfect Tense",
+      "Present Perfect Tense",
+      "Past Continuous Tense",
+      "Future Perfect Tense"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Outstanding tense aspect mastery! Past Perfect anchors an event prior to another past event!",
+    "explanation": "The Past Perfect tense ('had' + past participle) designates an action completed in the past before another definite past reference event ('before the conference began')."
+  },
+  {
+    "id": 88,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Grammar: Comma Splices",
+    "question": "Which sentence contains an erroneous 'comma splice' error?",
+    "options": [
+      "I submitted my thesis early, I wanted to review the feedback.",
+      "I submitted my thesis early because I wanted to review the feedback.",
+      "I submitted my thesis early; I wanted to review the feedback.",
+      "I submitted my thesis early, for I wanted to review the feedback."
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Sharp editorial eye! Joining two independent clauses with only a comma creates a comma splice!",
+    "explanation": "A comma splice occurs when two complete independent clauses are joined with only a comma without a coordinating conjunction. It must be repaired with a semicolon, period, or coordinating conjunction."
+  },
+  {
+    "id": 89,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Literature: Metaphor vs Simile",
+    "question": "Unlike a simile, how does a metaphor create figurative equivalence?",
+    "options": [
+      "By asserting that one thing directly IS another without using 'like' or 'as'",
+      "By using explicit connective adverbs",
+      "By exaggerating numbers unrealistically",
+      "By rhyming the final syllables of alternating verses"
+    ],
+    "correctIndex": 0,
+    "successComplement": "⚡ Perfect figurative distinction! Metaphors declare direct symbolic identity!",
+    "explanation": "A metaphor asserts direct symbolic equivalence (e.g., 'Time is a thief'), transferring the qualities of the vehicle directly onto the tenor without mediating comparative words like 'like' or 'as'."
+  },
+  {
+    "id": 90,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Grammar: Subordinating Conjunctions",
+    "question": "Which word functions as a subordinating conjunction introducing a dependent adverbial clause?",
+    "options": [
+      "Although",
+      "And",
+      "Or",
+      "Therefore"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Pristine clause syntax! 'Although' subordinates its following clause!",
+    "explanation": "'Although' subordinates the clause it introduces ('Although it rained...'), rendering it syntactically dependent and unable to stand alone without a governing main clause."
+  },
+  {
+    "id": 91,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Literature: Assonance",
+    "question": "The vowel repetition in Edgar Allan Poe's 'Hear the mellow wedding bells' exemplifies which literary device?",
+    "options": [
+      "Assonance (repetition of internal vowel sounds)",
+      "Consonance",
+      "Alliteration",
+      "Anaphora"
+    ],
+    "correctIndex": 0,
+    "successComplement": "💡 Acoustic mastery! Repetition of the short /e/ vowel creates assonance!",
+    "explanation": "Assonance is the stylistic repetition of identical or matching internal vowel sounds in proximate words ('mellow wedding bells') without repeating identical consonant frames."
+  },
+  {
+    "id": 92,
+    "subject": "English",
+    "difficulty": "medium",
+    "subtopic": "Grammar: Collective Nouns",
+    "question": "In standard American English, when a collective noun (e.g., 'committee', 'jury') acts as a unified singular entity, what verb form does it take?",
+    "options": [
+      "Singular verb (e.g., 'The committee has decided')",
+      "Plural verb exclusively",
+      "Passive infinitive",
+      "Subjunctive verb only"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Flawless subject agreement logic! Unified collective bodies take singular verbs!",
+    "explanation": "When a collective noun functions as a single unified operational body, it agrees grammatically with a singular verb: 'The committee has issued its final report'."
+  },
+  {
+    "id": 93,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Literature: The Sonnet Volta",
+    "question": "In classical sonnet architecture, what is the 'Volta', and where does it typically occur in a Shakespearean Sonnet?",
+    "options": [
+      "The dramatic thematic shift or psychological turn, occurring at line 9 or line 13 (the final couplet)",
+      "The rhyme between the first two lines",
+      "The musical scansion pause in the middle of a line",
+      "The metrical substitution of a spondee"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🏆 High-level literary scholarship! The Volta is the philosophical turn of the sonnet!",
+    "explanation": "The Volta (Italian for 'turn') represents the crucial rhetorical pivot where the poet transitions from problem to resolution or introduces an ironic reversal, typically at the octave-sestet boundary (Petrarchan) or final couplet (Shakespearean)."
+  },
+  {
+    "id": 94,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Grammar: Dangling Modifiers",
+    "question": "Identify the dangling modifier in the sentence: 'Walking through the ancient forest, the towering trees inspired wonder.'",
+    "options": [
+      "The participle phrase 'Walking through the ancient forest' illogically modifies 'trees' instead of the unstated human walker",
+      "The adjective 'ancient' modifies the wrong noun",
+      "The verb 'inspired' lacks an object",
+      "The word 'wonder' is used as an intransitive verb"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🌟 Elite syntactic analysis! Participial modifiers must logically attach to the immediate subject!",
+    "explanation": "A dangling modifier occurs when the grammatical subject of the sentence ('trees') cannot logically perform the action in the participial introductory phrase ('walking'). Correction: 'Walking through the ancient forest, we were inspired by the towering trees'."
+  },
+  {
+    "id": 95,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Literature: Metaphysical Conceits",
+    "question": "In poetry, what defines an extended 'Conceit' (as popularized by John Donne and metaphysical poets)?",
+    "options": [
+      "An elaborate, intellectually complex metaphor that unifies an entire poem by comparing two radically disparate entities",
+      "A simple rhyming pattern",
+      "A stanza of three lines",
+      "A literal historical narrative"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🔥 Profound literary theory mastery! The metaphysical conceit bridges striking conceptual chasms!",
+    "explanation": "A conceit is an ingenious, extended metaphorical framework where an unexpected or paradoxical comparison (e.g., comparing lovers' souls to the two legs of a drafting compass in Donne's 'A Valediction') sustains the philosophical argument of the entire work."
+  },
+  {
+    "id": 96,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Grammar: Subjunctive Mood",
+    "question": "Which sentence correctly employs the past subjunctive mood for a hypothetical condition contrary to fact?",
+    "options": [
+      "If I were the president, I would prioritize scientific research.",
+      "If I was the president, I would prioritize scientific research.",
+      "If I am the president, I would prioritize scientific research.",
+      "If I be the president, I will prioritize scientific research."
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎯 Exquisite mastery of English moods! 'Were' marks the counterfactual subjunctive!",
+    "explanation": "In standard formal English, counterfactual or hypothetical statements contrary to reality demand the subjunctive form 'were' across all persons, including first-person singular: 'If I were' (not 'was')."
+  },
+  {
+    "id": 97,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Literature: Synecdoche vs Metonymy",
+    "question": "Using 'All hands on deck' to represent the entire crew of sailors is an example of:",
+    "options": [
+      "Synecdoche (a specific figure where a physical part represents the whole)",
+      "Metonymy (an associated concept representing another)",
+      "Apostrophe",
+      "Litotes"
+    ],
+    "correctIndex": 0,
+    "successComplement": "✨ Masterful distinction in tropes! Part-for-whole defines Synecdoche!",
+    "explanation": "Synecdoche is a specific subset of trope wherein a physical part of an entity directly represents the entire whole ('hands' for sailors, 'wheels' for cars), whereas metonymy uses an associated attribute ('the Crown' for monarchy)."
+  },
+  {
+    "id": 98,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Literature: Petrarchan vs Shakespearean",
+    "question": "What is the structural organization of an Italian (Petrarchan) Sonnet?",
+    "options": [
+      "An 8-line Octave (ABBAABBA) presenting an emotional dilemma, followed by a 6-line Sestet (CDECDE or CDCDCD) offering resolution",
+      "Three quatrains and a rhyming couplet",
+      "Seven rhyming couplets",
+      "Four tercets and two refrains"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🚀 Pristine comparative literature knowledge! Octave and sestet partition Italian sonnets!",
+    "explanation": "The Petrarchan sonnet establishes an 8-line octave rhymed ABBAABBA that sets up an intellectual tension, followed by a volta and a 6-line sestet (CDECDE or CDCDCD) that resolves or reinterprets the problem."
+  },
+  {
+    "id": 99,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Grammar: Parallel Structure",
+    "question": "Which sentence demonstrates flawless parallel structure across coordinates?",
+    "options": [
+      "The scholar enjoys researching ancient texts, translating rare manuscripts, and writing analytical treatises.",
+      "The scholar enjoys researching ancient texts, to translate rare manuscripts, and writing analytical treatises.",
+      "The scholar enjoys research of ancient texts, translating rare manuscripts, and to write analytical treatises.",
+      "The scholar enjoys to research ancient texts, translating rare manuscripts, and writes analytical treatises."
+    ],
+    "correctIndex": 0,
+    "successComplement": "💎 Supreme rhetorical polish! Parallel gerunds (-ing) maintain syntactic rhythm!",
+    "explanation": "Coordinate elements linked in a series must maintain parallel syntactic grammatical forms. Here, all three coordinates are parallel gerund phrases: 'researching...', 'translating...', 'writing...'."
+  },
+  {
+    "id": 100,
+    "subject": "English",
+    "difficulty": "hard",
+    "subtopic": "Literature: Trochaic Substitution",
+    "question": "When Shakespeare opens Hamlet with 'Now is the winter of our discontent', what metric substitution occurs in the first foot ('NOW is')?",
+    "options": [
+      "A Trochaic substitution (stressed-unstressed: / ˘) inverting the standard iambic rhythm for dramatic emphasis",
+      "An Anapestic foot (˘ ˘ /)",
+      "A Dactylic foot (/ ˘ ˘)",
+      "A Pyrrhic foot (˘ ˘)"
+    ],
+    "correctIndex": 0,
+    "successComplement": "🎉 Extraordinary prosodic expertise! Trochaic inversion commands immediate theatrical focus!",
+    "explanation": "Shakespeare masterfully inverts the first foot from an iamb (˘ /) to a trochee (/ ˘: 'NOW is'), stressing the first syllable to grab auditory attention and underline temporal urgency."
+  }
+];
 
-        /* -------------------------------------------------------------
-           CHEMISTRY (10 QUESTIONS)
-           ------------------------------------------------------------- */
-        {
-          id: 11,
-          subject: "Chemistry",
-          subtopic: "Organic Chemistry: Alkynes",
-          question: "Which class of aliphatic hydrocarbons is defined by at least one carbon-carbon triple bond (C≡C)?",
-          options: ["Alkanes", "Alkenes", "Alkynes", "Cycloalkanes"],
-          correctIndex: 2,
-          successComplement: "🌟 Spot on! Excellent grasp of organic functional groups and molecular hybridization.",
-          explanation: "The correct answer is Alkynes. Alkynes possess sp-hybridized carbons with linear 180° geometry containing one sigma (σ) and two pi (π) bonds, represented by the general molecular formula CnH2n-2."
-        },
-        {
-          id: 12,
-          subject: "Chemistry",
-          subtopic: "Periodic Table: Chemical Bonding",
-          question: "Which chemical bond forms via complete electron transfer between atoms with large electronegativity differences?",
-          options: ["Covalent Bond", "Ionic Bond", "Metallic Bond", "Van der Waals dispersion"],
-          correctIndex: 1,
-          successComplement: "🏆 Superb! You understand electrostatic lattice energies and electron transfer.",
-          explanation: "The correct answer is Ionic Bond. High electronegativity differentials (typically > 2.0, e.g. alkali metals and halogens) result in complete electron transfer, generating cations and anions held by Coulombic forces."
-        },
-        {
-          id: 13,
-          subject: "Chemistry",
-          subtopic: "Organic Chemistry: Alcohols",
-          question: "What characteristic functional group defines an organic alcohol?",
-          options: ["-COOH (Carboxyl)", "-OH (Hydroxyl)", "-CHO (Aldehyde)", "-NH2 (Amino)"],
-          correctIndex: 1,
-          successComplement: "🧪 Great job! The hydroxyl group imparts polar character and hydrogen bonding capability.",
-          explanation: "The correct answer is -OH (Hydroxyl). Alcohols contain a hydroxyl functional group bonded to an sp3-hybridized carbon atom (R-OH). Carboxylic acids contain -COOH, aldehydes contain -CHO, and amines contain -NH2."
-        },
-        {
-          id: 14,
-          subject: "Chemistry",
-          subtopic: "Periodic Table: Electronegativity",
-          question: "How does electronegativity generally trend across a period from left to right in the Periodic Table?",
-          options: ["Decreases steadily", "Increases steadily", "Remains invariant", "First decreases then increases"],
-          correctIndex: 1,
-          successComplement: "⚡ Outstanding periodic table comprehension!",
-          explanation: "The correct answer is Increases steadily. Moving from left to right across a period, effective nuclear charge (Zeff) increases while electron shielding remains approximately constant, pulling valence electrons closer to the nucleus."
-        },
-        {
-          id: 15,
-          subject: "Chemistry",
-          subtopic: "Organic Chemistry: Saturation",
-          question: "Why are alkanes classified as 'saturated' hydrocarbons?",
-          options: [
-            "They dissolve maximal amounts of solute",
-            "They contain only single C-C and C-H sigma bonds",
-            "They contain multiple reactive pi bonds",
-            "They are naturally liquid at room temperature"
-          ],
-          correctIndex: 1,
-          successComplement: "✨ Excellent! 'Saturated' signifies maximum possible hydrogen atoms per carbon.",
-          explanation: "The correct answer is that they contain only single C-C and C-H bonds (sigma bonds). Because each carbon is sp3-hybridized with tetrahedral geometry, no additional hydrogen atoms can be added without breaking carbon-carbon sigma bonds."
-        },
-        {
-          id: 16,
-          subject: "Chemistry",
-          subtopic: "Chemical Bonding: Covalent",
-          question: "What fundamentally constitutes a covalent chemical bond?",
-          options: [
-            "Mutual sharing of one or more pairs of valence electrons",
-            "A sea of mobile delocalized electrons around atomic nuclei",
-            "Gravitational attraction between atomic masses",
-            "Temporary instantaneous dipole-induced dipole forces"
-          ],
-          correctIndex: 0,
-          successComplement: "🎯 Spot on! Electron pair sharing allows atoms to achieve noble gas configurations.",
-          explanation: "The correct answer is Mutual sharing of valence electrons. When two non-metal atoms of comparable electronegativity interact, orbital overlap allows shared electron pairs to be attracted to both nuclei simultaneously."
-        },
-        {
-          id: 17,
-          subject: "Chemistry",
-          subtopic: "Periodic Table: Halogens",
-          question: "How many valence electrons do elements in Group 17 (the Halogens: F, Cl, Br, I) possess?",
-          options: ["1", "5", "7", "8"],
-          correctIndex: 2,
-          successComplement: "🌟 Perfect! Halogens have an s2 p5 valence shell, making them eager electron acceptors.",
-          explanation: "The correct answer is 7. Group 17 halogens have electron configuration ns2 np5. Requiring only 1 additional electron to satisfy the stable octet (ns2 np6), they are highly reactive oxidizing agents."
-        },
-        {
-          id: 18,
-          subject: "Chemistry",
-          subtopic: "Organic Chemistry: Benzene",
-          question: "What is the prototypical aromatic hydrocarbon with molecular formula C6H6 and a delocalized pi-electron ring?",
-          options: ["Cyclohexane", "Benzene", "Hexene", "Toluene"],
-          correctIndex: 1,
-          successComplement: "⌬ Flawless! Benzene's aromatic resonance imparts extraordinary thermodynamic stability.",
-          explanation: "The correct answer is Benzene (C6H6). Benzene features a planar ring of six sp2-hybridized carbon atoms with 6 delocalized pi electrons fulfilling Hückel's aromaticity rule (4n+2, where n=1)."
-        },
-        {
-          id: 19,
-          subject: "Chemistry",
-          subtopic: "Chemical Bonding: Hydrogen Bonds",
-          question: "What intermolecular force accounts for water (H2O)'s high boiling point compared to H2S?",
-          options: ["Dispersion forces", "Hydrogen bonding", "Metallic bonding", "Ionic lattice forces"],
-          correctIndex: 1,
-          successComplement: "💧 Spot on! Strong hydrogen bonding between water molecules creates a high cohesive barrier.",
-          explanation: "The correct answer is Hydrogen bonding. The substantial electronegativity difference between oxygen and hydrogen, combined with oxygen's compact lone pairs, forms strong directional intermolecular hydrogen bonds that require significant thermal energy to disrupt."
-        },
-        {
-          id: 20,
-          subject: "Chemistry",
-          subtopic: "Periodic Table: Octet Rule",
-          question: "What electron configuration does the Octet Rule state main-group atoms strive to achieve?",
-          options: [
-            "2 electrons in the d-subshell",
-            "8 electrons in the outermost valence shell",
-            "18 electrons in the core shells",
-            "Zero total electrons"
-          ],
-          correctIndex: 1,
-          successComplement: "🏆 Flawless! 8 valence electrons match noble gas stability (s2 p6).",
-          explanation: "The correct answer is 8 valence electrons. Main-group atoms gain, lose, or share valence electrons to attain a full valence shell configuration of ns2 np6, matching the noble gases."
-        },
+      const I18N_DATA = {
+  "en": {
+    "appTitle": "Smart Study Hub",
+    "tagline": "Academic Portal • Dual Time Hub & Deep Theory Studio Active",
+    "versionBadge": "v3.0 Multi-Lang & 100Q",
+    "pitchDeckBtn": "🏆 Pitch Deck",
+    "closeSessionBtn": "Close Session",
+    "timeModeStopwatch": "⏱️ Stopwatch",
+    "timeModeTimer": "⏳ Timer",
+    "stopwatchSubtext": "Total Elapsed Session",
+    "timerSubtext": "Focus Countdown Sprint",
+    "startTimer": "Start",
+    "pauseTimer": "Pause",
+    "reset": "Reset",
+    "orientationPortrait": "Mobile Portrait Mode Active • Touch layout enabled",
+    "orientationLandscape": "Widescreen Landscape View • Full concept canvas active",
+    "rotateTip": "Rotate for Wide Mind Map",
+    "curriculumTitle": "Core Academic Modules",
+    "curriculumEyebrow": "Curriculum Architecture",
+    "curriculumDesc": "Touch any subject to launch its Theory & Visual Studio and explore its dedicated Huge Mind Map.",
+    "studyTheoryBtn": "📚 Study Theory",
+    "openMindMapBtn": "🗺️ Open Mind Map",
+    "takeQuizBtn": "🎯 Take Quiz",
+    "theoryStudioTitle": "Comprehensive Theory & Visual Studio",
+    "theoryStudioEyebrow": "Interactive Laboratory",
+    "theoryStudioDesc": "Explore foundational axioms, visual animations, and real-world engineering simulations.",
+    "mindMapStudioTitle": "Huge Mind Map Studio (Per-Subject Knowledge Graphs)",
+    "mindMapStudioEyebrow": "Expansive Concept Graph",
+    "mindMapStudioDesc": "Explore complete hierarchical concept trees for every subject mapping foundational axioms to advanced analytical systems.",
+    "mindMapInspectorPrompt": "💡 Tap any concept node above to inspect its deep theoretical framework, industrial applications, and motivational dialogue.",
+    "quizStudioTitle": "Self-Evaluation Assessment Engine (100 Questions Across 3 Difficulties)",
+    "quizStudioEyebrow": "Cognitive Benchmark & Accuracy Wheel",
+    "quizStudioDesc": "Test your mastery across 25 curated questions per subject categorized into Easy, Medium, and Hard tiers.",
+    "difficultyAll": "All (25)",
+    "difficultyEasy": "🟢 Easy (8)",
+    "difficultyMedium": "🟡 Medium (9)",
+    "difficultyHard": "🔴 Hard (8)",
+    "subjectMath": "📐 Mathematics",
+    "subjectChem": "🧪 Chemistry",
+    "subjectPhys": "⚛️ Physics",
+    "subjectEng": "📖 English",
+    "questionLabel": "Question",
+    "ofLabel": "of",
+    "scoreLabel": "Score",
+    "streakLabel": "Streak",
+    "accuracyLabel": "Accuracy",
+    "correctStat": "Correct",
+    "wrongStat": "Incorrect",
+    "remainingStat": "Remaining",
+    "rankStandby": "Standby",
+    "rankHighDistinction": "High Distinction",
+    "rankProficient": "Proficient",
+    "rankReviewNeeded": "Review Needed",
+    "prevBtn": "← Previous",
+    "nextBtn": "Next Question →",
+    "resetQuizBtn": "Reset Assessment",
+    "mascotName": "StudyBot",
+    "mascotDefaultSpeech": "Hello! I am StudyBot! Let's conquer concepts together! ✨",
+    "mascotCheer": "Incredible job! Keep learning, you are unstoppable! 🌟",
+    "inspectDialogTitle": "Concept Deep-Dive & Motivational Studio",
+    "inspectAxiomLabel": "Core Academic Principles & Formulas",
+    "inspectAppLabel": "Real-World Engineering & Industrial Application",
+    "inspectMotivationLabel": "🌟 Motivational Reflection & Student Dialogue",
+    "practiceBtn": "🎯 Practice Subject Questions",
+    "closeBtn": "Close Window"
+  },
+  "ta": {
+    "appTitle": "ஸ்மார்ட் ஸ்டடி ஹப்",
+    "tagline": "கல்வி போர்டல் • இருவழி நேர கண்காணிப்பு & விரிவான ஆய்வகம் செயலில்",
+    "versionBadge": "v3.0 முமொழி & 100 வினாக்கள்",
+    "pitchDeckBtn": "🏆 சமர்ப்பிப்பு விளக்கக்காட்சி",
+    "closeSessionBtn": "அமர்வை மூடு",
+    "timeModeStopwatch": "⏱️ நிறுத்து கடிகாரம்",
+    "timeModeTimer": "⏳ நேரமானி",
+    "stopwatchSubtext": "மொத்த கற்றல் அமர்வு நேரம்",
+    "timerSubtext": "கவனம் செலுத்தும் கவுண்ட்டவுன்",
+    "startTimer": "தொடங்கு",
+    "pauseTimer": "நிறுத்து",
+    "reset": "மீட்டமை",
+    "orientationPortrait": "மொபைல் செங்குத்து காட்சி செயலில் • தொடுதிரை அமைப்பு தயார்",
+    "orientationLandscape": "அகன்ற கிடைமட்ட காட்சி • முழுமையான வரைபடம் இயங்குகிறது",
+    "rotateTip": "அகன்ற மன வரைபடத்திற்கு சுழற்றவும்",
+    "curriculumTitle": "முதன்மை பாடப் பிரிவுகள்",
+    "curriculumEyebrow": "கல்வி கட்டமைப்பு",
+    "curriculumDesc": "கோட்பாட்டு ஆய்வகம் மற்றும் மன வரைபடத்தை திறக்க ஏதேனும் ஒரு பாடத்தைத் தொடவும்.",
+    "studyTheoryBtn": "📚 கோட்பாட்டைப் படி",
+    "openMindMapBtn": "🗺️ மன வரைபடம்",
+    "takeQuizBtn": "🎯 வினாடி வினா",
+    "theoryStudioTitle": "முழுமையான கோட்பாடு & காட்சி ஆய்வகம்",
+    "theoryStudioEyebrow": "ஊடாடும் ஆய்வகம்",
+    "theoryStudioDesc": "அடிப்படை விதிகள், வரைபட உருவகப்படுத்துதல்கள் மற்றும் நிஜ உலகப் பயன்பாடுகளை ஆராயுங்கள்.",
+    "mindMapStudioTitle": "விரிவான மன வரைபட அரங்கம் (பாடவாரியான வரைபடங்கள்)",
+    "mindMapStudioEyebrow": "விரிவான கருத்து வரைபடம்",
+    "mindMapStudioDesc": "அடிப்படை தத்துவங்கள் முதல் உயர்நிலை பகுப்பாய்வு முறைகள் வரையிலான கருத்து மரத்தை ஆராயுங்கள்.",
+    "mindMapInspectorPrompt": "💡 ஆழமான அறிவியல் விளக்கம், தொழில்முறை பயன்பாடு மற்றும் ஊக்கமளிக்கும் உரையாடலைக் காண மேலே உள்ள ஏதேனும் ஒரு கருத்தைத் தொடவும்.",
+    "quizStudioTitle": "சுய மதிப்பீட்டு வினாடி வினா (3 நிலைகளில் 100 வினாக்கள்)",
+    "quizStudioEyebrow": "துல்லிய சக்கரம் & அறிவு சோதனை",
+    "quizStudioDesc": "ஒவ்வொரு பாடத்திற்கும் எளிது, நடுத்தரம், கடினம் என பிரிக்கப்பட்ட 25 வினாக்களில் உங்கள் அறிவைச் சோதிக்கவும்.",
+    "difficultyAll": "அனைத்தும் (25)",
+    "difficultyEasy": "🟢 எளிது (8)",
+    "difficultyMedium": "🟡 நடுத்தரம் (9)",
+    "difficultyHard": "🔴 கடினம் (8)",
+    "subjectMath": "📐 கணிதம்",
+    "subjectChem": "🧪 வேதியியல்",
+    "subjectPhys": "⚛️ இயற்பியல்",
+    "subjectEng": "📖 ஆங்கிலம்",
+    "questionLabel": "வினா",
+    "ofLabel": "/",
+    "scoreLabel": "மதிப்பெண்",
+    "streakLabel": "தொடர் வெற்றி",
+    "accuracyLabel": "துல்லியம்",
+    "correctStat": "சரி",
+    "wrongStat": "தவறு",
+    "remainingStat": "மீதம்",
+    "rankStandby": "காத்திருப்பு",
+    "rankHighDistinction": "உயர் சிறப்புத் தேர்ச்சி",
+    "rankProficient": "சிறந்த தேர்ச்சி",
+    "rankReviewNeeded": "மறுபயிற்சி தேவை",
+    "prevBtn": "← முந்தையது",
+    "nextBtn": "அடுத்த வினா →",
+    "resetQuizBtn": "வினாடி வினாவை மீட்டமை",
+    "mascotName": "ஸ்டடிபாட்",
+    "mascotDefaultSpeech": "வணக்கம்! நான் ஸ்டடிபாட்! வாருங்கள் புதிய கருத்துக்களைக் கற்போம்! ✨",
+    "mascotCheer": "அற்புதம்! தொடர்ந்து முயற்சி செய், நீ நிச்சயம் சாதிப்பாய்! 🌟",
+    "inspectDialogTitle": "கருத்து ஆழம் & ஊக்கமளிக்கும் அரங்கம்",
+    "inspectAxiomLabel": "அடிப்படை அறிவியல் விதிகள் & சமன்பாடுகள்",
+    "inspectAppLabel": "நிஜ உலக பொறியியல் & தொழில்முறை பயன்பாடுகள்",
+    "inspectMotivationLabel": "🌟 மாணவர்களுக்கான ஊக்கமளிக்கும் பொன்மொழி",
+    "practiceBtn": "🎯 பாட வினாக்களைப் பயிற்சி செய்",
+    "closeBtn": "சாளரத்தை மூடு"
+  },
+  "hi": {
+    "appTitle": "स्मार्ट स्टडी हब",
+    "tagline": "शैक्षणिक पोर्टल • दोहरा समय ट्रैकर एवं गहन सिद्धांत स्टूडियो सक्रिय",
+    "versionBadge": "v3.0 त्रिभाषी एवं 100 प्रश्न",
+    "pitchDeckBtn": "🏆 हैकथॉन डेक",
+    "closeSessionBtn": "सत्र समाप्त करें",
+    "timeModeStopwatch": "⏱️ स्टॉपवॉच",
+    "timeModeTimer": "⏳ टाइमर",
+    "stopwatchSubtext": "कुल व्यतीत अध्ययन समय",
+    "timerSubtext": "एकाग्रता उल्टी गिनती",
+    "startTimer": "प्रारंभ",
+    "pauseTimer": "विराम",
+    "reset": "रीसेट",
+    "orientationPortrait": "मोबाइल पोर्ट्रेट मोड सक्रिय • टच लेआउट सक्षम",
+    "orientationLandscape": "वाइडस्क्रीन लैंडस्केप दृश्य • पूर्ण माइंड मैप सक्रिय",
+    "rotateTip": "विशाल माइंड मैप के लिए घुमाएं",
+    "curriculumTitle": "मुख्य शैक्षणिक मॉड्यूल",
+    "curriculumEyebrow": "शैक्षणिक वास्तुकला",
+    "curriculumDesc": "सिद्धांत प्रयोगशाला और समर्पित माइंड मैप खोलने के लिए किसी भी विषय को स्पर्श करें।",
+    "studyTheoryBtn": "📚 सिद्धांत पढ़ें",
+    "openMindMapBtn": "🗺️ माइंड मैप",
+    "takeQuizBtn": "🎯 क्विज़ प्रारंभ करें",
+    "theoryStudioTitle": "व्यापक सिद्धांत एवं दृश्य प्रयोगशाला",
+    "theoryStudioEyebrow": "इंटरएक्टिव प्रयोगशाला",
+    "theoryStudioDesc": "बुनियादी नियमों, दृश्य एनिमेशन और वास्तविक दुनिया के अनुप्रयोगों का अन्वेषण करें।",
+    "mindMapStudioTitle": "विशाल माइंड मैप स्टूडियो (विषय-वार ज्ञान ग्राफ)",
+    "mindMapStudioEyebrow": "विस्तृत अवधारणा ग्राफ",
+    "mindMapStudioDesc": "प्रत्येक विषय के लिए मूलभूत सिद्धांतों से उन्नत विश्लेषणात्मक प्रणालियों तक के ज्ञान वृक्ष का अन्वेषण करें।",
+    "mindMapInspectorPrompt": "💡 गहन वैज्ञानिक व्याख्या, औद्योगिक अनुप्रयोग और प्रेरक संवाद देखने के लिए ऊपर किसी भी अवधारणा पर क्लिक करें।",
+    "quizStudioTitle": "स्व-मूल्यांकन क्विज़ इंजन (3 स्तरों में 100 प्रश्न)",
+    "quizStudioEyebrow": "सटीकता चक्र और संज्ञान परीक्षण",
+    "quizStudioDesc": "सरल, मध्यम और कठिन श्रेणियों में विभाजित प्रति विषय 25 प्रश्नों के माध्यम से अपनी दक्षता का परीक्षण करें।",
+    "difficultyAll": "सभी (25)",
+    "difficultyEasy": "🟢 सरल (8)",
+    "difficultyMedium": "🟡 मध्यम (9)",
+    "difficultyHard": "🔴 कठिन (8)",
+    "subjectMath": "📐 गणित",
+    "subjectChem": "🧪 रसायन विज्ञान",
+    "subjectPhys": "⚛️ भौतिक विज्ञान",
+    "subjectEng": "📖 अंग्रेज़ी",
+    "questionLabel": "प्रश्न",
+    "ofLabel": "/",
+    "scoreLabel": "अंक",
+    "streakLabel": "लगातार सही",
+    "accuracyLabel": "सटीकता",
+    "correctStat": "सही",
+    "wrongStat": "गलत",
+    "remainingStat": "शेष",
+    "rankStandby": "प्रतीक्षारत",
+    "rankHighDistinction": "उच्च विशिष्टता",
+    "rankProficient": "कुशल",
+    "rankReviewNeeded": "समीक्षा आवश्यक",
+    "prevBtn": "← पिछला",
+    "nextBtn": "अगला प्रश्न →",
+    "resetQuizBtn": "क्विज़ रीसेट करें",
+    "mascotName": "स्टडीबॉट",
+    "mascotDefaultSpeech": "नमस्ते! मैं स्टडीबॉट हूँ! आइए मिलकर नई अवधारणाएं सीखें! ✨",
+    "mascotCheer": "शानदार! निरंतर प्रयास ही सफलता की कुंजी है! 🌟",
+    "inspectDialogTitle": "अवधारणा विश्लेषण एवं प्रेरक स्टूडियो",
+    "inspectAxiomLabel": "मुख्य शैक्षणिक सिद्धांत एवं सूत्र",
+    "inspectAppLabel": "वास्तविक दुनिया के इंजीनियरिंग अनुप्रयोग",
+    "inspectMotivationLabel": "🌟 छात्रों के लिए प्रेरक विचार एवं संवाद",
+    "practiceBtn": "🎯 विषय प्रश्नों का अभ्यास करें",
+    "closeBtn": "विंडो बंद करें"
+  }
+};
 
-        /* -------------------------------------------------------------
-           PHYSICS (10 QUESTIONS)
-           ------------------------------------------------------------- */
-        {
-          id: 21,
-          subject: "Physics",
-          subtopic: "Mechanics: Kinematics",
-          question: "A cart starts from rest and accelerates at 4 m/s² for 5 seconds. What is the total distance traveled?",
-          options: ["20 m", "40 m", "50 m", "100 m"],
-          correctIndex: 2,
-          successComplement: "⚡ Perfect kinematics calculation! You integrated constant acceleration correctly.",
-          explanation: "The correct answer is 50 m. Using s = ut + (1/2)at² with u = 0, a = 4 m/s², and t = 5 s: s = 0 + (1/2)*(4)*(5²) = 2 * 25 = 50 meters."
-        },
-        {
-          id: 22,
-          subject: "Physics",
-          subtopic: "Electromagnetism: Lenz's Law",
-          question: "According to Lenz's Law, what is the magnetic polarity of an induced current?",
-          options: [
-            "It reinforces the applied external magnetic field",
-            "It creates a magnetic flux that opposes the change in original magnetic flux",
-            "It is always zero in closed conductive circuits",
-            "It aligns perpendicular to the electric field only"
-          ],
-          correctIndex: 1,
-          successComplement: "🧲 Exceptional insight into electromagnetic energy conservation!",
-          explanation: "The correct answer is that it creates a magnetic flux opposing the change in flux. Formulated as EMF = -dΦ/dt, the negative sign embodies Lenz's Law; without this opposition, energy would be created from nothing, violating thermodynamics."
-        },
-        {
-          id: 23,
-          subject: "Physics",
-          subtopic: "Mechanics: V-T Graphs",
-          question: "On a Velocity vs. Time graph, what physical quantity is represented by the slope of the curve?",
-          options: ["Displacement", "Instantaneous Acceleration", "Total Momentum", "Kinetic Energy"],
-          correctIndex: 1,
-          successComplement: "🎯 Spot on! The derivative of velocity with respect to time (dv/dt) is acceleration.",
-          explanation: "The correct answer is Instantaneous Acceleration. By definition, a = dv/dt. On a plot of v versus t, the slope Δv/Δt is acceleration, whereas the area under the curve is displacement."
-        },
-        {
-          id: 24,
-          subject: "Physics",
-          subtopic: "Electromagnetism: Flux Unit",
-          question: "What is the SI derived unit of Magnetic Flux (Φ_B)?",
-          options: ["Tesla (T)", "Weber (Wb)", "Henry (H)", "Gauss (G)"],
-          correctIndex: 1,
-          successComplement: "🌟 Excellent! 1 Weber equals 1 Tesla-square meter (T * m²).",
-          explanation: "The correct answer is Weber (Wb). Magnetic flux is defined as Φ_B = ∫ B · dA, with units of Tesla * meter² (T * m²), designated as Webers. Tesla is the unit of magnetic flux density (B)."
-        },
-        {
-          id: 25,
-          subject: "Physics",
-          subtopic: "Mechanics: Kinematic Equations",
-          question: "Which equation represents the kinematic relationship independent of time duration t?",
-          options: ["v = u + at", "s = ut + (1/2)at²", "v² = u² + 2as", "s = (u + v) / 2"],
-          correctIndex: 2,
-          successComplement: "🚀 Flawless! This equation directly relates work-energy principles to kinematics.",
-          explanation: "The correct answer is v² = u² + 2as. Derived by eliminating time t = (v - u)/a between the first two equations of motion, this relationship mirrors the work-energy theorem (W = ΔKE = F * s = m*a*s = (1/2)mv² - (1/2)mu²)."
-        },
-        {
-          id: 26,
-          subject: "Physics",
-          subtopic: "Electromagnetism: Transformers",
-          question: "Electrical power transformers operate based on which fundamental electromagnetic principle?",
-          options: ["Electrostatic Coulomb repulsion", "Mutual Induction", "The Hall Effect", "Photoelectric Emission"],
-          correctIndex: 1,
-          successComplement: "💡 Brilliant! Alternating flux in the primary coil induces an EMF in the secondary coil.",
-          explanation: "The correct answer is Mutual Induction. An alternating current flowing through the primary coil produces a continuously changing magnetic flux in the ferromagnetic core, which links with and induces an alternating EMF in the secondary coil via Faraday's Law."
-        },
-        {
-          id: 27,
-          subject: "Physics",
-          subtopic: "Mechanics: Free Fall",
-          question: "In the absence of air resistance, what is the acceleration of a freely falling body near Earth's surface?",
-          options: ["0 m/s²", "9.8 m/s² downward", "Directly proportional to the object's mass", "32 m/s² upward"],
-          correctIndex: 1,
-          successComplement: "🌍 Spot on! Gravitational acceleration is invariant with respect to object mass in vacuum.",
-          explanation: "The correct answer is 9.8 m/s² downward (g). By Newton's Second Law F = m*a and Universal Gravitation F = G*M*m/r², the inertial mass cancels gravitational mass: a = g = G*M/r² ≈ 9.8 m/s²."
-        },
-        {
-          id: 28,
-          subject: "Physics",
-          subtopic: "Electromagnetism: Flux Formula",
-          question: "For a uniform magnetic field B passing through flat area A at angle θ to the surface normal, what is the magnetic flux?",
-          options: ["Φ_B = B A cos(θ)", "Φ_B = B A sin(θ)", "Φ_B = B / (A cos θ)", "Φ_B = B² A"],
-          correctIndex: 0,
-          successComplement: "📐 Flawless dot-product calculation for vector area flux!",
-          explanation: "The correct answer is Φ_B = B A cos(θ). Magnetic flux is the dot product of the magnetic field vector and the area vector: B · A = |B||A|cos(θ). When B is perpendicular to the surface (parallel to normal, θ = 0°), flux is maximized (B A)."
-        },
-        {
-          id: 29,
-          subject: "Physics",
-          subtopic: "Mechanics: V-T Integral",
-          question: "What physical quantity does the definite integral / area under a velocity-time curve ∫ v(t) dt represent?",
-          options: ["Total Displacement", "Total Acceleration", "Jerk", "Potential Energy"],
-          correctIndex: 0,
-          successComplement: "📈 Spot on! Integrating rate of change of position yields net displacement.",
-          explanation: "The correct answer is Total Displacement. Since velocity is v = ds/dt, integrating velocity over time ∫ v(t) dt yields the net change in position (displacement) Δs."
-        },
-        {
-          id: 30,
-          subject: "Physics",
-          subtopic: "Electromagnetism: Eddy Currents",
-          question: "What are the circulating electrical currents induced in bulk conductive metals exposed to changing magnetic fields called?",
-          options: ["Displacement currents", "Eddy currents (Foucault currents)", "Superconducting currents", "Drift currents"],
-          correctIndex: 1,
-          successComplement: "⚡ Superb! Eddy currents cause inductive heating and magnetic braking.",
-          explanation: "The correct answer is Eddy currents (or Foucault currents). Changing magnetic flux induces closed circular loops of current within solid conductors, which dissipate energy via Joule heating (I²R) and are minimized in transformer cores by using laminated sheets."
-        },
+      const CONCEPT_DEEP_DATA = {
+  "Limits & Continuity": {
+    "subject": "Mathematics",
+    "category": "Calculus",
+    "axiom": "A limit L = lim (x → c) f(x) exists if and only if for every ε > 0 there exists δ > 0 such that 0 < |x - c| < δ implies |f(x) - L| < ε. Indeterminate forms 0/0 and ∞/∞ are evaluated via Cauchy's Mean Value Theorem yielding L'Hôpital's Rule: lim [f(x)/g(x)] = lim [f'(x)/g'(x)].",
+    "application": "Aerospace trajectories, electrical signal convergence, and neural network gradient clipping rely on limits to prevent numerical singularity explosions.",
+    "motivationEN": "🔥 'Never limit your challenges; challenge your limits! Calculus proves that as you approach your goals with infinitesimal consistency, you reach the summit of mastery!'",
+    "motivationTA": "🌟 'விடாமுயற்சியே வெற்றியின் எல்லை! சிறிய தொடர் முயற்சிகளே மாபெரும் சாதனைகளை உருவாக்குகின்றன. நம்பிக்கையோடு முன்னேறு!'",
+    "motivationHI": "🚀 'अपनी सीमाओं को कभी सीमित मत समझो; सीमाओं को चुनौती दो! निरंतर अभ्यास ही असंभव को संभव बनाता है!'"
+  },
+  "Derivatives & Rates": {
+    "subject": "Mathematics",
+    "category": "Calculus",
+    "axiom": "The derivative f'(x) = lim (h → 0) [f(x+h) - f(x)] / h defines the instantaneous tangent slope and instantaneous rate of change. It is the foundation of differential geometry and optimization.",
+    "application": "Autonomous vehicle velocity tracking, algorithmic financial volatility modeling, and rocket thrust vectoring.",
+    "motivationEN": "✨ 'Your growth rate matters more than where you start! Even a tiny positive derivative f'(x) > 0 sustained over time lifts you to astronomical heights!'",
+    "motivationTA": "💡 'நீ எங்கு தொடங்கினாய் என்பது முக்கியமல்ல, உன் முன்னேற்றத்தின் வேகம் என்ன என்பதே முக்கியம்! உழைப்பைத் தொடர்!'",
+    "motivationHI": "🎯 'शुरुआत कहाँ से हुई यह महत्वपूर्ण नहीं है, आपकी सीखने की गति महत्वपूर्ण है। हर दिन बेहतर बनो!'"
+  },
+  "Differentiation Rules": {
+    "subject": "Mathematics",
+    "category": "Calculus",
+    "axiom": "Operational rules govern combinations: Power Rule d/dx[x^n] = n x^(n-1); Product Rule d(uv) = u'v + uv'; Quotient Rule d(u/v) = (u'v - uv') / v^2; Chain Rule d/dx[f(g(x))] = f'(g(x)) * g'(x).",
+    "application": "Backpropagation in deep learning neural networks calculates weights layer-by-layer via systematic nested chain rule expansions.",
+    "motivationEN": "💎 'Complex challenges are just simple rules chained together! Break down massive problems into small derivatives, and conquer them step by step!'",
+    "motivationTA": "🔥 'பெரிய சவால்கள் என்பவை சிறிய விதிகளின் தொகுப்பே! ஒவ்வொன்றாக தீர்த்து வெற்றியை அடை!'",
+    "motivationHI": "🌟 'कठिन समस्याएं भी सरल नियमों से सुलझती हैं। बड़े लक्ष्यों को छोटे चरणों में विभाजित करें और जीतें!'"
+  },
+  "Optimization & Extrema": {
+    "subject": "Mathematics",
+    "category": "Calculus",
+    "axiom": "Critical points occur where f'(x) = 0 or f'(x) is undefined. By the Second Derivative Test: f''(c) < 0 establishes a strict local maximum; f''(c) > 0 establishes a local minimum.",
+    "application": "Structural bridge weight minimization, industrial logistics routing, and chemical reactor yield maximization.",
+    "motivationEN": "🏆 'To reach the global maximum of your potential, you must push through valleys of effort. Keep optimizing your mind daily!'",
+    "motivationTA": "🌈 'உன் திறமையின் உச்சத்தை அடைய கடின உழைப்பின் பாதையைக் கடக்க வேண்டும். தினமும் உன்னை நீயே மேம்படுத்து!'",
+    "motivationHI": "✨ 'अपनी क्षमता के शिखर तक पहुँचने के लिए निरंतर परिश्रम जरूरी है। खुद को हर दिन बेहतर बनाएं!'"
+  },
+  "Matrix Operations": {
+    "subject": "Mathematics",
+    "category": "Matrices",
+    "axiom": "Matrix multiplication C = AB is defined by row-by-column inner products C_ij = ∑ A_ik B_kj. It is associative A(BC) = (AB)C and distributive, but strictly non-commutative in general: AB ≠ BA.",
+    "application": "3D computer graphics rendering pipelines, robotic arm kinematic transforms, and quantum state linear operators.",
+    "motivationEN": "🌟 'Like matrix transformations warping space, disciplined knowledge reshapes your destiny and opens multidimensional opportunities!'",
+    "motivationTA": "⚡ 'முறையான அறிவும் பயிற்சியும் உன் வாழ்வை அடுத்த தளத்திற்கு கொண்டு செல்லும்! புதிய திறன்களைக் கற்றுக்கொள்!'",
+    "motivationHI": "🚀 'अनुशासन और ज्ञान आपके जीवन को एक नई दिशा और आयाम देते हैं। सदैव सीखते रहें!'"
+  },
+  "Determinants": {
+    "subject": "Mathematics",
+    "category": "Matrices",
+    "axiom": "For 2x2 matrix [[a,b],[c,d]], det = ad - bc. Geometrically, det(M) represents the oriented signed volume scaling factor of unit space under linear transformation M.",
+    "application": "Jacobian matrix determinants govern coordinate transformations in multi-variable thermodynamics and aerodynamic finite-element analysis.",
+    "motivationEN": "🎯 'A non-zero determinant means your space never collapses! Stay non-singular, resilient, and unbreakable!'",
+    "motivationTA": "💎 'எந்த சூழ்நிலையிலும் மனம் தளராதே! உன் உறுதி உன்னை எப்போதும் தலைநிமிர்ந்து நிற்க வைக்கும்!'",
+    "motivationHI": "🔥 'मुश्किलों के आगे कभी मत झुकें। आपका दृढ़ संकल्प आपको हर परिस्थिति में मजबूत बनाए रखेगा!'"
+  },
+  "Inverses & Singularity": {
+    "subject": "Mathematics",
+    "category": "Matrices",
+    "axiom": "A square matrix possesses inverse A^(-1) = adj(A) / det(A) if and only if det(A) ≠ 0. If det(A) = 0, the transformation collapses dimensions and has no inverse.",
+    "application": "Cryptography encryption key inversion, electrical grid nodal admittance inversion, and GPS satellite trilateration.",
+    "motivationEN": "✨ 'Every mistake can be inverted into wisdom! As long as your will is non-zero, there is always a mathematical pathway forward!'",
+    "motivationTA": "🌟 'ஒவ்வொரு தவறும் ஒரு சிறந்த பாடம்! நம்பிக்கை இருக்கும் வரை வெற்றிக்கு எப்போதும் ஒரு வழி உண்டு!'",
+    "motivationHI": "💡 'हर गलती सीखने का अवसर है। जब तक आपका आत्मविश्वास अटूट है, सफलता का मार्ग हमेशा खुला रहता है!'"
+  },
+  "Linear Systems": {
+    "subject": "Mathematics",
+    "category": "Matrices",
+    "axiom": "Linear systems Ax = b are solved systematically via Gaussian elimination, LU decomposition, or Cramer's Rule x_i = det(A_i) / det(A).",
+    "application": "Macroeconomic equilibrium forecasting, civil engineering truss load distributions, and telecommunications signal filtering.",
+    "motivationEN": "🔥 'When equations balance, clarity reigns! Align your daily habits with your aspirations, and success becomes a mathematical certainty!'",
+    "motivationTA": "🚀 'உன் தினசரி பழக்கங்களை உன் கனவுகளோடு இணைத்தால் வெற்றி என்பது உறுதியாகும்! தீர்க்கமாக செயலாற்று!'",
+    "motivationHI": "🎯 'जब आपके प्रयास आपके सपनों के अनुरूप होते हैं, तो सफलता निश्चित हो जाती है। पूरे मन से प्रयास करें!'"
+  },
+  "Aliphatic Hydrocarbons": {
+    "subject": "Chemistry",
+    "category": "Organic Chemistry",
+    "axiom": "Alkanes (CnH2n+2) feature single σ C-C bonds; Alkenes (CnH2n) contain reactive π bonds; Alkynes (CnH2n-2) have linear triple bonds with sp carbon centers.",
+    "application": "Petroleum refining, polymer synthesis (polyethylene, polypropylene), and high-efficiency hydrocarbon biofuels.",
+    "motivationEN": "🌟 'Like strong covalent bonds, build enduring habits and genuine friendships that never break under heat!'",
+    "motivationTA": "💎 'வலுவான சகப்பிணைப்பைப் போல, உன் நல்ல பழக்கங்களையும் விடாமுயற்சியையும் உறுதியாக உருவாக்கிக்கொள்!'",
+    "motivationHI": "🔥 'मजबूत सहसंयोजक बंधों की तरह अपनी अच्छी आदतों को कभी टूटने न दें। निरंतर प्रयासरत रहें!'"
+  },
+  "Bond Hybridization": {
+    "subject": "Chemistry",
+    "category": "Organic Chemistry",
+    "axiom": "Linear combination of atomic orbitals produces hybrid sets: sp3 (109.5° tetrahedral), sp2 (120° trigonal planar), and sp (180° linear), dictating molecular shape.",
+    "application": "Pharmaceutical drug receptor docking design, semiconductor graphene sheets, and carbon nanotube aerospace composites.",
+    "motivationEN": "✨ 'Adaptability is your greatest catalyst! Hybridize your skills across disciplines to create unique, indestructible value!'",
+    "motivationTA": "🌈 'சூழ்நிலைக்கு ஏற்ப தகவமைத்துக் கொள்வதே புத்திசாலித்தனம்! பல துறைகளின் அறிவை இணைத்து சாதி!'",
+    "motivationHI": "🚀 'विभिन्न कौशलों को मिलाकर खुद को बहुमुखी बनाएं। अनुकूलनशीलता ही सफलता की सबसे बड़ी कुंजी है!'"
+  },
+  "Aromatic Systems": {
+    "subject": "Chemistry",
+    "category": "Organic Chemistry",
+    "axiom": "Planar cyclic conjugated systems containing (4n+2) π-electrons gain exceptional thermodynamic resonance energy (~152 kJ/mol in benzene), resisting addition and favoring substitution.",
+    "application": "Aromatic polymers (Kevlar body armor), advanced dyes, optical organic LEDs, and lifesaving antibiotics.",
+    "motivationEN": "🏆 'Resonance makes benzene unbreakable! Develop mental resilience so that life's challenges distribute harmlessly across your inner peace!'",
+    "motivationTA": "⚡ 'பென்சீனைப் போல மன உறுதியோடு இரு! துன்பங்களை பகிர்ந்தளித்து உள் அமைதியைக் காத்து சாதி!'",
+    "motivationHI": "💎 'बेंजीन की तरह अटूट और स्थिर बनें। विपरीत परिस्थितियों में भी अपना धैर्य और संतुलन बनाए रखें!'"
+  },
+  "Functional Families": {
+    "subject": "Chemistry",
+    "category": "Organic Chemistry",
+    "axiom": "Specific atomic groupings dictate chemical reactivity: Alcohols (-OH), Carboxylic Acids (-COOH), Aldehydes (-CHO), Esters (-COOR), and Amines (-NH2).",
+    "application": "Synthetic fragrance synthesis, targeted oncology chemotherapy, and biodegradable polymer plastics.",
+    "motivationEN": "💡 'A single functional group changes a molecule's destiny! A single positive habit can transform your entire life!'",
+    "motivationTA": "🎯 'ஒரு சிறிய வேதித் தொகுதி ஒரு மூலக்கூறின் தன்மையையே மாற்றிவிடும்! ஒரு நல்ல பழக்கம் உன் வாழ்க்கையையே மாற்றும்!'",
+    "motivationHI": "🌟 'एक छोटी सी अच्छी आदत आपके पूरे जीवन को बदल सकती है। सकारात्मक बदलाव लाएं!'"
+  },
+  "Periodic Trends": {
+    "subject": "Chemistry",
+    "category": "Inorganic Chemistry",
+    "axiom": "Nuclear charge (Z_eff) increases across periods, pulling valence electrons tighter (increasing electronegativity and ionization energy, decreasing atomic radius). Group descent adds shells.",
+    "application": "Solid-state semiconductor doping (silicon-germanium), lithium-ion battery cathode selection, and catalytic alloy synthesis.",
+    "motivationEN": "🔥 'Every element has its unique period and group! You have your unique timeline—embrace your journey and shine brightly!'",
+    "motivationTA": "✨ 'ஒவ்வொரு தனிமத்திற்கும் ஒரு தனித்துவம் உண்டு! உனக்கும் ஒரு தனிப் பாதை உண்டு—தன்னம்பிக்கையோடு முன்னேறு!'",
+    "motivationHI": "🚀 'हर तत्व का अपना स्थान और महत्व होता है। अपनी अनूठी प्रतिभा को पहचानें और आगे बढ़ें!'"
+  },
+  "Kinematic Equations": {
+    "subject": "Physics",
+    "category": "Mechanics",
+    "axiom": "Under constant acceleration: v = u + at, s = ut + 0.5at^2, and v^2 = u^2 + 2as. These equations seamlessly bridge differential calculus and physical displacement.",
+    "application": "High-speed maglev train braking curves, planetary lander descent computers, and roller-coaster loop safety dynamics.",
+    "motivationEN": "🚀 'Even with modest initial velocity u, consistent acceleration a over time t propels you to extraordinary heights! Keep accelerating!'",
+    "motivationTA": "🌟 'தொடக்க வேகம் குறைவாக இருந்தாலும், தொடர் முடுக்கம் உன்னை உச்சத்திற்கு கொண்டு செல்லும்! முன்னேறிக்கொண்டே இரு!'",
+    "motivationHI": "🎯 'निरंतर प्रयास और गति आपको हर मंजिल तक पहुँचाएगी। अपनी गति बनाए रखें और बढ़ते रहें!'"
+  },
+  "Faraday's Induction Law": {
+    "subject": "Physics",
+    "category": "Electromagnetism",
+    "axiom": "EMF = -N (dΦ_B / dt). A changing magnetic flux through a conductor induces an electromotive force. Lenz's law dictates that the induced current opposes the flux variation.",
+    "application": "Hydroelectric power generators, wind turbine alternators, wireless inductive smartphone charging, and MRI medical scanners.",
+    "motivationEN": "⚡ 'Dynamic change induces electric power! Step out of your comfort zone, embrace change, and illuminate the world!'",
+    "motivationTA": "🔥 'மாற்றங்களே மகத்தான ஆற்றலை உருவாக்குகின்றன! உன் வசதியான சூழலை விட்டு வெளியேறி பிரகாசி!'",
+    "motivationHI": "🌟 'परिवर्तन ही ऊर्जा का स्रोत है। नई चुनौतियों को स्वीकार करें और दुनिया को अपनी क्षमता दिखाएं!'"
+  },
+  "Sonnet Structural Forms": {
+    "subject": "English",
+    "category": "Literature",
+    "axiom": "14 lines in Iambic Pentameter. Shakespearean: 3 quatrains + rhyming couplet (ABAB CDCD EFEF GG); Petrarchan: octave + sestet (ABBAABBA CDECDE) with the Volta turning argument.",
+    "application": "Classical lyric scansion, modern rhetorical speechwriting, high-impact branding copy, and cadence engineering.",
+    "motivationEN": "📖 'Structure unleashes creative power! Discipline is not a limitation—it is the poetic framework that transforms thoughts into masterpieces!'",
+    "motivationTA": "✨ 'ஒழுக்கமும் கட்டமைப்பும் உன் திறமைக்கு எல்லைகள் அல்ல—அவை உன் எண்ணங்களை காவியமாக மாற்றும் கருவிகள்!'",
+    "motivationHI": "💎 'अनुशासन आपकी स्वतंत्रता को सीमित नहीं करता, बल्कि आपकी प्रतिभा को निखार कर उत्कृष्ट बनाता है!'"
+  }
+};
 
-        /* -------------------------------------------------------------
-           ENGLISH (10 QUESTIONS)
-           ------------------------------------------------------------- */
-        {
-          id: 31,
-          subject: "English",
-          subtopic: "Grammar: Clauses",
-          question: "Identify the syntactically correct complex sentence joining a dependent clause to an independent clause:",
-          options: [
-            "Although the archives were closed, the researchers continued reviewing manuscripts in the parlor.",
-            "Because he studied diligently, therefore he passed the comprehensive assessment.",
-            "The exam was notoriously grueling however most students demonstrated high proficiency.",
-            "Analyzing the poetry quickly, the rhythmic structure was discovered."
-          ],
-          correctIndex: 0,
-          successComplement: "✒️ Masterful command of complex clause architecture and comma usage!",
-          explanation: "The correct answer is: 'Although the archives were closed, the researchers continued reviewing manuscripts in the parlor.' 'Although...' is a subordinate adverbial clause properly followed by a comma and an independent clause. Option B has redundant coordinators, Option C is a run-on without a semicolon, and Option D contains a dangling participle."
-        },
-        {
-          id: 32,
-          subject: "English",
-          subtopic: "Literature: Poetry Conceit",
-          question: "In Shakespeare's Sonnet 18, 'Shall I compare thee to a summer's day?', what rhetorical and literary figure is established?",
-          options: [
-            "Onomatopoeia",
-            "Rhetorical Question introducing an Extended Metaphor (Conceit)",
-            "Synecdoche",
-            "Hyperbolic Oxymoron"
-          ],
-          correctIndex: 1,
-          successComplement: "📖 Outstanding literary critical analysis and conceit identification!",
-          explanation: "The correct answer is: Rhetorical Question introducing an Extended Metaphor (Conceit). The opening line asks a rhetorical question that launches an elaborate comparison throughout the sonnet between the young man's timeless beauty and summer's fleeting perfection."
-        },
-        {
-          id: 33,
-          subject: "English",
-          subtopic: "Grammar: Subject-Verb Agreement",
-          question: "Which sentence displays flawless subject-verb agreement?",
-          options: [
-            "The collection of rare manuscripts and antique maps were donated to the national library.",
-            "The collection of rare manuscripts and antique maps was donated to the national library.",
-            "Neither the professor nor the students was aware of the schedule revision.",
-            "Every one of the applicants have submitted their certified transcripts."
-          ],
-          correctIndex: 1,
-          successComplement: "🎯 Spot on! The head noun 'collection' is singular, so it requires the singular verb 'was'.",
-          explanation: "The correct answer is: 'The collection of rare manuscripts and antique maps was donated to the national library.' The grammatical subject of the sentence is the singular collective noun 'collection', not the intervening prepositional phrase 'of rare manuscripts and antique maps'. Therefore, the singular verb 'was' is required."
-        },
-        {
-          id: 34,
-          subject: "English",
-          subtopic: "Literature: Iambic Pentameter",
-          question: "What metrical structure characterizes a standard line of English Iambic Pentameter?",
-          options: [
-            "Five metrical feet, each consisting of an unstressed syllable followed by a stressed syllable (da-DUM)",
-            "Four metrical feet, each consisting of two stressed syllables (DUM-DUM)",
-            "Six metrical feet, each consisting of a stressed syllable followed by an unstressed syllable (DUM-da)",
-            "Three metrical feet with irregular unaccented dactyls"
-          ],
-          correctIndex: 0,
-          successComplement: "🎭 Brilliant scansion knowledge! Iambic pentameter is the heartbeat of Shakespearean verse.",
-          explanation: "The correct answer is: Five metrical feet, each consisting of an unstressed syllable followed by a stressed syllable (da-DUM ˘ / ). 'Penta' means five, totaling 10 syllables per line (e.g., 'Shall I comPARE thee TO a SUMmer's DAY?')."
-        },
-        {
-          id: 35,
-          subject: "English",
-          subtopic: "Grammar: Past Perfect",
-          question: "Which sentence correctly employs the Past Perfect tense to describe an action completed prior to another past event?",
-          options: [
-            "By the time the symposium began, the keynote speaker had already delivered his opening thesis.",
-            "By the time the symposium began, the keynote speaker has already delivered his opening thesis.",
-            "The keynote speaker had deliver his speech before the symposium began.",
-            "The keynote speaker was already delivered his thesis when we arrived."
-          ],
-          correctIndex: 0,
-          successComplement: "🕰️ Flawless! Past Perfect ('had delivered') establishes an antecedent past action.",
-          explanation: "The correct answer is: 'By the time the symposium began, the keynote speaker had already delivered his opening thesis.' The past perfect tense is constructed with 'had' + past participle ('delivered') to indicate an action that was finished before another specified past event ('began')."
-        },
-        {
-          id: 36,
-          subject: "English",
-          subtopic: "Literature: Alliteration",
-          question: "What literary sound device is prominent in Coleridge's line: 'The fair breeze blew, the white foam flew, / The furrow followed free'?",
-          options: ["Alliteration", "Epistrophe", "Metonymy", "Chiasmus"],
-          correctIndex: 0,
-          successComplement: "🌊 Spot on! The repetitive initial consonant sounds ('b' and 'f') create kinetic rhythm.",
-          explanation: "The correct answer is Alliteration. Coleridge repeatedly employs identical initial consonant sounds ('breeze blew', 'foam flew', 'furrow followed free'), evoking the energetic movement and sound of the ship cutting through sea waves."
-        },
-        {
-          id: 37,
-          subject: "English",
-          subtopic: "Grammar: Active Voice",
-          question: "Which sentence is written in the active voice?",
-          options: [
-            "The groundbreaking hypothesis was formulated by the research fellow.",
-            "The research fellow formulated the groundbreaking hypothesis.",
-            "A groundbreaking hypothesis has been formulated by the department.",
-            "The hypothesis was being scrutinized by independent peer reviewers."
-          ],
-          correctIndex: 1,
-          successComplement: "✍️ Perfect! The subject performs the action directly rather than receiving it.",
-          explanation: "The correct answer is: 'The research fellow formulated the groundbreaking hypothesis.' In active voice, the subject ('research fellow') performs the verb's action ('formulated') onto the direct object ('hypothesis')."
-        },
-        {
-          id: 38,
-          subject: "English",
-          subtopic: "Literature: Simile vs Metaphor",
-          question: "What is the key structural distinction between a Simile and a Metaphor?",
-          options: [
-            "A simile uses explicit comparative words such as 'like' or 'as', whereas a metaphor asserts direct equivalence",
-            "A simile compares three or more objects, while a metaphor compares only two",
-            "A simile is strictly literal, whereas a metaphor is purely auditory",
-            "A simile only appears in prose fiction, while metaphors only appear in drama"
-          ],
-          correctIndex: 0,
-          successComplement: "✨ Excellent literary distinction! Similes state comparison explicitly; metaphors equate directly.",
-          explanation: "The correct answer is: A simile uses explicit comparative markers such as 'like' or 'as' (e.g., 'His mind was like a steel trap'), whereas a metaphor creates a direct figurative equation without explicit comparative markers (e.g., 'His mind was a steel trap')."
-        },
-        {
-          id: 39,
-          subject: "English",
-          subtopic: "Grammar: Semicolon",
-          question: "When is a semicolon (;) grammatically appropriate between two clauses?",
-          options: [
-            "To link two independent clauses that are closely related in thought without a coordinating conjunction",
-            "To introduce a formal direct quotation or comprehensive tabular list",
-            "To separate a dependent clause from its parenthetical adjective",
-            "To conclude an interrogative or exclamatory sentence"
-          ],
-          correctIndex: 0,
-          successComplement: "📚 Spot on! Semicolons bridge two closely related independent clauses elegantly.",
-          explanation: "The correct answer is: To link two independent clauses that are closely related in thought without a coordinating conjunction (such as and, but, so). Example: 'The laboratory experiment yielded unexpected results; the researchers immediately initiated a replication trial.'"
-        },
-        {
-          id: 40,
-          subject: "English",
-          subtopic: "Literature: Personification",
-          question: "In literary analysis, what figure of speech is exemplified by: 'The wind whispered secrets through the trembling pines'?",
-          options: ["Personification", "Litotes", "Apostrophe", "Euphemism"],
-          correctIndex: 0,
-          successComplement: "🌲 Flawless! Attributing human consciousness ('whispered secrets', 'trembling') to nature.",
-          explanation: "The correct answer is Personification. Personification endows inanimate natural phenomena (the wind, the pine trees) with human actions, sensations, and emotions ('whispering secrets', 'trembling')."
+      let currentLang = 'en';
+      let activeDifficultyFilter = 'all';
+      let timeMode = 'stopwatch';
+
+
+      /* ==========================================================================
+         MULTILINGUAL ENGINE (ENGLISH, TAMIL, HINDI)
+         ========================================================================== */
+      function toggleLangMenu() {
+        const menu = document.getElementById("lang-dropdown-menu");
+        if (menu) menu.classList.toggle("show");
+      }
+
+      window.addEventListener("click", (e) => {
+        if (!e.target.closest(".lang-switcher-box")) {
+          const menu = document.getElementById("lang-dropdown-menu");
+          if (menu) menu.classList.remove("show");
         }
-      ];
+      });
+
+      function setLanguage(lang) {
+        if (!I18N_DATA[lang]) return;
+        currentLang = lang;
+        const dict = I18N_DATA[lang];
+
+        const langNames = { en: "English", ta: "தமிழ்", hi: "हिन्दी" };
+        const curLabel = document.getElementById("current-lang-name");
+        if (curLabel) curLabel.textContent = langNames[lang];
+
+        document.querySelectorAll(".lang-opt-btn").forEach(btn => btn.classList.remove("active"));
+        const activeBtn = document.getElementById(`lang-opt-${lang}`);
+        if (activeBtn) activeBtn.classList.add("active");
+
+        const menu = document.getElementById("lang-dropdown-menu");
+        if (menu) menu.classList.remove("show");
+
+        const setText = (id, text) => {
+          const el = document.getElementById(id);
+          if (el && text) el.textContent = text;
+        };
+
+        setText("close-session-text", dict.closeSessionBtn);
+        setText("lbl-diff-all", dict.difficultyAll);
+        setText("lbl-diff-easy", dict.difficultyEasy);
+        setText("lbl-diff-medium", dict.difficultyMedium);
+        setText("lbl-diff-hard", dict.difficultyHard);
+        setText("deep-modal-axiom-lbl", dict.inspectAxiomLabel);
+        setText("deep-modal-app-lbl", dict.inspectAppLabel);
+        setText("deep-modal-motivation-lbl", dict.inspectMotivationLabel);
+        setText("deep-modal-practice-btn", dict.practiceBtn);
+        setText("deep-modal-close-btn", dict.closeBtn);
+        setText("btn-reset-quiz", dict.resetQuizBtn);
+
+        const speech = document.getElementById("mascot-speech-text");
+        if (speech) speech.textContent = dict.mascotDefaultSpeech;
+
+        renderCurrentQuestion();
+        updateAccuracyWheel();
+        showToast(`Language set to ${langNames[lang]}`);
+      }
+      window.setLanguage = setLanguage;
+      window.toggleLangMenu = toggleLangMenu;
+
+      /* ==========================================================================
+         DUAL TIME TRACKER: STOPWATCH (UP) & COUNTDOWN TIMER (DOWN)
+         ========================================================================== */
+      let stopwatchSeconds = 0;
+      let stopwatchRunning = true;
+      let stopwatchInterval = null;
+
+      let timerSeconds = 25 * 60;
+      let timerRunning = false;
+      let timerInterval = null;
+      let timerPresetMins = 25;
+
+      function setTimeMode(mode) {
+        timeMode = mode;
+        const btnSw = document.getElementById("btn-mode-stopwatch");
+        const btnTm = document.getElementById("btn-mode-timer");
+        const paneSw = document.getElementById("pane-stopwatch");
+        const paneTm = document.getElementById("pane-timer");
+        const presets = document.getElementById("timer-presets-strip");
+
+        if (mode === "stopwatch") {
+          if (btnSw) btnSw.classList.add("active");
+          if (btnTm) btnTm.classList.remove("active");
+          if (paneSw) paneSw.style.display = "flex";
+          if (paneTm) paneTm.style.display = "none";
+          if (presets) presets.style.display = "none";
+        } else {
+          if (btnSw) btnSw.classList.remove("active");
+          if (btnTm) btnTm.classList.add("active");
+          if (paneSw) paneSw.style.display = "none";
+          if (paneTm) paneTm.style.display = "flex";
+          if (presets) presets.style.display = "flex";
+        }
+      }
+      window.setTimeMode = setTimeMode;
+
+      function formatTime(totalSeconds) {
+        const hrs = Math.floor(totalSeconds / 3600);
+        const mins = Math.floor((totalSeconds % 3600) / 60);
+        const secs = totalSeconds % 60;
+        const pM = String(mins).padStart(2, "0");
+        const pS = String(secs).padStart(2, "0");
+        if (hrs > 0) {
+          return `${String(hrs).padStart(2, "0")}:${pM}:${pS}`;
+        }
+        return `${pM}:${pS}`;
+      }
+
+      function toggleStopwatch() {
+        stopwatchRunning = !stopwatchRunning;
+        const btn = document.getElementById("btn-stopwatch-toggle");
+        const dot = document.getElementById("stopwatch-pulse-dot");
+        if (btn) btn.textContent = stopwatchRunning ? "⏸️" : "▶️";
+        if (dot) dot.style.animationPlayState = stopwatchRunning ? "running" : "paused";
+        showToast(stopwatchRunning ? "Stopwatch Resumed" : "Stopwatch Paused");
+      }
+      window.toggleStopwatch = toggleStopwatch;
+
+      function resetStopwatch() {
+        stopwatchSeconds = 0;
+        const display = document.getElementById("stopwatch-display");
+        if (display) display.textContent = "00:00:00";
+        showToast("Stopwatch Reset to 00:00:00");
+      }
+      window.resetStopwatch = resetStopwatch;
+
+      function toggleTimer() {
+        timerRunning = !timerRunning;
+        const btn = document.getElementById("btn-timer-toggle");
+        if (btn) btn.textContent = timerRunning ? "⏸️" : "▶️";
+        showToast(timerRunning ? `Timer Started (${timerPresetMins}m)` : "Timer Paused");
+      }
+      window.toggleTimer = toggleTimer;
+
+      function resetTimer() {
+        timerRunning = false;
+        timerSeconds = timerPresetMins * 60;
+        const display = document.getElementById("timer-display");
+        const btn = document.getElementById("btn-timer-toggle");
+        if (display) display.textContent = formatTime(timerSeconds);
+        if (btn) btn.textContent = "▶️";
+        showToast(`Timer Reset to ${timerPresetMins}m`);
+      }
+      window.resetTimer = resetTimer;
+
+      function setTimerPreset(mins) {
+        timerPresetMins = mins;
+        document.querySelectorAll(".preset-chip").forEach(c => c.classList.remove("active"));
+        const activeChip = document.getElementById(`chip-${mins}`);
+        if (activeChip) activeChip.classList.add("active");
+        resetTimer();
+      }
+      window.setTimerPreset = setTimerPreset;
+
+      function startDualTimeEngines() {
+        if (stopwatchInterval) clearInterval(stopwatchInterval);
+        stopwatchInterval = setInterval(() => {
+          if (stopwatchRunning) {
+            stopwatchSeconds++;
+            const display = document.getElementById("stopwatch-display");
+            if (display) display.textContent = formatTime(stopwatchSeconds);
+          }
+        }, 1000);
+
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+          if (timerRunning) {
+            if (timerSeconds > 0) {
+              timerSeconds--;
+              const display = document.getElementById("timer-display");
+              if (display) display.textContent = formatTime(timerSeconds);
+            } else {
+              timerRunning = false;
+              const btn = document.getElementById("btn-timer-toggle");
+              if (btn) btn.textContent = "▶️";
+              showToast("🎉 Pomodoro Focus Sprint Finished! Great job!");
+              triggerMascotCheer();
+            }
+          }
+        }, 1000);
+      }
+
+      /* ==========================================================================
+         CUTE MASCOT & CONFETTI CELEBRATION EFFECTS
+         ========================================================================== */
+      const CUTE_EMOJIS = ["✨", "💖", "⭐", "🎉", "🚀", "🌟", "🎯", "👏", "🌸", "🎓"];
+      const MASCOT_QUOTES = {
+        en: [
+          "Believe in your infinite potential! You're shining! ✨",
+          "Every problem solved is a superpower earned! 🚀",
+          "Focus + Curiosity = Limitless Mastery! 💖",
+          "You are capable of extraordinary achievements! 🌟",
+          "Consistency turns beginners into legends! 🎯"
+        ],
+        ta: [
+          "உன் தன்னம்பிக்கையே உன் மாபெரும் பலம்! ✨",
+          "கற்றலில் கிடைக்கும் மகிழ்ச்சிக்கு ஈடு இணை இல்லை! 🌟",
+          "விடாமுயற்சி எப்போதும் வீண் போகாது! சாதித்துக் காட்டு! 🚀",
+          "தொடர்ந்து படி, உலகம் உன்னை திரும்பிப் பார்க்கும்! 💖",
+          "இன்றைய பயிற்சி நாளைய வெற்றி! முன்னேறு! 🎯"
+        ],
+        hi: [
+          "आपका आत्मविश्वास ही आपकी सबसे बड़ी शक्ति है! ✨",
+          "सीखने की कोई सीमा नहीं होती, आप कमाल कर रहे हैं! 🌟",
+          "कठिन परिश्रम हमेशा रंग लाता है! आगे बढ़ें! 🚀",
+          "हर दिन कुछ नया सीखें और खुद को बेहतर बनाएं! 💖",
+          "सफलता उन्हीं को मिलती है जो कभी हार नहीं मानते! 🎯"
+        ]
+      };
+
+      function spawnCuteConfetti(x, y) {
+        for (let i = 0; i < 16; i++) {
+          const conf = document.createElement("div");
+          conf.className = "cute-confetti-particle";
+          conf.textContent = CUTE_EMOJIS[Math.floor(Math.random() * CUTE_EMOJIS.length)];
+          conf.style.left = `${x}px`;
+          conf.style.top = `${y}px`;
+
+          const angle = Math.random() * 2 * Math.PI;
+          const dist = 60 + Math.random() * 90;
+          const dx = Math.cos(angle) * dist;
+          const dy = Math.sin(angle) * dist - 30;
+          const dr = (Math.random() - 0.5) * 360;
+
+          conf.style.setProperty("--dx", `${dx}px`);
+          conf.style.setProperty("--dy", `${dy}px`);
+          conf.style.setProperty("--dr", `${dr}deg`);
+
+          document.body.appendChild(conf);
+          setTimeout(() => {
+            if (conf.parentNode) conf.parentNode.removeChild(conf);
+          }, 1000);
+        }
+      }
+      window.spawnCuteConfetti = spawnCuteConfetti;
+
+      function triggerMascotCheer() {
+        const speech = document.getElementById("mascot-speech-text");
+        const quotes = MASCOT_QUOTES[currentLang] || MASCOT_QUOTES.en;
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        if (speech) speech.textContent = randomQuote;
+
+        const avatar = document.getElementById("mascot-avatar-circle");
+        if (avatar) {
+          avatar.style.transform = "scale(1.25) rotate(-10deg)";
+          setTimeout(() => { avatar.style.transform = ""; }, 400);
+        }
+
+        const rect = avatar ? avatar.getBoundingClientRect() : { left: window.innerWidth - 60, top: window.innerHeight - 60 };
+        spawnCuteConfetti(rect.left + 25, rect.top + 25);
+      }
+      window.triggerMascotCheer = triggerMascotCheer;
+
+      /* ==========================================================================
+         DEEP CONCEPT INSPECTOR MODAL WITH MOTIVATIONAL REFLECTION
+         ========================================================================== */
+      function openConceptDeepModal(nodeName, subject, category) {
+        const data = CONCEPT_DEEP_DATA[nodeName] || {
+          subject: subject || "Core Sciences",
+          category: category || "Theory",
+          axiom: "This foundational principle unifies abstract axioms with physical and computational mechanics.",
+          application: "Widely deployed in structural design, industrial automation, and cognitive analytical systems.",
+          motivationEN: "Focus is the currency of brilliance! Push past doubt and build mastery step by step!",
+          motivationTA: "விடாமுயற்சியே வெற்றியின் ரகசியம்! கற்பதில் தோய்வு வேண்டாம், சிகரம் தொடும் வரை ஓயாதே!",
+          motivationHI: "कठिन परिश्रम ही सफलता की कुंजी है। निरंतर प्रयास से असंभव भी संभव हो जाता है!"
+        };
+
+        const modal = document.getElementById("concept-deep-modal");
+        const titleEl = document.getElementById("deep-modal-title");
+        const subjEl = document.getElementById("deep-modal-subject");
+        const axiomEl = document.getElementById("deep-modal-axiom-text");
+        const appEl = document.getElementById("deep-modal-app-text");
+        const motivEl = document.getElementById("deep-modal-motivation-text");
+
+        if (titleEl) titleEl.textContent = nodeName;
+        if (subjEl) subjEl.textContent = `${data.subject} • ${data.category}`;
+        if (axiomEl) axiomEl.textContent = data.axiom;
+        if (appEl) appEl.textContent = data.application;
+
+        if (motivEl) {
+          if (currentLang === "ta") motivEl.textContent = data.motivationTA || data.motivationEN;
+          else if (currentLang === "hi") motivEl.textContent = data.motivationHI || data.motivationEN;
+          else motivEl.textContent = data.motivationEN;
+        }
+
+        if (modal) modal.style.display = "flex";
+
+        const inPageInspector = document.getElementById("inspector-text");
+        if (inPageInspector) {
+          inPageInspector.innerHTML = `<strong>${nodeName}</strong>: <span style="color:#ffffff;">${data.axiom.substring(0, 110)}...</span> <span style="color:var(--accent-emerald);">✨ Tap to view Deep Breakdown & Motivation!</span>`;
+        }
+
+        showToast(`Deep Inspecting: ${nodeName}`);
+      }
+      window.openConceptDeepModal = openConceptDeepModal;
+      window.inspectMindMapNode = openConceptDeepModal;
+
+      function closeConceptDeepModal() {
+        const modal = document.getElementById("concept-deep-modal");
+        if (modal) modal.style.display = "none";
+      }
+      window.closeConceptDeepModal = closeConceptDeepModal;
+
+      function jumpToConceptQuiz() {
+        closeConceptDeepModal();
+        const quizSec = document.getElementById("quiz-section");
+        if (quizSec) quizSec.scrollIntoView({ behavior: "smooth" });
+      }
+      window.jumpToConceptQuiz = jumpToConceptQuiz;
+
+      /* ==========================================================================
+         QUIZ DIFFICULTY FILTER & 25-QUESTION NAVIGATOR
+         ========================================================================== */
+      function filterDifficulty(diff) {
+        activeDifficultyFilter = diff;
+        document.querySelectorAll(".diff-btn").forEach(b => b.classList.remove("active"));
+        const btn = document.getElementById(`diff-btn-${diff}`);
+        if (btn) btn.classList.add("active");
+
+        applyFilters();
+        showToast(`Difficulty: ${diff.toUpperCase()} questions`);
+      }
+      window.filterDifficulty = filterDifficulty;
+
+      function applyFilters() {
+        currentFilteredQuestions = ALL_QUESTIONS.filter(q => {
+          const matchSubj = (activeSubjectFilter === "All" || q.subject.toLowerCase() === activeSubjectFilter.toLowerCase());
+          const matchDiff = (activeDifficultyFilter === "all" || q.difficulty === activeDifficultyFilter);
+          return matchSubj && matchDiff;
+        });
+        currentFilteredIndex = 0;
+        initQuizNavigationPills();
+        renderCurrentQuestion();
+      }
+
 
       /* ==========================================================================
          2. STATE MANAGEMENT
@@ -3713,108 +6193,18 @@
       let currentFilteredIndex = 0;
       const userAnswers = {};
 
-      /* ==========================================================================
-         3. STOPWATCH LOGIC (INCREMENTAL RUNNING TIMER)
-         - Counts UP second-by-second immediately when page loads (00:00, 00:01...)
-         - Toggleable Pause / Resume
-         - Close Session button triggers exact confirmation:
-           "Are you sure you want to leave all?"
-         ========================================================================== */
-      let stopwatchSeconds = 0;
-      let stopwatchInterval = null;
-      let isStopwatchRunning = true;
-
-      const stopwatchDisplay = document.getElementById("stopwatch-display");
-      const stopwatchWidget = document.getElementById("session-stopwatch-widget");
-      const btnStopwatchToggle = document.getElementById("btn-stopwatch-toggle");
-      const stopwatchToggleIcon = document.getElementById("stopwatch-toggle-icon");
-      const btnCloseSession = document.getElementById("btn-close-session");
-      const sessionSummaryModal = document.getElementById("session-summary-modal");
-      const modalSummaryText = document.getElementById("modal-summary-text");
-      const btnRestartSession = document.getElementById("btn-restart-session");
-
-      function formatStopwatchTime(totalSecs) {
-        const hrs = Math.floor(totalSecs / 3600);
-        const mins = Math.floor((totalSecs % 3600) / 60);
-        const secs = totalSecs % 60;
-
-        if (hrs > 0) {
-          return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-        }
-        return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-      }
-
-      function updateStopwatchUI() {
-        if (!stopwatchDisplay) return;
-        stopwatchDisplay.textContent = formatStopwatchTime(stopwatchSeconds);
-      }
-
-      function startStopwatch() {
-        if (stopwatchInterval) clearInterval(stopwatchInterval);
-        isStopwatchRunning = true;
-        if (stopwatchWidget) stopwatchWidget.classList.remove("paused");
-        updateStopwatchToggleIcon();
-
-        stopwatchInterval = setInterval(() => {
-          stopwatchSeconds++;
-          updateStopwatchUI();
-        }, 1000);
-      }
-
-      function pauseStopwatch() {
-        if (stopwatchInterval) clearInterval(stopwatchInterval);
-        isStopwatchRunning = false;
-        if (stopwatchWidget) stopwatchWidget.classList.add("paused");
-        updateStopwatchToggleIcon();
-        showToast("Stopwatch paused.");
-      }
-
-      function resumeStopwatch() {
-        isStopwatchRunning = true;
-        if (stopwatchWidget) stopwatchWidget.classList.remove("paused");
-        updateStopwatchToggleIcon();
-
-        stopwatchInterval = setInterval(() => {
-          stopwatchSeconds++;
-          updateStopwatchUI();
-        }, 1000);
-        showToast("Stopwatch resumed.");
-      }
-
-      function updateStopwatchToggleIcon() {
-        if (!stopwatchToggleIcon) return;
-        if (isStopwatchRunning) {
-          stopwatchToggleIcon.innerHTML = `
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          `;
-        } else {
-          stopwatchToggleIcon.innerHTML = `
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          `;
-        }
-      }
-
-      if (btnStopwatchToggle) {
-        btnStopwatchToggle.addEventListener("click", () => {
-          if (isStopwatchRunning) {
-            pauseStopwatch();
-          } else {
-            resumeStopwatch();
-          }
-        });
-      }
+      /* [Deduplicated] Stopwatch & Dual Time Engine active */
 
       if (btnCloseSession) {
         btnCloseSession.addEventListener("click", () => {
           // Exact requirement: asking exactly: "Are you sure you want to leave all?"
           const userConfirmed = window.confirm("Are you sure you want to leave all?");
           if (userConfirmed) {
-            pauseStopwatch();
+            stopwatchRunning = false;
             const answeredCount = Object.keys(userAnswers).length;
             const correctCount = Object.values(userAnswers).filter(a => a.isCorrect).length;
             const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
-            const elapsedFormatted = formatStopwatchTime(stopwatchSeconds);
+            const elapsedFormatted = formatTime(stopwatchSeconds);
 
             showSessionSummary(
               `You have concluded your session with a total study duration of ${elapsedFormatted}. ` +
@@ -3834,7 +6224,7 @@
           if (sessionSummaryModal) sessionSummaryModal.classList.remove("open");
           stopwatchSeconds = 0;
           updateStopwatchUI();
-          startStopwatch();
+          startDualTimeEngines();
           resetQuizState();
           showToast("Fresh study session & stopwatch initialized!");
         });
@@ -3951,15 +6341,7 @@
           if (btn) btn.classList.toggle("active", key === subjectName);
         }
 
-        if (subjectName === "All") {
-          currentFilteredQuestions = [...ALL_QUESTIONS];
-        } else {
-          currentFilteredQuestions = ALL_QUESTIONS.filter(q => q.subject.toLowerCase() === subjectName.toLowerCase());
-        }
-
-        currentFilteredIndex = 0;
-        initQuizNavigationPills();
-        renderCurrentQuestion();
+        applyFilters();
 
         const quizSec = document.getElementById("quiz-section");
         if (quizSec) {
@@ -3972,13 +6354,14 @@
       function initQuizNavigationPills() {
         if (!quizPillsBar) return;
         quizPillsBar.innerHTML = "";
+        quizPillsBar.className = "quiz-navigator-pills-25";
 
         currentFilteredQuestions.forEach((q, idx) => {
           const pill = document.createElement("button");
-          pill.className = "q-pill" + (idx === currentFilteredIndex ? " active" : "");
+          pill.className = "q-pill-25" + (idx === currentFilteredIndex ? " active" : "");
           pill.type = "button";
-          pill.textContent = idx + 1;
-          pill.setAttribute("aria-label", `Go to question ${idx + 1}: ${q.subject}`);
+          pill.innerHTML = `<span>${idx + 1}</span><span class="diff-dot-pip diff-dot-${q.difficulty}"></span>`;
+          pill.setAttribute("aria-label", `Go to question ${idx + 1}: ${q.subject} (${q.difficulty})`);
           pill.addEventListener("click", () => {
             currentFilteredIndex = idx;
             renderCurrentQuestion();
@@ -3986,6 +6369,24 @@
           quizPillsBar.appendChild(pill);
         });
         updatePillStates();
+      }
+
+      function updatePillStates() {
+        const pills = document.querySelectorAll(".q-pill-25");
+        pills.forEach((pill, idx) => {
+          pill.classList.remove("active", "correct", "wrong");
+          if (idx === currentFilteredIndex) {
+            pill.classList.add("active");
+          }
+          const q = currentFilteredQuestions[idx];
+          if (q && userAnswers[q.id]) {
+            if (userAnswers[q.id].isCorrect) {
+              pill.classList.add("correct");
+            } else {
+              pill.classList.add("wrong");
+            }
+          }
+        });
       }
 
       function updatePillStates() {
@@ -4077,7 +6478,9 @@
         updateAccuracyWheel();
 
         if (isCorrect) {
-          showToast(`Question ${currentFilteredIndex + 1}: Correct! Excellent work.`);
+          triggerMascotCheer();
+          spawnCuteConfetti(window.innerWidth / 2, window.innerHeight / 2);
+          showToast(`Question ${currentFilteredIndex + 1}: Correct! Excellent work! ✨`);
         } else {
           showToast(`Question ${currentFilteredIndex + 1}: Conceptual review required.`);
         }
@@ -4328,14 +6731,52 @@
         }
       }, { passive: true });
 
+      /* Dynamic Orientation & Resize Detection */
+      function updateOrientationDisplay() {
+        const orientBanner = document.getElementById("mobile-orientation-banner");
+        if (!orientBanner) return;
+        const isPortrait = window.innerWidth <= 820 && window.innerHeight > window.innerWidth;
+        if (isPortrait) {
+          orientBanner.style.display = "flex";
+          orientBanner.innerHTML = `
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:1.1rem;">📱</span>
+              <div>
+                <strong style="color:var(--text-main); font-size:0.82rem;">Mobile Portrait Mode Active</strong>
+                <div style="color:var(--text-muted); font-size:0.72rem;">Vertical touch layout enabled</div>
+              </div>
+            </div>
+            <span class="orient-badge">Rotate for Wide Mind Map</span>
+          `;
+        } else if (window.innerWidth <= 820) {
+          orientBanner.style.display = "flex";
+          orientBanner.innerHTML = `
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:1.1rem;">💻</span>
+              <div>
+                <strong style="color:var(--text-main); font-size:0.82rem;">Widescreen Landscape View</strong>
+                <div style="color:var(--text-muted); font-size:0.72rem;">Full horizontal concept canvas active</div>
+              </div>
+            </div>
+            <span class="orient-badge" style="background:rgba(14,165,233,0.15); border-color:var(--border-cyan); color:var(--accent-cyan);">Wide Canvas</span>
+          `;
+        } else {
+          orientBanner.style.display = "none";
+        }
+      }
+
+      window.addEventListener("resize", updateOrientationDisplay);
+      window.addEventListener("orientationchange", updateOrientationDisplay);
+
       /* ==========================================================================
          9. APP INITIALIZATION
          ========================================================================== */
       function initApp() {
-        startStopwatch();
+        startDualTimeEngines();
         initQuizNavigationPills();
         renderCurrentQuestion();
         updateAccuracyWheel();
+        updateOrientationDisplay();
       }
 
       if (document.readyState === "loading") {
@@ -4348,5 +6789,71 @@
 
     })();
   </script>
+
+  <!-- Cute Floating Mascot "StudyBot" -->
+  <div class="cute-mascot-fab" id="cute-mascot-fab" onclick="triggerMascotCheer()" title="Tap StudyBot for cute encouragement!">
+    <div class="mascot-speech-cloud" id="mascot-speech-cloud">
+      <span id="mascot-speech-text">Hello! I'm StudyBot! Tap me for cute motivation! ✨</span>
+    </div>
+    <div class="mascot-avatar-circle" id="mascot-avatar-circle">
+      🤖
+    </div>
+  </div>
+
+  <!-- Deep Concept Inspector Modal with Motivational Dialogue -->
+  <div class="modal-overlay" id="concept-deep-modal" role="dialog" aria-modal="true" style="display:none;">
+    <div class="concept-modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+        <div>
+          <span class="concept-header-pill" id="deep-modal-subject">Calculus • Mathematics</span>
+          <h3 class="concept-deep-title" id="deep-modal-title">Concept Title</h3>
+        </div>
+        <button class="btn-modal-close" onclick="closeConceptDeepModal()" title="Close Inspector">&times;</button>
+      </div>
+
+      <!-- Axiom Section -->
+      <div class="concept-section-block">
+        <div class="concept-section-title" id="deep-modal-axiom-lbl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Core Academic Principle &amp; Mathematical Formulation</span>
+        </div>
+        <div class="concept-section-content" id="deep-modal-axiom-text">Axiom description here...</div>
+      </div>
+
+      <!-- Real World App Section -->
+      <div class="concept-section-block">
+        <div class="concept-section-title" id="deep-modal-app-lbl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/>
+          </svg>
+          <span>Real-World Engineering &amp; Industrial Application</span>
+        </div>
+        <div class="concept-section-content" id="deep-modal-app-text">Application description here...</div>
+      </div>
+
+      <!-- Motivational Reflection Section -->
+      <div class="motivation-quote-box">
+        <div class="motivation-quote-title" id="deep-modal-motivation-lbl">
+          <span>🌟</span>
+          <span>Inspiring Reflection &amp; Student Motivational Dialogue</span>
+        </div>
+        <div class="motivation-quote-text" id="deep-modal-motivation-text">
+          "The calculus of life proves that consistent daily steps integrated over time lead to monumental triumph!"
+        </div>
+      </div>
+
+      <div style="margin-top:20px; display:flex; justify-content:space-between; gap:10px;">
+        <button class="btn-action-pill" onclick="jumpToConceptQuiz()" style="flex:1; padding:10px; font-size:0.84rem; justify-content:center;">
+          <span id="deep-modal-practice-btn">🎯 Practice Subject Questions</span>
+        </button>
+        <button class="btn-action-pill" onclick="closeConceptDeepModal()" style="padding:10px 16px; font-size:0.84rem; justify-content:center; background:rgba(30,41,59,0.8);">
+          <span id="deep-modal-close-btn">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
