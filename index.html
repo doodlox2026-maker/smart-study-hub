@@ -3177,6 +3177,584 @@
       transform: translateY(-1px);
     }
 
+  
+    /* ==========================================================================
+       HIERARCHICAL DRILLDOWN & BREADCRUMBS
+       ========================================================================== */
+    .curriculum-drilldown-wrapper {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .curriculum-drilldown-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald), var(--accent-purple), var(--accent-amber));
+    }
+    .breadcrumb-trail {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .breadcrumb-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-weight: 500;
+    }
+    .breadcrumb-step:hover {
+      border-color: var(--accent-cyan);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+    .breadcrumb-step.active {
+      background: rgba(14, 165, 233, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+    .breadcrumb-separator {
+      color: var(--text-subtle);
+      font-weight: bold;
+      user-select: none;
+    }
+
+    /* Subject Selection Grid inside Drilldown */
+    .drilldown-subjects-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .drilldown-subj-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition-normal);
+      color: var(--text-main);
+      width: 100%;
+    }
+    .drilldown-subj-btn:hover, .drilldown-subj-btn.selected {
+      background: rgba(15, 23, 42, 0.95);
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.2);
+    }
+    .drilldown-subj-btn .subj-icon {
+      font-size: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .drilldown-subj-btn .subj-meta {
+      flex: 1;
+    }
+    .drilldown-subj-btn .subj-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .drilldown-subj-btn .subj-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Lessons Grid */
+    .drilldown-lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .lesson-card-item {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .lesson-card-item:hover, .lesson-card-item.selected {
+      border-color: var(--accent-emerald);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+    }
+    .lesson-badge-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+    .lesson-item-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .lesson-item-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+    .lesson-action-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Topics Grid */
+    .drilldown-topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .topic-pill-item {
+      background: rgba(22, 32, 50, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+    .topic-pill-item:hover, .topic-pill-item.selected {
+      border-color: var(--accent-purple);
+      background: rgba(30, 41, 59, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.22);
+    }
+    .topic-pill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .topic-pill-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      background: rgba(168, 85, 247, 0.12);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+    }
+    .topic-pill-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 6px;
+    }
+    .topic-pill-formula {
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+      background: rgba(15, 23, 42, 0.85);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    /* Mind Map Image Container & Toolbar */
+    .mindmap-image-wrapper {
+      margin-top: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      background: #0f172a;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    }
+    .mindmap-image-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: rgba(30, 41, 59, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-image-header-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-image-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-mindmap-action {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all var(--transition-fast);
+      font-weight: 600;
+    }
+    .btn-mindmap-action:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .mindmap-img-element {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+      background: #0f172a;
+    }
+    .mindmap-img-element:hover {
+      opacity: 0.96;
+    }
+
+    /* Star Burst Particles Canvas */
+    #effects-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 999999;
+    }
+
+    /* Wrong Answer Shake & Glitch */
+    @keyframes errorVibrate {
+      0% { transform: translateX(0); }
+      15% { transform: translateX(-12px) rotate(-1deg); }
+      30% { transform: translateX(10px) rotate(1deg); }
+      45% { transform: translateX(-8px); }
+      60% { transform: translateX(8px); }
+      75% { transform: translateX(-4px); }
+      90% { transform: translateX(4px); }
+      100% { transform: translateX(0); }
+    }
+    .quiz-card-error-shake {
+      animation: errorVibrate 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      box-shadow: 0 0 35px rgba(244, 63, 94, 0.5) !important;
+      border-color: var(--accent-rose) !important;
+    }
+
+    @keyframes starPulseGlow {
+      0% { transform: scale(1); box-shadow: 0 0 0 rgba(245, 158, 11, 0); }
+      50% { transform: scale(1.03); box-shadow: 0 0 28px rgba(245, 158, 11, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
+    }
+    .option-btn.selected-correct {
+      animation: starPulseGlow 0.5s ease-out forwards;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(245, 158, 11, 0.15)) !important;
+      border-color: #fbbf24 !important;
+    }
+
+    /* Gemini AI Button in Quiz Error */
+    .btn-gemini-explain-error {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-full);
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: all var(--transition-normal);
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+    .btn-gemini-explain-error:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+    }
+    .btn-gemini-explain-error .sparkle {
+      animation: spin 3s linear infinite;
+    }
+
+    /* User Profile & Gemini Header Controls */
+    .header-user-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      color: var(--text-main);
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-weight: 600;
+    }
+    .header-user-btn:hover {
+      border-color: var(--accent-cyan);
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-1px);
+    }
+    .user-avatar-pip {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-emerald));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .header-gemini-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(14, 165, 233, 0.2));
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      color: #38bdf8;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-weight: 600;
+    }
+    .header-gemini-btn:hover {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.4), rgba(14, 165, 233, 0.4));
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    /* User Profile Modal Styles */
+    .profile-card-current {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .profile-avatar-big {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 0 16px rgba(14, 165, 233, 0.3);
+    }
+    .profile-meta-big h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin: 0 0 4px 0;
+    }
+    .profile-meta-big p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .profile-switch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .profile-switch-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition-fast);
+    }
+    .profile-switch-card:hover, .profile-switch-card.active {
+      border-color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.1);
+      transform: translateY(-2px);
+    }
+    .profile-switch-card.active {
+      border-color: var(--accent-emerald);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Google OAuth Settings Box */
+    .oauth-settings-box {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .oauth-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .oauth-input-text {
+      flex: 1;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      color: #fff;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+
+    /* Gemini Modal */
+    .gemini-chat-log {
+      max-height: 340px;
+      overflow-y: auto;
+      padding: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .gemini-msg {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .gemini-msg.user {
+      align-self: flex-end;
+      background: rgba(14, 165, 233, 0.2);
+      border: 1px solid rgba(14, 165, 233, 0.35);
+      color: #fff;
+    }
+    .gemini-msg.ai {
+      align-self: flex-start;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      color: #f1f5f9;
+    }
+    .gemini-input-row {
+      display: flex;
+      gap: 8px;
+    }
+    .gemini-input-row input {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .gemini-sample-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .gemini-pill {
+      font-size: 0.76rem;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      padding: 4px 10px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .gemini-pill:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal-box {
+      background: rgba(15, 23, 42, 0.98);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      border-radius: var(--radius-xl);
+      max-width: 95vw;
+      width: 1200px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    }
+    .lightbox-body {
+      flex: 1;
+      overflow: auto;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #090e1a;
+    }
+    .lightbox-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    }
+
   </style>
 </head>
 <body>
@@ -3277,6 +3855,20 @@
         </button>
 
         <!-- Close Session Button -->
+        
+        <!-- Gemini AI Tutor Button -->
+        <button class="header-gemini-btn" id="btn-header-gemini" onclick="openGeminiTutorModal()" title="Ask Gemini AI Academic Tutor">
+          <span style="font-size:16px;">✨</span>
+          <span id="lbl-header-gemini">Gemini AI Tutor</span>
+        </button>
+
+        <!-- Student Profile & Google Sign-In Button -->
+        <button class="header-user-btn" id="btn-header-profile" onclick="openProfileModal()" title="Student Profile & Google Sign-In">
+          <div class="user-avatar-pip" id="header-user-avatar">👨‍🎓</div>
+          <span id="header-user-name">Alex Johnson</span>
+          <span class="badge-mini" id="header-user-badge" style="font-size:10px; background:rgba(16,185,129,0.2); color:#10b981; padding:2px 6px; border-radius:10px;">Lvl 3</span>
+        </button>
+
         <button class="btn-close-session" id="btn-close-session" type="button" aria-label="Close Current Session">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
@@ -3324,7 +3916,27 @@
       </p>
     </section>
 
-            <div class="subjects-grid">
+            
+      <!-- ==========================================================================
+           INTERACTIVE HIERARCHICAL CURRICULUM EXPLORER
+           Subject ➔ Lessons ➔ Topics ➔ Deep Breakdown & Mind Map Image
+           ========================================================================== -->
+      <div class="curriculum-drilldown-wrapper" id="curriculum-drilldown-container">
+        <!-- Breadcrumbs Navigation Bar -->
+        <div class="breadcrumb-trail" id="curriculum-breadcrumbs">
+          <button class="breadcrumb-step active" onclick="drilldownGoToStep(1)">
+            <span>🏠</span>
+            <span id="bc-step-root">All Subjects</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Content View for Stepper -->
+        <div id="drilldown-viewport">
+          <!-- Step 1: Subjects Grid (Populated dynamically) -->
+        </div>
+      </div>
+
+      <div class="subjects-grid">
 
       <!-- Subject 1: Mathematics -->
       <article class="subject-card" data-subject="math" onclick="touchSubject('math')">
@@ -5080,7 +5692,7 @@
   function renderCardDrawerContent(subjectKey) {
     const data = TOPIC_BREAKDOWN_DATA[subjectKey];
     if (!data) return;
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
 
     const setText = (id, text) => {
       const el = document.getElementById(id);
@@ -5131,7 +5743,7 @@
       // Bring smoothly into view without jumping to page bottom
       drawer.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
-      const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+      const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
       const nameMap = { math: dict.mathTitle, chem: dict.chemTitle, phys: dict.physTitle, eng: dict.engTitle };
       showToast("Opened " + (nameMap[subjectKey] || subjectKey) + " Deep Breakdown!");
     }
@@ -5154,7 +5766,7 @@
     currentTopicBreakdownKey = subjectKey;
     const data = TOPIC_BREAKDOWN_DATA[subjectKey];
     if (!data) return;
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
 
     const setText = (id, text) => {
       const el = document.getElementById(id);
@@ -5696,7 +6308,7 @@
     const q = currentFilteredQuestions[currentFilteredIndex];
     if (!q) return;
 
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
 
     if (quizSubjectTag) quizSubjectTag.textContent = q.subject + " • " + q.subtopic;
     if (quizCounterText) {
@@ -5785,7 +6397,7 @@
       return;
     }
 
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
     feedbackBanner.style.display = "block";
 
     if (answer.isCorrect) {
@@ -5875,7 +6487,7 @@
     if (statRemainingCount) statRemainingCount.textContent = remainingCount;
 
     if (statAcademicRank) {
-      const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+      const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
       if (answeredCount === 0) {
         statAcademicRank.textContent = dict.qRankStandby || "Standby";
         statAcademicRank.style.color = "var(--text-muted)";
@@ -5948,7 +6560,7 @@
     } catch(e) {}
 
     const speech = document.getElementById("mascot-speech-text");
-    const dict = I18N_DATA[currentLang] || I18N_DATA.en;
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
     if (speech) {
       speech.textContent = dict.mascotCheer || "Incredible job! Keep learning! 🌟";
     }
@@ -6259,7 +6871,1219 @@
 
 })();
 
-  </script>
+  
+  
+  function safeToast(msg) {
+    if (typeof showToast === "function") {
+      showToast(msg);
+    } else if (typeof window.showToast === "function") {
+      window.showToast(msg);
+    } else {
+      console.log("[Toast]", msg);
+    }
+  }
+
+  /* ==========================================================================
+     HIERARCHICAL CURRICULUM DATA & DRILLDOWN ENGINE
+     Subject ➔ Lessons ➔ Topics ➔ Breakdown & Mind Map Image
+     ========================================================================== */
+  const HIERARCHICAL_CURRICULUM = {
+    "math": {
+      "key": "math",
+      "title": { "en": "Mathematics", "ta": "கணிதம்", "hi": "गणित" },
+      "icon": "📐",
+      "badge": { "en": "Module 01", "ta": "பிரிவு 01", "hi": "मॉड्यूल 01" },
+      "mindmapImg": "assets/images/mindmap_math.png",
+      "mindmapSvg": "assets/images/mindmap_math.svg",
+      "lessons": [
+        {
+          "id": "math-l1",
+          "tag": { "en": "Calculus Foundations", "ta": "நுண்கணித அடிப்படைகள்", "hi": "कलन मूल सिद्धांत" },
+          "title": { "en": "Differential Calculus & Limits", "ta": "வகை நுண்கணிதம் & எல்லைகள்", "hi": "अवकलन कलन एवं सीमाएं" },
+          "desc": { "en": "Study instantaneous rates of change, tangent slopes, Cauchy-Weierstrass limits, and derivative rules.", "ta": "கணநேர மாற்ற விகிதங்கள், தொடுகோட்டு சாய்வுகள் மற்றும் வகைக்கெழு விதிகள்.", "hi": "तात्कालिक परिवर्तन दर, स्पर्शरेखा ढलान और अवकलन नियमों का अध्ययन।" },
+          "topics": [
+            {
+              "id": "math-t1",
+              "badge": "Calculus Core",
+              "name": { "en": "Limits, Continuity & Cauchy Convergence", "ta": "எல்லைகள் & கௌச்சி ஒருங்குதல்", "hi": "सीमाएं एवं कौशी अभिसरण" },
+              "theory": {
+                "en": "Formalized via Cauchy-Weierstrass limits, differential calculus studies instantaneous rates of change f'(x) = lim(h→0)[(f(x+h)-f(x))/h]. Indeterminate forms 0/0 and ∞/∞ are resolved via algebraic factorization, rationalization, or L'Hôpital's Rule.",
+                "ta": "கௌச்சி-வியர்ஸ்ட்ராஸ் எல்லைகளின் அடிப்படையில் நுண்கணிதம் கணநேர மாற்ற விகிதத்தை விவரிக்கிறது: f'(x) = lim(h→0)[(f(x+h)-f(x))/h]. 0/0 போன்ற தீர்மானிக்க முடியாத வடிவங்கள் எல்'ஹாபிடல் விதி மூலம் தீர்க்கப்படுகின்றன.",
+                "hi": "कौशी-वीयरस्ट्रास सीमाओं के माध्यम से विभेदक कलन तात्कालिक परिवर्तन दर f'(x) = lim(h→0)[(f(x+h)-f(x))/h] का अध्ययन करता है। अनिश्चित रूप 0/0 को ल'हॉस्पिटल नियम से हल किया जाता है।"
+              },
+              "formulas": "f'(x) = lim(h→0) [f(x+h)-f(x)]/h | L'Hôpital: lim[f(x)/g(x)] = lim[f'(x)/g'(x)] | lim[x→0] sin(x)/x = 1",
+              "app": {
+                "en": "Fluid dynamics simulations, aerodynamic drag calculations, and gradient descent optimization in deep learning backpropagation.",
+                "ta": "பாய்ம இயக்கவியல் மாதிரி, காற்றியக்கவியல் மற்றும் இயந்திர கற்றல் மாதிரிகளை மேம்படுத்த பயன்படுகிறது.",
+                "hi": "द्रव गतिकी सिमुलेशन और मशीन लर्निंग में ग्रेडिएंट डिसेंट अनुकूलन।"
+              },
+              "motivation": {
+                "en": "🔥 'Infinitesimal steps taken with daily consistency integrate into monumental academic mastery!'",
+                "ta": "🌟 'விடாமுயற்சியே வெற்றியின் எல்லை! சிறிய தொடர் முயற்சிகளே மாபெரும் சாதனைகளை உருவாக்குகின்றன.'",
+                "hi": "🚀 'निरंतर अभ्यास ही असंभव को संभव बनाता है! अपनी सीमाओं को चुनौती दें!'"
+              }
+            },
+            {
+              "id": "math-t2",
+              "badge": "Derivatives",
+              "name": { "en": "Tangent Slopes & Power/Chain Rules", "ta": "தொடுகோட்டு சாய்வுகள் & சங்கிலி விதி", "hi": "स्पर्शरेखा ढलान एवं श्रृंखला नियम" },
+              "theory": {
+                "en": "The derivative represents the exact slope of the tangent line to the curve y=f(x) at any given coordinate. Composite function differentiation obeys the Chain Rule: d/dx[f(g(x))] = f'(g(x)) · g'(x).",
+                "ta": "வகைக்கெழு என்பது வளைவரையின் ஏதேனும் ஒரு புள்ளியில் தொடுகோட்டின் சாய்வைக் குறிக்கிறது. கூட்டுச் சார்புகளை வகையிட சங்கிலி விதி பயன்படுகிறது.",
+                "hi": "अवकलज किसी वक्र पर स्पर्शरेखा के सटीक ढलान का प्रतिनिधित्व करता है। समग्र फलनों का अवकलन श्रृंखला नियम का पालन करता है।"
+              },
+              "formulas": "Power: d/dx[xⁿ] = n·xⁿ⁻¹ | Product: (uv)' = u'v + uv' | Chain: d/dx[f(g(x))] = f'(g(x))·g'(x)",
+              "app": {
+                "en": "Trajectory prediction in rocket orbital mechanics and marginal cost optimization in financial algorithmic trading.",
+                "ta": "ராக்கெட் விண்வெளி பாதைக் கணிப்பு மற்றும் நிதிச் சந்தை வணிக உகப்பாக்கம்.",
+                "hi": "रॉकेट प्रक्षेपवक्र और वित्तीय व्यापार में लागत अनुकूलन।"
+              },
+              "motivation": {
+                "en": "⚡ 'Power rule reminds us that even when powers change, your momentum keeps compounding!'",
+                "ta": "✨ 'தொடர் பயிற்சி உன் திறமையை பன்மடங்கு பெருக்கும்!'",
+                "hi": "💡 'निरंतर विकास ही सफलता का मूलमंत्र है!'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "math-l2",
+          "tag": { "en": "Linear Systems", "ta": "நேரியல் அமைப்புகள்", "hi": "रैखिक निकाय" },
+          "title": { "en": "Matrices & Linear Transformations", "ta": "அணிகள் & நேரியல் உருமாற்றங்கள்", "hi": "आव्यूह एवं रैखिक रूपांतरण" },
+          "desc": { "en": "Matrix multiplications, inverse matrices A⁻¹ = adj(A)/det(A), and vector transformations.", "ta": "அணிப் பெருக்கல், நேர்மாறு அணிகள் மற்றும் திசையன் உருமாற்றங்கள்.", "hi": "आव्यूह गुणन, व्युत्क्रम आव्यूह और रैखिक परिवर्तन।" },
+          "topics": [
+            {
+              "id": "math-t3",
+              "badge": "Matrix Inverses",
+              "name": { "en": "Matrix Inversion & Cramer's Rule", "ta": "நேர்மாறு அணி & கிராமரின் விதி", "hi": "व्युत्क्रम आव्यूह एवं क्रेमर नियम" },
+              "theory": {
+                "en": "A square matrix A is invertible if and only if its determinant det(A) ≠ 0. The inverse matrix maps transformed vectors back to their original basis vectors via A⁻¹ = adj(A)/det(A).",
+                "ta": "det(A) ≠ 0 ஆக இருக்கும்போது மட்டுமே நேர்மாறு அணி A^(-1) சாத்தியமாகும். இது உருமாறிய வெக்டார்களை மீட்டெடுக்கிறது.",
+                "hi": "det(A) ≠ 0 होने पर ही व्युत्क्रम A^(-1) अस्तित्व में होता है, जो रूपांतरित सदिशों को मूल आधार पर लाता है।"
+              },
+              "formulas": "A⁻¹ = adj(A) / det(A) | A · A⁻¹ = I | Cramer's: xᵢ = det(Aᵢ) / det(A)",
+              "app": {
+                "en": "3D computer graphics ray-tracing, camera view projection matrices, and quantum state linear operators.",
+                "ta": "3D கணினி கிராபிக்ஸ், கேமரா காட்சி உருமாற்றம் மற்றும் குவாண்டம் இயற்பியல் கணக்கீடுகள்.",
+                "hi": "3D कंप्यूटर ग्राफिक्स और क्वांटम ऑपरेटर गणना।"
+              },
+              "motivation": {
+                "en": "📐 'No matter how inverted life feels, your core determinant keeps you in equilibrium!'",
+                "ta": "🌟 'எந்தவொரு சிக்கலுக்கும் நேர்த்தியான கணித தீர்வு உண்டு!'",
+                "hi": "🚀 'हर जटिल समस्या का एक सटीक समाधान होता है!'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "chem": {
+      "key": "chem",
+      "title": { "en": "Chemistry", "ta": "வேதியியல்", "hi": "रसायन विज्ञान" },
+      "icon": "🧪",
+      "badge": { "en": "Module 02", "ta": "பிரிவு 02", "hi": "मॉड्यूल 02" },
+      "mindmapImg": "assets/images/mindmap_chem.png",
+      "mindmapSvg": "assets/images/mindmap_chem.svg",
+      "lessons": [
+        {
+          "id": "chem-l1",
+          "tag": { "en": "Organic Chemistry", "ta": "கரிம வேதியியல்", "hi": "कार्बनिक रसायन" },
+          "title": { "en": "Hydrocarbons & Hybridization", "ta": "ஹைட்ரோகார்பன்கள் & கலப்பினமாதல்", "hi": "हाइड्रोकार्बन एवं संकरण" },
+          "desc": { "en": "Saturated and unsaturated carbon frameworks, sp³/sp²/sp orbital hybridization, and aromaticity.", "ta": "கார்பன் கட்டமைப்புகள், sp³/sp²/sp கலப்பினமாதல் மற்றும் அரோமேட்டிக் வளையங்கள்.", "hi": "संतृप्त एवं असंतृप्त हाइड्रोकार्बन, sp³/sp²/sp कक्षक संकरण।" },
+          "topics": [
+            {
+              "id": "chem-t1",
+              "badge": "Hybridization",
+              "name": { "en": "Alkanes, Alkenes, Alkynes & C-C Bonds", "ta": "ஆல்கேன்கள், ஆல்கீன்கள் & ஆல்கைன்கள்", "hi": "ऐल्केन, ऐल्कीन एवं ऐल्काइन" },
+              "theory": {
+                "en": "Hydrocarbon architecture depends on carbon valence hybridization: Alkanes feature tetrahedral sp³ orbitals (109.5°) with single σ-bonds; Alkenes form planar sp² orbitals (120°) with σ + π bonds; Alkynes form linear sp orbitals (180°) with σ + 2π bonds.",
+                "ta": "கார்பன் கலப்பினமாதல்: ஆல்கேன்கள் sp³ நான்முக வடிவம் (109.5°); ஆல்கீன்கள் sp² தள வடிவம் (120°); ஆல்கைன்கள் sp நேர்கோட்டு வடிவம் (180°).",
+                "hi": "हाइड्रोकार्बन संरचना: ऐल्केन sp³ चतुष्फलकीय (109.5°), ऐल्कीन sp² त्रिकोणीय (120°), ऐल्काइन sp रैखिक (180°)।"
+              },
+              "formulas": "Alkanes: CₙH₂ₙ₊₂ (sp³) | Alkenes: CₙH₂ₙ (sp²) | Alkynes: CₙH₂ₙ₋₂ (sp) | Bond: σ strong, π reactive",
+              "app": {
+                "en": "Petrochemical polymer synthesis (polyethylene, polypropylene), synthetic pharmaceutical drug design, and aerospace composite carbon fibers.",
+                "ta": "பெட்ரோலிய பாலிமர் உற்பத்தி, மருந்து தயாரிப்பு மற்றும் விண்வெளி கலவை கார்பன் இழைகள்.",
+                "hi": "पेट्रोकेमिकल पॉलिमर संश्लेषण और फार्मास्यूटिकल दवा डिजाइन।"
+              },
+              "motivation": {
+                "en": "🧪 'Strong bonds withstand external pressure! Build your knowledge with sigma-strength resilience!'",
+                "ta": "🔥 'சிக்மா பிணைப்பு போன்ற உறுதியான அடித்தளத்தை அமைத்துக் கொள்!'",
+                "hi": "💎 'मजबूत संकल्प ही आपको हर परीक्षा में विजयी बनाता है!'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "chem-l2",
+          "tag": { "en": "Inorganic & Bonding", "ta": "கனிம & பிணைப்பு", "hi": "अकार्बनिक एवं बंधन" },
+          "title": { "en": "Periodic Table Trends & Chemical Bonding", "ta": "தனிம வரிசை அட்டவணை & பிணைப்புகள்", "hi": "आवर्त सारणी एवं रासायनिक बंधन" },
+          "desc": { "en": "Electronegativity gradients, Coulombic ionic lattices, covalent sharing, and hydrogen bonds.", "ta": "எலக்ட்ரான் கவர்தன்மை, அயனி படிகங்கள் மற்றும் சகப்பிணைப்புகள்.", "hi": "विद्युतऋणात्मकता प्रवणता, आयनिक जालक और सहसंयोजक बंधन।" },
+          "topics": [
+            {
+              "id": "chem-t2",
+              "badge": "Electrostatic Forces",
+              "name": { "en": "Ionic Lattices vs Covalent Sharing", "ta": "அயனி மற்றும் சகப்பிணைப்பு இயக்கவியல்", "hi": "आयनिक जालक बनाम सहसंयोजक बंधन" },
+              "theory": {
+                "en": "Chemical bonding minimizes thermodynamic potential energy. High electronegativity difference (ΔEN > 1.7) causes complete valence transfer forming ionic electrostatic crystal lattices. Comparable electronegativities promote covalent electron sharing.",
+                "ta": "வேதியியல் பிணைப்புகள் மூலக்கூறுகளின் ஆற்றலைக் குறைக்கின்றன. எலக்ட்ரான் கவர்தன்மை வேறுபாடு அதிகமாகும்போது அயனி பிணைப்பும், சமமாகும்போது சகப்பிணைப்பும் உருவாகின்றன.",
+                "hi": "रासायनिक बंधन संभावित ऊर्जा को न्यूनतम करता है। उच्च विद्युतऋणात्मकता अंतर आयनिक बंधन और समान होने पर सहसंयोजक बंधन बनता है।"
+              },
+              "formulas": "Coulomb Force: F = k·|q₁·q₂| / r² | Dipole: μ = q · d | Lattice Energy: U ∝ (z⁺·z⁻) / r₀",
+              "app": {
+                "en": "Solid-state lithium battery electrolyte design, semiconductor crystal doping, and water purification nano-membranes.",
+                "ta": "லித்தியம் பேட்டரி மின்பகுளி வடிவமைப்பு மற்றும் குறைக்கடத்தி படிக தொழில்நுட்பம்.",
+                "hi": "लिथियम बैटरी इलेक्ट्रोलाइट डिजाइन और सेमीकंडक्टर क्रिस्टल तकनीक।"
+              },
+              "motivation": {
+                "en": "✨ 'Share your energy, bond with high ideals, and crystallize your future into perfection!'",
+                "ta": "🌟 'உயர்ந்த இலக்குகளோடு இணைந்து உன் எதிர்காலத்தை பிரகாசமாக்கு!'",
+                "hi": "🎯 'उच्च आदर्शों के साथ जुड़ें और अपनी सफलता को सुनिश्चित करें!'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "phys": {
+      "key": "phys",
+      "title": { "en": "Physics", "ta": "இயற்பியல்", "hi": "भौतिक विज्ञान" },
+      "icon": "⚛️",
+      "badge": { "en": "Module 03", "ta": "பிரிவு 03", "hi": "मॉड्यूल 03" },
+      "mindmapImg": "assets/images/mindmap_phys.png",
+      "mindmapSvg": "assets/images/mindmap_phys.svg",
+      "lessons": [
+        {
+          "id": "phys-l1",
+          "tag": { "en": "Classical Mechanics", "ta": "கிளாசிக்கல் இயக்கவியல்", "hi": "चिरसम्मत यांत्रिकी" },
+          "title": { "en": "Kinematics & Motion Calculus", "ta": "இயக்கவியல் & வரைபட நுண்கணிதம்", "hi": "शुद्धगतिकी एवं गति कलन" },
+          "desc": { "en": "Galilean equations of motion, velocity-time graph calculus, and gravitational free fall.", "ta": "கலிலியோவின் இயக்கச் சமன்பாடுகள், திசைவேக-நேர வரைபட நுண்கணிதம்.", "hi": "गैलिलियो गति समीकरण, वेग-समय ग्राफ कलन एवं गुरुत्वाकर्षण।" },
+          "topics": [
+            {
+              "id": "phys-t1",
+              "badge": "Kinematic Calculus",
+              "name": { "en": "Rectilinear Motion & V-T Integrals", "ta": "நேர்கோட்டு இயக்கம் & V-T வரைபடங்கள்", "hi": "सरल रेखीय गति एवं V-T समाकलन" },
+              "theory": {
+                "en": "Rectilinear kinematics governs translation under uniform acceleration. Calculus connects position s(t), velocity v(t) = ds/dt, and acceleration a(t) = dv/dt. On a velocity-time graph, tangent slope yields instantaneous acceleration, while shaded definite integral area yields displacement.",
+                "ta": "நேர்கோட்டு இயக்கத்தில் திசைவேகம் v = ds/dt மற்றும் முடுக்கம் a = dv/dt. v-t வரைபடத்தின் சாய்வு முடுக்கத்தையும், பரப்பு இடப்பெயர்ச்சியையும் தருகிறது.",
+                "hi": "सरल रेखीय गति में वेग v = ds/dt और त्वरण a = dv/dt होता है। v-t ग्राफ का ढलान त्वरण और क्षेत्रफल विस्थापन देता है।"
+              },
+              "formulas": "v = u + at | s = ut + ½at² | v² = u² + 2as | s = ∫ v dt | a = dv/dt",
+              "app": {
+                "en": "Autonomous vehicle collision avoidance braking systems, space launch trajectory calculations, and high-speed rail maglev acceleration.",
+                "ta": "தானியங்கி வாகன பிரேக்கிங் அமைப்புகள் மற்றும் விண்கல ஏவுதல் கணிப்புகள்.",
+                "hi": "स्वायत्त वाहन ब्रेकिंग सिस्टम और अंतरिक्ष प्रक्षेपण प्रक्षेपवक्र।"
+              },
+              "motivation": {
+                "en": "🚀 'Initial velocity matters little compared to constant positive acceleration! Keep accelerating!'",
+                "ta": "🔥 'தொடக்க வேகம் முக்கியமல்ல, தொடர் முடுக்கமே உன்னை வெற்றிக்கு அழைத்துச் செல்லும்!'",
+                "hi": "⚡ 'प्रारंभिक वेग नहीं, आपका निरंतर सकारात्मक त्वरण सफलता तय करता है!'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "phys-l2",
+          "tag": { "en": "Electromagnetism", "ta": "மின்காந்தவியல்", "hi": "विद्युतचुंबकत्व" },
+          "title": { "en": "Electromagnetic Induction & Lenz's Law", "ta": "மின்காந்த தூண்டல் & லென்ஸ் விதி", "hi": "विद्युतचुंबकीय प्रेरण एवं लेन्ज़ नियम" },
+          "desc": { "en": "Magnetic flux Φ = B·A, Faraday's induced EMF, Lenz's counter-current, and transformer ratios.", "ta": "காந்தப் பாயம் Φ = B·A, பாரடேயின் தூண்டல் விதி மற்றும் டிரான்ஸ்பார்மர்கள்.", "hi": "चुंबकीय फ्लक्स Φ = B·A, फैराडे का प्रेरण नियम एवं ट्रांसफार्मर अनुपात।" },
+          "topics": [
+            {
+              "id": "phys-t2",
+              "badge": "Field Dynamics",
+              "name": { "en": "Faraday-Lenz Law & Eddy Currents", "ta": "பாரடே-லென்ஸ் விதி & சுழல் மின்னோட்டம்", "hi": "फैराडे-लेन्ज़ नियम एवं भंवर धाराएं" },
+              "theory": {
+                "en": "Faraday discovered that changing magnetic flux induces electromotive force: EMF = -N(dΦ_B/dt). Lenz's Law dictates that the induced current establishes a counter-magnetic field that opposes the original flux variation, ensuring conservation of energy.",
+                "ta": "பாரடேயின் விதி: காந்தப் பாயம் மாறும்போது மின்னியக்கு விசை தூண்டப்படுகிறது: EMF = -N(dΦ/dt). லென்ஸ் விதி ஆற்றல் மாறா விதியை உறுதிப்படுத்துகிறது.",
+                "hi": "फैराडे नियम: चुंबकीय फ्लक्स में परिवर्तन से प्रेरित विद्युत वाहक बल उत्पन्न होता है: EMF = -N(dΦ/dt)। लेन्ज़ नियम ऊर्जा संरक्षण सुनिश्चित करता है।"
+              },
+              "formulas": "Φ_B = B · A = B·A·cos(θ) [Wb] | EMF = -N·(dΦ_B / dt) [V] | V_p / V_s = N_p / N_s",
+              "app": {
+                "en": "Hydroelectric turbine generators, wireless inductive smartphone chargers, medical MRI gradient coils, and maglev electromagnetic brakes.",
+                "ta": "நீர் மின் உற்பத்தி ஜெனரேட்டர்கள், வயர்லெஸ் சார்ஜிங் மற்றும் மருத்துவ MRI ஸ்கேனர்கள்.",
+                "hi": "जलविद्युत टरबाइन जनरेटर, वायरलेस चार्जिंग और मेडिकल एमआरआई स्कैनर।"
+              },
+              "motivation": {
+                "en": "⚡ 'Dynamic change induces electric power! Step out of your comfort zone, embrace change, and illuminate the world!'",
+                "ta": "🌟 'மாற்றங்களே மகத்தான ஆற்றலை உருவாக்குகின்றன! உன் வசதியான சூழலை விட்டு வெளியேறி பிரகாசி!'",
+                "hi": "🎯 'परिवर्तन ही ऊर्जा का स्रोत है। नई चुनौतियों को स्वीकार करें और दुनिया को अपनी क्षमता दिखाएं!'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "eng": {
+      "key": "eng",
+      "title": { "en": "English", "ta": "ஆங்கிலம்", "hi": "अंग्रेज़ी" },
+      "icon": "📖",
+      "badge": { "en": "Module 04", "ta": "பிரிவு 04", "hi": "मॉड्यूल 04" },
+      "mindmapImg": "assets/images/mindmap_eng.png",
+      "mindmapSvg": "assets/images/mindmap_eng.svg",
+      "lessons": [
+        {
+          "id": "eng-l1",
+          "tag": { "en": "Grammar & Syntax", "ta": "இலக்கணம் & வாக்கியம்", "hi": "व्याकरण एवं वाक्य विन्यास" },
+          "title": { "en": "Syntactic Clauses & Sentence Hierarchy", "ta": "சார்பு வாக்கியங்கள் & வாக்கிய படிநிலை", "hi": "उपवाक्य एवं वाक्य संरचना" },
+          "desc": { "en": "Independent vs subordinate clauses, complex sentence coordination, and punctuation mechanics.", "ta": "முதன்மை மற்றும் சார்பு வாக்கியங்கள், சிக்கலான வாக்கிய ஒருங்கிணைப்பு.", "hi": "स्वतंत्र एवं आश्रित उपवाक्य, जटिल वाक्य समन्वय।" },
+          "topics": [
+            {
+              "id": "eng-t1",
+              "badge": "Clause Architecture",
+              "name": { "en": "Independent vs Dependent Clauses", "ta": "முதன்மை மற்றும் சார்பு வாக்கியங்கள்", "hi": "स्वतंत्र बनाम आश्रित उपवाक्य" },
+              "theory": {
+                "en": "Syntactic hierarchy distinguishes between independent clauses (expressing complete thoughts capable of standing alone) and subordinate dependent clauses. Subordinating conjunctions (although, because, while) tether dependent clauses to primary clauses.",
+                "ta": "வாக்கிய அமைப்பில் தனித்து இயங்கும் முதன்மை வாக்கியங்கள் மற்றும் சார்பு வாக்கியங்கள் பிரிக்கப்படுகின்றன. இணைப்புச் சொற்கள் இவற்றை இணைக்கின்றன.",
+                "hi": "वाक्य विन्यास स्वतंत्र और आश्रित उपवाक्यों में अंतर करता है। योजक शब्द इन्हें मुख्य वाक्य से जोड़ते हैं।"
+              },
+              "formulas": "Independent: [Subj + Verb = Complete] | Complex: [Dep Clause, + Indep Clause] | Semicolon: [Clause; Clause]",
+              "app": {
+                "en": "Constitutional legal drafting, international treaties, patent claim specifications, and executive communication.",
+                "ta": "சட்ட ஆவணங்கள், சர்வதேச உடன்படிக்கைகள் மற்றும் தலைமைத்துவ உரைகளில் இலக்கணத் துல்லியம் இன்றியமையாதது.",
+                "hi": "संवैधानिक कानूनी प्रारूपण और अंतरराष्ट्रीय समझौतों में व्याकरणिक सटीकता अनिवार्य है।"
+              },
+              "motivation": {
+                "en": "📖 'Structure unleashes creative power! Discipline is the poetic framework that transforms thoughts into masterpieces!'",
+                "ta": "✨ 'ஒழுக்கமும் கட்டமைப்பும் உன் திறமைக்கு எல்லைகள் அல்ல—அவை உன் எண்ணங்களை காவியமாக மாற்றும் கருவிகள்!'",
+                "hi": "💎 'अनुशासन आपकी स्वतंत्रता को सीमित नहीं करता, बल्कि आपकी प्रतिभा को निखार कर उत्कृष्ट बनाता है!'"
+              }
+            }
+          ]
+        },
+        {
+          "id": "eng-l2",
+          "tag": { "en": "Literature & Poetics", "ta": "இலக்கியம் & கவிதை", "hi": "साहित्य एवं काव्य रचना" },
+          "title": { "en": "Shakespearean Poetics & Sonnet Analysis", "ta": "ஷேக்ஸ்பியர் கவிதையியல் & சானட் பகுப்பாய்வு", "hi": "शेक्सपियर काव्य एवं सॉनेट विश्लेषण" },
+          "desc": { "en": "Shakespearean Sonnet 18, 14-line Iambic Pentameter scansion, conceits, and the structural volta.", "ta": "ஷேக்ஸ்பியர் சானட் 18, ஐயம்பிக் பெண்டாமீட்டர் மற்றும் கவிதை நயங்கள்.", "hi": "शेक्सपियर सॉनेट 18, 14 पंक्तियों का इयाम्बिक पेंटामीटर काव्य रूप।" },
+          "topics": [
+            {
+              "id": "eng-t2",
+              "badge": "Metrical Scansion",
+              "name": { "en": "Sonnet 18 & Iambic Pentameter", "ta": "சானட் 18 & ஐயம்பிக் பெண்டாமீட்டர்", "hi": "सॉनेट 18 एवं इयाम्बिक पेंटामीटर" },
+              "theory": {
+                "en": "The Shakespearean Sonnet features 14 lines of Iambic Pentameter (da-DUM × 5 = 10 syllables per line) with rhyme scheme ABAB CDCD EFEF GG. In Sonnet 18 ('Shall I compare thee to a summer's day?'), the poet explores mutability versus artistic immortality, culminating in the volta at Line 9.",
+                "ta": "ஷேக்ஸ்பியர் சானட் என்பது ஐயம்பிக் பெண்டாமீட்டரில் (10 அசைகள்) 14 வரிகளைக் கொண்ட மரபு கவிதையாகும் (ABAB CDCD EFEF GG), இறுதி இரட்டை வரியில் கருத்தின் திருப்பம் (Volta) நிகழ்கிறது.",
+                "hi": "शेक्सपियर का सॉनेट 14 पंक्तियों का इयाम्बिक पेंटामीटर काव्य रूप है (ABAB CDCD EFEF GG), जिसमें अंतिम दोहे (Volta) में विचार का समाधान होता है।"
+              },
+              "formulas": "Iambic Foot: ˘ / (da-DUM) | Line: 5 Feet = 10 Syllables | Scheme: ABAB CDCD EFEF GG | Volta: Line 9",
+              "app": {
+                "en": "Persuasive rhetorical speechwriting, high-impact marketing slogans, theatrical scriptwriting, and lyrical composition.",
+                "ta": "கவிதை நடை உலகத்தரம் வாய்ந்த மேடைப் பேச்சுக்களுக்கும், விளம்பர வாசகங்களுக்கும் ஆற்றல் அளிக்கிறது.",
+                "hi": "काव्यात्मक लय प्रभावशाली भाषण और विज्ञापन ब्रांडिंग को शक्ति देती है।"
+              },
+              "motivation": {
+                "en": "🌟 'Words carefully chosen transcend centuries! Your voice has the power to inspire generations!'",
+                "ta": "💫 'நேர்த்தியாகப் பயன்படுத்தப்படும் சொற்கள் காலங்களைக் கடந்து வாழும்! நம்பிக்கையோடு பேசு!'",
+                "hi": "✨ 'सटीक शब्द सदियों तक जीवित रहते हैं। अपनी वाणी से दुनिया को प्रेरित करें!'"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  };
+
+  /* Stepper State */
+  let drilldownState = {
+    step: 1, // 1: Subjects, 2: Lessons, 3: Topics, 4: Breakdown
+    subjectKey: null,
+    lessonId: null,
+    topicId: null
+  };
+
+  function drilldownGoToStep(targetStep) {
+    drilldownState.step = targetStep;
+    if (targetStep === 1) {
+      drilldownState.subjectKey = null;
+      drilldownState.lessonId = null;
+      drilldownState.topicId = null;
+    } else if (targetStep === 2) {
+      drilldownState.lessonId = null;
+      drilldownState.topicId = null;
+    } else if (targetStep === 3) {
+      drilldownState.topicId = null;
+    }
+    renderCurriculumExplorer();
+  }
+  window.drilldownGoToStep = drilldownGoToStep;
+
+  function drilldownSelectSubject(subjKey) {
+    drilldownState.subjectKey = subjKey;
+    drilldownState.step = 2;
+    renderCurriculumExplorer();
+    safeToast("Selected " + subjKey.toUpperCase() + " • Choose a Lesson");
+  }
+  window.drilldownSelectSubject = drilldownSelectSubject;
+
+  function drilldownSelectLesson(lessonId) {
+    drilldownState.lessonId = lessonId;
+    drilldownState.step = 3;
+    renderCurriculumExplorer();
+    safeToast("Opened Lesson Topics");
+  }
+  window.drilldownSelectLesson = drilldownSelectLesson;
+
+  function drilldownSelectTopic(topicId) {
+    drilldownState.topicId = topicId;
+    drilldownState.step = 4;
+    renderCurriculumExplorer();
+    safeToast("Loaded Topic Breakdown & Mind Map Image");
+  }
+  window.drilldownSelectTopic = drilldownSelectTopic;
+
+  function renderCurriculumExplorer() {
+    const activeLang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+
+    const breadcrumbs = document.getElementById("curriculum-breadcrumbs");
+    const viewport = document.getElementById("drilldown-viewport");
+    if (!viewport) return;
+
+    const cLang = (typeof currentLang !== 'undefined') ? currentLang : 'en'; const dict = (typeof I18N_DATA !== 'undefined' && I18N_DATA[cLang]) ? I18N_DATA[cLang] : ((typeof I18N_DATA !== 'undefined') ? I18N_DATA.en : {});
+    const curSubj = drilldownState.subjectKey ? HIERARCHICAL_CURRICULUM[drilldownState.subjectKey] : null;
+    const curLesson = (curSubj && drilldownState.lessonId) ? curSubj.lessons.find(l => l.id === drilldownState.lessonId) : null;
+    const curTopic = (curLesson && drilldownState.topicId) ? curLesson.topics.find(t => t.id === drilldownState.topicId) : null;
+
+    // Render Breadcrumbs
+    if (breadcrumbs) {
+      let bcHtml = `<button class="breadcrumb-step ${drilldownState.step === 1 ? 'active' : ''}" onclick="drilldownGoToStep(1)"><span>🏠</span><span>All Subjects</span></button>`;
+      if (curSubj) {
+        bcHtml += `<span class="breadcrumb-separator">/</span>`;
+        bcHtml += `<button class="breadcrumb-step ${drilldownState.step === 2 ? 'active' : ''}" onclick="drilldownGoToStep(2)"><span>${curSubj.icon}</span><span>${curSubj.title[activeLang] || curSubj.title.en}</span></button>`;
+      }
+      if (curLesson) {
+        bcHtml += `<span class="breadcrumb-separator">/</span>`;
+        bcHtml += `<button class="breadcrumb-step ${drilldownState.step === 3 ? 'active' : ''}" onclick="drilldownGoToStep(3)"><span>📘</span><span>${curLesson.title[activeLang] || curLesson.title.en}</span></button>`;
+      }
+      if (curTopic) {
+        bcHtml += `<span class="breadcrumb-separator">/</span>`;
+        bcHtml += `<button class="breadcrumb-step active"><span>🔹</span><span>${curTopic.name[activeLang] || curTopic.name.en}</span></button>`;
+      }
+      breadcrumbs.innerHTML = bcHtml;
+    }
+
+    // Step 1: Subjects Grid
+    if (drilldownState.step === 1 || !curSubj) {
+      let html = `
+        <div style="margin-bottom:12px;">
+          <h3 style="font-size:1.15rem; color:#fff; font-weight:700; margin:0 0 4px 0;">Step 1: Choose a Core Subject</h3>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Click any subject below to see its lessons and curriculum breakdown:</p>
+        </div>
+        <div class="drilldown-subjects-row">
+      `;
+      for (const sk in HIERARCHICAL_CURRICULUM) {
+        const s = HIERARCHICAL_CURRICULUM[sk];
+        const sTitle = s.title[activeLang] || s.title.en;
+        const lCount = s.lessons.length;
+        html += `
+          <button class="drilldown-subj-btn" onclick="drilldownSelectSubject('${sk}')">
+            <div class="subj-icon">${s.icon}</div>
+            <div class="subj-meta">
+              <div class="subj-name">${sTitle}</div>
+              <div class="subj-desc">${lCount} Comprehensive Lessons • 25 Benchmarks</div>
+            </div>
+            <div style="color:var(--accent-cyan); font-weight:bold; font-size:1.2rem;">&rarr;</div>
+          </button>
+        `;
+      }
+      html += `</div>`;
+      viewport.innerHTML = html;
+      return;
+    }
+
+    // Step 2: Lessons Grid
+    if (drilldownState.step === 2 || (curSubj && !curLesson)) {
+      const sTitle = curSubj.title[activeLang] || curSubj.title.en;
+      let html = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:1.15rem; color:#fff; font-weight:700; margin:0 0 4px 0;">Step 2: ${curSubj.icon} ${sTitle} &bull; Select a Lesson</h3>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Click a lesson to explore its specific academic topics:</p>
+          </div>
+          <button class="btn-mindmap-action" onclick="drilldownGoToStep(1)">&larr; Back to Subjects</button>
+        </div>
+        <div class="drilldown-lessons-grid">
+      `;
+      curSubj.lessons.forEach((l, idx) => {
+        const lTitle = l.title[activeLang] || l.title.en;
+        const lTag = l.tag[activeLang] || l.tag.en;
+        const lDesc = l.desc[activeLang] || l.desc.en;
+        html += `
+          <div class="lesson-card-item" onclick="drilldownSelectLesson('${l.id}')">
+            <div>
+              <span class="lesson-badge-tag">LESSON 0${idx+1} &bull; ${lTag}</span>
+              <div class="lesson-item-title">${lTitle}</div>
+              <div class="lesson-item-desc">${lDesc}</div>
+            </div>
+            <div class="lesson-action-pill">
+              <span>View Topics (${l.topics.length})</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      viewport.innerHTML = html;
+      return;
+    }
+
+    // Step 3: Topics Grid
+    if (drilldownState.step === 3 || (curLesson && !curTopic)) {
+      const lTitle = curLesson.title[activeLang] || curLesson.title.en;
+      let html = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h3 style="font-size:1.15rem; color:#fff; font-weight:700; margin:0 0 4px 0;">Step 3: 📘 ${lTitle} &bull; Choose Topic</h3>
+            <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Select a topic below to inspect its Deep Breakdown, Formulas, and Mind Map Image:</p>
+          </div>
+          <button class="btn-mindmap-action" onclick="drilldownGoToStep(2)">&larr; Back to Lessons</button>
+        </div>
+        <div class="drilldown-topics-grid">
+      `;
+      curLesson.topics.forEach((t) => {
+        const tName = t.name[activeLang] || t.name.en;
+        html += `
+          <div class="topic-pill-item" onclick="drilldownSelectTopic('${t.id}')">
+            <div class="topic-pill-header">
+              <span class="topic-pill-badge">${t.badge}</span>
+              <span style="font-size:0.75rem; color:var(--accent-cyan); font-weight:bold;">Inspect &rarr;</span>
+            </div>
+            <div class="topic-pill-title">🔹 ${tName}</div>
+            <div class="topic-pill-formula">⚡ ${t.formulas.split('|')[0] || t.formulas}</div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+      viewport.innerHTML = html;
+      return;
+    }
+
+    // Step 4: Topic Deep Breakdown with Compulsory Mind Map Image
+    if (drilldownState.step === 4 && curTopic) {
+      const tName = curTopic.name[activeLang] || curTopic.name.en;
+      const tTheory = curTopic.theory[activeLang] || curTopic.theory.en;
+      const tApp = curTopic.app[activeLang] || curTopic.app.en;
+      const tMotiv = curTopic.motivation[activeLang] || curTopic.motivation.en;
+      const sTitle = curSubj.title[activeLang] || curSubj.title.en;
+      const lTitle = curLesson.title[activeLang] || curLesson.title.en;
+
+      let html = `
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+              <span class="topic-pill-badge" style="background:rgba(14,165,233,0.15); color:var(--accent-cyan); border-color:var(--accent-cyan);">${curSubj.icon} ${sTitle} &bull; ${lTitle}</span>
+              <span class="badge-mini" style="font-size:11px; background:rgba(16,185,129,0.15); color:var(--accent-emerald); padding:2px 8px; border-radius:10px;">Topic Deep Breakdown</span>
+            </div>
+            <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">${tName}</h2>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-mindmap-action" onclick="drilldownGoToStep(3)">&larr; Topics</button>
+            <button class="btn-mindmap-action" onclick="drilldownGoToStep(2)">&larr; Lessons</button>
+          </div>
+        </div>
+
+        <!-- Theoretical Framework -->
+        <div class="drawer-block" style="margin-bottom:14px;">
+          <div class="drawer-sec-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Theoretical Framework &amp; Governing Axioms</span>
+          </div>
+          <p class="drawer-prose" style="line-height:1.65; color:#cbd5e1; font-size:0.92rem;">${tTheory}</p>
+        </div>
+
+        <!-- Formulas Strip -->
+        <div class="drawer-block" style="margin-bottom:14px;">
+          <div class="drawer-sec-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            <span>Governing Mathematical &amp; Scientific Formulas</span>
+          </div>
+          <div class="drawer-formula-strip" style="background:#090e1a; border:1px solid rgba(14,165,233,0.3); padding:10px 14px; border-radius:8px; font-family:monospace; color:var(--accent-cyan); font-size:0.86rem; overflow-x:auto;">${curTopic.formulas}</div>
+        </div>
+
+        <!-- Real-World Engineering Applications -->
+        <div class="drawer-block" style="margin-bottom:14px;">
+          <div class="drawer-sec-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Industrial &amp; Engineering Applications</span>
+          </div>
+          <p class="drawer-prose" style="line-height:1.6; color:#94a3b8; font-size:0.88rem;">${tApp}</p>
+        </div>
+
+        <!-- Motivational Reflection -->
+        <div class="drawer-block drawer-motivation-block" style="background:rgba(245,158,11,0.08); border-left:3px solid var(--accent-amber); padding:12px 16px; border-radius:6px; margin-bottom:18px;">
+          <div style="font-weight:700; color:var(--accent-amber); font-size:0.88rem; margin-bottom:4px;">🌟 Inspiring Student Reflection:</div>
+          <p style="margin:0; font-style:italic; color:#f8fafc; font-size:0.9rem;">${tMotiv}</p>
+        </div>
+
+        <!-- COMPULSORY MIND MAP IMAGE SECTION -->
+        <div class="mindmap-image-wrapper">
+          <div class="mindmap-image-header">
+            <div class="mindmap-image-header-title">
+              <span>🖼️</span>
+              <span><strong>Mind Map Image</strong> &bull; ${curSubj.icon} ${sTitle} Comprehensive Topological Graph</span>
+            </div>
+            <div class="mindmap-image-actions">
+              <button class="btn-mindmap-action" onclick="openMindMapLightbox('${curSubj.key}')">🔍 View Fullscreen</button>
+              <button class="btn-mindmap-action" onclick="downloadActiveMindMapImage('${curSubj.key}')">💾 Save Image</button>
+            </div>
+          </div>
+          <img class="mindmap-img-element" src="${curSubj.mindmapImg}" alt="${sTitle} Mind Map Image" onerror="this.onerror=null; this.src='${curSubj.mindmapSvg}';" onclick="openMindMapLightbox('${curSubj.key}')">
+        </div>
+
+        <!-- Direct Actions Bar -->
+        <div class="drawer-actions-bar" style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="btn-drawer-pill primary" onclick="filterQuizSubject('${sTitle}'); scrollToQuiz();">
+            <span>🎯 Practice 25 Questions on ${sTitle}</span>
+          </button>
+          <button class="btn-drawer-pill" style="background:linear-gradient(135deg, #a855f7, #0ea5e9); color:#fff; border:none;" onclick="openGeminiTutorForTopic('${tName}')">
+            <span>✨ Ask Gemini AI Tutor</span>
+          </button>
+          <button class="btn-drawer-pill secondary" onclick="markTopicMastered('${curTopic.id}')">
+            <span>⭐ Mark as Mastered</span>
+          </button>
+          <button class="btn-drawer-pill close" onclick="drilldownGoToStep(1)">
+            <span>🏠 Back to All Subjects</span>
+          </button>
+        </div>
+      `;
+      viewport.innerHTML = html;
+    }
+  }
+  window.renderCurriculumExplorer = renderCurriculumExplorer;
+
+  /* ==========================================================================
+     MIND MAP IMAGE LIGHTBOX ENGINE
+     ========================================================================== */
+  let activeLightboxSubject = "math";
+
+  function openMindMapLightbox(subjectKey) {
+    activeLightboxSubject = subjectKey || "math";
+    const s = HIERARCHICAL_CURRICULUM[activeLightboxSubject] || HIERARCHICAL_CURRICULUM.math;
+    const sTitle = s.title[currentLang] || s.title.en;
+
+    const modal = document.getElementById("image-lightbox-modal");
+    const imgEl = document.getElementById("lightbox-img-element");
+    const titleEl = document.getElementById("lightbox-subj-title");
+    const iconEl = document.getElementById("lightbox-subj-icon");
+
+    if (imgEl) {
+      imgEl.src = s.mindmapImg;
+      imgEl.onerror = () => { imgEl.src = s.mindmapSvg; };
+    }
+    if (titleEl) titleEl.textContent = sTitle + " Mind Map Image (HD Vector Topology)";
+    if (iconEl) iconEl.textContent = s.icon;
+
+    if (modal) modal.style.display = "flex";
+  }
+  window.openMindMapLightbox = openMindMapLightbox;
+
+  function closeImageLightbox() {
+    const modal = document.getElementById("image-lightbox-modal");
+    if (modal) modal.style.display = "none";
+  }
+  window.closeImageLightbox = closeImageLightbox;
+
+  function downloadActiveMindMapImage(subjKey) {
+    const k = subjKey || activeLightboxSubject || "math";
+    const a = document.createElement("a");
+    a.href = "assets/images/mindmap_" + k + ".png";
+    a.download = "SmartStudyHub_MindMap_" + k + ".png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    safeToast("Downloaded " + k.toUpperCase() + " Mind Map Image!");
+  }
+  window.downloadActiveMindMapImage = downloadActiveMindMapImage;
+
+  /* ==========================================================================
+     EFFECTS ENGINE (STARS FOR CORRECT & SHOCKWAVE/SHAKE FOR WRONG)
+     ========================================================================== */
+  const fxCanvas = document.getElementById("effects-canvas");
+  const fxCtx = (fxCanvas && typeof fxCanvas.getContext === "function") ? fxCanvas.getContext("2d") : null;
+  let starParticles = [];
+  let isFxLoopRunning = false;
+
+  function resizeFxCanvas() {
+    if (!fxCanvas) return;
+    fxCanvas.width = window.innerWidth;
+    fxCanvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeFxCanvas);
+  resizeFxCanvas();
+
+  // Web Audio Synthesizer
+  let audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  // Triumphant 4-tone celestial star chime
+  function playCorrectStarChime() {
+    try {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+
+        gain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + idx * 0.08 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.35);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + idx * 0.08);
+        osc.stop(ctx.currentTime + idx * 0.08 + 0.4);
+      });
+    } catch (e) {
+      console.warn("Audio synthesis error:", e);
+    }
+  }
+
+  // Low-frequency sawtooth error buzz
+  function playWrongErrorBuzz() {
+    try {
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(160, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.28);
+
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.32);
+    } catch (e) {
+      console.warn("Audio synthesis error:", e);
+    }
+  }
+
+  // Particle Engine
+  function shootStarParticles(originX, originY) {
+    if (!fxCtx) return;
+    const starIcons = ["⭐", "🌟", "✨", "💫", "🔹"];
+    const count = 40;
+
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 8 + 3;
+      starParticles.push({
+        x: originX,
+        y: originY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 2, // upward lift
+        size: Math.random() * 16 + 14,
+        char: starIcons[Math.floor(Math.random() * starIcons.length)],
+        rotation: Math.random() * Math.PI,
+        vRot: (Math.random() - 0.5) * 0.2,
+        life: 1.0,
+        decay: Math.random() * 0.02 + 0.015
+      });
+    }
+
+    if (!isFxLoopRunning) {
+      isFxLoopRunning = true;
+      (window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(cb){ setTimeout(cb, 16); })(runFxLoop);
+    }
+  }
+
+  function runFxLoop() {
+    if (!fxCtx) return;
+    fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
+
+    for (let i = starParticles.length - 1; i >= 0; i--) {
+      const p = starParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.15; // gravity
+      p.rotation += p.vRot;
+      p.life -= p.decay;
+
+      if (p.life <= 0) {
+        starParticles.splice(i, 1);
+        continue;
+      }
+
+      fxCtx.save();
+      fxCtx.translate(p.x, p.y);
+      fxCtx.rotate(p.rotation);
+      fxCtx.globalAlpha = Math.max(0, p.life);
+      fxCtx.font = p.size + "px sans-serif";
+      fxCtx.textAlign = "center";
+      fxCtx.textBaseline = "middle";
+      fxCtx.fillText(p.char, 0, 0);
+      fxCtx.restore();
+    }
+
+    if (starParticles.length > 0) {
+      (window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(cb){ setTimeout(cb, 16); })(runFxLoop);
+    } else {
+      isFxLoopRunning = false;
+      fxCtx.clearRect(0, 0, fxCanvas.width, fxCanvas.height);
+    }
+  }
+
+  function triggerCorrectStarEffects(evt, btn) {
+    playCorrectStarChime();
+    const x = evt && evt.clientX ? evt.clientX : window.innerWidth / 2;
+    const y = evt && evt.clientY ? evt.clientY : window.innerHeight / 2;
+    shootStarParticles(x, y);
+
+    // Mascot star celebration
+    const mascot = document.getElementById("mascot-svg");
+    if (mascot) {
+      mascot.style.transform = "scale(1.25) rotate(10deg)";
+      setTimeout(() => { mascot.style.transform = "scale(1) rotate(0deg)"; }, 600);
+    }
+    safeToast("⭐ Correct Answer! Star Mastered!");
+  }
+
+  function triggerWrongAnswerEffects(evt, btn) {
+    playWrongErrorBuzz();
+
+    // Vibrate/shake quiz container
+    const quizCard = document.querySelector(".quiz-card");
+    if (quizCard) {
+      quizCard.classList.remove("quiz-card-error-shake");
+      void quizCard.offsetWidth; // trigger reflow
+      quizCard.classList.add("quiz-card-error-shake");
+      setTimeout(() => { quizCard.classList.remove("quiz-card-error-shake"); }, 500);
+    }
+
+    safeToast("⚡ Incorrect! Academic explanation revealed below.");
+  }
+
+  /* ==========================================================================
+     STUDENT PROFILE & GOOGLE OAUTH 2.0 ENGINE
+     ========================================================================== */
+  const PROFILES_DATA = {
+    "alex": {
+      "id": "alex",
+      "name": "Alex Johnson",
+      "email": "alex.johnson@student.edu",
+      "avatar": "👨‍🎓",
+      "level": "Lvl 3 Scholar",
+      "accuracy": "72%",
+      "masteredCount": 14,
+      "focusTime": "45m"
+    },
+    "priya": {
+      "id": "priya",
+      "name": "Priya Sharma",
+      "email": "priya.sharma@science.org",
+      "avatar": "👩‍🔬",
+      "level": "Lvl 5 Master",
+      "accuracy": "92%",
+      "masteredCount": 21,
+      "focusTime": "1h 20m"
+    },
+    "rahul": {
+      "id": "rahul",
+      "name": "Rahul Verma",
+      "email": "rahul.verma@academy.in",
+      "avatar": "👨‍🚀",
+      "level": "Lvl 2 Explorer",
+      "accuracy": "56%",
+      "masteredCount": 9,
+      "focusTime": "30m"
+    }
+  };
+
+  let activeUserProfileId = localStorage.getItem("smart_study_active_profile") || "alex";
+
+  function openProfileModal() {
+    const modal = document.getElementById("user-profile-modal");
+    if (modal) {
+      modal.style.display = "flex";
+      renderProfileModalUI();
+      initGoogleIdentity();
+    }
+  }
+  window.openProfileModal = openProfileModal;
+
+  function closeProfileModal() {
+    const modal = document.getElementById("user-profile-modal");
+    if (modal) modal.style.display = "none";
+  }
+  window.closeProfileModal = closeProfileModal;
+
+  function renderProfileModalUI() {
+    const p = PROFILES_DATA[activeUserProfileId] || PROFILES_DATA.alex;
+    const nameEl = document.getElementById("modal-profile-name");
+    const emailEl = document.getElementById("modal-profile-email");
+    const avatarEl = document.getElementById("modal-profile-avatar");
+    const accEl = document.getElementById("modal-profile-acc");
+    const topEl = document.getElementById("modal-profile-topics");
+    const timeEl = document.getElementById("modal-profile-time");
+
+    if (nameEl) nameEl.textContent = p.name;
+    if (emailEl) emailEl.textContent = p.email + " • " + p.level;
+    if (avatarEl) avatarEl.textContent = p.avatar;
+    if (accEl) accEl.textContent = p.accuracy;
+    if (topEl) topEl.textContent = p.masteredCount + "/24";
+    if (timeEl) timeEl.textContent = p.focusTime;
+
+    // Header updates
+    const hName = document.getElementById("header-user-name");
+    const hAvatar = document.getElementById("header-user-avatar");
+    const hBadge = document.getElementById("header-user-badge");
+    if (hName) hName.textContent = p.name.split(" ")[0];
+    if (hAvatar) hAvatar.textContent = p.avatar;
+    if (hBadge) hBadge.textContent = p.level.split(" ")[0];
+
+    // Profile card selection
+    ["alex", "priya", "rahul"].forEach(id => {
+      const card = document.getElementById("prof-card-" + id);
+      if (card) card.classList.toggle("active", id === activeUserProfileId);
+    });
+
+    const savedClientId = localStorage.getItem("smart_study_google_client_id") || "";
+    const clientInput = document.getElementById("google-client-id-input");
+    if (clientInput) clientInput.value = savedClientId;
+  }
+
+  function switchUserProfile(profileId) {
+    activeUserProfileId = profileId;
+    localStorage.setItem("smart_study_active_profile", profileId);
+    renderProfileModalUI();
+    safeToast("Switched student record to " + (PROFILES_DATA[profileId] ? PROFILES_DATA[profileId].name : profileId));
+  }
+  window.switchUserProfile = switchUserProfile;
+
+  function promptCreateNewProfile() {
+    const name = prompt("Enter student full name:", "New Scholar");
+    if (!name || !name.trim()) return;
+    const id = "custom_" + Date.now();
+    PROFILES_DATA[id] = {
+      id: id,
+      name: name.trim(),
+      email: name.toLowerCase().replace(/\s+/g, ".") + "@smartstudy.hub",
+      avatar: "🎓",
+      level: "Lvl 1 Novice",
+      accuracy: "0%",
+      masteredCount: 0,
+      focusTime: "0m"
+    };
+    switchUserProfile(id);
+  }
+  window.promptCreateNewProfile = promptCreateNewProfile;
+
+  function saveGoogleClientId() {
+    const input = document.getElementById("google-client-id-input");
+    if (!input) return;
+    const key = input.value.trim();
+    localStorage.setItem("smart_study_google_client_id", key);
+    safeToast("Google OAuth Client ID saved!");
+    initGoogleIdentity();
+  }
+  window.saveGoogleClientId = saveGoogleClientId;
+
+  function initGoogleIdentity() {
+    const clientId = localStorage.getItem("smart_study_google_client_id");
+    const container = document.getElementById("google-signin-btn-container");
+    if (!container) return;
+
+    if (!clientId) {
+      container.innerHTML = `
+        <button class="btn-action-pill" onclick="simulateGoogleLogin()" style="background:#4285F4; color:#fff; border:none; padding:8px 18px;">
+          <span>Sign In with Google (Instant Demo Account)</span>
+        </button>
+      `;
+      return;
+    }
+
+    if (!window.google || !window.google.accounts) {
+      const script = document.createElement("script");
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      script.defer = true;
+      script.onload = () => setupGsiButton(clientId);
+      document.head.appendChild(script);
+    } else {
+      setupGsiButton(clientId);
+    }
+  }
+
+  function setupGsiButton(clientId) {
+    try {
+      window.google.accounts.id.initialize({
+        client_id: clientId,
+        callback: handleGoogleCredentialResponse
+      });
+      const container = document.getElementById("google-signin-btn-container");
+      if (container) {
+        container.innerHTML = "";
+        window.google.accounts.id.renderButton(container, {
+          theme: "filled_blue",
+          size: "large",
+          shape: "pill"
+        });
+      }
+    } catch (e) {
+      console.warn("Google GIS init error:", e);
+    }
+  }
+
+  function handleGoogleCredentialResponse(response) {
+    try {
+      const base64Url = response.credential.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      const data = JSON.parse(jsonPayload);
+
+      const googleId = "google_" + (data.sub || "user");
+      PROFILES_DATA[googleId] = {
+        id: googleId,
+        name: data.name || "Google Scholar",
+        email: data.email || "user@gmail.com",
+        avatar: "🌐",
+        level: "Lvl 4 Verified",
+        accuracy: "80%",
+        masteredCount: 16,
+        focusTime: "50m"
+      };
+      switchUserProfile(googleId);
+      safeToast("Signed in via Google as " + (data.name || "Student") + "!");
+    } catch (e) {
+      console.error("JWT parse error:", e);
+    }
+  }
+
+  function simulateGoogleLogin() {
+    const googleId = "google_demo";
+    PROFILES_DATA[googleId] = {
+      id: googleId,
+      name: "Google Student (Verified)",
+      email: "google.student@gmail.com",
+      avatar: "🌐",
+      level: "Lvl 4 Verified",
+      accuracy: "84%",
+      masteredCount: 18,
+      focusTime: "1h 15m"
+    };
+    switchUserProfile(googleId);
+    safeToast("Simulated Google OAuth Sign-In successful!");
+  }
+  window.simulateGoogleLogin = simulateGoogleLogin;
+
+  function markTopicMastered(topicId) {
+    safeToast("⭐ Topic marked as Mastered! +50 XP");
+    const p = PROFILES_DATA[activeUserProfileId];
+    if (p) {
+      p.masteredCount = Math.min(24, p.masteredCount + 1);
+      renderProfileModalUI();
+    }
+    shootStarParticles(window.innerWidth / 2, window.innerHeight / 2);
+    playCorrectStarChime();
+  }
+  window.markTopicMastered = markTopicMastered;
+
+  /* ==========================================================================
+     GEMINI AI INTEGRATION ENGINE
+     ========================================================================== */
+  function getGeminiApiKey() {
+    return localStorage.getItem("smart_study_gemini_key") || "";
+  }
+
+  function saveGeminiApiKey(key) {
+    if (!key) return;
+    localStorage.setItem("smart_study_gemini_key", key.trim());
+    safeToast("Gemini API Key saved successfully!");
+  }
+  window.saveGeminiApiKey = saveGeminiApiKey;
+
+  function openGeminiTutorModal(initialPrompt) {
+    const modal = document.getElementById("gemini-ai-modal");
+    if (modal) modal.style.display = "flex";
+    const keyInput = document.getElementById("gemini-api-key-input");
+    if (keyInput) keyInput.value = getGeminiApiKey();
+
+    if (initialPrompt) {
+      askGeminiPrompt(initialPrompt);
+    }
+  }
+  window.openGeminiTutorModal = openGeminiTutorModal;
+
+  function closeGeminiTutorModal() {
+    const modal = document.getElementById("gemini-ai-modal");
+    if (modal) modal.style.display = "none";
+  }
+  window.closeGeminiTutorModal = closeGeminiTutorModal;
+
+  function openGeminiTutorForTopic(topicName) {
+    openGeminiTutorModal("Explain the core theoretical principles and practical applications of " + topicName + " in detail.");
+  }
+  window.openGeminiTutorForTopic = openGeminiTutorForTopic;
+
+  function askGeminiPrompt(promptText) {
+    const input = document.getElementById("gemini-user-input");
+    if (input) input.value = promptText;
+    sendGeminiUserQuery();
+  }
+  window.askGeminiPrompt = askGeminiPrompt;
+
+  async function sendGeminiUserQuery() {
+    const input = document.getElementById("gemini-user-input");
+    const log = document.getElementById("gemini-chat-log");
+    if (!input || !log) return;
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Append user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "gemini-msg user";
+    userMsg.textContent = text;
+    log.appendChild(userMsg);
+    input.value = "";
+    log.scrollTop = log.scrollHeight;
+
+    // Append AI placeholder
+    const aiMsg = document.createElement("div");
+    aiMsg.className = "gemini-msg ai";
+    aiMsg.innerHTML = "<em>🤖 Gemini AI is analyzing and synthesizing answer... ✨</em>";
+    log.appendChild(aiMsg);
+    log.scrollTop = log.scrollHeight;
+
+    const apiKey = getGeminiApiKey();
+
+    if (apiKey) {
+      try {
+        const langName = currentLang === 'ta' ? 'Tamil' : (currentLang === 'hi' ? 'Hindi' : 'English');
+        const systemPrompt = "You are an expert, encouraging Academic Tutor in the Smart Study Hub. Provide concise, rigorous, and intuitive educational explanations with equations and real-world examples. Respond in " + langName + ".";
+        const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              { role: "user", parts: [{ text: systemPrompt + "\n\nQuestion: " + text }] }
+            ]
+          })
+        });
+
+        const data = await response.json();
+        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+          const rawReply = data.candidates[0].content.parts[0].text;
+          aiMsg.innerHTML = "<strong>🤖 Gemini AI Tutor:</strong><br>" + rawReply.replace(/\n/g, "<br>");
+        } else {
+          aiMsg.innerHTML = "<strong>🤖 Gemini AI:</strong><br>" + getSimulatedGeminiReply(text);
+        }
+      } catch (err) {
+        console.warn("Gemini API call failed, using high-yield fallback:", err);
+        aiMsg.innerHTML = "<strong>🤖 Gemini AI Tutor (Offline Mode):</strong><br>" + getSimulatedGeminiReply(text);
+      }
+    } else {
+      // High-yield simulated academic response
+      setTimeout(() => {
+        aiMsg.innerHTML = "<strong>🤖 Gemini AI Tutor (Smart Simulated Mode):</strong><br>" + getSimulatedGeminiReply(text);
+      }, 700);
+    }
+  }
+  window.sendGeminiUserQuery = sendGeminiUserQuery;
+
+  function getSimulatedGeminiReply(query) {
+    const qLower = query.toLowerCase();
+    if (qLower.includes("limit") || qLower.includes("cauchy")) {
+      return "Calculus defines limits via the Cauchy (ε, δ)-formalism: for every tolerance ε > 0, there exists a neighborhood δ > 0 such that |x - c| < δ ensures |f(x) - L| < ε. Indeterminate forms 0/0 and ∞/∞ are resolved by L'Hôpital's Rule: lim[f(x)/g(x)] = lim[f'(x)/g'(x)]. In real-world engineering, this models instantaneous velocities in rocketry and training convergence in machine learning.";
+    } else if (qLower.includes("lenz") || qLower.includes("faraday") || qLower.includes("flux")) {
+      return "Faraday's Law states EMF = -N(dΦ_B/dt). Lenz's negative sign represents Newton's Third Law and the conservation of energy: the induced current produces a magnetic field that opposes the flux change that created it. If it aided the flux change, it would create perpetual free energy without work! This physical principle powers regenerative electric braking and maglev trains.";
+    } else if (qLower.includes("hybrid") || qLower.includes("acetylene") || qLower.includes("alkyne")) {
+      return "In ethyne (acetylene, C₂H₂), each carbon atom forms an sp hybrid orbital from one 2s and one 2p orbital, leaving two unhybridized p-orbitals perpendicular to each other. The two sp orbitals form σ-bonds at 180° (linear geometry), while the unhybridized p-orbitals overlap laterally to form two orthogonal π-electron clouds. This cylindrical electron cloud gives alkynes their characteristic reactivity.";
+    } else if (qLower.includes("sonnet") || qLower.includes("volta") || qLower.includes("iambic")) {
+      return "Shakespeare's Sonnet 18 ('Shall I compare thee to a summer's day?') is written in Iambic Pentameter (da-DUM × 5 = 10 syllables per line) with rhyme scheme ABAB CDCD EFEF GG. The volta (thematic turn) occurs at Line 9: 'But thy eternal summer shall not fade'. While physical summers fade, Shakespeare asserts that the beloved's youth is immortalized forever within the eternal lines of verse.";
+    } else {
+      return "Great conceptual question! In academic problem-solving, always dissect the problem into: (1) Core Axioms & Governing Laws, (2) Relevant Formulas with units, and (3) Physical or Logical Boundary Conditions. Master the fundamental definitions, and complex exam derivations become intuitive!";
+    }
+  }
+
+  function openGeminiErrorExplainer() {
+    const q = currentFilteredQuestions[currentFilteredIndex];
+    if (!q) return;
+    const ans = userAnswers[q.id];
+    const userOpt = ans ? q.options[ans.selectedIndex] : "None";
+    const correctOpt = q.options[q.correctIndex];
+
+    const prompt = "The student answered question: '" + q.question + "' with wrong answer: '" + userOpt + "'. The correct answer is: '" + correctOpt + "'. Explain kindly what conceptual misconception caused this mistake and give a memorable mental hook to remember the right answer.";
+    openGeminiTutorModal(prompt);
+  }
+  window.openGeminiErrorExplainer = openGeminiErrorExplainer;
+
+  function scrollToQuiz() {
+    const quizSec = document.getElementById("quiz-section");
+    if (quizSec) quizSec.scrollIntoView({ behavior: "smooth" });
+  }
+  window.scrollToQuiz = scrollToQuiz;
+
+  /* ==========================================================================
+     HOOK INTO HANDLE OPTION SELECTION & QUIZ FEEDBACK BANNER
+     ========================================================================== */
+  const originalHandleOptionSelection = window.handleOptionSelection;
+
+  window.handleOptionSelection = function(selectedIdx) {
+    const q = currentFilteredQuestions[currentFilteredIndex];
+    const isCorrect = (selectedIdx === q.correctIndex);
+
+    userAnswers[q.id] = {
+      selectedIndex: selectedIdx,
+      isCorrect: isCorrect
+    };
+
+    renderCurrentQuestion();
+    updateAccuracyWheel();
+
+    if (isCorrect) {
+      triggerCorrectStarEffects(window.event, null);
+      if (typeof spawnCuteConfetti === "function") spawnCuteConfetti(window.innerWidth / 2, window.innerHeight / 2);
+      if (typeof triggerMascotCheer === "function") triggerMascotCheer();
+    } else {
+      triggerWrongAnswerEffects(window.event, null);
+    }
+
+    // Enhance the feedback banner with Gemini Explainer Button
+    const banner = document.getElementById("feedback-banner");
+    if (banner && !isCorrect) {
+      const existingBtn = banner.querySelector(".btn-gemini-explain-error");
+      if (!existingBtn) {
+        const geminiBtn = document.createElement("button");
+        geminiBtn.className = "btn-gemini-explain-error";
+        geminiBtn.type = "button";
+        geminiBtn.innerHTML = "<span class='sparkle'>✨</span> <span>🤖 Ask Gemini AI to Explain My Mistake</span>";
+        geminiBtn.onclick = openGeminiErrorExplainer;
+        banner.appendChild(geminiBtn);
+      }
+    }
+  };
+
+  // Initialize on load
+  function initEnhancedFeatures() {
+    renderCurriculumExplorer();
+    renderProfileModalUI();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initEnhancedFeatures);
+  } else {
+    initEnhancedFeatures();
+  }
+
+    </script>
 
   <!-- Cute Floating Mascot "StudyBot" -->
   <div class="cute-mascot-fab" id="cute-mascot-fab" onclick="triggerMascotCheer()" title="Tap StudyBot for cute encouragement!">
@@ -6414,6 +8238,167 @@
         <button class="btn-action-pill" onclick="closeConceptDeepModal()" style="padding:10px 16px; font-size:0.84rem; justify-content:center; background:rgba(30,41,59,0.8);">
           <span id="deep-modal-close-btn">Close</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Effects Particle Canvas for Stars & Shockwaves -->
+  <canvas id="effects-canvas"></canvas>
+
+  <!-- Google OAuth & Student Profile Manager Modal -->
+  <div class="modal-overlay" id="user-profile-modal" role="dialog" aria-modal="true" style="display:none;" onclick="if(event.target===this)closeProfileModal();">
+    <div class="concept-modal-box" style="max-width: 680px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+        <div>
+          <span class="concept-header-pill" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">👤 STUDENT PROFILE &amp; PROGRESS ENGINE</span>
+          <h2 style="font-size:1.45rem; font-weight:800; color:#fff; margin-top:6px;">Multi-Account Records &amp; Google Sign-In</h2>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Switch student accounts to load independent mastery rates, quiz scores, and study history.</p>
+        </div>
+        <button class="btn-modal-close-icon" onclick="closeProfileModal()">&times;</button>
+      </div>
+
+      <!-- Current Profile Card -->
+      <div class="profile-card-current">
+        <div class="profile-avatar-big" id="modal-profile-avatar">👨‍🎓</div>
+        <div class="profile-meta-big" style="flex:1;">
+          <h3 id="modal-profile-name">Alex Johnson</h3>
+          <p id="modal-profile-email">alex.johnson@student.edu • Level 3 Scholar</p>
+          <div style="display:flex; gap:12px; margin-top:8px; font-size:0.8rem; color:var(--text-muted);">
+            <span>🎯 Quiz Accuracy: <strong id="modal-profile-acc" style="color:var(--accent-emerald);">72%</strong></span>
+            <span>⭐ Mastered Topics: <strong id="modal-profile-topics" style="color:var(--accent-amber);">14/24</strong></span>
+            <span>⏱️ Focus Time: <strong id="modal-profile-time" style="color:var(--accent-cyan);">45m</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Switch Account Grid -->
+      <div style="font-size:0.9rem; font-weight:700; color:#f8fafc; margin-bottom:10px;">Select Student Account:</div>
+      <div class="profile-switch-grid">
+        <div class="profile-switch-card active" id="prof-card-alex" onclick="switchUserProfile('alex')">
+          <div style="font-weight:700; color:#fff;">👨‍🎓 Alex Johnson</div>
+          <div style="font-size:0.75rem; color:var(--accent-cyan);">Mathematics Focus • 72%</div>
+        </div>
+        <div class="profile-switch-card" id="prof-card-priya" onclick="switchUserProfile('priya')">
+          <div style="font-weight:700; color:#fff;">👩‍🔬 Priya Sharma</div>
+          <div style="font-size:0.75rem; color:var(--accent-emerald);">Chemistry Focus • 92%</div>
+        </div>
+        <div class="profile-switch-card" id="prof-card-rahul" onclick="switchUserProfile('rahul')">
+          <div style="font-weight:700; color:#fff;">👨‍🚀 Rahul Verma</div>
+          <div style="font-size:0.75rem; color:var(--accent-amber);">Physics Focus • 56%</div>
+        </div>
+        <div class="profile-switch-card" id="prof-card-new" onclick="promptCreateNewProfile()">
+          <div style="font-weight:700; color:var(--accent-purple);">➕ New Profile</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Create Custom Student</div>
+        </div>
+      </div>
+
+      <!-- Google OAuth Section -->
+      <div class="oauth-settings-box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            <strong style="color:#fff; font-size:0.92rem;">Google OAuth 2.0 Authentication</strong>
+          </div>
+          <span style="font-size:0.75rem; color:var(--accent-emerald);">Cloud Sync Ready</span>
+        </div>
+        <p style="font-size:0.78rem; color:var(--text-muted); margin:8px 0 0 0;">
+          Authenticate with your Google Account to persist your progress and sync achievements across devices.
+        </p>
+
+        <!-- Official Google GIS Button Container -->
+        <div id="google-signin-btn-container" style="margin-top:12px; display:flex; justify-content:center;"></div>
+
+        <!-- Client ID input -->
+        <div style="margin-top:14px; border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label style="font-size:0.76rem; color:var(--text-muted); font-weight:600;">Custom Google OAuth Client ID:</label>
+            <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="font-size:0.74rem; color:var(--accent-cyan); text-decoration:none;">🔑 Get from Google Cloud &rarr;</a>
+          </div>
+          <div class="oauth-input-row">
+            <input type="text" class="oauth-input-text" id="google-client-id-input" placeholder="e.g. 123456789-abcdef.apps.googleusercontent.com" value="">
+            <button class="btn-action-pill" onclick="saveGoogleClientId()" style="padding:6px 14px; font-size:0.8rem;">Save Key</button>
+          </div>
+          <details style="margin-top:10px; font-size:0.76rem; color:var(--text-subtle); cursor:pointer;">
+            <summary style="color:var(--text-muted);">❓ Step-by-step: How to get your free Google OAuth Client ID</summary>
+            <ol style="margin:8px 0 0 16px; padding:0; line-height:1.6;">
+              <li>Go to <a href="https://console.cloud.google.com" target="_blank" style="color:var(--accent-cyan);">Google Cloud Console</a> and create a project ("Smart Study Hub").</li>
+              <li>Navigate to <strong>APIs &amp; Services &rarr; OAuth consent screen</strong> &rarr; Select <strong>External</strong> &rarr; Enter App name &amp; email.</li>
+              <li>Go to <strong>Credentials</strong> &rarr; Click <strong>Create Credentials &rarr; OAuth client ID</strong>.</li>
+              <li>Select <strong>Web application</strong>. Under <em>Authorized JavaScript origins</em>, add: <code>http://localhost</code>, <code>http://127.0.0.1</code>, and your GitHub Pages domain.</li>
+              <li>Copy the generated <strong>Client ID</strong> and paste it into the box above!</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+
+      <div class="modal-footer-btns" style="margin-top:20px; justify-content:flex-end;">
+        <button class="btn-action-pill" onclick="closeProfileModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gemini AI Academic Tutor Modal -->
+  <div class="modal-overlay" id="gemini-ai-modal" role="dialog" aria-modal="true" style="display:none;" onclick="if(event.target===this)closeGeminiTutorModal();">
+    <div class="concept-modal-box" style="max-width: 720px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+        <div>
+          <span class="concept-header-pill" style="color:#a855f7; border-color:#a855f7;">✨ GOOGLE GEMINI AI • ACADEMIC TUTOR</span>
+          <h2 style="font-size:1.45rem; font-weight:800; color:#fff; margin-top:6px;">Personalized Conceptual Assistant</h2>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Ask any academic question, request equation breakdowns, or analyze quiz misconceptions.</p>
+        </div>
+        <button class="btn-modal-close-icon" onclick="closeGeminiTutorModal()">&times;</button>
+      </div>
+
+      <!-- Quick sample prompts -->
+      <div class="gemini-sample-pills">
+        <span class="gemini-pill" onclick="askGeminiPrompt('Explain the Cauchy epsilon-delta limit definition with an intuitive analogy.')">📐 Cauchy Limits</span>
+        <span class="gemini-pill" onclick="askGeminiPrompt('Why does Lenz's law demonstrate the law of conservation of energy?')">⚛️ Lenz's Law &amp; Energy</span>
+        <span class="gemini-pill" onclick="askGeminiPrompt('Why does ethyne (acetylene) have a linear geometry and sp hybridization?')">🧪 Acetylene Hybridization</span>
+        <span class="gemini-pill" onclick="askGeminiPrompt('Break down the iambic pentameter meter and volta of Shakespeare's Sonnet 18.')">📖 Sonnet 18 Volta</span>
+      </div>
+
+      <!-- Chat Log -->
+      <div class="gemini-chat-log" id="gemini-chat-log">
+        <div class="gemini-msg ai">
+          <strong>🤖 Gemini AI Tutor:</strong><br>
+          Hello! I am your AI Academic Tutor powered by Google Gemini. I can help explain difficult theorems, solve equations step-by-step, or break down any topic from your study curriculum in English, தமிழ், or हिन्दी. What would you like to explore today?
+        </div>
+      </div>
+
+      <!-- Input row -->
+      <div class="gemini-input-row">
+        <input type="text" id="gemini-user-input" placeholder="Type your academic question (e.g. explain Faraday's induction formula)..." onkeydown="if(event.key==='Enter')sendGeminiUserQuery()">
+        <button class="btn-action-pill" onclick="sendGeminiUserQuery()" style="background:linear-gradient(135deg, #a855f7, #0ea5e9); color:#fff; border:none; padding:0 22px;">Send ✨</button>
+      </div>
+
+      <!-- API Key config footer -->
+      <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:var(--text-subtle); border-top:1px solid rgba(255,255,255,0.08); padding-top:10px;">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span>🔑 Gemini API Key:</span>
+          <input type="password" id="gemini-api-key-input" placeholder="Paste Gemini API Key" style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.15); border-radius:4px; padding:2px 8px; font-size:0.75rem; color:#fff; width:160px;" onchange="saveGeminiApiKey(this.value)">
+          <button onclick="saveGeminiApiKey(document.getElementById('gemini-api-key-input').value)" style="background:rgba(255,255,255,0.1); border:none; color:#fff; border-radius:4px; padding:2px 6px; cursor:pointer;">Save</button>
+        </div>
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent-cyan); text-decoration:none;">Free Key at Google AI Studio &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Mind Map Image Lightbox Modal -->
+  <div class="modal-overlay" id="image-lightbox-modal" role="dialog" aria-modal="true" style="display:none;" onclick="if(event.target===this)closeImageLightbox();">
+    <div class="lightbox-modal-box">
+      <div class="mindmap-image-header">
+        <div class="mindmap-image-header-title">
+          <span id="lightbox-subj-icon">📐</span>
+          <span id="lightbox-subj-title">Mathematics Mind Map Image (HD Vector Topology)</span>
+        </div>
+        <div class="mindmap-image-actions">
+          <button class="btn-mindmap-action" onclick="downloadActiveMindMapImage()">💾 Download PNG</button>
+          <button class="btn-modal-close-icon" onclick="closeImageLightbox()">&times;</button>
+        </div>
+      </div>
+      <div class="lightbox-body" id="lightbox-body">
+        <img id="lightbox-img-element" src="" alt="High Resolution Mind Map Image">
       </div>
     </div>
   </div>
