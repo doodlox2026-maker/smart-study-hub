@@ -3755,6 +3755,499 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.6);
     }
 
+  
+    /* ==========================================================================
+       SPA DEDICATED FULL-PAGE SUBJECT VIEW
+       ========================================================================== */
+    .spa-page {
+      width: 100%;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+    .spa-page.page-enter {
+      animation: pageSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes pageSlideIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #page-subject-view {
+      min-height: 85vh;
+      padding-bottom: 60px;
+    }
+
+    .subject-page-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 22px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl);
+      margin-bottom: 24px;
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+
+    .btn-back-dashboard {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-back-dashboard:hover {
+      background: var(--accent-cyan);
+      color: #fff;
+      transform: translateX(-3px);
+      box-shadow: 0 0 20px var(--accent-cyan-glow);
+    }
+
+    .subject-page-hero {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius-xl);
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    .subject-page-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald), var(--accent-purple), var(--accent-amber));
+    }
+
+    .subject-hero-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .subject-hero-icon-box {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-lg);
+      background: rgba(14, 165, 233, 0.15);
+      border: 1px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+    }
+
+    .subject-hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .subject-hero-stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .subject-hero-stat-chip strong {
+      color: #fff;
+    }
+
+    /* Master-Detail Dual Pane Layout */
+    .subject-studio-layout {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .subject-studio-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Sidebar: Lessons List */
+    .subject-sidebar-lessons {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sidebar-lesson-tab {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 16px;
+      border-radius: var(--radius-lg);
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition-fast);
+      color: var(--text-main);
+    }
+    .sidebar-lesson-tab:hover {
+      background: rgba(30, 41, 59, 0.9);
+      border-color: var(--accent-cyan);
+      transform: translateX(3px);
+    }
+    .sidebar-lesson-tab.active {
+      background: rgba(14, 165, 233, 0.12);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 16px rgba(14, 165, 233, 0.2);
+    }
+    .sidebar-lesson-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .sidebar-lesson-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .sidebar-lesson-meta {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* Right Stage: Active Lesson & Topics */
+    .subject-stage-content {
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .lesson-stage-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 16px;
+    }
+
+    .topic-selector-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .topic-select-pill {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .topic-select-pill:hover {
+      border-color: var(--accent-emerald);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .topic-select-pill.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+      font-weight: 700;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Big High-Res Mind Map Image Card */
+    .subject-page-mindmap-card {
+      margin-top: 24px;
+      background: #0b1120;
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .subject-page-mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: rgba(30, 41, 59, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .subject-page-mindmap-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+    .subject-page-mindmap-img:hover {
+      opacity: 0.97;
+    }
+
+  
+    /* ==========================================================================
+       STUDYBOT DIRECT QUOTES, AI QUESTION BOX & AT-THE-BOT BREAKDOWN POPUP
+       ========================================================================== */
+    .mascot-speech-cloud {
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      width: 350px;
+      max-width: calc(100vw - 40px);
+      font-size: 0.84rem;
+      color: #ffffff;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px var(--accent-cyan-glow);
+      position: relative;
+      animation: fadeInSlide 0.3s ease;
+      line-height: 1.5;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      user-select: text;
+    }
+    .mascot-speech-cloud::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      right: 22px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid var(--accent-cyan);
+    }
+
+    .bot-quote-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .bot-lang-pills {
+      display: flex;
+      gap: 4px;
+    }
+    .bot-lang-pill {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .bot-lang-pill.active {
+      border-color: var(--accent-cyan);
+      background: rgba(14, 165, 233, 0.25);
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .bot-quote-text {
+      color: #f8fafc;
+      font-style: italic;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      transition: background var(--transition-fast);
+    }
+    .bot-quote-text:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .bot-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .btn-bot-action-chip {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-full);
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-bot-action-chip:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Embedded AI Ask Box at the Bot */
+    .bot-ai-box {
+      margin-top: 10px;
+      background: rgba(22, 32, 50, 0.95);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 10px;
+      padding: 9px 10px;
+    }
+    .bot-ai-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #c084fc;
+      margin-bottom: 6px;
+    }
+    .bot-ai-input-row {
+      display: flex;
+      gap: 6px;
+    }
+    .bot-ai-input-text {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: #fff;
+      font-size: 0.8rem;
+    }
+    .bot-ai-input-text:focus {
+      outline: none;
+      border-color: #a855f7;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.35);
+    }
+    .btn-bot-ai-send {
+      background: linear-gradient(135deg, #a855f7, #0ea5e9);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .btn-bot-ai-send:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    }
+    .bot-ai-response-area {
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 6px;
+      border-left: 2px solid #a855f7;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    /* Floating Topic Breakdown Popup Opening At The Bot */
+    .bot-breakdown-popup-container {
+      position: fixed;
+      bottom: 95px;
+      right: 24px;
+      z-index: 995;
+      width: 490px;
+      max-width: calc(100vw - 36px);
+      max-height: 82vh;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(14, 165, 233, 0.45);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 12px 45px rgba(0, 0, 0, 0.75), 0 0 30px rgba(14, 165, 233, 0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: botPopupSpring 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes botPopupSpring {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .bot-breakdown-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: rgba(30, 41, 59, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .bot-breakdown-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .bot-breakdown-footer {
+      padding: 12px 18px;
+      background: rgba(30, 41, 59, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
   </style>
 </head>
 <body>
@@ -3884,6 +4377,9 @@
        MAIN APP WORKSPACE
        ========================================================================== -->
   <main class="app-container">
+    <!-- SPA PAGE 1: MAIN DASHBOARD -->
+    <div id="page-dashboard" class="spa-page active">
+      
 
     <!-- Dynamic Mobile Orientation Banner (Auto-adjusts for Portrait / Landscape) -->
     <div class="mobile-orientation-banner" id="mobile-orientation-banner">
@@ -5401,7 +5897,73 @@
 </div>
     </section>
 
-  </main>
+  
+    </div>
+
+    <!-- SPA PAGE 2: DEDICATED SUBJECT PAGE VIEW -->
+    <div id="page-subject-view" class="spa-page" style="display:none;">
+      <!-- Sticky Navigation Topbar -->
+      <div class="subject-page-topbar">
+        <button class="btn-back-dashboard" onclick="navigateToDashboard()">
+          <span>&larr;</span>
+          <span id="btn-back-label">Back to All Subjects</span>
+        </button>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span class="concept-header-pill" id="page-subject-badge" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">⚛️ PHYSICS STUDIO</span>
+          <button class="btn-mindmap-action" onclick="launchSubjectQuizFromPage()">🎯 Practice 25 Qs</button>
+          <button class="btn-mindmap-action" style="background:linear-gradient(135deg, rgba(79,70,229,0.3), rgba(14,165,233,0.3)); border-color:var(--accent-cyan);" onclick="openGeminiTutorModal()">✨ Ask Gemini AI</button>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      <div class="subject-page-hero">
+        <div class="subject-hero-header">
+          <div class="subject-hero-icon-box" id="page-subject-icon">⚛️</div>
+          <div>
+            <div style="font-size:0.85rem; font-weight:700; color:var(--accent-cyan); text-transform:uppercase;" id="page-subject-track">Core Academic Discipline</div>
+            <h1 style="font-size:2.2rem; font-weight:800; color:#fff; margin:2px 0 6px 0;" id="page-subject-title">Physics Curriculum Studio</h1>
+            <p style="font-size:0.95rem; color:var(--text-muted); margin:0;" id="page-subject-desc">Classical Mechanics, Motion Calculus, Electromagnetism &amp; Induction.</p>
+          </div>
+        </div>
+        <div class="subject-hero-stats">
+          <div class="subject-hero-stat-chip"><span>📘 Lessons:</span> <strong id="page-stat-lessons">4 Complete</strong></div>
+          <div class="subject-hero-stat-chip"><span>🔹 Topics:</span> <strong id="page-stat-topics">8 Detailed</strong></div>
+          <div class="subject-hero-stat-chip"><span>🎯 Questions:</span> <strong>25 Benchmarks (8 Easy, 9 Medium, 8 Hard)</strong></div>
+          <div class="subject-hero-stat-chip"><span>⭐ Visual Topology:</span> <strong style="color:var(--accent-emerald);">HD Mind Map Image Included</strong></div>
+        </div>
+      </div>
+
+      <!-- Studio Dual-Pane Layout -->
+      <div class="subject-studio-layout">
+        <!-- Left Sidebar: Lessons Navigation -->
+        <aside class="subject-sidebar-lessons">
+          <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Select Lesson:</div>
+          <div id="subject-sidebar-lessons-list">
+            <!-- Populated dynamically -->
+          </div>
+        </aside>
+
+        <!-- Right Main Stage: Topics & Deep Breakdown -->
+        <section class="subject-stage-content">
+          <div class="lesson-stage-header">
+            <span class="lesson-badge-tag" id="stage-lesson-tag">LESSON 01 &bull; FOUNDATIONS</span>
+            <h2 style="font-size:1.6rem; font-weight:800; color:#fff; margin:4px 0 6px 0;" id="stage-lesson-title">Kinematics &amp; Motion Calculus</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin:0;" id="stage-lesson-desc">Study rectilinear motion equations, velocity-time graph calculus, and free fall trajectories.</p>
+            
+            <div style="margin-top:14px; font-size:0.82rem; font-weight:700; color:var(--text-muted);">Choose Conceptual Topic:</div>
+            <div class="topic-selector-tabs" id="stage-topic-tabs">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Deep Breakdown Details Container -->
+          <div id="stage-topic-breakdown-area">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+      </div>
+    </div>
+</main>
 
   <!-- ==========================================================================
        SESSION TERMINATION CONFIRMATION / SUMMARY MODAL
@@ -7227,6 +7789,7 @@
     drilldownState.topicId = topicId;
     drilldownState.step = 4;
     renderCurriculumExplorer();
+    openBotBreakdownPopup(drilldownState.subjectKey, topicId);
     safeToast("Loaded Topic Breakdown & Mind Map Image");
   }
   window.drilldownSelectTopic = drilldownSelectTopic;
@@ -7898,7 +8461,7 @@
      GEMINI AI INTEGRATION ENGINE
      ========================================================================== */
   function getGeminiApiKey() {
-    return localStorage.getItem("smart_study_gemini_key") || "";
+    return localStorage.getItem("smart_study_gemini_key") || "AQ.Ab8RN6Km-7qy5hH9EUkN7tQUOjrTpQyXTL_Fno-Sq99o-52eOA";
   }
 
   function saveGeminiApiKey(key) {
@@ -8083,16 +8646,556 @@
     initEnhancedFeatures();
   }
 
+    
+  /* ==========================================================================
+     USER CONFIGURED GEMINI API KEY & SPA PAGE ROUTING ENGINE
+     ========================================================================== */
+  const USER_PROVIDED_GEMINI_KEY = "AQ.Ab8RN6Km-7qy5hH9EUkN7tQUOjrTpQyXTL_Fno-Sq99o-52eOA";
+
+  // Pre-seed user's Gemini key in localStorage if not already set
+  if (!localStorage.getItem("smart_study_gemini_key")) {
+    localStorage.setItem("smart_study_gemini_key", USER_PROVIDED_GEMINI_KEY);
+  }
+
+  let activeSubjectPageKey = "phys";
+  let activeSubjectPageLessonId = "phys-l1";
+  let activeSubjectPageTopicId = "phys-t1";
+
+  function navigateToSubjectPage(subjectKey, lessonId, topicId) {
+    const pDash = document.getElementById("page-dashboard");
+    const pSubj = document.getElementById("page-subject-view");
+    if (!pDash || !pSubj) return;
+
+    activeSubjectPageKey = subjectKey || "phys";
+    const s = HIERARCHICAL_CURRICULUM[activeSubjectPageKey] || HIERARCHICAL_CURRICULUM.phys;
+    
+    activeSubjectPageLessonId = lessonId || (s.lessons[0] ? s.lessons[0].id : null);
+    const curLesson = s.lessons.find(l => l.id === activeSubjectPageLessonId) || s.lessons[0];
+    activeSubjectPageTopicId = topicId || (curLesson && curLesson.topics[0] ? curLesson.topics[0].id : null);
+
+    // Switch Views
+    pDash.style.display = "none";
+    pDash.classList.remove("active");
+
+    pSubj.style.display = "block";
+    pSubj.classList.add("active", "page-enter");
+
+    // Scroll smoothly to top of the new page
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    // Render content
+    renderSubjectDedicatedPage();
+
+    // Set URL hash for history support
+    window.location.hash = "#subject-" + activeSubjectPageKey;
+
+    const sTitle = s.title[typeof currentLang !== 'undefined' ? currentLang : 'en'] || s.title.en;
+    safeToast("Welcome to " + sTitle + " Curriculum Page!");
+  }
+  window.navigateToSubjectPage = navigateToSubjectPage;
+
+  function navigateToDashboard() {
+    const pDash = document.getElementById("page-dashboard");
+    const pSubj = document.getElementById("page-subject-view");
+    if (!pDash || !pSubj) return;
+
+    pSubj.style.display = "none";
+    pSubj.classList.remove("active");
+
+    pDash.style.display = "block";
+    pDash.classList.add("active", "page-enter");
+
+    window.location.hash = "#dashboard";
+
+    const currSec = document.getElementById("curriculum-section") || document.getElementById("curriculum-drilldown-container");
+    if (currSec) {
+      currSec.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+  window.navigateToDashboard = navigateToDashboard;
+
+  // Intercept touchSubject to use the new neat full-page view!
+  window.touchSubject = function(subjectKey) {
+    navigateToSubjectPage(subjectKey);
+  };
+
+  function renderSubjectDedicatedPage() {
+    const s = HIERARCHICAL_CURRICULUM[activeSubjectPageKey] || HIERARCHICAL_CURRICULUM.phys;
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+    const sTitle = s.title[lang] || s.title.en;
+
+    // Hero Elements
+    const badgeEl = document.getElementById("page-subject-badge");
+    const iconEl = document.getElementById("page-subject-icon");
+    const titleEl = document.getElementById("page-subject-title");
+    const descEl = document.getElementById("page-subject-desc");
+    const statLessonsEl = document.getElementById("page-stat-lessons");
+    const statTopicsEl = document.getElementById("page-stat-topics");
+
+    if (badgeEl) badgeEl.textContent = s.icon + " " + sTitle.toUpperCase() + " • " + (s.badge[lang] || s.badge.en);
+    if (iconEl) iconEl.textContent = s.icon;
+    if (titleEl) titleEl.textContent = sTitle + " Curriculum Studio";
+    if (statLessonsEl) statLessonsEl.textContent = s.lessons.length + " Complete";
+
+    let totalTopics = 0;
+    s.lessons.forEach(l => totalTopics += l.topics.length);
+    if (statTopicsEl) statTopicsEl.textContent = totalTopics + " Detailed";
+
+    // Descriptions per subject
+    const subjectDescriptions = {
+      "math": "Rigorous Differential & Integral Calculus, Tangent Derivatives, Linear Algebra, and Determinant Spaces.",
+      "chem": "Organic Hybridization (sp³/sp²/sp), Benzene Resonance Aromaticity, Periodic Trends, and Chemical Bonding.",
+      "phys": "Galilean Kinematics, Velocity-Time Graph Calculus, Gravitation, Electromagnetism, and Faraday-Lenz Induction.",
+      "eng": "Syntactic Clause Hierarchy, Complex Sentences, Punctuation Mastery, Shakespearean Sonnet 18, and Iambic Pentameter."
+    };
+    if (descEl) descEl.textContent = subjectDescriptions[s.key] || sTitle + " Curriculum";
+
+    // Render Left Sidebar Lessons
+    const sidebarEl = document.getElementById("subject-sidebar-lessons-list");
+    if (sidebarEl) {
+      let sbHtml = "";
+      s.lessons.forEach((l, idx) => {
+        const isActive = (l.id === activeSubjectPageLessonId);
+        const lTitle = l.title[lang] || l.title.en;
+        const lTag = l.tag[lang] || l.tag.en;
+        sbHtml += `
+          <div class="sidebar-lesson-tab ${isActive ? 'active' : ''}" onclick="selectPageLesson('${l.id}')">
+            <span class="sidebar-lesson-badge">LESSON 0${idx+1} &bull; ${lTag}</span>
+            <span class="sidebar-lesson-title">${lTitle}</span>
+            <span class="sidebar-lesson-meta">${l.topics.length} Conceptual Topics &rarr;</span>
+          </div>
+        `;
+      });
+      sidebarEl.innerHTML = sbHtml;
+    }
+
+    // Active Lesson Stage
+    const curLesson = s.lessons.find(l => l.id === activeSubjectPageLessonId) || s.lessons[0];
+    if (!curLesson) return;
+
+    const stageTagEl = document.getElementById("stage-lesson-tag");
+    const stageTitleEl = document.getElementById("stage-lesson-title");
+    const stageDescEl = document.getElementById("stage-lesson-desc");
+
+    if (stageTagEl) stageTagEl.textContent = "LESSON • " + (curLesson.tag[lang] || curLesson.tag.en).toUpperCase();
+    if (stageTitleEl) stageTitleEl.textContent = curLesson.title[lang] || curLesson.title.en;
+    if (stageDescEl) stageDescEl.textContent = curLesson.desc[lang] || curLesson.desc.en;
+
+    // Render Topic Pills
+    const topicTabsEl = document.getElementById("stage-topic-tabs");
+    if (topicTabsEl) {
+      let tHtml = "";
+      curLesson.topics.forEach((t) => {
+        const isTopicActive = (t.id === activeSubjectPageTopicId);
+        const tName = t.name[lang] || t.name.en;
+        tHtml += `
+          <button class="topic-select-pill ${isTopicActive ? 'active' : ''}" onclick="selectPageTopic('${t.id}')">
+            <span>🔹 ${tName}</span>
+          </button>
+        `;
+      });
+      topicTabsEl.innerHTML = tHtml;
+    }
+
+    // Render Active Topic Deep Breakdown with Compulsory Mind Map Image
+    const curTopic = curLesson.topics.find(t => t.id === activeSubjectPageTopicId) || curLesson.topics[0];
+    const breakdownArea = document.getElementById("stage-topic-breakdown-area");
+
+    if (breakdownArea && curTopic) {
+      const tName = curTopic.name[lang] || curTopic.name.en;
+      const tTheory = curTopic.theory[lang] || curTopic.theory.en;
+      const tApp = curTopic.app[lang] || curTopic.app.en;
+      const tMotiv = curTopic.motivation[lang] || curTopic.motivation.en;
+
+      breakdownArea.innerHTML = `
+        <div style="margin-top:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span class="topic-pill-badge" style="background:rgba(14,165,233,0.15); color:var(--accent-cyan); border-color:var(--accent-cyan); font-size:11px;">Active Topic Breakdown</span>
+              <h3 style="font-size:1.3rem; font-weight:800; color:#fff; margin:0;">${tName}</h3>
+            </div>
+            <span class="badge-mini" style="font-size:11px; background:rgba(16,185,129,0.15); color:var(--accent-emerald); padding:3px 10px; border-radius:10px;">${curTopic.badge}</span>
+          </div>
+
+          <!-- Theoretical Axioms -->
+          <div class="drawer-block" style="margin-bottom:16px;">
+            <div class="drawer-sec-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Theoretical Framework &amp; Governing Axioms</span>
+            </div>
+            <p class="drawer-prose" style="line-height:1.7; color:#e2e8f0; font-size:0.94rem;">${tTheory}</p>
+          </div>
+
+          <!-- Governing Formulas -->
+          <div class="drawer-block" style="margin-bottom:16px;">
+            <div class="drawer-sec-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>Governing Mathematical &amp; Scientific Equations</span>
+            </div>
+            <div class="drawer-formula-strip" style="background:#090e1a; border:1px solid rgba(14,165,233,0.35); padding:12px 16px; border-radius:8px; font-family:monospace; color:var(--accent-cyan); font-size:0.92rem; overflow-x:auto;">${curTopic.formulas}</div>
+          </div>
+
+          <!-- Real-World Engineering Applications -->
+          <div class="drawer-block" style="margin-bottom:16px;">
+            <div class="drawer-sec-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>Industrial &amp; Engineering Applications</span>
+            </div>
+            <p class="drawer-prose" style="line-height:1.65; color:#94a3b8; font-size:0.9rem;">${tApp}</p>
+          </div>
+
+          <!-- Motivational Dialogue -->
+          <div class="drawer-block drawer-motivation-block" style="background:rgba(245,158,11,0.08); border-left:3px solid var(--accent-amber); padding:14px 18px; border-radius:8px; margin-bottom:20px;">
+            <div style="font-weight:700; color:var(--accent-amber); font-size:0.9rem; margin-bottom:6px;">🌟 Inspiring Student Reflection:</div>
+            <p style="margin:0; font-style:italic; color:#fff; font-size:0.92rem; line-height:1.55;">${tMotiv}</p>
+          </div>
+
+          <!-- COMPULSORY VISUAL MIND MAP IMAGE CARD -->
+          <div class="subject-page-mindmap-card">
+            <div class="subject-page-mindmap-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.1rem;">🖼️</span>
+                <span style="font-weight:700; color:#fff; font-size:0.95rem;">${s.icon} ${sTitle} Official Mind Map Image (HD Vector Topology)</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn-mindmap-action" style="border-color:var(--accent-cyan); color:var(--accent-cyan);" onclick="openBotBreakdownPopup('${s.key}', '${activeSubjectPageTopicId}')"><span>&#129302; Pop Up at Bot</span></button>
+            <button class="btn-mindmap-action" onclick="openMindMapLightbox('${s.key}')">🔍 Fullscreen Lightbox</button>
+                <button class="btn-mindmap-action" onclick="downloadActiveMindMapImage('${s.key}')">💾 Download PNG</button>
+              </div>
+            </div>
+            <img class="subject-page-mindmap-img" src="${s.mindmapImg}" alt="${sTitle} Mind Map Image" onerror="this.onerror=null; this.src='${s.mindmapSvg}';" onclick="openMindMapLightbox('${s.key}')" title="Click to view fullscreen">
+          </div>
+
+          <!-- Bottom Action Buttons Strip -->
+          <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:12px;">
+            <button class="btn-action-pill" style="background:var(--accent-cyan); color:#0f172a; font-weight:700;" onclick="launchSubjectQuizFromPage()">
+              <span>🎯 Practice 25 Questions on ${sTitle}</span>
+            </button>
+            <button class="btn-action-pill" style="background:linear-gradient(135deg, #a855f7, #0ea5e9); color:#fff; border:none;" onclick="openGeminiTutorForTopic('${tName}')">
+              <span>✨ Ask Gemini AI About This Topic</span>
+            </button>
+            <button class="btn-action-pill" onclick="markTopicMastered('${curTopic.id}')">
+              <span>⭐ Mark Topic Mastered</span>
+            </button>
+            <button class="btn-action-pill" onclick="navigateToDashboard()">
+              <span>⬅ Back to All Subjects</span>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function selectPageLesson(lessonId) {
+    activeSubjectPageLessonId = lessonId;
+    const s = HIERARCHICAL_CURRICULUM[activeSubjectPageKey] || HIERARCHICAL_CURRICULUM.phys;
+    const l = s.lessons.find(item => item.id === lessonId);
+    if (l && l.topics && l.topics[0]) {
+      activeSubjectPageTopicId = l.topics[0].id;
+    }
+    renderSubjectDedicatedPage();
+  }
+  window.selectPageLesson = selectPageLesson;
+
+  function selectPageTopic(topicId) {
+    activeSubjectPageTopicId = topicId;
+    renderSubjectDedicatedPage();
+    openBotBreakdownPopup(activeSubjectPageKey, topicId);
+  }
+  window.selectPageTopic = selectPageTopic;
+
+  function launchSubjectQuizFromPage() {
+    const s = HIERARCHICAL_CURRICULUM[activeSubjectPageKey] || HIERARCHICAL_CURRICULUM.phys;
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+    const sTitle = s.title[lang] || s.title.en;
+
+    navigateToDashboard();
+    filterQuizSubject(sTitle);
+    scrollToQuiz();
+  }
+  window.launchSubjectQuizFromPage = launchSubjectQuizFromPage;
+
+  // Browser back/forward history handling
+  window.addEventListener("popstate", () => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith("#subject-")) {
+      const sk = hash.replace("#subject-", "");
+      if (HIERARCHICAL_CURRICULUM[sk]) {
+        navigateToSubjectPage(sk);
+      }
+    } else {
+      navigateToDashboard();
+    }
+  });
+
+    
+  /* ==========================================================================
+     UPGRADED STUDYBOT: DIRECT QUOTES IN 3 LANGUAGES, AI BOX & POPUP BREAKDOWN
+     ========================================================================== */
+  let activeBotLang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+  let activeBotBreakdownSubj = 'phys';
+  let activeBotBreakdownTopic = 'phys-t1';
+
+  function setBotLanguage(lang) {
+    activeBotLang = lang;
+    if (typeof setLanguage === 'function') {
+      setLanguage(lang);
+    }
+    // Update pills
+    ['en', 'ta', 'hi'].forEach(l => {
+      const p = document.getElementById('bot-lang-' + l);
+      if (p) p.classList.toggle('active', l === lang);
+    });
+    triggerMascotCheer();
+  }
+  window.setBotLanguage = setBotLanguage;
+
+  function triggerMascotCheer() {
+    if (typeof playCuteChime === 'function') playCuteChime();
+
+    const fab = document.getElementById('cute-mascot-fab');
+    if (fab && typeof spawnCuteConfetti === 'function') {
+      const rect = fab.getBoundingClientRect();
+      spawnCuteConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+
+    const lang = activeBotLang || (typeof currentLang !== 'undefined' ? currentLang : 'en');
+    const quoteList = (typeof MOTIVATION_QUOTES !== 'undefined' && MOTIVATION_QUOTES[lang]) ? MOTIVATION_QUOTES[lang] : (typeof MOTIVATION_QUOTES !== 'undefined' ? MOTIVATION_QUOTES.en : []);
+    
+    if (quoteList && quoteList.length > 0) {
+      const randIdx = Math.floor(Math.random() * quoteList.length);
+      const quote = quoteList[randIdx];
+      const speech = document.getElementById('mascot-speech-text');
+      if (speech) {
+        speech.innerHTML = `<strong>🔥 Quote #${randIdx + 1}:</strong> &ldquo;${quote}&rdquo; ✨`;
+      }
+      safeToast("StudyBot: Quote #" + (randIdx + 1) + " (" + lang.toUpperCase() + ")");
+    }
+  }
+  window.triggerMascotCheer = triggerMascotCheer;
+
+  // Direct AI Ask Box at the Bot
+  async function askStudyBotDirectAI(userQuestion) {
+    if (!userQuestion || !userQuestion.trim()) return;
+    const input = document.getElementById('bot-ai-direct-input');
+    const respArea = document.getElementById('bot-ai-direct-response');
+    if (!respArea) return;
+
+    respArea.style.display = 'block';
+    respArea.innerHTML = "<em>🤖 StudyBot &amp; Gemini AI are thinking... ✨</em>";
+    if (input) input.value = '';
+
+    const langName = activeBotLang === 'ta' ? 'Tamil' : (activeBotLang === 'hi' ? 'Hindi' : 'English');
+    const apiKey = getGeminiApiKey();
+
+    if (apiKey) {
+      try {
+        const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{
+              role: "user",
+              parts: [{ text: "You are StudyBot, a friendly academic tutor. Answer the student's question concisely in " + langName + " with clear equations and intuitive understanding.\n\nQuestion: " + userQuestion }]
+            }]
+          })
+        });
+        const data = await res.json();
+        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+          const reply = data.candidates[0].content.parts[0].text;
+          respArea.innerHTML = `<strong>🤖 Gemini AI:</strong><br>${reply.replace(/\n/g, '<br>')}`;
+        } else {
+          respArea.innerHTML = `<strong>🤖 Gemini AI:</strong><br>${getSimulatedGeminiReply(userQuestion)}`;
+        }
+      } catch (err) {
+        console.warn("Direct bot AI error:", err);
+        respArea.innerHTML = `<strong>🤖 Gemini AI:</strong><br>${getSimulatedGeminiReply(userQuestion)}`;
+      }
+    } else {
+      setTimeout(() => {
+        respArea.innerHTML = `<strong>🤖 Gemini AI (Smart Mode):</strong><br>${getSimulatedGeminiReply(userQuestion)}`;
+      }, 500);
+    }
+  }
+  window.askStudyBotDirectAI = askStudyBotDirectAI;
+
+  // OPEN BREAKDOWN POPUP AT THE BOT
+  function openBotBreakdownPopup(subjectKey, topicId) {
+    activeBotBreakdownSubj = subjectKey || (typeof activeSubjectPageKey !== 'undefined' ? activeSubjectPageKey : 'phys');
+    const s = HIERARCHICAL_CURRICULUM[activeBotBreakdownSubj] || HIERARCHICAL_CURRICULUM.phys;
+    const lang = activeBotLang || (typeof currentLang !== 'undefined' ? currentLang : 'en');
+    const sTitle = s.title[lang] || s.title.en;
+
+    // Find topic
+    let foundTopic = null;
+    let foundLesson = null;
+    for (const l of s.lessons) {
+      for (const t of l.topics) {
+        if (!topicId || t.id === topicId) {
+          foundTopic = t;
+          foundLesson = l;
+          break;
+        }
+      }
+      if (foundTopic) break;
+    }
+    if (!foundTopic) {
+      foundLesson = s.lessons[0];
+      foundTopic = foundLesson.topics[0];
+    }
+    activeBotBreakdownTopic = foundTopic.id;
+
+    const popup = document.getElementById('bot-breakdown-popup');
+    const subhead = document.getElementById('bot-breakdown-subhead');
+    const title = document.getElementById('bot-breakdown-title');
+    const content = document.getElementById('bot-breakdown-content');
+
+    if (subhead) subhead.textContent = `${s.icon} ${sTitle} • ${foundLesson.title[lang] || foundLesson.title.en}`;
+    if (title) title.textContent = foundTopic.name[lang] || foundTopic.name.en;
+
+    const tTheory = foundTopic.theory[lang] || foundTopic.theory.en;
+    const tApp = foundTopic.app[lang] || foundTopic.app.en;
+    const tMotiv = foundTopic.motivation[lang] || foundTopic.motivation.en;
+
+    if (content) {
+      content.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="badge-mini" style="font-size:11px; background:rgba(14,165,233,0.15); color:var(--accent-cyan); padding:3px 10px; border-radius:10px;">${foundTopic.badge}</span>
+          <button class="btn-mindmap-action" style="font-size:11px; padding:3px 8px;" onclick="openMindMapLightbox('${s.key}')">🔍 View Full Mind Map</button>
+        </div>
+
+        <!-- Theoretical Framework -->
+        <div style="background:rgba(30,41,59,0.5); padding:10px 14px; border-radius:8px; border-left:3px solid var(--accent-cyan);">
+          <div style="font-size:0.75rem; font-weight:700; color:var(--accent-cyan); text-transform:uppercase; margin-bottom:4px;">Theoretical Framework:</div>
+          <p style="margin:0; font-size:0.86rem; color:#cbd5e1; line-height:1.55;">${tTheory}</p>
+        </div>
+
+        <!-- Formulas Strip -->
+        <div style="background:#090e1a; border:1px solid rgba(14,165,233,0.3); padding:8px 12px; border-radius:6px; font-family:monospace; color:var(--accent-cyan); font-size:0.84rem; overflow-x:auto;">
+          ⚡ ${foundTopic.formulas}
+        </div>
+
+        <!-- Industrial Applications -->
+        <div style="background:rgba(30,41,59,0.5); padding:10px 14px; border-radius:8px; border-left:3px solid var(--accent-emerald);">
+          <div style="font-size:0.75rem; font-weight:700; color:var(--accent-emerald); text-transform:uppercase; margin-bottom:4px;">Real-World Applications:</div>
+          <p style="margin:0; font-size:0.84rem; color:#94a3b8; line-height:1.5;">${tApp}</p>
+        </div>
+
+        <!-- Motivational Reflection -->
+        <div style="background:rgba(245,158,11,0.08); border-left:3px solid var(--accent-amber); padding:8px 12px; border-radius:6px; font-style:italic; font-size:0.84rem; color:#f8fafc;">
+          🌟 ${tMotiv}
+        </div>
+
+        <!-- Mind Map Image Preview -->
+        <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); cursor:zoom-in;" onclick="openMindMapLightbox('${s.key}')" title="Click to open fullscreen mind map">
+          <img src="${s.mindmapImg}" onerror="this.onerror=null; this.src='${s.mindmapSvg}';" style="width:100%; display:block;" alt="${sTitle} Mind Map Image">
+        </div>
+      `;
+    }
+
+    if (popup) {
+      popup.style.display = 'flex';
+    }
+
+    // Mascot glow & chime
+    const mascot = document.getElementById('mascot-avatar-circle');
+    if (mascot) {
+      mascot.style.transform = 'scale(1.2) rotate(8deg)';
+      setTimeout(() => { mascot.style.transform = 'scale(1) rotate(0deg)'; }, 400);
+    }
+    if (typeof playCuteChime === 'function') playCuteChime();
+    safeToast("StudyBot popped up " + (foundTopic.name[lang] || foundTopic.name.en) + " Breakdown!");
+  }
+  window.openBotBreakdownPopup = openBotBreakdownPopup;
+
+  function closeBotBreakdownPopup() {
+    const popup = document.getElementById('bot-breakdown-popup');
+    if (popup) popup.style.display = 'none';
+  }
+  window.closeBotBreakdownPopup = closeBotBreakdownPopup;
+
+  function askGeminiPromptFromBotBreakdown() {
+    const s = HIERARCHICAL_CURRICULUM[activeBotBreakdownSubj] || HIERARCHICAL_CURRICULUM.phys;
+    const l = s.lessons[0];
+    const t = l.topics[0];
+    const tName = t.name[activeBotLang] || t.name.en;
+    openGeminiTutorModal("Explain the theoretical principles and mathematical derivations of " + tName + " in detail.");
+  }
+  window.askGeminiPromptFromBotBreakdown = askGeminiPromptFromBotBreakdown;
+
     </script>
 
   <!-- Cute Floating Mascot "StudyBot" -->
-  <div class="cute-mascot-fab" id="cute-mascot-fab" onclick="triggerMascotCheer()" title="Tap StudyBot for cute encouragement!">
+    <!-- Floating Mascot StudyBot with Direct Motivational Quotes & AI Question Box -->
+  <div class="cute-mascot-fab" id="cute-mascot-fab" title="Tap StudyBot for cute encouragement!">
+    <!-- Speech Cloud: Tells Quotes Directly + Direct AI Ask Box -->
     <div class="mascot-speech-cloud" id="mascot-speech-cloud">
-      <div id="mascot-speech-text">Hello! I'm StudyBot! Tap me for cute motivation! ✨</div>
-      <button class="btn-open-quotes-pill" onclick="event.stopPropagation(); openQuotesGallery();" title="Browse all 50 quotes">🌟 50 Quotes Gallery</button>
+      <div class="bot-quote-title">
+        <span>[StudyBot Motivation]</span>
+        <div class="bot-lang-pills">
+          <span class="bot-lang-pill active" id="bot-lang-en" onclick="event.stopPropagation(); setBotLanguage('en')">EN</span>
+          <span class="bot-lang-pill" id="bot-lang-ta" onclick="event.stopPropagation(); setBotLanguage('ta')">&#2980;&#2990;&#3007;&#2996;&#3021;</span>
+          <span class="bot-lang-pill" id="bot-lang-hi" onclick="event.stopPropagation(); setBotLanguage('hi')">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</span>
+        </div>
+      </div>
+
+      <!-- Direct Quote Display -->
+      <div class="bot-quote-text" id="mascot-speech-text" onclick="event.stopPropagation(); triggerMascotCheer()">
+        &#128293; &ldquo;Infinitesimal steps taken with daily consistency integrate into monumental academic mastery!&rdquo; &#10024;
+      </div>
+
+      <!-- Action Chips Strip -->
+      <div class="bot-actions-row">
+        <button class="btn-bot-action-chip" onclick="event.stopPropagation(); triggerMascotCheer()">
+          <span>&#127922; Next Quote</span>
+        </button>
+        <button class="btn-bot-action-chip" style="color:var(--accent-cyan);" onclick="event.stopPropagation(); openBotBreakdownPopup('phys', 'phys-t1')">
+          <span>&#128214; Pop Up Breakdown</span>
+        </button>
+      </div>
+
+      <!-- DIRECT GEMINI AI QUESTION BOX -->
+      <div class="bot-ai-box" onclick="event.stopPropagation()">
+        <div class="bot-ai-header">
+          <span>&#10024; Ask Gemini AI:</span>
+          <span style="font-size:10px; color:#34d399;">&#9679; Live Connected</span>
+        </div>
+        <div class="bot-ai-input-row">
+          <input type="text" class="bot-ai-input-text" id="bot-ai-direct-input" placeholder="Type question (e.g. explain Faraday's law)..." onkeydown="if(event.key==='Enter')askStudyBotDirectAI(this.value)">
+          <button class="btn-bot-ai-send" onclick="askStudyBotDirectAI(document.getElementById('bot-ai-direct-input').value)">Ask &#10024;</button>
+        </div>
+        <div class="bot-ai-response-area" id="bot-ai-direct-response" style="display:none;"></div>
+      </div>
     </div>
-    <div class="mascot-avatar-circle" id="mascot-avatar-circle">
-      🤖
+
+    <!-- Avatar Button -->
+    <div class="mascot-avatar-circle" id="mascot-avatar-circle" onclick="triggerMascotCheer()">
+      &#129302;
+    </div>
+  </div>
+
+  <!-- FLOATING BREAKDOWN POPUP OPENING DIRECTLY AT THE BOT -->
+  <div class="bot-breakdown-popup-container" id="bot-breakdown-popup" style="display:none;">
+    <div class="bot-breakdown-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:1.2rem;">&#129302;</span>
+        <div>
+          <div style="font-size:0.72rem; color:var(--accent-cyan); font-weight:700; text-transform:uppercase;" id="bot-breakdown-subhead">StudyBot Breakdown</div>
+          <h3 style="font-size:1.05rem; font-weight:800; color:#fff; margin:0;" id="bot-breakdown-title">Topic Conceptual Breakdown</h3>
+        </div>
+      </div>
+      <button class="btn-modal-close-icon" onclick="closeBotBreakdownPopup()">&times;</button>
+    </div>
+
+    <div class="bot-breakdown-body" id="bot-breakdown-content">
+      <!-- Populated dynamically with theory, formulas, apps, mind map image -->
+    </div>
+
+    <div class="bot-breakdown-footer">
+      <button class="btn-mindmap-action" id="bot-breakdown-btn-quiz" onclick="closeBotBreakdownPopup(); launchSubjectQuizFromPage();">&#127919; Practice 25 Qs</button>
+      <button class="btn-mindmap-action" style="border-color:#a855f7; color:#c084fc;" onclick="askGeminiPromptFromBotBreakdown()">&#10024; Ask Gemini About This</button>
+      <button class="btn-mindmap-action" onclick="closeBotBreakdownPopup()">&#10006; Close</button>
     </div>
   </div>
 
